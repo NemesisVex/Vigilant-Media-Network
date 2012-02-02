@@ -1,0 +1,14 @@
+ErrorDocument 401 /index.php/gb/error/401/
+ErrorDocument 403 /index.php/gb/error/403/
+ErrorDocument 404 /index.php/gb/error/404/
+ErrorDocument 500 /index.php/gb/error/500/
+
+AddType image/x-icon .ico
+AddType text/xml .rdf
+
+IndexIgnore CVS
+
+#AuthType Basic
+#AuthUserFile /home/nemesisv/.htpasswd
+#AuthName "JournalCon test site"
+#require valid-user

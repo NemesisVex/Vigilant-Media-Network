@@ -1,0 +1,8 @@
+<strong>how to join austin stories</strong><br>
+<p>To become a member of <strong><a href="/index.php/"{if $popup_flag==true} class="popup"{/if}>Austin Stories</a></strong>, you must first <strong><a href="/index.php/index.php/members/register/"{if $popup_flag==true} class="popup"{/if}>register</a></strong>. You can also access the registration page from <strong><a href="/index.php/members/"{if $popup_flag==true} class="popup"{/if}>My Austin Stories</a></strong>. Look for the link to <strong><a href="/index.php/members/register/"{if $popup_flag==true} class="popup"{/if}>sign up for an account</a></strong>. You will be required to choose a login name, then provide an e-mail address, your URL and the name of your site.</p>
+
+<p>Your registration is subject to approval by the webmaster. (<em>Webmaster note:</em> I have to figure out if you really have ties to Austin. Goes with the theme of the site.) When the webmaster determines you may indeed become a member, you'll be sent a temporary password to log in.</p>
+
+<p>The password will be an encrypted mess, so don't feel compelled to keep it. When you first log in, you should change your password to something more manageable.</p>
+
+<p><strong>Please note</strong>: If your site was listed in <strong><a href="/index.php/"{if $popup_flag==true} class="popup"{/if}>Austin Stories</a></strong> before the launch of the portal on January 2003, you already have a temporary account set up for you. Read <strong><a href="/index.php/help/topic/basics_login/{if $popup_flag==true}1/{/if}">logging into your account</a></strong> for details.</p>

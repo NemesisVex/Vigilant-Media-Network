@@ -1,0 +1,5 @@
+#RewriteEngine On
+#RewriteCond %{HTTP_REFERER} ^http://astore.amazon.co.jp/musicwhoreorg-22.* [NC]
+#RewriteRule .*\.(gif|jpg)$ musicwhore_bg_v07.jpg [L]
+#RewriteCond %{HTTP_REFERER} ^http://astore.amazon.co.jp.* [NC]
+#RewriteRule .*\.(gif|jpg)$ 04-RDN-164.jpg [L]

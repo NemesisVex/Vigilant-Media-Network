@@ -1,0 +1,49 @@
+input[type=submit], input[type=reset], input[type=button]
+{
+	background-color: #000;
+}
+
+h4.admin_head
+{
+	font-weight: bold;
+	font-style: italic;
+	border-bottom: 1px solid #FFF;
+	background-color: #600;
+}
+
+.scroll-box
+{
+	overflow: auto;
+	height: 200px;
+	border: 1px solid #999;
+}
+
+table.Admin, table.Admin_Wide
+{
+	border: 1px dotted #999;
+	border-collapse: collapse;
+}
+
+table.Admin_Wide
+{
+	width: 100%;
+}
+
+table.Admin tr.AltRow
+{
+	background-color: #663;
+}
+
+table.Admin td, table.Admin_Wide td
+{
+	border: 1px dotted #999;
+}
+
+table.Admin th, table.Admin_Wide th
+{
+	border: 1px dotted #999;
+	font-size: 75%;
+	color: #FFF;
+	background-color: #966;
+}
+

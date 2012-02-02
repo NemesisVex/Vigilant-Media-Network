@@ -1,0 +1,142 @@
+
+body {
+	margin:0px;
+	padding:0px;
+	font:11px/20px verdana, arial, helvetica, sans-serif;
+	color:#111;
+	background-color:#c00;
+	}
+
+
+
+
+h1 {
+	margin:0px 0px 15px 0px;
+	padding:0px;
+	font-size:28px;
+	line-height:28px;
+	font-weight:700;
+	color:#039;
+	background-color:#fff;
+	}
+	
+h5 {
+	margin:0px 0px 15px 0px;
+	padding:0px;
+	font-size:16px;
+	line-height:19px;
+	font-weight:700;
+	color:#111;
+	background-color:#fff;
+	}
+	
+li {
+	font:11px/20px verdana, arial, helvetica, sans-serif;
+	margin-left: 10px;
+	}
+img {
+	margin-top: 2.5px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-bottom: 2.5px;
+}
+p {
+	font:11px/20px verdana, arial, helvetica, sans-serif;
+	margin:10px 0px 16px 0px;
+	padding:5px;
+	}
+
+td {
+	font:11px/15px verdana, arial, helvetica, sans-serif;
+	margin:10px 0px 16px 0px;
+	padding:0px;
+	}
+a {
+	color:#039;
+	font-size:11px;
+	text-decoration:none;
+	font-family:verdana, arial, helvetica, sans-serif;
+	}
+a:link {color:#039;
+}
+a:visited {color:#555;
+}
+a:hover {background-color:#ccc;
+	color: #039;
+}
+
+#Content{
+	margin:0px 210px 50px 10px;
+	padding:10px;
+	font-family:verdana, arial, helvetica, sans-serif;
+	color:#111;
+	background-color:#fff;
+	border:3px double #333;
+	}
+#Content>p {margin-top:7px;
+           }
+
+
+#Header {
+	margin:50px 0px 10px 0px;
+	padding:17px 0px 0px 20px;
+	/* For IE5/Win's benefit height = [correct height] + [top padding] + [top and bottom border widths] */
+	height:33px; /* 14px + 17px + 2px = 33px */
+	border-style:solid;
+	border-color:black;
+	border-width:1px 0px; /* top and bottom borders: 1px; left and right borders: 0px */
+	line-height:11px;
+	background-color:#ccc;
+	color: #111;
+
+/* Here is the ugly brilliant hack that protects IE5/Win from its own stupidity. 
+Thanks to Tantek Celik for the hack and to Eric Costello for publicizing it. 
+IE5/Win incorrectly parses the "\"}"" value, prematurely closing the style 
+declaration. The incorrect IE5/Win value is above, while the correct value is 
+below. See http://glish.com/css/hacks.asp for details. */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	height:14px; /* the correct height */
+	}
+/* I've heard this called the "be nice to Opera 5" rule. Basically, it feeds correct 
+length values to user agents that exhibit the parsing error exploited above yet get 
+the CSS box model right and understand the CSS2 parent-child selector. ALWAYS include
+a "be nice to Opera 5" rule every time you use the Tantek Celik hack (above). */
+body>#Header {height:14px;}
+
+#Menu {
+	position:absolute;
+	top:95px;
+	right:20px;
+	width:172px;
+	padding:10px;
+	font-size:11px;
+	background-color:#ccc;
+	color: #000;
+	border:3px double #333;
+	line-height:17px;
+/* Again, the ugly brilliant hack. */
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	width:150px;
+	}
+/* Again, "be nice to Opera 5". */
+body>#Menu {width:150px;}
+
+.bio {
+
+	position:relative; /* Position is declared "relative" to gain control of stacking order (z-index). */
+	width:auto;
+	min-width:120px; 
+	background-color:white;
+	color: #111;
+	padding:5px;
+	/* z-index:3; /* This allows the content to overlap the right menu in narrow windows in good browsers. */
+        margin-top:  5px;
+        margin-left: 140px;
+}
+
+
+
+
+

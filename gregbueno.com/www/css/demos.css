@@ -1,0 +1,38 @@
+body
+{
+	font-family: 'courier new', courier, monospace;
+	color: #000;
+	background: #FFF;
+}
+
+h1, h2, h3
+{
+	font-weight: bold;
+}
+
+a
+{
+	color: #00C;
+}
+
+a:hover
+{
+	color: #C66; text-decoration: none;
+}
+
+#masthead-right
+{
+	text-align: right;
+}
+
+#title a
+{
+	text-decoration: none;
+	color: #000;
+	font-weight: bold;
+}
+
+.smaller
+{
+	font-size: smaller;
+}

@@ -1,0 +1,146 @@
+/* Overwritten elements */
+body
+{
+	font-family: 'trebuchet ms', sans-serif;
+	color: #FFF;
+	background-color: #333;
+}
+
+a, a:focus, a:hover
+{
+	color: #CC9;
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+blockquote
+{
+	color: #FFF;
+}
+
+input, select, textarea
+{
+	color: #FFF;
+	background-color: #000;
+	font-size: 100%;
+	font-family: inherit;
+	border: 1px solid #FFF;
+}
+
+input[type=radio], input[type=checkbox]
+{
+	background-color: transparent;
+	border: none;
+}
+
+input[type=submit], input[type=reset], input[type=button]
+{
+	background-color: #633;
+}
+
+table
+{
+	font-size: 100%;
+}
+
+label
+{
+	float: left;
+	font-weight: bold;
+	width: 160px;
+}
+
+label.error, span.error
+{
+	color: #F99;
+	display: none;
+}
+
+ul.nav-list
+{
+	list-style: none;
+}
+
+ul.nav
+{
+	list-style: none;
+}
+
+ul.nav li
+{
+	display: inline;
+}
+
+#masthead
+{
+	color: #FFF;
+	background-color: #000;
+	border-bottom: 1px dotted #F99;
+}
+
+#title
+{
+	font-family: 'book antiqua', serif;
+	color: #FFF;
+	display: inline;
+}
+
+#subtitle
+{
+	color: #FFF;
+	display: inline;
+	font-size: 85%;
+}
+
+#masthead-right
+{
+	color: #FFF;
+	text-align: right;
+}
+
+#content
+{
+	font-size: 13px;
+	color: #FFF;
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6
+{
+	font-family: 'helvetica', sans-serif;
+	color: #FFF;
+}
+
+#frame-1, #frame-1 h1, #frame-1 h2, #frame-1 h3
+{
+	background-color: #600;
+}
+
+#frame-1.box
+{
+	border: 1px dotted #F99;
+}
+
+#facebox a
+{
+	color: #933;
+}
+
+.smaller
+{
+	font-size: smaller;
+}
+
+.resume-duty
+{
+	font-size: 90%;
+}
+
+.form_hidden
+{
+	display: none;
+}
+

@@ -1,0 +1,59 @@
+/* 
+    Document   : filmwhore
+    Created on : Aug 12, 2009, 8:31:58 AM
+    Author     : gbueno
+    Description:
+        Overridden style rules for Filmwhore.org, based on global_blueprint.css
+*/
+
+/* 
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+a:focus
+{
+	color: #3CF;
+}
+
+a, a:hover
+{
+	color: #6CF;
+	text-decoration: underline;
+}
+
+input, select, textarea
+{
+	border: 1px solid #001BA6;
+}
+
+#masthead
+{
+	background-color: #0065A6;
+	border-bottom: 1px solid #00A652;
+}
+
+#content
+{
+	background-image: url('/images/filmwhore_bg_v02.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+#body
+{
+	background-image: url('/images/filmwhore_content_v02.gif');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+#body_text a
+{
+	color: #0065A6;
+}
+
+#Content a.normal
+{
+	font-weight: normal;
+}

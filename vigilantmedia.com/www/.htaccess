@@ -1,0 +1,18 @@
+ErrorDocument 401 /index.php/vm/error/401/
+ErrorDocument 403 /index.php/vm/error/403/
+ErrorDocument 404 /index.php/vm/error/404/
+ErrorDocument 500 /index.php/vm/error/500/
+
+AddType image/x-icon .ico
+AddType text/xml .rdf
+
+IndexIgnore CVS
+
+Redirect 410 /content/watch.php
+Redirect 410 /includes/ho_header-a.php
+Redirect 410 /includes/global.php
+
+#AuthType Basic
+#AuthUserFile /home/nemesisv/.htpasswd
+#AuthName "vigilantmedia.com test site"
+#require valid-user

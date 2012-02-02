@@ -1,0 +1,139 @@
+body
+{
+	color: #FFF;
+	font-family: tahoma, 'trebuchet ms', helvetica, verdana, arial, sans-serif;
+	font-size: 85%;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+	color: #FFF;
+	font-weight: bold;
+}
+
+h1 {font-size: 2em;}
+h2 {font-size: 1.5em;}
+h3 {font-size: 1.2em;}
+h4 {font-size: 1em;}
+
+a, a:focus
+{
+	color: #EBC600;
+	text-decoration: none;
+}
+
+input, select, textarea
+{
+	background-color: #000;
+	color: #FFF;
+	font-family: inherit;
+	font-size: 100%;
+}
+
+tt
+{
+	font-family: 'courier new', courier;
+}
+
+#container
+{
+	width: 710px;
+}
+
+#container a:hover, #bottom-nav a:hover
+{
+	color: #EBC600;
+	text-decoration: underline;
+}
+
+#masthead
+{
+	background-color: #000;
+	text-align: center;
+}
+
+#masthead #title
+{
+	font-size: 1000%;
+	margin-bottom: 0;
+	font-weight: normal;
+}
+
+#masthead #title a, #masthead #title a:focus, #masthead #title a:hover
+{
+	color: #FFF;
+	text-decoration: none;
+}
+
+#top-navigation
+{
+	color: #000;
+	text-align: center;
+}
+
+#top-navigation a:hover
+{
+	color: #EBC600;
+	text-decoration: none;
+}
+
+#top-navigation a, #top-navigation a:focus
+{
+	color: #000;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#top-navigation a.feed
+{
+	background-color: #F60;
+	color: #FFF;
+	text-decoration: none;
+}
+
+#content
+{
+}
+
+#content .headline
+{
+	margin-bottom: 0;
+}
+
+#content .headline a
+{
+	color: #FFF;
+	text-decoration: none;
+}
+
+#bottom-nav
+{
+	text-align: center;
+}
+
+.archive-nav, .tags, .entry-nav
+{
+	font-size: 85%;
+}
+
+.attribution
+{
+	font-size: 90%;
+	font-style: italic;
+}
+
+.comment-head
+{
+	font-size: 90%;
+	border-bottom: 1px solid #999;
+}
+
+.comment-body
+{
+	margin-left: 30px;
+}
+
+.bottom-rule
+{
+	margin: 0;
+}

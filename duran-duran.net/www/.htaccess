@@ -1,0 +1,18 @@
+ErrorDocument 401 /index.php/ddn/error/401/
+ErrorDocument 403 /index.php/ddn/error/403/
+ErrorDocument 404 /index.php/ddn/error/404/
+ErrorDocument 500 /index.php/ddn/error/500/
+
+AddType image/x-icon .ico
+AddType audio/x-mpeg .mp3
+AddType video/mp4 .mp4
+
+IndexIgnore CVS
+
+Redirect 410 /includes/skins/buy/
+RedirectMatch 301 ^/entry/([0-9]*)(/|$) /index.php/news/entry/$1/
+
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "duran-duran.net dev trunk site"
+require valid-user

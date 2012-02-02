@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /
+
+User-agent: Googlebot
+Disallow: /shop/
+
+User-agent: Googlebot
+Disallow: /images/
+
+User-agent: Googlebot
+Allow:
+
+User-agent: ia_archiver
+Allow:

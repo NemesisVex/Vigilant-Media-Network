@@ -1,0 +1,165 @@
+html, body
+{
+	height: 100%;
+}
+
+body
+{
+	font-family: 'georgia', 'book antiqua', 'palatino linotype', 'palatino', 'times new roman', 'times', serif;
+	background-color: #81132C;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+	font-family: 'helvetica', sans-serif;
+}
+
+.link-subhead
+{
+	margin-bottom: 0;
+}
+
+h2.section-head
+{
+	margin-bottom: 0;
+}
+
+a:hover
+{
+	color: #81132C;
+	text-decoration: none;
+}
+
+a, a:focus
+{
+	color: #81132C;
+}
+
+input, select, textarea
+{
+	font-size: 100%;
+	border: 1px solid #253431;
+	font-family: inherit;
+}
+
+input[type=radio], input[type=checkbox]
+{
+	background-color: transparent;
+	border: none;
+}
+
+input[type=submit], input[type=reset], input[type=button]
+{
+}
+
+label
+{
+	float: left;
+	font-family: 'helvetica', sans-serif;
+	font-weight: bold;
+	width: 150px;
+}
+
+label.error, span.error
+{
+	color: #F99;
+	display: none;
+}
+
+ul.album_list li
+{
+	display: inline;
+	list-style: none;
+}
+
+ul.album_list li div
+{
+	float: left;
+	width: 150px;
+	height: 150px;
+	margin: 15px;
+}
+
+.form_hidden
+{
+	display: none;
+}
+
+.smaller
+{
+	font-size: smaller;
+}
+
+.source-title
+{
+	margin-bottom: 0;
+}
+
+#frame-1 .source-title a
+{
+	color: #000;
+	text-decoration: none;
+}
+
+.source-label
+{
+	border-bottom: 1px solid #253431;
+}
+
+#container
+{
+	background-color: #FFF;
+	min-height: 100%;
+}
+
+#masthead
+{
+	background-color: #e2d3ea;
+	border-bottom: 3px double #399FD5;
+	text-align: center;
+}
+
+#title
+{
+	font-family: 'bodoni', 'book antiqua', 'palatino linotype', 'georgia', 'times new roman', 'times', 'serif';
+	font-size: 500%;
+	margin-bottom: 0px;
+}
+
+#masthead #title a
+{
+	color:inherit;
+	text-decoration: none;
+}
+
+#frame-1
+{
+}
+
+#frame-1 a
+{
+}
+
+#frame-2
+{
+}
+
+#frame-2 h1, #frame-2 h2, #frame-2 h3, #frame-2 h4, #frame-2 h5, #frame-2 h6
+{
+}
+
+#frame-2 a
+{
+}
+
+#map_canvas
+{
+	height: 300px;
+	margin-bottom: 10px;
+}
+
+#tour_dates
+{
+	height: 350px;
+	overflow: auto;
+}

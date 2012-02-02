@@ -1,0 +1,54 @@
+/* 
+    Document   : tvwhore
+    Created on : Aug 12, 2009, 8:31:58 AM
+    Author     : gbueno
+    Description:
+        Overridden style rules for TVwhore.org, based on global_blueprint.css
+*/
+
+/* 
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+a:focus
+{
+	color: #61CFD1;
+}
+
+a, a:hover
+{
+	color: #61CFD1;
+	text-decoration: underline;
+}
+
+input, select, textarea
+{
+	border: 1px solid #00A652;
+}
+
+#masthead
+{
+	background-color: #52A96D;
+	border-bottom: 1px solid #5B5742;
+}
+
+#content
+{
+	background-image: url('/images/tvwhore_bg_v02.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+#body
+{
+	background-image: url('/images/tvwhore_content_v02.gif');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+#body_text a
+{
+	color: #413B2D;
+}

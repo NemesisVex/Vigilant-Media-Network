@@ -1,0 +1,9 @@
+body
+{
+	background-color: #600;
+}
+
+#title a:hover
+{
+	border-bottom: none;
+}

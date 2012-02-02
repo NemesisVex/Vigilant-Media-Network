@@ -1,0 +1,206 @@
+*
+{
+	font-family: verdana, arial, helvetica, sans-serif;
+}
+
+body
+{
+	color: #FFF;
+	font-size: 13px;
+	background-color: #660;
+	margin: 0px;
+}
+
+a
+{
+	color: #FFF;
+}
+
+hr
+{
+	border: 0px; background-color: #FFB114;
+}
+
+input, select, textarea
+{
+	background-color: #FFF;
+	color: #000;
+	font-size: 100%;
+	border: 1px solid #FFF;
+}
+
+input[type=submit], input[type=reset], input[type=button]
+{
+	background-color: #CCC;
+}
+
+input[type=radio], input[type=checkbox]
+{
+	background-color: transparent;
+	border: none;
+}
+
+label
+{
+	float: left;
+	font-weight: bold;
+	width: 150px;
+}
+
+label.error, span.error
+{
+	color: #F99;
+	display: none;
+}
+
+table
+{
+	font-size: 100%;
+}
+
+table.bordered
+{
+	border: 1px solid #FFB114;
+	border-collapse: collapse;
+}
+
+table.bordered td, table.bordered th
+{
+	border: 1px solid #FFB114;
+}
+
+table.bordered th
+{
+	font-size: smaller;
+	color: #000;
+	background-color: #D68F00;
+}
+
+table.bordered.wide
+{
+	width: 100%;
+}
+
+.box-head
+{
+	padding: 1px;
+	font-size: 85%;
+	font-weight: bold;
+}
+
+.box-body
+{
+	border: 1px solid #FFB114;
+	padding: 3px;
+	font-size: 90%;
+}
+
+.columns
+{
+	overflow: hidden;
+	width: 100%;
+}
+
+.column-left-short
+{
+	float: left;
+	width: 20%;
+}
+
+.column-right-long
+{
+	float: right;
+	width: 75%;
+}
+
+.column-left-long
+{
+	float: left;
+	width: 75%;
+}
+
+.column-right-short
+{
+	float: right;
+	width: 20%;
+}
+
+.date
+{
+	font-size: 85%;
+	font-style: italic;
+}
+
+.form_hidden
+{
+	display: none;
+}
+
+.header1
+{
+	font-size: 138%;
+}
+
+.header2
+{
+	font-size: 115%;
+}
+
+.header3
+{
+	font-size: 80%;
+}
+
+.headline
+{
+	font-size: 115%;
+	font-weight: bold;
+}
+
+.meetdate
+{
+	font-style: italic;
+	border-bottom: 1px solid #FFB114;
+}
+
+.pubdate
+{
+	font-weight: bold;
+	font-style: italic;
+	font-size: 100%;
+	border-bottom: 1px solid #FFB114;
+	text-align: right;
+}
+
+#Content
+{
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+
+#Content td.nav-cell
+{
+	height: 10px;
+	background-color: #000;
+	font-size: 85%;
+}
+
+#Content td#MainCell
+{
+	padding: 10px;
+}
+
+#Content td.buffer-cell
+{
+	width: 10px;
+}
+
+#Content td#SideCell
+{
+	width: 150px;
+	/*font-size: 11px;*/
+	background-color: #D68F00
+}
+

@@ -1,0 +1,20 @@
+#masthead
+{
+	background-color: #B7CCAE;
+	border-bottom: 3px double #8D8CA1;
+}
+
+#frame-1 a
+{
+	color: #4E4B47;
+}
+
+input, select, textarea
+{
+	border: 1px solid #4E4B47;
+}
+
+.smaller-90
+{
+	font-size: 90%;
+}

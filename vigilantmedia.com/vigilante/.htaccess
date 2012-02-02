@@ -1,0 +1,16 @@
+ErrorDocument 401 /index.php/vg/error/401/
+ErrorDocument 403 /index.php/vg/error/403/
+ErrorDocument 404 /index.php/vg/error/404/
+ErrorDocument 500 /index.php/vg/error/500/
+
+AddType image/x-icon .ico
+AddType text/xml .rdf
+
+IndexIgnore CVS
+
+RedirectMatch ^/$ /index.php/vg/
+
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "vigilante.vigilantmedia.com development trunk site"
+require valid-user

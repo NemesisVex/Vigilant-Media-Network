@@ -1,0 +1,59 @@
+body
+{
+	text-align: left;
+	background-attachment: scroll;
+	background-repeat: repeat-y;
+}
+
+#content
+{
+	background-attachment: scroll;
+	background-repeat: repeat-y;
+}
+
+.bg, #ie6
+{
+	display: none;
+}
+
+#ie6, #facebox h1
+{
+	color: #000;
+}
+
+#facebox table
+{
+	width: 400px;
+}
+
+#facebox .body
+{
+	color: #000;
+}
+
+#facebox a
+{
+	color: #933;
+}
+
+#masthead .box
+{
+	background-color: #666;
+	color: #FFF;
+	font-size: smaller;
+}
+
+#masthead .box a
+{
+	color: #F99;
+}
+
+#masthead .box a:hover
+{
+	border-bottom: 1px dotted #F99;
+}
+
+#masthead .box ul li
+{
+	display: inline;
+}

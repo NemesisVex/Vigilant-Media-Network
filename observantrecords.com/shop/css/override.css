@@ -1,0 +1,52 @@
+/* 
+    Document   : override
+    Created on : Nov 15, 2011, 7:11:14 AM
+    Author     : Greg Bueno
+    Description:
+        Override styles.css.
+*/
+
+body {
+	background-image:none;
+}
+.category_box {
+	border:none;
+}
+.content_wrap {
+	border:none;
+}
+
+.wide_wrap {
+	width:970px;
+}
+
+.footer {
+	min-height:0px;
+	background-image:none;
+	background-repeat:no-repeat;
+	background-color:inherit;
+}
+
+#footer_props {
+	margin-top:28px;
+}
+
+#main_menu {
+	background-color:#82878F;
+}
+
+#nav li ul.nav {
+	background-color:#82878F;
+}
+
+#nav li ul.first {
+	background-color:#82878F;
+}
+
+#top_menu_container {
+	background-color:inherit;
+	border-bottom:none;
+}
+
+a, a:visited {color:#304B75;text-decoration:underline}
+a:hover {color:#402C29}

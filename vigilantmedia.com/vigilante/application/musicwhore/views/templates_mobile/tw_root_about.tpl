@@ -1,0 +1,5 @@
+<p>I lurk on <a href="http://www.televisionwithoutpity.com/">Television Without Pity</a>. The first thing I read when I pick up the Austin Chronicle is <a href="http://www.austinchronicle.com/gyrobase/Archive/column?oid=oid%3A73741">Belinda Acosta's TV Eye</a>. I subscribe to <a href="http://www.austin360.com/blogs/content/shared-gen/blogs/austin/tvblog/">Diane Holloway</a>, <a href="http://www.tvguide.com/News/Ausiello/AskAusiello/">Michael Ausiello</a>, <a href="http://www.tvshowsondvd.com/">TV Shows on DVD</a> and <a href="http://www.zap2it.com/tv/news/">Zap2It television news</a> on my feed reader. And my <a href="{$config.to_gregbueno.com}/sakufu/">own blog for miscellaneous things</a> usually ends up talking about television.</p>
+
+<p>TV does have mindless entertainment, but not everything on TV is. And I love episodic storytelling. Give me a comic book over a novel. And give me a good television show over an epic movie.</p>
+
+<p>So who else should have a TV blog?</p>

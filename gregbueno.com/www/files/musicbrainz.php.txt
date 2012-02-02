@@ -1,0 +1,115 @@
+include("Snoopy.class.inc");
+include("XMLParser.class.inc");
+
+class Musicbrainz_WebService
+{
+	var $requestURI = "http://musicbrainz.org/ws/1";
+	var $results;
+	
+	function Musicbrainz_WebService()
+	{
+		return;
+	}
+	
+	function BuildRequestURI($searchType, $gid="", $inc="", $limit="")
+	{
+		switch ($searchType)
+		{
+			case "artist":
+				$this->requestURI .= "/artist/";
+				break;
+			case "release":
+				$this->requestURI .= "/release/";
+				break;
+			case "track":
+				$this->requestURI .= "/track/";
+				break;
+		}
+		if (!empty($gid)) {$this->requestURI .= "$gid";}
+		
+		$this->requestURI .= "?type=xml";
+		if (!empty($inc)) {$this->requestURI .= "&" . $inc;}
+		if (!empty($limit)) {$this->requestURI .= "&" . $limit;}
+	}
+	
+	function SendRequest($requestURI)
+	{
+		$mbFetch = new Snoopy;
+		$mbFetch->fetch($requestURI);
+		$this->xml = $mbFetch->results;
+		$mbParse = new XMLParser($this->xml);
+		$mbParse->Parse();
+		$this->results = $mbParse->document;
+	}
+	
+	function SendQuery($string, $searchType)
+	{
+		$args = func_get_args();
+		$inc = "name=" . $string;
+		$limit = $args[1] ? "limit=$args[2]" : "";
+		
+		$this->BuildRequestURI($searchType, NULL, $inc, $limit);
+		$this->SendRequest($this->requestURI);
+	}
+	
+	function SendQueryById($searchType, $gid)
+	{
+		$args = func_get_args();
+		$inc = $args[2] ? "inc=$args[2]" : "";
+		$limit = $args[3] ? "limit=$args[3]" : "";
+		
+		$this->BuildRequestURI($searchType, $gid, $inc, $limit);
+		$this->SendRequest($this->requestURI);
+	}
+	
+	function QueryArtist($string)
+	{
+		$args = func_get_args();
+		$limit = $args[1];
+		
+		$this->SendQuery(urlencode($string), "artist");
+	}
+	
+	function QueryRelease($string)
+	{
+		$args = func_get_args();
+		$limit = $args[1];
+		
+		$this->SendQuery(urlencode($string), "release");
+	}
+	
+	function QueryTrack($string)
+	{
+		$args = func_get_args();
+		$limit = $args[1];
+		
+		$this->SendQuery(urlencode($string), "track");
+	}
+	
+	function GetArtistById($gid)
+	{
+		$args = func_get_args();
+		$inc = $args[1];
+		$limit = $args[2];
+		
+		$this->SendQueryById("artist", $gid, urlencode($inc), $limit);
+	}
+	
+	function GetReleaseById($gid)
+	{
+		$args = func_get_args();
+		$inc = $args[1];
+		$limit = $args[2];
+		
+		$this->SendQueryById("release", $gid, urlencode($inc), $limit);
+	}
+	
+	function GetTrackById($gid)
+	{
+		$args = func_get_args();
+		$inc = $args[1];
+		$limit = $args[2];
+		
+		$this->SendQueryById("track", $gid, urlencode($inc), $limit);
+	}
+}

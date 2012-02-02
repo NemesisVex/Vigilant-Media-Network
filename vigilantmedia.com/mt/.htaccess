@@ -1,0 +1,51 @@
+ErrorDocument 401 /errors/401.php
+ErrorDocument 403 /errors/403.php
+ErrorDocument 404 /errors/404.php
+ErrorDocument 500 /errors/500.php
+
+<Limit GET POST>
+order allow,deny
+deny from .rogers.com
+deny from 84.
+deny from 78.
+deny from 216.
+deny from 122.163.126.129
+deny from 91.212.226.
+deny from 193.105.210.41
+deny from 31.184.236.
+deny from 94.242.214.
+allow from all
+</LIMIT>
+
+AddType image/x-icon .ico
+AddType text/xml .rdf
+
+IndexIgnore CVS
+
+#RewriteEngine On
+#RewriteRule ^as/([0-9]*)/alias(/|$) /as.php?module=as_alias&userID=$1&view=edit
+#RewriteRule ^as/([0-9]*)/favorite(/|$) /as.php?module=as_favorite&userID=$1&view=edit
+#RewriteRule ^as/([0-9]*)/post/([0-9]*)(/|$) /as.php?module=as_portal&userID=$1&view=post&portalID=$2
+#RewriteRule ^as/([0-9]*)/posts(/|$) /as.php?module=as_portal&userID=$1&view=posts
+#RewriteRule ^as/([0-9]*)/site/([0-9]*)(/|$) /as.php?module=as_site&userID=$1&view=site&siteID=$2
+
+#RewriteRule ^artist/([0-9]*)/info(/|$) /artist.php?artistID=$1&module=artist_info
+#RewriteRule ^artist/([0-9]*)/link(/|$) /artist.php?artistID=$1&module=artist_link
+#RewriteRule ^artist/([0-9]*)/personell(/|$) /artist.php?artistID=$1&module=personell
+#RewriteRule ^artist/([0-9]*)(/|$) /artist.php?artistID=$1
+
+
+#RewriteRule ^members/([0-9]*)/bin(/|$) /members.php?module=members&userID=$1&view=bin
+#RewriteRule ^members/([0-9]*)/delete(/|$) /members.php?module=members&userID=$1&view=delete
+#RewriteRule ^members/([0-9]*)/donate/([0-9]*)/delete(/|$) /members.php?module=members_donate&userID=$1&donateID=$2&view=delete
+#RewriteRule ^members/([0-9]*)/donate/([0-9]*)/edit(/|$) /members.php?module=members_donate&userID=$1&donateID=$2&view=edit
+#RewriteRule ^members/([0-9]*)/donate(/|$) /members.php?module=members_donate&userID=$1&view=edit
+#RewriteRule ^members/([0-9]*)/edit(/|$) /members.php?module=members&userID=$1&view=edit
+#RewriteRule ^members/([0-9]*)/stats/([^/|$]*)(/|$) /members.php?module=members&userID=$1&view=stats&status=$2
+#RewriteRule ^members/([0-9]*)(/|$) /members.php?module=members&userID=$1 [L]
+
+
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "mt.vigilantmedia.com dev trunk site"
+require valid-user

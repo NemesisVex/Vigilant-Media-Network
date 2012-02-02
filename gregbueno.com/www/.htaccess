@@ -1,0 +1,52 @@
+ErrorDocument 401 /index.php/gb/error/401/
+ErrorDocument 403 /index.php/gb/error/403/
+ErrorDocument 404 /index.php/gb/error/404/
+ErrorDocument 500 /index.php/gb/error/500/
+
+<Limit GET>
+order allow,deny
+allow from all
+deny from 209.198.140.235
+deny from 122.161.
+deny from 122.162.
+deny from 122.163.
+deny from 67.64.90.
+deny from 67.64.91.
+deny from 61.
+deny from 72.36.154.146
+deny from 72.9.236.50 
+deny from 218.
+deny from 222.
+deny from 91.
+deny from 193.
+deny from 95.
+</LIMIT>
+
+AddType image/x-icon .ico
+AddType text/xml .rdf
+
+IndexIgnore CVS
+
+RedirectPermanent /remember http://www.lulu.com/product/paperback/starting-to-remember/6160089
+RedirectPermanent /ghost http://www.eponymous4.com
+
+Redirect 410 /members/list.php
+RedirectMatch 301 ^/(sakufu|meisakuki)/category/([0-9]*)(/|$) /index.php/$1/archives/category/$2/
+RedirectMatch 301 ^/(sakufu|meisakuki)/entry/([0-9]*)(/|$) /index.php/$1/entry/$2/
+RedirectMatch 301 ^/(sakufu|meisakuki)/date/([0-9]*)(/|$) /index.php/$1/archives/date/$2/
+RedirectMatch 301 ^/(sakufu|meisakuki)/entry/random(/|$) /index.php/$1/entry/random/
+RedirectMatch 301 ^/meisakuki/entry/([0-9]*)/comments(/|$) /index.php/meisakuki/entry/$1/
+RedirectMatch 301 ^/sakufu/entry/([0-9]*)/\#comments$ /index.php/sakufu/entry/$1/#comments
+RedirectMatch 301 ^/(sakufu|meisakuki)/$ /index.php/$1/
+
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^entry_id=([0-9]+)$
+RewriteRule ^index\.php/(journal|sakufu|meisakuki)/$ /index.php/$1/entry/%1/? [R=301]
+RewriteCond %{QUERY_STRING} ^entry_id=([0-9]+)$
+RewriteRule ^(journal|sakufu|meisakuki)/entry\.php$ /index.php/$1/entry/%1/? [R=301]
+RewriteRule ^(.*)_index\.rdf $1_index.xml [L]
+
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "gregbueno.com dev trunk site"
+require valid-user

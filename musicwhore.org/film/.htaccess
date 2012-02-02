@@ -1,0 +1,49 @@
+ErrorDocument 401 /index.php/fw/error/401/
+ErrorDocument 403 /index.php/fw/error/403/
+ErrorDocument 404 /index.php/fw/error/404/
+ErrorDocument 500 /index.php/fw/error/500/
+
+<Limit GET>
+order allow,deny
+allow from all
+deny from 12.248.43.77
+deny from 122.
+deny from 61.
+deny from 64.231.
+deny from 65.19.
+deny from 65.239.90.
+deny from 66.185.84.
+deny from 67.20.
+deny from 87.
+deny from 194. 
+deny from 200.
+deny from 203.
+deny from 201.
+deny from 206.
+deny from 212.8.
+deny from 218.
+</LIMIT>
+
+AddType image/x-icon .ico
+AddType text/xml .rdf
+
+IndexIgnore CVS
+
+RedirectMatch ^/$ /index.php/fw/
+RedirectMatch 301 ^/about.php /index.php/fw/about/
+RedirectMatch 301 ^/contact.php /index.php/fw/contact/
+RedirectMatch 301 ^/terms.php /index.php/mw/terms/
+RedirectMatch 301 ^/category/([0-9]*)(/|$) /index.php/fw/category/$1/
+RedirectMatch 301 ^/date/([0-9]*)/([0-9]*)(/|$) /index.php/fw/date/$1/$2/
+RedirectMatch 301 ^/entry/([0-9]*)(/|$) /index.php/fw/entry/$1/
+RedirectMatch 301 ^/title/([a-z]*)(/|$) /index.php/fw/title/$1/
+
+RewriteEngine On
+RewriteRule ^index\.rdf index.xml
+RewriteCond %{QUERY_STRING} ^entry_id=([0-9]+)$
+RewriteRule ^entry\.php$ /index.php/fw/entry/%1/? [R=301]
+
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "filmwhore.org dev trunk site"
+require valid-user

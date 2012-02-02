@@ -1,0 +1,9 @@
+#title {
+	display: inherit;
+	margin-bottom: 0;
+}
+
+textarea {
+	width: auto;
+	height: auto;
+}
