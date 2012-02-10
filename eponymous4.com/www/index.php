@@ -1,5 +1,5 @@
 <?php
-
+// test remote FTP.
 /*
  *---------------------------------------------------------------
  * PHP ERROR REPORTING LEVEL
