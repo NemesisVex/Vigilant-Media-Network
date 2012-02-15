@@ -83,15 +83,15 @@
 
 		<p>
 			<label for="author">Name:</label>
-			<input type="text" id="author" name="author" size="50"{if $smarty.session.is_logged_in} value="{$rsUser->user_login}"{/if}><br clear="all">
+			<input type="text" id="author" name="author"{if $smarty.session.is_logged_in} value="{$rsUser->user_login}"{/if}><br clear="all">
 		</p>
 
 		<p><label for="email">Email Address:</label>
-			<input type="text" id="email" name="email" size="50"{if $smarty.session.is_logged_in} value="{$rsUser->user_email}"{/if}><br clear="all">
+			<input type="text" id="email" name="email"{if $smarty.session.is_logged_in} value="{$rsUser->user_email}"{/if}><br clear="all">
 		</p>
 
 		<p><label for="url">URL:</label>
-			<input type="text" id="url" name="url" size="50"{if $smarty.session.is_logged_in} value="{$rsUser->user_url}"{/if}><br clear="all">
+			<input type="text" id="url" name="url"{if $smarty.session.is_logged_in} value="{$rsUser->user_url}"{/if}><br clear="all">
 		</p>
 
 		<p><label for="backcookie">Remember personal info?</label>
@@ -100,7 +100,7 @@
 		</p>
 
 		<p><label for="text">Comments:</label>
-			<textarea tabindex="4" id="text" name="text" rows="10" cols="70"></textarea><br clear="all">
+			<textarea tabindex="4" id="text" name="text"></textarea><br clear="all">
 		</p>
 
 		<p>
