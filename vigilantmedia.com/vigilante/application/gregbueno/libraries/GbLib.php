@@ -115,6 +115,10 @@ class GbLib {
 		$this->_smarty_display_gb_protected_page('work_content', $page, 'gb_work_content.tpl');
 	}
 
+	function _smarty_display_work_page($page) {
+		$this->_smarty_display_gb_page($page);
+	}
+
 	function _smarty_display_gb_protected_page($content_var, $content_template, $wrapper_template, $page = 'gb_global_page.tpl', $layout = 'gb_global_layout.tpl') {
 		$CI = & get_instance();
 
