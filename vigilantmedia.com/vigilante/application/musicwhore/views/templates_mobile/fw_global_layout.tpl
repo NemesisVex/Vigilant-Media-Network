@@ -3,6 +3,7 @@
 	<head>
 		<title>Filmwhore.org{if $page_title}: {$page_title}{/if}</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="alternate" type="application/rss+xml" title="Filmwhore.org RSS" href="http://www.filmwhore.org/index.xml" />
 		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -10,7 +11,9 @@
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/print.css" media="print" />
 		<!--[if IE]><link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/ie.css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" type="text/css" href="{$config.to_musicwhore}/css/global.css" />
+		<link rel="stylesheet" type="text/css" href="{$config.to_musicwhore}/css/global_mobile.css" />
 		<link rel="stylesheet" type="text/css" href="/css/filmwhore.css" />
+		<link rel="stylesheet" type="text/css" href="/css/filmwhore_mobile.css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.cookie.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
@@ -21,14 +24,14 @@
 	</head>
 	<body>
 		<div id="masthead">
-			<div class="container">
-				<header id="masthead-left" class="span-12">
+			<div>
+				<header id="masthead-left>
 					<h1 id="title"><a href="/">Filmwhore.org</a></h1>
 				</header>
-				<nav id="masthead-right" class="span-12 last">
+				<nav id="masthead-right">
 					<form method="get" action="{$config.to_mt}/cgi-bin/mt/mt-search.cgi">
 						<a href="/index.php/fw/about/">About this site</a> &#8226;
-						<a href="/index.php/fw/contact/">Contact</a> |
+						<a href="/index.php/fw/contact/">Contact</a><br/>
 						<strong>Search:</strong>
 						<input type="hidden" name="IncludeBlogs" value="{$config.blog_id}" />
 						<input type="hidden" name="Template" value="filmsearch" />
@@ -40,8 +43,8 @@
 		</div>
 
 		<div id="content">
-			<div class="container">
-				<section id="body" class="span-13 box">
+			<div>
+				<section id="body" class="box">
 					<div id="body_text">
 
 {if $section_head}<h2>{$section_head}</h2>{/if}
@@ -55,7 +58,7 @@
 					</div>
 				</section>
 
-				<aside id="sidebar-col-1" class="span-4 prepend-1 colborder prepend-top">
+				<aside class="prepend-1 prepend-top">
 					<script type="text/javascript" src="http://embed.technorati.com/embed/6txwuxpfw.js"></script>
 
 {if $rsLatest}
@@ -107,9 +110,7 @@
 						<a href="http://www.filmwhore.org{$smarty.server.REQUEST_URI}">PROD</a>
 {/if}
 					</p>
-				</aside>
 
-				<aside id="sidebar-col-2" class="span-4 prepend-top last">
 {include file=ep4_global_mw_ad.tpl}
 
 					<p>

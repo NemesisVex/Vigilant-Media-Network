@@ -3,6 +3,7 @@
 	<head>
 		<title>TVwhore.org{if $page_title}: {$page_title}{/if}</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="alternate" type="application/rss+xml" title="TVwhore.org RSS" href="http://www.tvwhore.org/index.xml" />
 		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -10,7 +11,9 @@
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/print.css" media="print" />
 		<!--[if IE]><link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/ie.css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" type="text/css" href="{$config.to_musicwhore}/css/global.css" />
+		<link rel="stylesheet" type="text/css" href="{$config.to_musicwhore}/css/global_mobile.css" />
 		<link rel="stylesheet" type="text/css" href="/css/tvwhore.css" />
+		<link rel="stylesheet" type="text/css" href="/css/tvwhore_mobile.css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.cookie.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
@@ -21,7 +24,7 @@
 	</head>
 	<body>
 		<div id="masthead">
-			<div class="container">
+			<div>
 				<header id="masthead-left" class="span-12">
 					<h1 id="title"><a href="/">TVwhore.org</a></h1>
 				</header>
@@ -41,7 +44,7 @@
 
 		<div id="content">
 			<div class="container">
-				<section id="body" class="span-13 box">
+				<section id="body" class="box">
 					<div id="body_text">
 
 {if $section_head}<h2>{$section_head}</h2>{/if}
@@ -55,7 +58,7 @@
 					</div>
 				</section>
 
-				<aside id="sidebar-col-1" class="span-4 prepend-1 colborder prepend-top">
+				<aside id="sidebar-col-1" class="prepend-1 prepend-top">
 					<script type="text/javascript" src="http://embed.technorati.com/embed/v6ayg9gm6x.js"></script>
 
 {if $rsLatest}
@@ -109,9 +112,7 @@
 						<a href="http://www.tvwhore.org{$smarty.server.REQUEST_URI}">PROD</a>
 {/if}
 					</p>
-				</aside>
-
-				<aside id="sidebar-col-2" class="span-4 prepend-top last">
+					
 {include file=ep4_global_mw_ad.tpl}
 
 
