@@ -18,7 +18,7 @@ class Work extends CI_Controller
 	{
 		$this->gblib->_format_section_head('work in progress');
 
-		$this->gblib->_smarty_display_work_protected_page('gb_work_index.tpl');
+		$this->gblib->_smarty_display_gb_page('gb_work_index.tpl');
 	}
 	
 	function error($code)
