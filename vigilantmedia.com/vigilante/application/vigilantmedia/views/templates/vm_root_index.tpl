@@ -36,7 +36,7 @@
 								</span>
 							</p>
 
-							<div id="cases_portal" class="hidden">
+							<div id="cases_portal" style="display:none;">
 								<h3>Cases Portal for SugarCRM</h3>
 
 								<p><a href="/images/_full_vm_folio_epicom_cases_portal_v02.jpg" rel="facebox_cases_portal"><img src="/images/vm_folio_epicom_cases_portal_v02.jpg" width="200" height="128" alt="[Cases Portal for SugarCRM]" title="[Cases Portal for SugarCRM]" border="0" class="right"></a></p>
@@ -68,7 +68,7 @@
 							</p>
 
 
-							<div id="ni_processdocs" class="hidden">
+							<div id="ni_processdocs" style="display:none;">
 								<h3>NI Tech Comm: Process Documents Portal</h3>
 
 								<p><a href="/images/_full_vm_folio_ni_processdocs.jpg" rel="facebox_ni_processdocs"><img src="/images/vm_folio_ni_processdocs.jpg" width="200" height="128" alt="" border="0" class="right"></a></p>
@@ -98,7 +98,7 @@
 								</span>
 							</p>
 
-							<div id="ni_l10n_manager" class="hidden">
+							<div id="ni_l10n_manager" style="display:none;">
 								<h3>NI Tech Comm: Localization Project Manager</h3>
 
 								<p><a href="/images/_full_vm_folio_ni_l10n_manager.jpg" rel="facebox_ni_l10n_manager"><img src="/images/vm_folio_ni_l10n_manager.jpg" width="200" height="128" alt="" border="0" class="right"></a></p>
@@ -130,7 +130,7 @@
 							</p>
 
 
-							<div id="ni_icon_glossary" class="hidden">
+							<div id="ni_icon_glossary" style="display:none;">
 								<h3>NI Tech Comm: Icon Glossary</h3>
 
 								<p><a href="/images/_full_vm_folio_ni_icon_glossary.jpg" rel="facebox_ni_icon_glossary"><img src="/images/vm_folio_ni_icon_glossary.jpg" width="200" height="120" alt="" border="0" class="right"></a></p>
@@ -160,7 +160,7 @@
 								</span>
 							</p>
 
-							<div id="ni_l10n_image_report" class="hidden">
+							<div id="ni_l10n_image_report" style="display:none;">
 								<h3>NI Tech Comm: Localization Image Report</h3>
 
 								<p><a href="/images/_full_vm_folio_ni_l10n_image_report.jpg" rel="facebox_ni_l10n_image_report"><img src="/images/vm_folio_ni_l10n_image_report.jpg" width="200" height="120" alt="" border="0" class="right"></a></p>
@@ -193,7 +193,7 @@
 								</span>
 							</p>
 
-							<div id="central_admin" class="hidden">
+							<div id="central_admin" style="display:none;">
 								<h3>Vigilant Media Central Administration</h3>
 
 								<p><a href="/images/_full_vm_folio_central_admin.jpg" rel="facebox_central_admin"><img src="/images/vm_folio_central_admin.jpg" width="200" height="128" alt="" border="0" class="right"></a></p>
@@ -225,7 +225,7 @@
 								</span>
 							</p>
 
-							<div id="eponymous4" class="hidden">
+							<div id="eponymous4" style="display:none;">
 								<h3>Eponymous 4</h3>
 
 								<p><a href="/images/_full_vm_folio_eponymous4_v04.jpg" rel="facebox_eponymous4"><img src="/images/vm_folio_eponymous4_v04.jpg" width="200" height="128" alt="[Eponymous 4]" title="[Eponymous 4]" border="0" class="right"></a></p>
@@ -259,7 +259,7 @@
 								</span>
 							</p>
 
-							<div id="musicwhore" class="hidden">
+							<div id="musicwhore" style="display:none;">
 								<h3>Musicwhore.org</h3>
 
 								<p><a href="/images/_full_vm_folio_musicwhore_v08.jpg" rel="facebox_musicwhore"><img src="/images/vm_folio_musicwhore_v08.jpg" width="200" height="128" alt="[Musicwhore.org]" title="[Musicwhore.org]" border="0" class="right"></a></p>
