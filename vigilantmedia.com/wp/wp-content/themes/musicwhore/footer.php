@@ -9,14 +9,18 @@
 			</div>
 			
 			<?php get_sidebar('footer');?>
+			
+			<footer>
+				<div class="span-4">&nbsp;</div>
+				<div class="span-14 append-1 prepend-1">
+					<p>
+						&#169; <?php echo gmdate('Y'); ?> Greg Bueno
+					</p>
+				</div>
+			</footer>
+
 		</div>
 		
-		<footer>
-			<p>
-				&#169; <?php gmdate('Y'); ?> Greg Bueno
-			</p>
-		</footer>
-
 <?php wp_footer(); ?>
 			
 	</body>
