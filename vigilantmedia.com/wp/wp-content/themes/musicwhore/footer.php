@@ -10,6 +10,12 @@
 			
 			<?php get_sidebar('footer');?>
 		</div>
+		
+		<footer>
+			<p>
+				&#169; <?php gmdate('Y'); ?> Greg Bueno
+			</p>
+		</footer>
 
 <?php wp_footer(); ?>
 			
