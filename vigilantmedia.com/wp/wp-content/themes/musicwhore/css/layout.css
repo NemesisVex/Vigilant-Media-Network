@@ -1,0 +1,200 @@
+body {
+	background-color: #781205;
+	background-image: linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	background-image: -o-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	background-image: -moz-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	background-image: -webkit-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	background-image: -ms-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	color: #FFF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #FFF;
+}
+
+a {
+	color: #DCA36C;
+}
+
+a:active {
+	background-color: #8A352A;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #FFF;
+}
+
+a.comment-reply-link {
+	border: 1px solid #000;
+	border-radius: 3px;
+	padding: 3px 8px;
+	text-decoration: none;
+	background-color: #EEE;
+	color: #000;
+}
+
+cite.fn {
+	margin-left: 6px;
+}
+
+footer {
+	text-align: center;
+	margin-bottom: 3em;
+}
+
+input[type=text] {
+	border-radius: 3px;
+}
+
+.comment-author {
+	margin-bottom: 1.5em;
+}
+
+.comment-meta {
+	margin-bottom: 1.5em;
+}
+
+.comment-author img {
+	vertical-align: text-top;
+}
+
+.comment-body {
+	margin-bottom: 3em;
+	position: relative;
+}
+
+#commentform input {
+	display: block;
+}
+
+#commentform textarea {
+	display: block;
+}
+
+.comment-list, ul.children {
+	list-style: none;
+}
+
+.entry-meta time {
+	font-size: 1.5em;
+}
+
+h4.comment-headline, #reply-title {
+	background-color: #DCA36C;
+	padding: 5px;
+	border-radius: 3px;
+}
+
+#page-nav-bar {
+	background-color: #B8220E;
+	margin-bottom: 1.5em;
+	border-radius: 6px;
+	text-align: center;
+}
+
+.entry-text a {
+	color: #783E05;
+}
+
+.entry-text a:active {
+	background-color: #DC796C;
+}
+
+.entry-text a:hover {
+	text-decoration: none;
+	color: #640431;
+}
+
+.entry-content {
+	background-color: #FFF;
+	color: #000;
+	padding-top: 1.5em;
+	border-radius: 6px;
+	margin-bottom: 1.5em;
+	box-shadow: 4px 4px 0 #B8200E;
+}
+
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+	color: #000;
+}
+
+.entry-meta {
+	background-color: #DC5543;
+	border-radius: 6px;
+	text-align: center;
+}
+
+.entry-meta a {
+	color: #FFF;
+}
+
+.headline a {
+	color: #000;
+	text-decoration: none;
+}
+
+.headline a:hover {
+	color: #640431;
+}
+
+.headline a:active {
+	background-color: #DC796C;
+}
+
+.menu ul {
+	width: 150px;
+	margin-top: -1em;
+	margin-right: 10px;
+	list-style: none;
+}
+
+.menu ul li {
+	float: left;
+	margin-left: 24px;
+	font-size: 1.25em;
+}
+
+.nav-list li a {
+	color: #DCA36C
+}
+
+.nav-icon-list {
+	list-style: none;
+}
+
+.nav-icon-list li {
+	float: left;
+	margin-left: 6px;
+}
+
+.nav-icon-list li:first-child {
+	margin-left: 24px;
+}
+
+#masthead {
+	margin-top: 4.5em;
+}
+
+#main-nav {
+	background-color: #B8220E;
+	margin-bottom: 3em;
+	border-radius: 6px;
+}
+
+#search-box {
+}
+
+#search-input {
+	border-radius: 3px;
+}
+
+#title a {
+	color: #FFF;
+	text-decoration: none;
+}
