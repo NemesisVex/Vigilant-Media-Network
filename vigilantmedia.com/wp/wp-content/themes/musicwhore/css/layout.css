@@ -38,6 +38,11 @@ cite.fn {
 	margin-left: 6px;
 }
 
+footer {
+	text-align: center;
+	margin-bottom: 3em;
+}
+
 input[type=text] {
 	border-radius: 3px;
 }
@@ -83,7 +88,7 @@ h4.comment-headline, #reply-title {
 
 #page-nav-bar {
 	background-color: #B8220E;
-	margin-bottom: 3em;
+	margin-bottom: 1.5em;
 	border-radius: 6px;
 	text-align: center;
 }
