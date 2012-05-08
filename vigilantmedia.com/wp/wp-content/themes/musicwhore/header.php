@@ -5,6 +5,7 @@
 		<meta charset="<?php bloginfo( 'charset' ); ?>" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
+		<link rel="alternate" type="application/rss+xml" title="Musicwhore.org RSS" href="<?php bloginfo( 'siteurl' ); ?>/feed/" />
 		<link rel="icon" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="<?php echo get_vigilante_uri(); ?>/css/blueprint/screen.css" type="text/css" media="screen, projection" />
@@ -31,16 +32,16 @@
 						<h2 id="subtitle"><?php bloginfo( 'description' ); ?></h2>
 					</hgroup>
 				</header>
-				
+
 			</div>
-			
+
 			<div id="main-nav" class="span-24 last">
 				<nav class="span-16">
 					<?php wp_nav_menu(array('theme_location' => 'primary')); ?>
 					<ul class="nav-icon-list">
 						<li><a href="https://www.facebook.com/pages/Musicwhoreorg/109288145780351" title="[Musicwhore.org Official Facebook Page]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/facebook.png"/></a></li>
 						<li><a href="http://www.last.fm/user/NemesisVex/" title="[Last.fm]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/lastfm.png"/></a></li>
-						<li><a href="/feed/" title="[Musicwhore.org Feed]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/feed.png"/></a></li>
+						<li><a href="<?php bloginfo( 'siteurl' ); ?>/feed/" title="[Musicwhore.org Feed]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/feed.png"/></a></li>
 					</ul>
 				</nav>
 
@@ -48,5 +49,5 @@
 					<?php get_search_form(); ?>
 				</nav>
 			</div>
-			
+
 			<div id="content" class="span-20 last">
