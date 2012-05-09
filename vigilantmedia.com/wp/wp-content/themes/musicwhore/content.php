@@ -1,5 +1,5 @@
 				<article>
-					<div class="entry-meta span-4">
+					<div class="entry-meta">
 						<time pubdate="pubdate"><?php the_time( 'M. d, Y' ); ?></time><br/>
 						<?php if ( comments_open() || ( '0' != get_comments_number() && ! comments_open() ) ) : ?>
 							<?php comments_popup_link( __( 'Leave a comment', 'musicwhore' ), __( '1 Comment', 'musicwhore' ), __( '% Comments', 'musicwhore' ) ); ?><br/>
@@ -9,9 +9,9 @@
 						<?php endif; ?>
 						<?php the_category( ', ' ); ?><br/>
 					</div>
-					
-					<div class="entry-content span-13 prepend-1 append-1 last">
-					
+
+					<div class="entry-content">
+
 						<header>
 							<h3 class="headline"><?php if ( is_single() || is_page() ) : ?>
 					<?php the_title(); ?>
@@ -27,5 +27,5 @@
 						</section>
 
 					</div>
-					
+
 				</article>

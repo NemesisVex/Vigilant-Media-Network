@@ -39,8 +39,16 @@ cite.fn {
 }
 
 footer {
-	text-align: center;
+	float: left;
+	width: 790px;
+	margin-right: 0;
 	margin-bottom: 3em;
+}
+
+h4.comment-headline, #reply-title {
+	background-color: #DCA36C;
+	padding: 5px;
+	border-radius: 3px;
 }
 
 input[type=text] {
@@ -64,33 +72,26 @@ input[type=text] {
 	position: relative;
 }
 
-#commentform input {
-	display: block;
-}
-
-#commentform textarea {
-	display: block;
-}
-
 .comment-list, ul.children {
 	list-style: none;
 }
 
+.entry-content {
+	float: left;
+	width: 510px;
+	margin-right: 0;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.entry-meta {
+	float: left;
+	width: 150px;
+	margin-right: 10px;
+}
+
 .entry-meta time {
 	font-size: 1.5em;
-}
-
-h4.comment-headline, #reply-title {
-	background-color: #DCA36C;
-	padding: 5px;
-	border-radius: 3px;
-}
-
-#page-nav-bar {
-	background-color: #B8220E;
-	margin-bottom: 1.5em;
-	border-radius: 6px;
-	text-align: center;
 }
 
 .entry-text a {
@@ -177,21 +178,90 @@ h4.comment-headline, #reply-title {
 	margin-left: 24px;
 }
 
+#content {
+	float: left;
+	width: 790px;
+	margin-right: 0;
+}
+
+#commentform input {
+	display: block;
+}
+
+#commentform textarea {
+	display: block;
+}
+
 #masthead {
+	float: left;
+	width: 950px;
+	margin-right: 0;
 	margin-top: 4.5em;
 }
 
+#masthead-title {
+	float: left;
+	width: 790px;
+	margin-right: 0;
+	padding-left: 160px;
+}
+
 #main-nav {
+	float: left;
+	width: 950px;
+	margin-right: 0;
 	background-color: #B8220E;
 	margin-bottom: 3em;
 	border-radius: 6px;
 }
 
+#page-nav {
+	float: left;
+	width: 790px;
+	margin-right: 0;
+}
+
+#footer-content, #page-nav-content {
+	float: left;
+	width: 590px;
+	margin-right: 0;
+	text-align: center;
+}
+
+#page-nav-content {
+	background-color: #B8220E;
+	margin-bottom: 1.5em;
+	border-radius: 6px;
+}
+
+
+#page-nav-spacer, #footer-spacer {
+	float: left;
+	width: 150px;
+	margin-right: 10px;
+}
+
 #search-box {
+	float: left;
+	width: 310px;
+	margin-right: 0px;
 }
 
 #search-input {
 	border-radius: 3px;
+}
+
+#sidebar-1
+{
+	float: left;
+	width: 150px;
+	margin-right: 0;
+}
+
+#social-list {
+	float: left;
+	width: 630px;
+	margin-right: 10px;
 }
 
 #title a {

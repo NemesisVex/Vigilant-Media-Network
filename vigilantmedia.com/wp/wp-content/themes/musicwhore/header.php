@@ -25,8 +25,8 @@
 	</head>
 	<body>
 		<div class="container">
-			<div id="masthead" class="span-24 last">
-				<header id="masthead-title" class="prepend-4 span-20 last">
+			<div id="masthead">
+				<header id="masthead-title">
 					<hgroup>
 						<h1 id="title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						<h2 id="subtitle"><?php bloginfo( 'description' ); ?></h2>
@@ -35,8 +35,8 @@
 
 			</div>
 
-			<div id="main-nav" class="span-24 last">
-				<nav class="span-16">
+			<div id="main-nav">
+				<nav id="social-list">
 					<?php wp_nav_menu(array('theme_location' => 'primary')); ?>
 					<ul class="nav-icon-list">
 						<li><a href="https://www.facebook.com/pages/Musicwhoreorg/109288145780351" title="[Musicwhore.org Official Facebook Page]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/facebook.png"/></a></li>
@@ -45,9 +45,9 @@
 					</ul>
 				</nav>
 
-				<nav id="search-box" class="span-8 last">
+				<nav id="search-box">
 					<?php get_search_form(); ?>
 				</nav>
 			</div>
 
-			<div id="content" class="span-20 last">
+			<div id="content">
