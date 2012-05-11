@@ -1,0 +1,61 @@
+body {
+	background-color: #781205;
+	background-image: linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	background-image: -o-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	background-image: -moz-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	background-image: -webkit-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	background-image: -ms-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
+	color: #FFF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #FFF;
+}
+
+a {
+	color: #DCA36C;
+}
+
+a:active {
+	background-color: #8A352A;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #FFF;
+}
+
+a.comment-reply-link {
+	border: 1px solid #000;
+	border-radius: 3px;
+	padding: 3px 8px;
+	text-decoration: none;
+	background-color: #EEE;
+	color: #000;
+}
+
+cite.fn {
+	margin-left: 6px;
+}
+
+h3.headline {
+	font-family: "Arimo", Helvetica, Arial, sans-serif;
+	font-size: 1.5em;
+}
+
+#main-nav {
+	background-color: #B8220E;
+	margin-bottom: 3em;
+	border-radius: 6px;
+}
+
+#title {
+	font-family: "Cabin", Helvetica, Arial, sans-serif;
+	font-size: 3em;
+	text-transform: lowercase;
+	margin-bottom: 0;
+}
+
+#subtitle {
+	font-size: 1em;
+}
