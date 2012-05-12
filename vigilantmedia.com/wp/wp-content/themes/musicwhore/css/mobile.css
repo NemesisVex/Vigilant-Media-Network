@@ -38,15 +38,143 @@ cite.fn {
 	margin-left: 6px;
 }
 
+footer {
+	margin-bottom: 1.5em;
+}
+
+textarea {
+	width: 100%;
+	height: 125px;
+}
+
 h3.headline {
 	font-family: "Arimo", Helvetica, Arial, sans-serif;
 	font-size: 1.5em;
 }
 
+.comment-author {
+	margin-bottom: 1.5em;
+}
+
+.comment-meta {
+	margin-bottom: 1.5em;
+}
+
+.comment-author img {
+	vertical-align: text-top;
+}
+
+.comment-body {
+	margin-bottom: 3em;
+	position: relative;
+}
+
+.comment-list, ul.children {
+	list-style: none;
+}
+
+.entry-content {
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 1.5em;
+	margin-bottom: 1.5em;
+}
+
+.entry-content h1,
+.entry-content h2,
+.entry-content h3,
+.entry-content h4,
+.entry-content h5,
+.entry-content h6 {
+	color: #FFF;
+}
+
+.entry-meta {
+	border: 1px solid #DC5543;
+	border-radius: 6px;
+	text-align: center;
+	margin-bottom: 1.5em;
+}
+
+.entry-meta time {
+	font-size: 1.25em;
+}
+
+.entry-meta a {
+	color: #FFF;
+}
+
+.headline a {
+	text-decoration: none;
+}
+
+.headline a:hover {
+	color: #640431;
+}
+
+.headline a:active {
+	background-color: #DC796C;
+}
+
+.menu ul {
+	list-style: none;
+}
+
+.menu ul li {
+	display: inline;
+	margin-left: 24px;
+}
+
+.nav-icon-list {
+	list-style: none;
+}
+
+.nav-icon-list li {
+	display: inline;
+	margin-left: 6px;
+}
+
+#masthead {
+	margin-top: 1.5em;
+}
+
+#masthead-title {
+	text-align: center;
+}
+
 #main-nav {
-	background-color: #B8220E;
+	border-color: #B8220E;
 	margin-bottom: 3em;
 	border-radius: 6px;
+	text-align: center;
+}
+
+#page-nav {
+}
+
+#footer-content, #page-nav-content {
+	text-align: center;
+}
+
+#page-nav-content {
+	border: 1px solid #B8220E;
+	border-radius: 6px;
+}
+
+#page-nav-spacer, #footer-spacer {
+}
+
+#search-input {
+	border-radius: 3px;
+}
+
+#search-box label, #search-input {
+	font-size: 1em;
+}
+
+#sidebar-1
+{
+	padding-left: 40px;
 }
 
 #title {

@@ -82,32 +82,6 @@ input[type=text] {
 	margin-right: 0;
 	padding-left: 40px;
 	padding-right: 40px;
-}
-
-.entry-meta {
-	float: left;
-	width: 150px;
-	margin-right: 10px;
-}
-
-.entry-meta time {
-	font-size: 1.5em;
-}
-
-.entry-text a {
-	color: #783E05;
-}
-
-.entry-text a:active {
-	background-color: #DC796C;
-}
-
-.entry-text a:hover {
-	text-decoration: none;
-	color: #640431;
-}
-
-.entry-content {
 	background-color: #FFF;
 	color: #000;
 	padding-top: 1.5em;
@@ -126,6 +100,9 @@ input[type=text] {
 }
 
 .entry-meta {
+	float: left;
+	width: 150px;
+	margin-right: 10px;
 	background-color: #DC5543;
 	border-radius: 6px;
 	text-align: center;
@@ -133,6 +110,19 @@ input[type=text] {
 
 .entry-meta a {
 	color: #FFF;
+}
+
+.entry-text a {
+	color: #783E05;
+}
+
+.entry-text a:active {
+	background-color: #DC796C;
+}
+
+.entry-text a:hover {
+	text-decoration: none;
+	color: #640431;
 }
 
 .headline a {

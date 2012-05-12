@@ -1,6 +1,6 @@
 				<article>
 					<div class="entry-meta">
-						<time pubdate="pubdate"><?php the_time( 'M. d, Y' ); ?></time><br/>
+						<time pubdate="pubdate"><?php the_time( 'M d, Y' ); ?></time><br/>
 						<?php if ( comments_open() || ( '0' != get_comments_number() && ! comments_open() ) ) : ?>
 							<?php comments_popup_link( __( 'Leave a comment', 'musicwhore' ), __( '1 Comment', 'musicwhore' ), __( '% Comments', 'musicwhore' ) ); ?><br/>
 						<?php endif; ?>
