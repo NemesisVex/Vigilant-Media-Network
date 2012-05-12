@@ -12,11 +12,7 @@
 		<link rel="stylesheet" href="<?php echo get_vigilante_uri(); ?>/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="<?php echo get_vigilante_uri(); ?>/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/typography.css" type="text/css" media="screen, projection" />
-		<?php if (is_mobile() == true): ?>
-		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/mobile.css" type="text/css" media="screen" />
-		<?php else: ?>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/layout.css" type="text/css" media="screen, projection" />
-		<?php endif; ?>
 		<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/jquery.js"></script>
 		<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/modernizr-1.6.min.js"></script>
 		<!--[if lt IE9]<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/html5.js"></script>[/if]-->
