@@ -3,13 +3,13 @@
 	<head>
 		<title>Greg Bueno{if $page_title}: {$page_title}{/if}</title>
 		<meta charset="utf-8" />
-		<link rel="alternate" type="application/rss+xml" title="gregbueno.com combined feed" href="http://www.gregbueno.com/index.xml" />
 		<link rel="icon" href="/images/gbueno.ico" type="image/vnd.microsoft.icon" />
 		<link rel="shortcut icon" href="/images/gbueno.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" href="/css/greg.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="css/typography.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.ext.js"></script>
@@ -20,12 +20,19 @@
 
 		<div class="container">
 
-			<div id="frame-1" class="span-16">
-				<header id="masthead" class="span-14 prepend-1 append-1 append-bottom">
-					<h1 id="title"><a href="/">Greg Bueno</a></h1>
+			<div id="masthead" class="span-24">
+				<header class="prepend-4 span-14">
+					<hgroup>
+						<h1 id="title">Greg Bueno</h1>
+					</hgroup>
 				</header>
+				
+				<section class="span-6 last">
+					<img width="100" height="100" title="[Greg Bueno]" alt="[Greg Bueno]" src="http://www.eponymous4.com/images/bio_wrp_vol_03_restraint.jpg" />
+				</section>
+			</div>
 
-				<section id="content" class="span-14 append-1 prepend-1">
+			<div id="content">
 {if $section_head}
 					<header id="content-header">
 {/if}
@@ -46,54 +53,7 @@
 {/if}
 
 {if $content_template}{include file=$content_template}{/if}
-				</section>
 			</div>
-
-			<aside id="frame-2" class="span-8 prepend-top last">
-
-				<h3>Profile</h3>
-
-				<p><img src="{$config.to_eponymous4}/images/bio_wrp_vol_03_restraint.jpg" width="100" height="100" alt="[Greg Bueno]" title="[Greg Bueno]" class="right"></p>
-
-				<p>
-					A lapsed musician and web developer, or a lapsed developer and web musician. It depends.
-				</p>
-
-				<nav id="site-nav">
-					<ul>
-						<li> <a href="/index.php/gb/profile/">Bio</a></li>
-						<li> <a href="/index.php/gb/contact/">Contact</a></li>
-						<li> <a href="{$config.to_vigilantmedia}/">Portfolio</a></li>
-					</ul>
-				</nav>
-
-				<hr />
-
-				<h3>Eponymous 4</h3>
-
-				<p>Listen to the latest release of my home studio project.</p>
-
-				<p id="ep4_bandcamp_player">&nbsp;</p>
-
-{literal}
-				<script type="text/javascript">
-				$(function () {
-					$ep4($('#ep4_bandcamp_player')[0]).bandcamp_widget(1800954785, 'grande', 'F0F0F0', '1D4575', 100, 300, 'FFFFFF');
-				});
-				</script>
-{/literal}
-
-				<nav>
-					<ul>
-						<li> <a href="{$config.to_eponymous4}">Eponymous 4 official site</a></li>
-						<li> <a href="http://www.myspace.com/eponymous4">Myspace</a></li>
-					</ul>
-				</nav>
-				<hr />
-
-{include file=gb_root__links.tpl}
-
-			</aside>
 
 		</div>
 
