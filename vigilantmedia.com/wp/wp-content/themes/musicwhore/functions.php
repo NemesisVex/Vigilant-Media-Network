@@ -22,8 +22,8 @@ function remap_mt() {
 	global $wpdb, $table_prefix;
 	$wpdb->show_errors();
 	
-	if (preg_match("/^\/entry\/([0-9]+)/", $_SERVER['REQUEST_URI'], $match)) {
-		$mt_entry_id = $match[1];
+	if (preg_match("/^\/(mw\/|)entry\/([0-9]+)/", $_SERVER['REQUEST_URI'], $match)) {
+		$mt_entry_id = $match[2];
 		
 		// Connect to MT database.
 		$mt = new MtMapper();
