@@ -2,6 +2,7 @@
 
 define('VIGILANTE_URI', 'http://vigilante.vigilantmedia.com');
 require_once("MTMapper.php");
+global $wpdb;
 
 function get_vigilante_uri() {
 	return VIGILANTE_URI;
@@ -21,7 +22,6 @@ function remap_mt() {
 	global $wpdb, $table_prefix;
 	$wpdb->show_errors();
 	
-	//echo '<pre>';
 	if (preg_match("/^\/entry\/([0-9]+)/", $_SERVER['REQUEST_URI'], $match)) {
 		$mt_entry_id = $match[1];
 		
@@ -35,18 +35,19 @@ function remap_mt() {
 		$entry_base = $mt_entry->entry_basename;
 		
 		// Query the WordPress database for the permalink.
-		$wp_query = 'Select * From ' . $wpdb->posts . ' Where post_name = \'' . $entry_base . '\'';
+		$wp_query = 'Select * From ' . DB_NAME . '.' . $wpdb->posts . ' Where post_name = \'' . $entry_base . '\'';
 		$wp_entry = $wpdb->get_row($wp_query);
 		
 		// If there's a match, redirect to that entry.
 		if (!empty($wp_entry)) {
-			
+			$entry_date = date("Y/m/d", strtotime($wp_entry->post_date));
+			$url = '/' . $entry_date . '/' . $entry_base . '/';
+			header('Location: ' . $url, 302);
 		} else {
 			// If not, redirect to the main page.
 			header('Location: /', 301);
 		}
 	}
-	//echo '</pre>';
 }
 
 /**
