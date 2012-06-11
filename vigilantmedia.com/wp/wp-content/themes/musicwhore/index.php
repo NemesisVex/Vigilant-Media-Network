@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php
+	remap_mt();
+	get_header();
+?>
 
 	<?php if ( is_archive() ) : ?>
 <header>
