@@ -44,6 +44,7 @@
 					<?php wp_nav_menu(array('theme_location' => 'primary')); ?>
 					<ul class="nav-icon-list">
 						<li><a href="https://www.facebook.com/pages/Musicwhoreorg/109288145780351" title="[Musicwhore.org Official Facebook Page]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/facebook.png"/></a></li>
+						<li><a href="http://www.twitter.com/#!/MusicwhoreOrg/" title="[Twitter]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/twitter.png"/></a></li>
 						<li><a href="http://www.last.fm/user/NemesisVex/" title="[Last.fm]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/lastfm.png"/></a></li>
 						<li><a href="<?php bloginfo( 'siteurl' ); ?>/feed/" title="[Musicwhore.org Feed]"><img src="<?php echo get_vigilante_uri(); ?>/images/icons/feed.png"/></a></li>
 					</ul>
