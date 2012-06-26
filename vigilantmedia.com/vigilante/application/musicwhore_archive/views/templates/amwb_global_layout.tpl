@@ -8,8 +8,8 @@
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/screen.css" />
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/print.css" media="print" />
 		<!--[if IE]><link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/ie.css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" type="text/css" href="{$config.to_musicwhore}/css/global.css" />
-		<link rel="stylesheet" type="text/css" href="{$config.to_musicwhore}/css/musicwhore.css" />
+		<link rel="stylesheet" type="text/css" href="/css/global.css" />
+		<link rel="stylesheet" type="text/css" href="/css/musicwhore.css" />
 		<link rel="stylesheet" type="text/css" href="/includes/musicwhore.css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
@@ -89,7 +89,7 @@
 						<a href="{$config.to_musicwhore}">musicwhore.org</a><br>
 						<a href="{$config.to_tvwhore}">tvwhore.org</a><br>
 					</p>
-					
+
 					<p>
 						&copy; {"now"|date_format:"%Y"} <a href="{$config.to_gregbueno}">Greg Bueno</a> | <a href="/index.php/archive/terms/">Terms &amp; conditions</a>
 {if $smarty.const.ENVIRONMENT!="prod"}
@@ -109,13 +109,13 @@
 	$this->assign("amazonRnd", $amazonRnd);
 {/php}
 					<script type="text/javascript">
-						amazon_ad_tag="musicwhoreorg-{if $amazonRnd % 2==0}22{else}20{/if}"; 
-						amazon_ad_width="120"; 
-						amazon_ad_height="240"; 
-						amazon_color_background="666666"; 
-						amazon_color_border="CCCC99"; 
-						amazon_color_logo="000000"; 
-						amazon_color_text="FFFFFF"; 
+						amazon_ad_tag="musicwhoreorg-{if $amazonRnd % 2==0}22{else}20{/if}";
+						amazon_ad_width="120";
+						amazon_ad_height="240";
+						amazon_color_background="666666";
+						amazon_color_border="CCCC99";
+						amazon_color_logo="000000";
+						amazon_color_text="FFFFFF";
 						amazon_color_link="FFCC00";
 					</script>
 					<script type="text/javascript" src="http://www.assoc-amazon.{if $amazonRnd % 2==0}jp{else}com{/if}/s/asw.js"></script><br>
