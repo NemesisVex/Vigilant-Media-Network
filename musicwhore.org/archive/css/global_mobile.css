@@ -1,0 +1,23 @@
+/* 
+    Document   : global_blueprint
+    Created on : Aug 12, 2009, 8:31:58 AM
+    Author     : gbueno
+    Description:
+        Common style rules for Musicwhore.org, Filmwhore.org and Tvwhore.org,
+		overriding blueprint.
+*/
+
+/* 
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+#title
+{
+	font-size: 300%;
+}
+
+textarea
+{
+	width: auto;
+	height: auto;
+}
