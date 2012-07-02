@@ -21,28 +21,28 @@ function is_mobile() {
 function remap_mt() {
 	global $wpdb, $table_prefix;
 	$wpdb->show_errors();
-	
+
 	if (preg_match("/^\/(mw\/|)entry\/([0-9]+)/", $_SERVER['REQUEST_URI'], $match)) {
 		$mt_entry_id = $match[2];
-		
+
 		// Connect to MT database.
 		$mt = new MtMapper();
-		
+
 		// Query mt_entry for $mt_entry_id.
 		$mt_entry = $mt->get_entry_by_id($mt_entry_id);
-		
+
 		// Get the permalink.
 		$entry_base = $mt_entry->entry_basename;
-		
+
 		// Query the WordPress database for the permalink.
 		$wp_query = 'Select * From ' . DB_NAME . '.' . $wpdb->posts . ' Where post_name = \'' . $entry_base . '\'';
 		$wp_entry = $wpdb->get_row($wp_query);
-		
+
 		// If there's a match, redirect to that entry.
 		if (!empty($wp_entry)) {
 			$entry_date = date("Y/m/d", strtotime($wp_entry->post_date));
 			$url = '/' . $entry_date . '/' . $entry_base . '/';
-			header('Location: ' . $url, 302);
+			header('Location: ' . $url, 301);
 		} else {
 			// If not, redirect to the main page.
 			header('Location: /', 301);
