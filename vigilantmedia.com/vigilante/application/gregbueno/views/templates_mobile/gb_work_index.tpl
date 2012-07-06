@@ -1,15 +1,29 @@
 <p>Here be dragons. And perhaps drafts and scraps and ideas and stuff.</p>
 
-<h4>Complete</h4>
+<h3>Complete</h3>
 
-<p>
-	<em><a href="/files/starting_to_remember.pdf">Starting to Remember</a></em><br>
-</p>
+<h4>Starting to Remember</h4>
 
-<h4>Incomplete</h4>
+<ul>
+	<li><em><a href="/files/work/starting_to_remember.pdf">PDF</a></em></li>
+	<li><em><a href="/files/work/starting_to_remember.epub">ePub</a></em> (Nook)</li>
+	<li><em><a href="/files/work/starting_to_remember.mobi">MOBI</a></em> (Kindle)</li>
+</ul>
 
-<p>
-	<em><a href="/files/amelia.pdf">Amelia</a></em><br>
-	<em><a href="/files/emma.pdf">Emma</a></em> (tentative)<br>
-	<em><a href="/files/dangerous_top.pdf">Dangerous Top</a></em> (tentative)<br>
-</p>
+<h3>Incomplete</h3>
+
+<h4>Amelia</h4>
+
+<ul>
+	<li><em><a href="/files/work/amelia.pdf">PDF</a></em></li>
+	<li><em><a href="/files/work/amelia.epub">ePub</a></em> (Nook)</li>
+	<li><em><a href="/files/work/amelia.mobi">MOBI</a></em> (Kindle)</li>
+</ul>
+
+<h4>Other</h4>
+
+<ul>
+	<li><em><a href="/files/work/emma.pdf">Emma</a></em> (PDF)</li>
+	<li><em><a href="/files/work/dangerous_top.pdf">Dangerous Top</a></em> (PDF)</li>
+</ul>
+
