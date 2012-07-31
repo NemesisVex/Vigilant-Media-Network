@@ -33,7 +33,7 @@
 							<li><a href="/index.php/music/digital/{$rsRelease->album_alias}/"><img src="/images/_covers/_{if file_exists($wrp_file)}exm{else}color{/if}_front_200_{$rsRelease->album_image}" alt="[{$rsRelease->album_title}]" title="[{$rsRelease->album_title}]" /></a></li>
 						{/foreach}
 						</ul>
-						
+
 						{literal}
 						<script type="text/javascript">
 							$(document).ready(function () {
@@ -44,7 +44,7 @@
 					</section>
 				</div>
 {/if}
-				
+
 				<div id="column-1" class="span-14 prepend-1 append-1">
 
 					<header>
@@ -93,18 +93,17 @@
 						<li> <a href="http://eponymous4.bandcamp.com/">Bandcamp</a></li>
 						<li> <a href="http://www.cdbaby.com/Artist/Eponymous4">CD Baby</a></li>
 						<li> <a href="http://www.facebook.com/eponymous4">Facebook</a></li>
-						<li> <a href="http://www.ilike.com/artist/Eponymous+4">iLike</a></li>
 						<li> <a href="http://www.last.fm/music/Eponymous+4">Last.fm</a></li>
 						<li> <a href="http://www.myspace.com/eponymous4">MySpace</a></li>
 						<li> <a href="http://www.soundcloud.com/observantrecords">SoundCloud</a></li>
 						<li> <a href="http://twitter.com/eponymous4">Twitter</a></li>
 						<li> <a href="http://www.youtube.com/user/observantrecords">YouTube</a></li>
 					</ul>
-					
+
 					<p>
 						<a href="{$config.to_observant}/"><img src="/images/observant_records_logo_200.png" width="200" alt="[Observant Records]" title="[Observant Records]" /></a>
 					</p>
-					
+
 					{include file=ep4_root_links.tpl}
 				</div>
 
