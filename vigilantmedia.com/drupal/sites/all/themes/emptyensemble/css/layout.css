@@ -1,0 +1,37 @@
+/* 
+    Document   : layout
+    Created on : Jul 31, 2012, 9:14:47 PM
+    Author     : Greg Bueno
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#masthead {
+	text-align: center;
+	width: 960px;
+	margin-top: 1.5em;
+}
+
+#title a {
+	text-decoration: none;
+	color: #000;
+}
+
+#nav-social ul {
+	list-style-type: none;
+}
+
+#nav-social li {
+	display: inline;
+	margin-left: 6px;
+	padding: 0;
+}
+
+#splash {
+	width: 960px;
+	margin-right: 0;
+}
+
+.centered {
+	text-align: center;
+}
