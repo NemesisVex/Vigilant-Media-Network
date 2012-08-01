@@ -35,9 +35,7 @@
 
 <p>
 	<a href="http://friendfeed.com/nemesisvex">friendfeed</a><br />
-	<a href="http://www.glee.com/NemesisVex/">glee</a> (<a href="http://music.glee.com/eponymous4/">music</a>)<br />
 	<a href="http://www.goodreads.com/user/show/1870108">goodreads</a><br />
-	<a href="http://www.ilike.com/user/Nemesis_Vex/">iLike</a><br />
 	<a href="http://www.librarything.com/profile/NemesisVex">LibraryThing</a><br />
 	<a href="http://nemesisvex.myplaxo.com/">plaxo</a><br />
 	<a href="http://www.plurk.com/user/NemesisVex/">Plurk</a><br />
