@@ -10,6 +10,7 @@
 	text-align: center;
 	width: 960px;
 	margin-top: 1.5em;
+	margin-bottom: 1.5em;
 }
 
 #title a {
@@ -17,12 +18,16 @@
 	color: #000;
 }
 
-#nav-social ul {
+#main-nav {
+	width: 960px;
+}
+
+ul.nav-social {
 	list-style-type: none;
 }
 
-#nav-social li {
-	display: inline;
+ul.nav-social li {
+	float: left;
 	margin-left: 6px;
 	padding: 0;
 }
