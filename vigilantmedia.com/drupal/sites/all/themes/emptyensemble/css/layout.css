@@ -7,29 +7,66 @@
 */
 
 #masthead {
-	text-align: center;
-	width: 960px;
-	margin-top: 1.5em;
+	float: left;
+	width: 870px;
+	margin-right: 0;
 	margin-bottom: 1.5em;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
-#title a {
-	text-decoration: none;
-	color: #000;
+#masthead header {
+	float: left;
+	width: 310px;
+	margin-right: 10px;
 }
 
-#main-nav {
-	width: 960px;
+#nav-main {
+	float: left;
+	width: 350px;
+	margin-right: 10px;
 }
 
-ul.nav-social {
+#nav-social {
+	float: left;
+	width: 190px;
+	margin-right: 0;
+}
+
+#nav-social ul, #nav-main ul {
+	margin-top: 1.5em;
 	list-style-type: none;
 }
 
-ul.nav-social li {
+#nav-social ul li {
 	float: left;
-	margin-left: 6px;
+	margin: 0 6px 0 0;
 	padding: 0;
+}
+
+#nav-main ul li {
+	float: left;
+	margin: 0 24px 0 0;
+	padding: 0;
+}
+
+#content {
+	float: left;
+	margin-right: 0;
+}
+
+#column-1 {
+	float: left;
+	width: 630px;
+	margin-right: 10px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+#column-2 {
+	float: left;
+	width: 220px;
+	margin-right: 0px;
 }
 
 #splash {
@@ -37,6 +74,20 @@ ul.nav-social li {
 	margin-right: 0;
 }
 
-.centered {
-	text-align: center;
+.inline-list {
+	list-style-type: none;
+}
+
+.inline-list li {
+	display: inline;
+	margin: 0 12px 0 0;
+	padding: 0;
+}
+
+.inline-list li:before {
+	content: "» ";
+}
+
+.submitted {
+	font-style: italic;
 }
