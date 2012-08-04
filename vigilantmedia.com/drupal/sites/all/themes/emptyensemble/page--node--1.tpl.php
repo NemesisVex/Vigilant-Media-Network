@@ -10,14 +10,12 @@
 					<?php endif; ?>
 				</header>
 
-				<nav id="nav-main">
+				<nav id="main-nav">
 					<?php if ($main_menu || $secondary_menu): ?>
-					<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'nav-main', 'class' => array('links', 'inline', 'clearfix')))); ?>
+					<?php //print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'nav-main', 'class' => array('links', 'inline', 'clearfix')))); ?>
 					<?php //print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
 					<?php endif; ?>
-				</nav>
-				<nav id="nav-social">
-					<ul>
+					<ul class="links inline clearfix">
 						<li><a href="http://twitter.com/EmptyEnsemble"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
 						<li><a href="http://facebook.com/EmptyEnsemble"><img src="http://vigilante.vigilantmedia.com/images/icons/facebook.png" alt="[Facebook]" title="[Facebook]" /></a></li>
 						<li><a href="http://soundcloud.com/observantrecords"><img src="http://vigilante.vigilantmedia.com/images/icons/soundcloud.png" alt="[Soundcloud]" title="[Soundcloud]" /></a></li>
