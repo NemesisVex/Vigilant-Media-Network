@@ -51,4 +51,6 @@
 				</div>
 
 			</div>
+			
+			<img src="/sites/emptyensemble.com/files/empty_ensemble_empty_set_logo.png" class="bg" alt="[Empty Ensemble Logo]" />
 		</div>
