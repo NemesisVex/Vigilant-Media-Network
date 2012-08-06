@@ -1,0 +1,60 @@
+<?php
+
+/**
+ * @file
+ * Connects data from the Observant Records database to Drupal.
+ *  
+ */
+
+function observantrecords_help($path, $arg) {
+	switch ($path) {
+		case "admin/help#observantrecords":
+			return '<p>' . t('Connects Drupal to Observant Records data') . '</p>';
+			break;
+	}
+}
+
+function observantrecords_block_info() {
+	$blocks['observantrecords'] = array(
+		'info' => t('Artists'),
+		'cache' => DRUPAL_CACHE_PER_ROLE,
+	);
+	return $blocks;
+}
+
+/*
+ * 
+function observantrecords_menu() {
+	$items['admin/config/observantrecords'] = array(
+		'title' => 'Observant Records connector',
+		'description' => 'A module to connect Observant Records data to Drupal.',
+		'position' => 'right',
+		'weight' => -5,
+		'page callback' => 'system_admin_menu_block_page',
+		'access arguments' => array('administer site configuration'),
+		'files' => 'system.admin.inc',
+		'file_path' => drupal_get_path('module', 'system'),
+	);
+	
+	$items['admin/config/observantrecords/settings'] = array(
+		'title' => 'Observant Records connector settings',
+		'description' => 'Settings to connect Observant Records data to Drupal.',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('observantrecords_admin_settings'),
+		'type' => MENU_NORMAL_ITEM,
+		'file' => 'observantrecords.admin.inc',
+	);
+	
+	return $items;
+}
+
+function observantrecords_node_load($nodes, $types) {
+	global $user;
+	
+	foreach ($nodes as $node) {
+		if ($user->uid != $node->uid) {
+			unset($node->observant_records_connection);
+		}
+	}
+}
+ */

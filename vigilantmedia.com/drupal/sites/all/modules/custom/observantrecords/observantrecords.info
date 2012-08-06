@@ -1,0 +1,4 @@
+name = Observant Records Connector
+description = "Connect data from the Observant Records database to Drupal"
+package = Observant Records
+core = 7.x
