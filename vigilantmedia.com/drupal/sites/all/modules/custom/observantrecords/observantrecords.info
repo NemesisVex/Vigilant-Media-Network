@@ -1,4 +1,8 @@
 name = Observant Records Connector
 description = "Connect data from the Observant Records database to Drupal"
 package = Observant Records
+files[] = observantrecords.admin.inc
+files[] = observantrecords.model.inc
+files[] = observantrecords.module
+files[] = obesrvantrecords.install
 core = 7.x

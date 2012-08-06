@@ -3,8 +3,10 @@
 /**
  * @file
  * Connects data from the Observant Records database to Drupal.
- *  
+ *
  */
+
+require_once('observantrecords.model.inc');
 
 function observantrecords_help($path, $arg) {
 	switch ($path) {
@@ -22,8 +24,41 @@ function observantrecords_block_info() {
 	return $blocks;
 }
 
+function observantrecords_contents() {
+	observantrecords_db_init();
+	db_set_active('ObservantRecordsDb');
+	$results = db_select('ep4_artists', 'a')->fields('a')->orderBy('artist_last_name')->execute();
+	db_set_active();
+	return $results;
+}
+
+function observantrecords_block_view($delta = '') {
+	switch($delta) {
+		case 'observantrecords':
+			$block['subject'] = t('Artists');
+			if (user_access('access content')) {
+				$result = observantrecords_contents();
+				$items = array();
+				foreach ($result as $node) {
+					$items[] = array(
+						'data' => $node->artist_last_name,
+					);
+				}
+
+				if (empty($items)) {
+					$block['content'] = t('No artists to display');
+				} else {
+					$block['content'] = theme('item_list', array('items' => $items));
+				}
+			}
+			break;
+	}
+
+	return $block;
+}
+
 /*
- * 
+ *
 function observantrecords_menu() {
 	$items['admin/config/observantrecords'] = array(
 		'title' => 'Observant Records connector',
@@ -35,7 +70,7 @@ function observantrecords_menu() {
 		'files' => 'system.admin.inc',
 		'file_path' => drupal_get_path('module', 'system'),
 	);
-	
+
 	$items['admin/config/observantrecords/settings'] = array(
 		'title' => 'Observant Records connector settings',
 		'description' => 'Settings to connect Observant Records data to Drupal.',
@@ -44,13 +79,13 @@ function observantrecords_menu() {
 		'type' => MENU_NORMAL_ITEM,
 		'file' => 'observantrecords.admin.inc',
 	);
-	
+
 	return $items;
 }
 
 function observantrecords_node_load($nodes, $types) {
 	global $user;
-	
+
 	foreach ($nodes as $node) {
 		if ($user->uid != $node->uid) {
 			unset($node->observant_records_connection);
