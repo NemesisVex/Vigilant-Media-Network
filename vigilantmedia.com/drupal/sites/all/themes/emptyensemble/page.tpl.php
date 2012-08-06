@@ -1,5 +1,5 @@
 		<div id="container" class="container">
-			<div id="masthead" class="prepend-top">
+			<div id="masthead">
 				<header>
 					<?php if ($site_name): ?>
 					<h1 id="title">
@@ -10,12 +10,14 @@
 					<?php endif; ?>
 				</header>
 
-				<nav id="main-nav">
-					<?php if ($main_menu || $secondary_menu): ?>
-					<?php print theme('links__system_main_menu', array('links' => $main_menu, 'attributes' => array('id' => 'nav-main', 'class' => array('links', 'inline', 'clearfix')))); ?>
-					<?php //print theme('links__system_secondary_menu', array('links' => $secondary_menu, 'attributes' => array('id' => 'secondary-menu', 'class' => array('links', 'inline', 'clearfix')))); ?>
+				<nav id="nav-main">
+					<?php if ($main_menu): ?>
+					<?php print theme('links__system_main_menu', array('links' => $main_menu)); ?>
 					<?php endif; ?>
-					<ul class="links inline clearfix">
+				</nav>
+
+				<nav id="nav-social">
+					<ul>
 						<li><a href="http://twitter.com/EmptyEnsemble"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
 						<li><a href="http://facebook.com/EmptyEnsemble"><img src="http://vigilante.vigilantmedia.com/images/icons/facebook.png" alt="[Facebook]" title="[Facebook]" /></a></li>
 						<li><a href="http://soundcloud.com/observantrecords"><img src="http://vigilante.vigilantmedia.com/images/icons/soundcloud.png" alt="[Soundcloud]" title="[Soundcloud]" /></a></li>
@@ -29,13 +31,13 @@
 				<?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 				<a id="main-content"></a>
 				<?php print render($title_prefix); ?>
-				<?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+				<?php if ($title): ?><h2 class="title" id="page-title"><?php print $title; ?></h2><?php endif; ?>
 				<?php print render($title_suffix); ?>
 				<?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
 				<?php print render($page['help']); ?>
 				<?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
 				<?php print render($page['content']); ?>
-				<?php print $feed_icons; ?>
+				<?php //print $feed_icons; ?>
 				</div>
 
 				<div id="column-2" class="span-8 last">
@@ -49,4 +51,6 @@
 				</div>
 
 			</div>
+			
+			<img src="/sites/emptyensemble.com/files/empty_ensemble_empty_set_logo.png" class="bg" alt="[Empty Ensemble Logo]" />
 		</div>
