@@ -25,10 +25,7 @@ function observantrecords_block_info() {
 }
 
 function observantrecords_contents() {
-	observantrecords_db_init();
-	db_set_active('ObservantRecordsDb');
-	$results = db_select('ep4_artists', 'a')->fields('a')->orderBy('artist_last_name')->execute();
-	db_set_active();
+	$results = observantrecords_get_artists();
 	return $results;
 }
 

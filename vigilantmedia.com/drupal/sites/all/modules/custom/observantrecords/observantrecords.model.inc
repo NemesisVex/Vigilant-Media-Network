@@ -18,3 +18,12 @@ function observantrecords_db_init() {
 	Database::addConnectionInfo('ObservantRecordsDb', 'default', $database);
 }
 
+function observantrecords_get_artists() {
+	 observantrecords_db_init();
+
+	db_set_active('ObservantRecordsDb');
+	$results = db_select('ep4_artists', 'a')->fields('a')->orderBy('artist_last_name')->execute();
+	db_set_active();
+
+	return $results;
+}
