@@ -83,7 +83,7 @@
 
 {/foreach}
 
-<a href="/index.php/aus/robots/"><img src="/images/1pixel.gif" width="1" height="1" alt="[robots]" border="0"></a>
+{*<a href="/index.php/aus/robots/"><img src="/images/1pixel.gif" width="1" height="1" alt="[robots]" border="0"></a>*}
 </div>
 </div>
 
