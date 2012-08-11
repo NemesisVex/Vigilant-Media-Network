@@ -16,41 +16,72 @@ function observantrecords_help($path, $arg) {
 	}
 }
 
-function observantrecords_contents() {
-	$results = observantrecords_get_artists();
-	return $results;
-}
-
 function observantrecords_block_info() {
-	$blocks['observantrecords'] = array(
-		'info' => t('Artists'),
-		'cache' => DRUPAL_CACHE_PER_ROLE,
+	$blocks['artist_info'] = array(
+		'info' => t('Artist info'),
+		'cache' => DRUPAL_CACHE_PER_PAGE,
+	);
+	$blocks['album_info'] = array(
+		'info' => t('Album Info'),
+		'cache' => DRUPAL_CACHE_PER_PAGE,
+	);
+	$blocks['track_info'] = array(
+		'info' => t('Track info'),
+		'cache' => DRUPAL_CACHE_PER_PAGE,
 	);
 	return $blocks;
 }
 
 function observantrecords_block_view($delta = '') {
+	$node = menu_get_object();
 	switch($delta) {
-		case 'observantrecords':
-			$block['subject'] = t('Artists');
-			if (user_access('access content')) {
-				$result = observantrecords_contents();
-				$items = array();
-				foreach ($result as $node) {
-					$items[] = array(
-						'data' => $node->artist_last_name,
-					);
-				}
-
-				if (empty($items)) {
-					$block['content'] = t('No artists to display');
-				} else {
-					$block['content'] = theme('item_list', array('items' => $items));
-				}
-			}
+		case 'artist_info':
+			$artist_info = new OR_Artist();
+			$block['subject'] = t('Artist info');
+			$block['content'] = array(
+				'#artists' => $artist_info->get_artist_block_content($node),
+				'#theme' => 'artist_info',
+			);
+			break;
+		case 'album_info':
+			$block['subject'] = t('Album info');
+			$block['content'] = array(
+				'#albums' => array(),
+				'#theme' => 'album_info',
+			);
+			break;
+		case 'track_info':
+			$block['subject'] = t('Track info');
+			$block['content'] = array(
+				'#albums' => array(),
+				'#theme' => 'track_info',
+			);
 			break;
 	}
 
 	return $block;
 }
 
+function observantrecords_theme() {
+	$theme = array(
+		'artist_info' => array(
+			'variables' => array(
+				'artists' => NULL,
+			),
+			'template' => 'observantrecords.artist_info',
+		),
+		'album_info' => array(
+			'variables' => array(
+				'albums' => NULL,
+			),
+			'template' => 'observantrecords.album_info',
+		),
+		'track_info' => array(
+			'variables' => array(
+				'tracks' => NULL,
+			),
+			'template' => 'observantrecords.track_info',
+		),
+	);
+	return $theme;
+}

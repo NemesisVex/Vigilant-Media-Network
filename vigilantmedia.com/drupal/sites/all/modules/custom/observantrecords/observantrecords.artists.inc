@@ -5,34 +5,50 @@
  * @file
  * Connect to Observant Records database and return an autocomplete widget populated
  * by Observant Records artists.
- *  
+ *
  */
 
-function observantrecords_artists_field_info() {
-	$field_info = array(
-		'observant_artists_term_reference' => array(
-			'label' => t('Observant Records Artist Term Reference'),
-			'description' => t('This field stores a reference to an Observant Records artist term.'),
-			'default_widget' => 'options_select',
-			'default_formatter' => 'taxonomy_term_reference_link',
-		),
-	);
-	return $field_info;
-}
+class OR_Artist extends OR_Model {
 
-function observantrecords_artists_field_widget_info() {
-	$artist_widget = array(
-		'observant_artists_taxonomy' => array(
-			'label' => t('Autocomplete artist widget'),
-			'field_types' => array('observant_artists_term_reference'),
-			'settings' => array(
-				'size' => 60,
-				'autocomplete_path' => 'taxonomy/autocomplete',
-			),
-			'behaviors' => array(
-				'multiple_values' => FIELD_DEFAULT_CUSTOM,
-			),
-		),
-	);
-	return $artist_widget;
+	public function __construct() {
+		parent::__construct();
+		$this->connect();
+	}
+
+	public function get_artists() {
+		$this->activate();
+		$rsArtists = db_select('ep4_artists', 'a')->fields('a')->execute()->fetchAll();
+		$this->deactivate();
+		return $rsArtists;
+	}
+
+	public function get_artist($alias) {
+		$this->activate();
+		$rsArtist = db_select('ep4_artists', 'a')->fields('a')->condition('artist_alias', $alias)->execute()->fetchAssoc();
+		$this->deactivate();
+		return $rsArtist;
+	}
+	
+	public function get_artist_block_content($node) {
+		$content = array();
+
+		if (!empty($node->type))
+		{
+			$node_view = node_view($node);
+			$artist_alias = $node_view['field_artist_alias']['#items'][0]['safe_value'];
+			if (!empty($artist_alias)) {
+				$content = array($this->get_artist($artist_alias));
+			}
+			else {
+				$content = $this->get_artists();
+			}
+		}
+
+		return $content;
+	}
+
+	public function __destruct()
+	{
+		$this->deactivate();
+	}
 }

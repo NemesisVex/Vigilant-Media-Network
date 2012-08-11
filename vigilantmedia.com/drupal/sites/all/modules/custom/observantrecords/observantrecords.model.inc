@@ -6,25 +6,79 @@
  *
  */
 
-function observantrecords_db_init() {
-	$database_name = (ENVIRONMENT != 'production') ? 'observantrecords_dev' : 'observantrecords';
-	$database = array(
-		'database' => $database_name,
-		'username' => 'eponymous4',
-		'password' => '3825crux',
-		'host' => 'mysql.eponymous4.com',
-		'driver' => 'mysql'
-	);
+class OR_Model {
 
-	Database::addConnectionInfo('ObservantRecordsDb', 'default', $database);
-}
+	private $database_name;
+	private $username;
+	private $password;
+	private $host;
+	private $driver;
 
-function observantrecords_get_artists() {
-	observantrecords_db_init();
+	public function __construct() {
+		$this->database_name = (ENVIRONMENT != 'production') ? 'observantrecords_dev' : 'observantrecords';
+		$this->username = 'eponymous4';
+		$this->password = '3825crux';
+		$this->host = 'mysql.eponymous4.com';
+		$this->driver = 'mysql';
+	}
 
-	db_set_active('ObservantRecordsDb');
-	$results = db_select('ep4_artists', 'a')->fields('a')->orderBy('artist_last_name')->execute();
-	db_set_active();
+	public function connect() {
+		$database = array(
+			'database' => $this->database_name,
+			'username' => $this->username,
+			'password' => $this->password,
+			'host' => $this->host,
+			'driver' => $this->driver,
+		);
 
-	return $results;
+		Database::addConnectionInfo('ObservantRecordsDb', 'default', $database);
+	}
+
+	public function activate() {
+		db_set_active('ObservantRecordsDb');
+	}
+
+	public function deactivate() {
+		db_set_active();
+	}
+
+	public function set_database_name($database_name) {
+		$this->database_name = $database_name;
+	}
+
+	public function set_username($username) {
+		$this->username = $username;
+	}
+
+	public function set_password($password) {
+		$this->password = $password;
+	}
+
+	public function set_host($host) {
+		$this->host = $host;
+	}
+
+	public function set_driver($driver) {
+		$this->driver = $driver;
+	}
+
+	public function get_database_name() {
+		return $this->database_name;
+	}
+
+	public function get_username() {
+		return $this->username;
+	}
+
+	public function get_password() {
+		return $this->password;
+	}
+
+	public function get_host() {
+		return $this->host;
+	}
+
+	public function get_driver() {
+		return $this->driver;
+	}
 }
