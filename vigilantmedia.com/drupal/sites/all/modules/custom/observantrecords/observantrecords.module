@@ -6,8 +6,6 @@
  *
  */
 
-require_once('observantrecords.model.inc');
-
 function observantrecords_help($path, $arg) {
 	switch ($path) {
 		case "admin/help#observantrecords":
@@ -40,21 +38,25 @@ function observantrecords_block_view($delta = '') {
 			$block['subject'] = t('Artist info');
 			$block['content'] = array(
 				'#artists' => $artist_info->get_artist_block_content($node),
-				'#theme' => 'artist_info',
+				'#theme' => 'block_artist_info',
 			);
 			break;
 		case 'album_info':
+			$album_info = new OR_Albums();
+			$release_alias = $node->field_release_alias[$node->language][0]['value'];
 			$block['subject'] = t('Album info');
 			$block['content'] = array(
-				'#albums' => array(),
-				'#theme' => 'album_info',
+				'#albums' => $album_info->get_album_block_content($node),
+				'#release_alias' => $release_alias,
+				'#theme' => 'block_album_info',
 			);
 			break;
 		case 'track_info':
+			$track_info = new OR_Tracks();
 			$block['subject'] = t('Track info');
 			$block['content'] = array(
-				'#albums' => array(),
-				'#theme' => 'track_info',
+				'#tracks' => $track_info->get_track_block_content($node),
+				'#theme' => 'block_track_info',
 			);
 			break;
 	}
@@ -62,25 +64,85 @@ function observantrecords_block_view($delta = '') {
 	return $block;
 }
 
+function observantrecords_node_view($node, $view_mode, $langcode) {
+	$artist_alias = (!empty($node->field_artist_alias)) ?
+		$node->field_artist_alias[$node->language][0]['value'] :
+		null;
+	
+	$album_alias = (!empty($node->field_album_alias)) ?
+		$node->field_album_alias[$node->language][0]['value'] :
+		null;
+	
+	$release_alias = (!empty($node->field_release_alias)) ?
+		$node->field_release_alias[$node->language][0]['value'] :
+		null;
+	
+	$track_alias = (!empty($node->field_track_alias)) ?
+		$node->field_track_alias[$node->language][0]['value'] :
+		null;
+	
+	$artist_info = new OR_Artist();
+	$node->content['artists'] = array(
+		'#artists' => $artist_info->get_artist_node_content($node),
+		'#theme' => 'node_artist_info');
+
+	if (!empty($artist_alias)) {
+		$album_info = new OR_Albums();
+		$node->content['albums'] = array(
+			'#albums' => $album_info->get_album_node_content($node),
+			'#release_alias' => $release_alias,
+			'#theme' => 'node_album_info',
+		);
+	}
+
+	if (!empty($album_alias) || !empty($release_alias)) {
+		$track_info = new OR_Tracks();
+		$node->content['tracks'] = array(
+			'#tracks' => $track_info->get_track_node_content($node),
+			'#theme' => 'node_track_info',
+		);
+	}
+}
+
 function observantrecords_theme() {
 	$theme = array(
-		'artist_info' => array(
+		'block_artist_info' => array(
 			'variables' => array(
 				'artists' => NULL,
 			),
-			'template' => 'observantrecords.artist_info',
+			'template' => 'observantrecords.block.artist_info',
 		),
-		'album_info' => array(
+		'block_album_info' => array(
 			'variables' => array(
 				'albums' => NULL,
+				'release_alias' => NULL,
 			),
-			'template' => 'observantrecords.album_info',
+			'template' => 'observantrecords.block.album_info',
 		),
-		'track_info' => array(
+		'block_track_info' => array(
 			'variables' => array(
 				'tracks' => NULL,
 			),
-			'template' => 'observantrecords.track_info',
+			'template' => 'observantrecords.block.track_info',
+		),
+		'node_artist_info' => array(
+			'variables' => array(
+				'artists' => NULL,
+			),
+			'template' => 'observantrecords.block.artist_info',
+		),
+		'node_album_info' => array(
+			'variables' => array(
+				'albums' => NULL,
+				'release_alias' => NULL,
+			),
+			'template' => 'observantrecords.block.album_info',
+		),
+		'node_track_info' => array(
+			'variables' => array(
+				'tracks' => NULL,
+			),
+			'template' => 'observantrecords.node.track_info',
 		),
 	);
 	return $theme;
