@@ -101,3 +101,11 @@
 	opacity: 0.1;
 	filter: alpha(opacity=10);
 }
+
+ul.album-list {
+	margin-left: 0px;
+}
+
+ul.album-list li {
+	display: inline;
+}
