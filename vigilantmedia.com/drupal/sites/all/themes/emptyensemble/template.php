@@ -10,5 +10,3 @@ function emptyensemble_preprocess_page(&$vars) {
 		$vars['theme_hook_suggestions'][] = 'page__taxonomy__' . $tid;
 	}
 }
-
-?>

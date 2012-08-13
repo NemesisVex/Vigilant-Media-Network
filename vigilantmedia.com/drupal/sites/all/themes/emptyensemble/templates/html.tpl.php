@@ -56,6 +56,7 @@
 		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<!--[if lt IE9]<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/html5.js"></script>[/if]-->
+		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
 		<?php print $styles; ?>
 		<?php print $scripts; ?>
 	</head>
