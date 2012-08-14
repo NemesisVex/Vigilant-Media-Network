@@ -82,12 +82,14 @@ function observantrecords_node_view($node, $view_mode, $langcode) {
 		null;
 
 	$artist_info = new OR_Artist();
+	$album_info = new OR_Albums();
+	$track_info = new OR_Tracks();
+	
 	$node->content['artists'] = array(
 		'#artists' => $artist_info->get_artist_node_content($node),
 		'#theme' => 'node_artist_info');
 
-	if (!empty($artist_alias)) {
-		$album_info = new OR_Albums();
+	if (!empty($artist_alias) || !empty($album_alias) || !empty($release_alias)) {
 		$node->content['albums'] = array(
 			'#albums' => $album_info->get_album_node_content($node),
 			'#release_alias' => $release_alias,
@@ -95,8 +97,7 @@ function observantrecords_node_view($node, $view_mode, $langcode) {
 		);
 	}
 
-	if (!empty($album_alias) || !empty($release_alias)) {
-		$track_info = new OR_Tracks();
+	if (!empty($album_alias) || !empty($release_alias) || !empty($track_alias)) {
 		$node->content['tracks'] = array(
 			'#tracks' => $track_info->get_track_node_content($node),
 			'#theme' => 'node_track_info',

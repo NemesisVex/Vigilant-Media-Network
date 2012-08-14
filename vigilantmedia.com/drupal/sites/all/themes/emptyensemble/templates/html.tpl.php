@@ -56,9 +56,22 @@
 		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<!--[if lt IE9]<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/html5.js"></script>[/if]-->
-		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
+		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/facebox.css" type="text/css" media="screen, projection" />
 		<?php print $styles; ?>
 		<?php print $scripts; ?>
+		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
+		<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/facebox.js"></script>
+		<script type="text/javascript">
+		var facebox_options = {
+			closeImage: 'http://vigilante.vigilantmedia.com/images/closelabel.gif',
+			loadingImage: 'http://vigilante.vigilantmedia.com/images/loading.gif'
+		};
+		(function ($) {
+			$(function () {
+				$('a[rel*=facebox]').facebox(facebox_options);
+			});
+		})(jQuery);
+		</script>
 	</head>
 
 	<body class="<?php print $classes; ?>" <?php print $attributes;?>>

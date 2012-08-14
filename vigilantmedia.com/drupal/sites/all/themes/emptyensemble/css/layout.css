@@ -102,6 +102,50 @@
 	filter: alpha(opacity=10);
 }
 
+table.track-table
+{
+	border: 1px dotted #402C29;
+	border-collapse: collapse;
+}
+
+table.track-table tr:nth-child(2n) td
+{
+	background-color: #CBCBCB;
+}
+
+table.track-table th
+{
+	border: 1px dotted #999;
+	font-size: 7pt;
+	color: #FFF;
+	background-color: #333;
+}
+
+table.track-table td
+{
+	border: 1px dotted #999;
+}
+
+table.track-table td.track-column
+{
+	width: 50px;
+}
+
+table.track-table td.play-column
+{
+	width: 20px;
+}
+
+table.track-table td.download-column
+{
+	width: 20px;
+}
+
+table.track-table td.download-column a:hover
+{
+	border-bottom: 0px;
+}
+
 ul.album-list {
 	margin-left: 0px;
 }

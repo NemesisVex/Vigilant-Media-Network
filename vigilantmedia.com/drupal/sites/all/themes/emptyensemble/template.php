@@ -10,3 +10,35 @@ function emptyensemble_preprocess_page(&$vars) {
 		$vars['theme_hook_suggestions'][] = 'page__taxonomy__' . $tid;
 	}
 }
+
+function emptyensemble_block_view($delta = '') {
+	$node = menu_get_object();
+	switch($delta) {
+		case 'album_info':
+			$album_info = new OR_Albums();
+			$release_alias = $node->field_release_alias[$node->language][0]['value'];
+			$block['subject'] = NULL;
+			$block['content'] = array(
+				'#albums' => $album_info->get_album_block_content($node),
+				'#release_alias' => $release_alias,
+				'#theme' => 'block_album_info',
+			);
+			break;
+	}
+
+	return $block;
+}
+
+function emptyensemble_theme() {
+	$theme = array(
+		'block_album_info' => array(
+			'variables' => array(
+				'albums' => NULL,
+				'release_alias' => NULL,
+			),
+			'template' => 'templates/emptyensemble.block.album_info',
+		),
+	);
+	
+	return $theme;
+}

@@ -16,7 +16,7 @@ class OR_Artist extends OR_Model {
 
 	public function get_artists() {
 		$this->activate();
-		$rsArtists = db_select('ep4_artists', 'a')->fields('a')->execute()->fetchAllAssoc('artist_alias');
+		$rsArtists = db_select('ep4_artists', 'a')->fields('a')->execute()->fetchAllAssoc('artist_alias', PDO::FETCH_ASSOC);
 		$this->deactivate();
 		return $rsArtists;
 	}

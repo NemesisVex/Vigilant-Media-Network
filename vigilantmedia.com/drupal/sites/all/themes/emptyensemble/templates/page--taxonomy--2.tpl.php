@@ -27,7 +27,7 @@
 			</div>
 
 			<div id="content">
-				<div class="span-24 last">
+				<div class="span-22 prepend-1 append-1 last">
 				<?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 				<a id="main-content"></a>
 				<?php print render($title_prefix); ?>
