@@ -84,7 +84,7 @@ function observantrecords_node_view($node, $view_mode, $langcode) {
 	$artist_info = new OR_Artist();
 	$album_info = new OR_Albums();
 	$track_info = new OR_Tracks();
-	
+
 	$node->content['artists'] = array(
 		'#artists' => $artist_info->get_artist_node_content($node),
 		'#theme' => 'node_artist_info');
@@ -175,10 +175,14 @@ function observantrecords_audio($id) {
 	$rsAudio = $audio_info->get_audio($id);
 
 	if (!empty($rsAudio)) {
-		$override_path = variable_get('observantrecords_file_path_override', $rsAudio['audio_mp3_file_path']);
-		$root_path = variable_get('observantrecords_file_root', conf_path() . '/files');
-		$complete_path = $_SERVER['DOCUMENT_ROOT'] . '/' . $root_path . '/' . $override_path . '/' . $rsAudio['audio_mp3_file_name'];
-		$complete_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $root_path . '/' . $override_path . '/' . $rsAudio['audio_mp3_file_name'];
+		$config_path = variable_get('observantrecords_file_path_override', $rsAudio['audio_mp3_file_path']);
+		$config_root = variable_get('observantrecords_file_root', conf_path() . '/files');
+
+		$file_path = (!empty($config_path)) ? $config_path : $rsAudio['audio_mp3_file_path'];
+		$root_path = (!empty($config_root)) ? $config_root : conf_path() . '/files';
+
+		$complete_path = $_SERVER['DOCUMENT_ROOT'] . '/' . $root_path . '/' . $file_path . '/' . $rsAudio['audio_mp3_file_name'];
+		$complete_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $root_path . '/' . $file_path . '/' . $rsAudio['audio_mp3_file_name'];
 
 		if (file_exists($complete_path)) {
 			header('Location:' . $complete_url);
