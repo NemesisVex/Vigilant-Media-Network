@@ -18,6 +18,8 @@ switch (ENVIRONMENT) {
         $config_url_base['to_ddn'] = 'http://dev.duran-duran.net';
         $config_url_base['to_observant'] = 'http://dev.observantrecords.com';
         $config_url_base['to_observantshop'] = 'http://dev.shop.observantrecords.com';
+        $config_url_base['to_shinkyokuadvocacy'] = 'http://dev.shinkyokuadvocacy.com';
+        $config_url_base['to_emptyensemble'] = 'http://dev.emptyensemble.com';
         break;
     case 'test':
         $config_url_base['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
@@ -35,6 +37,8 @@ switch (ENVIRONMENT) {
         $config_url_base['to_ddn'] = 'http://test.duran-duran.net';
         $config_url_base['to_observant'] = 'http://test.observantrecords.com';
         $config_url_base['to_observantshop'] = 'http://test.shop.observantrecords.com';
+        $config_url_base['to_shinkyokuadvocacy'] = 'http://test.shinkyokuadvocacy.com';
+        $config_url_base['to_emptyensemble'] = 'http://test.emptyensemble.com';
         break;
     case 'prod':
         $config_url_base['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
@@ -52,6 +56,8 @@ switch (ENVIRONMENT) {
         $config_url_base['to_ddn'] = 'http://www.duran-duran.net';
         $config_url_base['to_observant'] = 'http://www.observantrecords.com';
         $config_url_base['to_observantshop'] = 'http://shop.observantrecords.com';
+        $config_url_base['to_shinkyokuadvocacy'] = 'http://www.shinkyokuadvocacy.com';
+        $config_url_base['to_emptyensemble'] = 'http://www.emptyensemble.com';
         break;
 }
 ?>
