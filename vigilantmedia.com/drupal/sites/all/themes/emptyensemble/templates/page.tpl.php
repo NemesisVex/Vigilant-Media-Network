@@ -52,5 +52,5 @@
 
 			</div>
 			
-			<img src="/sites/emptyensemble.com/files/empty_ensemble_empty_set_logo.png" class="bg" alt="[Empty Ensemble Logo]" />
+			<img src="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/' . variable_get('file_public_path', conf_path() . '/files');?>/images/empty_ensemble_empty_set_logo.png" class="bg" alt="[Empty Ensemble Logo]" />
 		</div>
