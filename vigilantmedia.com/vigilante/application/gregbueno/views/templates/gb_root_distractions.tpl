@@ -1,3 +1,6 @@
+				<section id="music" class="prepend-1 span-22 append-1 full-column">
+<h3>Distractions</h3>
+
 <p>
 	<a href="http://www.billboard.com/">Billboard</a><br />
 	<a href="http://www.tower.jp/mag/bounce/">Bounce</a><br />
@@ -43,3 +46,4 @@
 	<a href="http://www.technorati.com/profile/NemesisVex">Technorati</a><br />
 	<a href="http://nemesisvex.tumblr.com/">tumblr</a><br />
 </p>
+				</section>

@@ -8,8 +8,8 @@
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" href="css/typography.css" type="text/css" media="screen, projection" />
-		<link rel="stylesheet" href="css/layout.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.ext.js"></script>
@@ -23,10 +23,10 @@
 			<div id="masthead" class="span-24">
 				<header class="prepend-4 span-14">
 					<hgroup>
-						<h1 id="title">Greg Bueno</h1>
+						<h1 id="title"><a href="/">Greg Bueno</a></h1>
 					</hgroup>
 				</header>
-				
+
 				<section class="span-6 last">
 					<img width="100" height="100" title="[Greg Bueno]" alt="[Greg Bueno]" src="http://www.eponymous4.com/images/bio_wrp_vol_03_restraint.jpg" />
 				</section>
