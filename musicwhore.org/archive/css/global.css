@@ -1,0 +1,204 @@
+/* 
+    Document   : global_blueprint
+    Created on : Aug 12, 2009, 8:31:58 AM
+    Author     : gbueno
+    Description:
+        Common style rules for Musicwhore.org, Filmwhore.org and Tvwhore.org,
+		overriding blueprint.
+*/
+
+/* 
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+
+body
+{
+	font-family: helvetica, 'trebuchet ms', tahoma, verdana, arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6
+{
+	font-family: georgia, 'book antiqua', 'palatino linotype', palatino, 'times new roman', times, serif;
+	font-weight:normal;
+	color: #FFF;
+}
+
+a:focus
+{
+	color: #F66;
+}
+
+a, a:hover
+{
+	color: #F99;
+	text-decoration: underline;
+}
+
+label
+{
+	float: left;
+	font-weight: bold;
+	width: 150px;
+}
+
+label.error, span.error
+{
+	color: #F99;
+	display: none;
+}
+
+input, select, textarea
+{
+	font-size: 100%;
+	font-family: inherit;
+	border: 1px solid #CF2300;
+}
+
+input[type=radio], input[type=checkbox]
+{
+	background-color: transparent;
+	border: none;
+}
+
+input[type=submit], input[type=reset], input[type=button]
+{
+}
+
+table
+{
+	font-size: 100%;
+}
+
+.error
+{
+}
+
+#masthead
+{
+	color: #FFF;
+	background-color: #B8002E;
+	border-bottom: 1px solid #CF2300;
+}
+
+#masthead a
+{
+	color: #FFF;
+}
+
+#masthead-right
+{
+	text-align: right;
+}
+
+#title
+{
+	font-size: 500%;
+	margin-bottom: 10px;
+	color: #FFF;
+}
+
+#title a
+{
+	color: #FFF;
+	text-decoration: none;
+}
+
+#content
+{
+	background-color: #333;
+	color: #FFF;
+	background-image: url('/images/musicwhore_bg_v07.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+#body
+{
+	background-image: url('/images/musicwhore_content_v07.gif');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+#body.box
+{
+	color: #000;
+	background-color: #FFF;
+}
+
+#body_text
+{
+	font-size: 105%;
+}
+
+#body_text h1, #body_text h2, #body_text h3, #body_text h4, #body_text h5, #body_text h6
+{
+	color: #000;
+}
+
+#body_text a
+{
+	color: #B82E00;
+}
+
+#sidebar-col-1, #sidebar-col-2
+{
+	font-size: 90%;
+}
+
+a.feed_link, a.feed_link:hover, a.feed_link:focus
+{
+	color: #FFF;
+	background-color: #F60;
+	text-decoration: none;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+a.feed_link.itunes
+{
+	background-color: #093;
+}
+
+.alert
+{
+	color: #F99;
+	border-bottom: 1px solid #F99;
+	font-weight: bold;
+}
+
+.attribution
+{
+	font-size: 85%;
+}
+
+.comment-body
+{
+	font-size: 95%;
+}
+
+.form_hidden
+{
+	display: none;
+}
+
+.smaller
+{
+	font-size: smaller;
+}
+
+img.ep4-album-cover
+{
+	border: 1px solid #CC9;
+}
+
+img.ep4-amazon-tracker
+{
+	border: none !important;
+	margin: 0px !important;
+}

@@ -8,7 +8,10 @@
 	<p>
 		<a href="{$config.to_eponymous4}" title="My home studio project">eponymous 4</a><br />
 		<a href="{$config.to_observant}" title="My home studio label">observant records</a><br />
-		<a href="/index.php/studio/" title="The home studio itself">the closet</a><br />
+{if $smarty.const.ENVIRONMENT!='prod'}
+		<a href="{$config.to_emptyensemble}" title="My other home studio label">empty ensemble</a><br />
+		<a href="{$config.to_shinkyokuadvocacy}" title="My music publishing company">shinkyoku advocacy</a><br />
+{/if}
 	</p>
 
 	<h5 class="link-subhead">personal</h5>
@@ -19,7 +22,7 @@
 {if $smarty.const.ENVIRONMENT!='prod'}<a href="/index.php/journal/" title="A defunct online journal">日々の本</a><br />
 		<a href="/index.php/work/" title="Stories and lies">work in progress</a><br />{/if}
 		<a href="/index.php/vexvox/" title="An online journal">vexvox</a><br />
-		<a href="{$config.to_austinstories}" title="An online journal portal">austin stories</a><br />
+{if $smarty.const.ENVIRONMENT!='prod'}<a href="{$config.to_austinstories}" title="An online journal portal">austin stories</a><br />{/if}
 	</p>
 
 	<h5 class="link-subhead">media</h5>

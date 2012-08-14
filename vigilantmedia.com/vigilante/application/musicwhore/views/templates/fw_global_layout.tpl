@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/screen.css" />
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/print.css" media="print" />
 		<!--[if IE]><link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/ie.css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" type="text/css" href="{$config.to_musicwhore}/css/global.css" />
+		<link rel="stylesheet" type="text/css" href="{$config.to_archive}/css/global.css" />
 		<link rel="stylesheet" type="text/css" href="/css/filmwhore.css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.cookie.js"></script>
