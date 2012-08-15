@@ -9,13 +9,13 @@ class VmModel_MtEntry extends VmModel {
 
 	public $blog_id;
 
-	public function __construct($dsn = null) {
-		parent::__construct($dsn);
+	public function __construct($params = null) {
+		parent::__construct($params);
 		$this->table_name = 'mt_entry';
 		$this->primary_index_field = 'entry_id';
 
-		$this->CI->load->library('VmModel_MtAuthor');
-		$this->CI->load->library('VmModel_MtCategory');
+		$this->CI->load->library('VmModel_MtAuthor', $params);
+		$this->CI->load->library('VmModel_MtCategory', $params);
 	}
 
 	public function get_calendar($blog_id = null, $include_month = true, $limit_year = null, $return_smarty_array = false, $limit = null, $offset = 1) {
@@ -37,7 +37,7 @@ class VmModel_MtEntry extends VmModel {
 		$calendar_query .= ( $include_month == false) ? 'Date_Format(entry_authored_on, \'%Y\') ' : 'Date_Format(entry_authored_on, \'%m/%Y\') ';
 		$calendar_query .= 'Order By Year(entry_authored_on) Desc, Month(entry_authored_on) ';
 
-		if (false !== ($row = $this->CI->db->query($calendar_query))) {
+		if (false !== ($row = $this->db->query($calendar_query))) {
 			return ($return_smarty_array == true) ? $this->return_smarty_array($row, $limit, $offset) : $row;
 		}
 		return false;
@@ -62,14 +62,14 @@ class VmModel_MtEntry extends VmModel {
 			$blog_id = $this->blog_id;
 		}
 
-		$this->CI->db->from($this->table_name);
-		$this->CI->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
-		$this->CI->db->where('entry_status', 2);
-		$this->CI->db->where('entry_blog_id', $blog_id);
-		$this->CI->db->order_by('entry_authored_on', 'desc');
-		$this->CI->db->limit(1);
+		$this->db->from($this->table_name);
+		$this->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
+		$this->db->where('entry_status', 2);
+		$this->db->where('entry_blog_id', $blog_id);
+		$this->db->order_by('entry_authored_on', 'desc');
+		$this->db->limit(1);
 
-		if (false !== ($rowEntry = $this->CI->db->get())) {
+		if (false !== ($rowEntry = $this->db->get())) {
 			if ($return_result === true) {
 				if ($rowEntry->num_rows() > 0) {
 					$rsEntry = $rowEntry->row();
@@ -89,20 +89,20 @@ class VmModel_MtEntry extends VmModel {
 			$blog_id = $this->blog_id;
 		}
 
-		$this->CI->db->select('*');
-		$this->CI->db->select('sum(mt_comment.comment_visible) as comment_count');
-		$this->CI->db->from($this->table_name);
-		$this->CI->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
-		$this->CI->db->join('mt_comment', 'mt_comment.comment_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
-		$this->CI->db->where('entry_status', 2);
-		$this->CI->db->where('entry_blog_id', $blog_id);
-		$this->CI->db->group_by('entry_id');
-		$this->CI->db->order_by('entry_authored_on', 'desc');
+		$this->db->select('*');
+		$this->db->select('sum(mt_comment.comment_visible) as comment_count');
+		$this->db->from($this->table_name);
+		$this->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
+		$this->db->join('mt_comment', 'mt_comment.comment_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
+		$this->db->where('entry_status', 2);
+		$this->db->where('entry_blog_id', $blog_id);
+		$this->db->group_by('entry_id');
+		$this->db->order_by('entry_authored_on', 'desc');
 		if (!empty($limit)) {
-			$this->CI->db->limit($limit);
+			$this->db->limit($limit);
 		}
 
-		if (false !== ($rowEntries = $this->CI->db->get())) {
+		if (false !== ($rowEntries = $this->db->get())) {
 			if ($return_result === true) {
 				$entry_ids = array();
 				foreach ($rowEntries->result() as $rs) {
@@ -138,20 +138,20 @@ class VmModel_MtEntry extends VmModel {
 			$blog_id = $this->blog_id;
 		}
 
-		$this->CI->db->select('*');
-		$this->CI->db->select('sum(mt_comment.comment_visible) as comment_count');
-		$this->CI->db->from($this->table_name);
-		$this->CI->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
-		$this->CI->db->join('mt_comment', 'mt_comment.comment_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
-		$this->CI->db->join('mt_placement', 'mt_placement.placement_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
-		$this->CI->db->join('mt_category', 'mt_category.category_id = mt_placement.placement_category_id', 'left outer');
-		$this->CI->db->where('category_id', $category_id);
-		$this->CI->db->where('entry_status', 2);
-		$this->CI->db->where('entry_blog_id', $blog_id);
-		$this->CI->db->group_by('entry_id');
-		$this->CI->db->order_by('entry_authored_on', 'desc');
+		$this->db->select('*');
+		$this->db->select('sum(mt_comment.comment_visible) as comment_count');
+		$this->db->from($this->table_name);
+		$this->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
+		$this->db->join('mt_comment', 'mt_comment.comment_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
+		$this->db->join('mt_placement', 'mt_placement.placement_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
+		$this->db->join('mt_category', 'mt_category.category_id = mt_placement.placement_category_id', 'left outer');
+		$this->db->where('category_id', $category_id);
+		$this->db->where('entry_status', 2);
+		$this->db->where('entry_blog_id', $blog_id);
+		$this->db->group_by('entry_id');
+		$this->db->order_by('entry_authored_on', 'desc');
 
-		if (false !== ($row = $this->CI->db->get())) {
+		if (false !== ($row = $this->db->get())) {
 			return ($return_result === true) ? $this->return_smarty_array($row) : $row;
 		}
 		return false;
@@ -162,18 +162,18 @@ class VmModel_MtEntry extends VmModel {
 			$blog_id = $this->blog_id;
 		}
 
-		$this->CI->db->select('*');
-		$this->CI->db->select('sum(mt_comment.comment_visible) as comment_count');
-		$this->CI->db->from($this->table_name);
-		$this->CI->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
-		$this->CI->db->join('mt_comment', 'mt_comment.comment_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
-		$this->CI->db->where('Year(entry_authored_on) = ' . intval($y));
-		$this->CI->db->where('entry_status', 2);
-		$this->CI->db->where('entry_blog_id', $blog_id);
-		$this->CI->db->group_by('entry_id');
-		$this->CI->db->order_by('entry_authored_on', 'desc');
+		$this->db->select('*');
+		$this->db->select('sum(mt_comment.comment_visible) as comment_count');
+		$this->db->from($this->table_name);
+		$this->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
+		$this->db->join('mt_comment', 'mt_comment.comment_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
+		$this->db->where('Year(entry_authored_on) = ' . intval($y));
+		$this->db->where('entry_status', 2);
+		$this->db->where('entry_blog_id', $blog_id);
+		$this->db->group_by('entry_id');
+		$this->db->order_by('entry_authored_on', 'desc');
 
-		if (false !== ($rowEntries = $this->CI->db->get())) {
+		if (false !== ($rowEntries = $this->db->get())) {
 			if ($return_result === true) {
 				$entry_ids = array();
 				foreach ($rowEntries->result() as $rs) {
@@ -210,19 +210,19 @@ class VmModel_MtEntry extends VmModel {
 			$blog_id = $this->blog_id;
 		}
 
-		$this->CI->db->select('*');
-		$this->CI->db->select('sum(mt_comment.comment_visible) as comment_count');
-		$this->CI->db->from($this->table_name);
-		$this->CI->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
-		$this->CI->db->join('mt_comment', 'mt_comment.comment_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
-		$this->CI->db->where('Year(entry_authored_on) = ' . intval($y));
-		$this->CI->db->where('Month(entry_authored_on) = ' . intval($m));
-		$this->CI->db->where('entry_status', 2);
-		$this->CI->db->where('entry_blog_id', $blog_id);
-		$this->CI->db->group_by('entry_id');
-		$this->CI->db->order_by('entry_authored_on', 'desc');
+		$this->db->select('*');
+		$this->db->select('sum(mt_comment.comment_visible) as comment_count');
+		$this->db->from($this->table_name);
+		$this->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
+		$this->db->join('mt_comment', 'mt_comment.comment_entry_id = ' . $this->table_name . '.entry_id', 'left outer');
+		$this->db->where('Year(entry_authored_on) = ' . intval($y));
+		$this->db->where('Month(entry_authored_on) = ' . intval($m));
+		$this->db->where('entry_status', 2);
+		$this->db->where('entry_blog_id', $blog_id);
+		$this->db->group_by('entry_id');
+		$this->db->order_by('entry_authored_on', 'desc');
 
-		if (false !== ($rowEntries = $this->CI->db->get())) {
+		if (false !== ($rowEntries = $this->db->get())) {
 			if ($return_result === true) {
 				$entry_ids = array();
 				foreach ($rowEntries->result() as $rs) {
@@ -257,13 +257,13 @@ class VmModel_MtEntry extends VmModel {
 			$blog_id = $this->blog_id;
 		}
 
-		$this->CI->db->from($this->table_name);
-		$this->CI->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
-		$this->CI->db->where('entry_blog_id', $blog_id);
-		$this->CI->db->order_by('Rand()');
-		$this->CI->db->limit(1);
+		$this->db->from($this->table_name);
+		$this->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
+		$this->db->where('entry_blog_id', $blog_id);
+		$this->db->order_by('Rand()');
+		$this->db->limit(1);
 
-		if (false !== ($rowEntry = $this->CI->db->get())) {
+		if (false !== ($rowEntry = $this->db->get())) {
 			if ($return_result === true) {
 				$rsEntry = $rowEntry->row();
 				$rsCategory = $this->CI->vmmodel_mtcategory->get_entry_categories($rsEntry->entry_id, true);
@@ -282,14 +282,14 @@ class VmModel_MtEntry extends VmModel {
 		}
 
 		$direction = ($order_by == 'desc') ? '<' : '>';
-		$this->CI->db->from($this->table_name);
-		$this->CI->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
-		$this->CI->db->where('entry_blog_id', $blog_id);
-		$this->CI->db->where('entry_authored_on ' . $direction . ' ' . $this->CI->db->escape($date));
-		$this->CI->db->order_by('entry_authored_on', $order_by);
-		$this->CI->db->limit(1);
+		$this->db->from($this->table_name);
+		$this->db->join('mt_author', 'mt_author.author_id = ' . $this->table_name . '.entry_author_id', 'left');
+		$this->db->where('entry_blog_id', $blog_id);
+		$this->db->where('entry_authored_on ' . $direction . ' ' . $this->db->escape($date));
+		$this->db->order_by('entry_authored_on', $order_by);
+		$this->db->limit(1);
 
-		if (false !== ($rowEntry = $this->CI->db->get())) {
+		if (false !== ($rowEntry = $this->db->get())) {
 			if ($return_result === true) {
 				if ($rowEntry->num_rows() > 0) {
 					$rsEntry = $rowEntry->row();
@@ -308,11 +308,11 @@ class VmModel_MtEntry extends VmModel {
 		if (empty($blog_id)) {
 			$blog_id = $this->blog_id;
 		}
-		
-		$this->CI->db->select('Count(*) as entry_count');
-		$this->CI->db->from($this->table_name);
-		$this->CI->db->where('entry_blog_id', $blog_id);
-		if (false !== ($row = $this->CI->db->get())) {
+
+		$this->db->select('Count(*) as entry_count');
+		$this->db->from($this->table_name);
+		$this->db->where('entry_blog_id', $blog_id);
+		if (false !== ($row = $this->db->get())) {
 			$rs = $this->return_rs($row);
 			return $rs;
 		}
