@@ -12,26 +12,38 @@ class VmModel {
 
 	public $table_name;
 	public $primary_index_field;
+	protected $db;
 	protected $CI;
 
-	public function __construct() {
+	public function __construct($params = null) {
 		$this->CI = & get_instance();
+
+		$dsn = !empty($params['dsn']) ? $params['dsn'] : 'default';
+		$this->load_database($dsn);
+	}
+
+	public function load_database($db_group = 'default') {
+		if (!empty($db_group)) {
+			$this->db_group = $db_group;
+		}
+
+		$this->db = $this->CI->load->database($this->db_group, true);
 	}
 
 	public function create($input = null) {
 		if (empty($input)) {
 			$input = $this->build_insert_data($this->table_name);
 		}
-		
-		if (false !== $this->CI->db->insert($this->table_name, $input)) {
-			$id = $this->CI->db->insert_id();
+
+		if (false !== $this->db->insert($this->table_name, $input)) {
+			$id = $this->db->insert_id();
 			return $id;
 		}
 		return false;
 	}
 
 	public function retrieve($field, $value) {
-		if (false !== ($row = $this->CI->db->get_where($this->table_name, array($field => $value)))) {
+		if (false !== ($row = $this->db->get_where($this->table_name, array($field => $value)))) {
 			return $row;
 		}
 		return false;
@@ -43,8 +55,8 @@ class VmModel {
 	}
 
 	public function update($field, $value, $input) {
-		$this->CI->db->where($field, $value);
-		if (false !== $this->CI->db->update($this->table_name, $input)) {
+		$this->db->where($field, $value);
+		if (false !== $this->db->update($this->table_name, $input)) {
 			return true;
 		}
 		return false;
@@ -55,13 +67,13 @@ class VmModel {
 			$row = $this->retrieve_by_id($id);
 			$input = $this->build_update_data($row, $form_values);
 		}
-		
+
 		return $this->update($this->primary_index_field, $id, $input);
 	}
 
 	public function delete($field, $value) {
-		$this->CI->db->where($field, $value);
-		if (false !== $this->CI->db->delete($this->table_name)) {
+		$this->db->where($field, $value);
+		if (false !== $this->db->delete($this->table_name)) {
 			return true;
 		}
 		return false;
@@ -113,7 +125,7 @@ class VmModel {
 
 		$inserted_fields = array();
 
-		foreach ($this->CI->db->list_fields($this->table_name) as $row_field) {
+		foreach ($this->db->list_fields($this->table_name) as $row_field) {
 			if (false !== ($form_value = isset($form_values[$row_field]) ? $form_values[$row_field] : $this->CI->input->get_post($row_field))) {
 				$inserted_fields[$row_field] = empty($form_value) ? null : $form_value;
 			}
