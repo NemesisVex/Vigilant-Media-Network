@@ -12,10 +12,13 @@ class VmModel {
 
 	public $table_name;
 	public $primary_index_field;
+	protected $db;
 	protected $CI;
 
-	public function __construct() {
+	public function __construct($dsn = null) {
 		$this->CI = & get_instance();
+		
+		$this->db = ($dsn !== null) ? $this->CI->load->database($dsn, true) : $this->CI->db;
 	}
 
 	public function create($input = null) {
@@ -31,7 +34,7 @@ class VmModel {
 	}
 
 	public function retrieve($field, $value) {
-		if (false !== ($row = $this->CI->db->get_where($this->table_name, array($field => $value)))) {
+		if (false !== ($row = $this->db->get_where($this->table_name, array($field => $value)))) {
 			return $row;
 		}
 		return false;

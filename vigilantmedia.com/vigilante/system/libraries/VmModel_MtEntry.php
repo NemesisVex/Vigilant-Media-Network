@@ -9,8 +9,8 @@ class VmModel_MtEntry extends VmModel {
 
 	public $blog_id;
 
-	public function __construct() {
-		parent::__construct();
+	public function __construct($dsn = null) {
+		parent::__construct($dsn);
 		$this->table_name = 'mt_entry';
 		$this->primary_index_field = 'entry_id';
 
