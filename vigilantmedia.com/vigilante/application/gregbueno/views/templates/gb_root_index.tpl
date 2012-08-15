@@ -23,8 +23,8 @@
 					<ul>
 						<li><a href="{$config.to_musicwhore}/">Musicwhore.org</a></li>
 						<li><a href="{$config.to_wp}/">Bit-Wise Dilletante</a></li>
-{if $smarty.const.ENVIRONMENT == 'dev'}						<li><a href="/index.php/museum/">Blog Museum</a></li>
-						<li><a href="/index.php/crux/">Crux Series</a></li>{/if}
+{if $smarty.const.ENVIRONMENT == 'dev'}						<li><a href="/index.php/gb/museum/">Blog Museum</a></li>
+						<li><a href="/index.php/gb/crux/">Crux Series</a></li>{/if}
 					</ul>
 				</section>
 

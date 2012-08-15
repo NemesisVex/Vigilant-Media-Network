@@ -22,25 +22,35 @@ class Gb extends CI_Controller
 
 	function distractions()
 	{
-		$this->gblib->page_title = 'Distractions: How I spend my time and waste my money';
+		$this->gblib->_format_section_head('Distractions');
 		$this->gblib->_smarty_display_gb_page('gb_root_distractions.tpl');
+	}
+	
+	function museum()
+	{
+		
+	}
+	
+	function crux()
+	{
+		
 	}
 
 	function profile()
 	{
-		$this->gblib->_format_section_head('Profile', 'Or how the hell did I end up like this?');
+		$this->gblib->_format_section_head('Profile');
 		$this->gblib->_smarty_display_gb_page('gb_root_profile.tpl');
 	}
 
 	function contact()
 	{
-		$this->gblib->_format_section_head('Contact', 'Just in case you feel like writing');
+		$this->gblib->_format_section_head('Contact');
 		$this->gblib->_smarty_display_gb_page('gb_root_contact.tpl');
 	}
 
 	function contact_sent()
 	{
-		$this->gblib->_format_section_head('Contact', 'Just in case you feel like writing');
+		$this->gblib->_format_section_head('Contact');
 		$this->gblib->_smarty_display_gb_page('gb_root_contact_sent.tpl');
 	}
 
