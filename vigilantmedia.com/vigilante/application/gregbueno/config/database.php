@@ -41,10 +41,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = (ENVIRONMENT == 'dev') ? "mysql.gregbueno.com" : "mysql.vigilantmedia.com";
-$db['default']['username'] = (ENVIRONMENT == 'dev') ? "gbueno" : "vigilantmedia";
+$db['default']['hostname'] = "mysql.vigilantmedia.com";
+$db['default']['username'] = "vigilantmedia";
 $db['default']['password'] = "3825crux";
-$db['default']['database'] = (ENVIRONMENT == 'dev') ? "gregbueno" : "vigilantmedia";
+$db['default']['database'] = (ENVIRONMENT == 'dev') ? "vigilantmedia_dev" : "vigilantmedia";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;

@@ -20,7 +20,7 @@ class GbLib {
 				$this->gb_config['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
 				$this->gb_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->gb_config['to_mt'] = 'http://dev.mt.vigilantmedia.com';
-				//$this->gb_config['to_vigilantdev'] = 'http://dev';
+		        $this->gb_config['to_wp'] = 'http://wp.vigilantmedia.com';
 				$this->gb_config['to_gregbueno'] = 'http://dev.gregbueno.com';
 				$this->gb_config['to_eponymous4'] = 'http://dev.eponymous4.com';
 				$this->gb_config['to_ep4'] = 'http://dev.eponymous4.gregbueno.com';
@@ -38,7 +38,7 @@ class GbLib {
 				$this->gb_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
 				$this->gb_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->gb_config['to_mt'] = 'http://test.mt.vigilantmedia.com';
-				$this->gb_config['to_vigilantdev'] = 'http://dev.vigilantmedia.com';
+		        $this->gb_config['to_wp'] = 'http://wp-test.vigilantmedia.com';
 				$this->gb_config['to_gregbueno'] = 'http://test.gregbueno.com';
 				$this->gb_config['to_eponymous4'] = 'http://test.eponymous4.com';
 				$this->gb_config['to_ep4'] = 'http://test.eponymous4.gregbueno.com';
@@ -56,7 +56,7 @@ class GbLib {
 				$this->gb_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
 				$this->gb_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->gb_config['to_mt'] = 'http://mt.vigilantmedia.com';
-				$this->gb_config['to_vigilantdev'] = 'http://dev.vigilantmedia.com';
+		        $this->gb_config['to_wp'] = 'http://blog.vigilantmedia.com';
 				$this->gb_config['to_gregbueno'] = 'http://www.gregbueno.com';
 				$this->gb_config['to_eponymous4'] = 'http://www.eponymous4.com';
 				$this->gb_config['to_ep4'] = 'http://eponymous4.gregbueno.com';
