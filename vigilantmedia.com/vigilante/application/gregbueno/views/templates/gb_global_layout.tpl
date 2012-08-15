@@ -34,7 +34,7 @@
 
 			<div id="content">
 {if $section_head}
-					<header id="content-header">
+					<header id="content-header" class="prepend-1 span-22 append-1 last header-column">
 {/if}
 {if $section_label}
 						<hgroup>
@@ -48,7 +48,7 @@
 {if $section_label}
 						</hgroup>
 {/if}
-{if $seciont_head}
+{if $section_head}
 					</header>
 {/if}
 
