@@ -12,8 +12,8 @@ require_once('VmModel.php');
 
 class VmModel_User extends VmModel {
 
-	public function __construct() {
-		parent::__construct();
+	public function __construct($params = null) {
+		parent::__construct($params);
 		$this->table_name = 'vm_users';
 		$this->primary_index_field = 'user_id';
 	}
@@ -22,22 +22,22 @@ class VmModel_User extends VmModel {
 		if (empty($order_by)) {
 			$order_by = 'user_first_name' . ' asc';
 		}
-		$this->CI->db->order_by($order_by);
-		$row = $this->CI->db->get($this->table_name);
+		$this->db->order_by($order_by);
+		$row = $this->db->get($this->table_name);
 		return $row;
 	}
 
 	function get_pending_users() {
-		$this->CI->db->where('user_level_mask', 2);
-		$this->CI->db->order_by('user_date_added', 'desc');
-		$row = $this->CI->db->get($this->user_table_name);
+		$this->db->where('user_level_mask', 2);
+		$this->db->order_by('user_date_added', 'desc');
+		$row = $this->db->get($this->user_table_name);
 		return $row;
 	}
 
 	function get_user_by_access_mask($access_mask) {
-		$this->CI->db->where('(user_access_mask & ' . $access_mask . ') = ' . $access_mask);
-		$this->CI->db->order_by('user_login', 'asc');
-		$row = $this->CI->db->get($this->user_table_name);
+		$this->db->where('(user_access_mask & ' . $access_mask . ') = ' . $access_mask);
+		$this->db->order_by('user_login', 'asc');
+		$row = $this->db->get($this->user_table_name);
 		return $row;
 	}
 
