@@ -49,3 +49,17 @@ a, a:hover, a:visited, a:active {
 	box-shadow: 2px 2px 0px #399FD5;
 }
 
+.form_hidden {
+	display: none;
+}
+
+label {
+	float: left;
+	width: 150px;
+	margin-left: 10px;
+}
+
+label.error, span.error {
+	color: #F99;
+	display: none;
+}
