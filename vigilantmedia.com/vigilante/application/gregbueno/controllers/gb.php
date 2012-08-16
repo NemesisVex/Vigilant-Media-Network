@@ -28,7 +28,8 @@ class Gb extends CI_Controller
 	
 	function museum()
 	{
-		
+		$this->gblib->_format_section_head('Blog Museum');
+		$this->gblib->_smarty_display_gb_page('gb_root_museum.tpl');
 	}
 	
 	function crux()
@@ -38,8 +39,7 @@ class Gb extends CI_Controller
 
 	function profile()
 	{
-		$this->gblib->_format_section_head('Profile');
-		$this->gblib->_smarty_display_gb_page('gb_root_profile.tpl');
+		header('Location: /', 301);
 	}
 
 	function contact()
