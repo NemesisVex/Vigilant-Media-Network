@@ -32,14 +32,22 @@ class VmView {
 			}
 		}
 
-		require_once('../../vigilantmedia.com/vigilante/includes/global.php');
-		$this->config = array_merge($this->config, $config_url_base);
+		if (empty($params['load_global_config'])) {$params['load_global_config'] = false;}
+		if (empty($params['use_mobile_templates'])) {$params['use_mobile_templates'] = false;}
+		
+		if ($params['load_global_config'] === true) {
+			require_once('../../vigilantmedia.com/vigilante/includes/global.php');
+			$this->config = array_merge($this->config, $config_url_base);
+		}
 
 		$this->CI = & get_instance();
-		//if ($this->CI->agent->is_mobile() == true) {
-		//	$this->CI->mysmarty->template_dir = APPPATH . "/views/templates_mobile/";
-		//	$this->CI->mysmarty->compile_dir = APPPATH . '/views/templates_mobile_c';
-		//}
+		
+		if ($params['use_mobile_templates'] === true) {
+			if ($this->CI->agent->is_mobile() == true) {
+				$this->CI->mysmarty->template_dir = APPPATH . "/views/templates_mobile/";
+				$this->CI->mysmarty->compile_dir = APPPATH . '/views/templates_mobile_c';
+			}
+		}
 		$this->CI->content_template = 'root_index.tpl';
 	}
 
