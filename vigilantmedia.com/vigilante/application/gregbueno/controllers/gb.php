@@ -39,8 +39,7 @@ class Gb extends CI_Controller
 
 	function profile()
 	{
-		$this->gblib->_format_section_head('Profile');
-		$this->gblib->_smarty_display_gb_page('gb_root_profile.tpl');
+		header('Location: /', 301);
 	}
 
 	function contact()
