@@ -18,7 +18,7 @@
 
 					<p>I've been writing online since before it was called blogging. (Back then, it was called &quot;keeping an online journal.&quot;)</p>
 
-					<p>{if $smarty.const.ENVIRONMENT == 'dev'}At one point, I had at least  <a href="/index.php/gb/museum/">six blogs</a>, almost all of them neglected. {/if}These days, I focus my online writing on <a href="{$config.to_musicwhore}/">music</a> and <a href="{$config.to_wp}/">technology</a>.{if $smarty.const.ENVIRONMENT == 'dev'} I also dabble a bit in <a href="/index.php/crux/">fiction</a>{/if}.</p>
+					<p>At one point, I had at least  <a href="/index.php/gb/museum/">six blogs</a>, almost all of them neglected. These days, I focus my online writing on <a href="{$config.to_musicwhore}/">music</a> and <a href="{$config.to_wp}/">technology</a>.{if $smarty.const.ENVIRONMENT == 'dev'} I also dabble a bit in <a href="/index.php/crux/">fiction</a>{/if}.</p>
 
 					<ul>
 						<li><a href="{$config.to_musicwhore}/">Musicwhore.org</a></li>
