@@ -33,6 +33,8 @@ class GbLib {
 				$this->gb_config['to_austinstories'] = 'http://dev.austin-stories.com';
 				$this->gb_config['to_ddn'] = 'http://dev.duran-duran.net';
 				$this->gb_config['to_observant'] = 'http://dev.observantrecords.com';
+				$this->gb_config['to_shinkyokuadvocacy'] = 'http://dev.shinkyokuadvocacy.com';
+				$this->gb_config['to_emptyensemble'] = 'http://dev.emptyensemble.com';
 				break;
 			case 'test':
 				$this->gb_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
@@ -51,6 +53,8 @@ class GbLib {
 				$this->gb_config['to_austinstories'] = 'http://test.austin-stories.com';
 				$this->gb_config['to_ddn'] = 'http://test.duran-duran.net';
 				$this->gb_config['to_observant'] = 'http://test.observantrecords.com';
+				$this->gb_config['to_shinkyokuadvocacy'] = 'http://test.shinkyokuadvocacy.com';
+				$this->gb_config['to_emptyensemble'] = 'http://test.emptyensemble.com';
 				break;
 			case 'prod':
 				$this->gb_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
@@ -69,6 +73,8 @@ class GbLib {
 				$this->gb_config['to_austinstories'] = 'http://www.austin-stories.com';
 				$this->gb_config['to_ddn'] = 'http://www.duran-duran.net';
 				$this->gb_config['to_observant'] = 'http://www.observantrecords.com';
+				$this->gb_config['to_shinkyokuadvocacy'] = 'http://www.shinkyokuadvocacy.com';
+				$this->gb_config['to_emptyensemble'] = 'http://www.emptyensemble.com';
 				break;
 		}
 		if ($CI->agent->is_mobile() == true) {

@@ -70,4 +70,20 @@
 	margin-bottom: 0.5em;
 }
 
+h2.section-head {
+	font-family: "Novecentowide", Helvetica, Arial, sans-serif;
+	color: #FFF;
+}
 
+h3.section-label {
+	font-family: "CartoGothicStd", Helvetica, Arial, sans-serif;
+	color: #FFF;
+}
+
+label {
+	font-weight: bold;
+}
+
+label.error, span.error {
+	display: none;
+}
