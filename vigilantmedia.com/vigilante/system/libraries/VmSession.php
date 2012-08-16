@@ -14,7 +14,7 @@ class VmSession {
 	public $application_name;
 	public $session_flag = 'is_logged_in';
 	
-	public function __construct() {
+	public function __construct($params = null) {
 		$this->CI = & get_instance();
 		$this->CI->load->library('VmModel_User');
 		$this->CI->load->library('VmModel_UserLog');

@@ -12,7 +12,7 @@
  */
 class VmDebug {
 
-	public function __construct() {
+	public function __construct($params = null) {
 		
 	}
 

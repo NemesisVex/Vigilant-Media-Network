@@ -37,6 +37,7 @@
 			<div id="content">
 			{if $content_template}{include file=$content_template}{/if}
 
+			{if $smarty.session.is_logged_in}<p><a href="/index.php/admin/logout/">Logout</a></p>{/if}
 			</div>
 		</div>
 
