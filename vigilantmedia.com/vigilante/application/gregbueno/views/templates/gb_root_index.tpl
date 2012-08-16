@@ -18,13 +18,13 @@
 
 					<p>I've been writing online since before it was called blogging. (Back then, it was called &quot;keeping an online journal.&quot;)</p>
 
-					<p>{if $smarty.const.ENVIRONMENT == 'dev'}At one point, I started <a href="/idnex.php/museum/">seven blogs</a>, almost all of them neglected. {/if}These days, I focus my online writing on <a href="{$config.to_musicwhore}/">music</a> and <a href="{$config.to_wp}/">technology</a>.{if $smarty.const.ENVIRONMENT == 'dev'} I also dabble a bit in <a href="/index.php/crux/">fiction</a>{/if}.</p>
+					<p>{if $smarty.const.ENVIRONMENT == 'dev'}At one point, I had at least  <a href="/index.php/gb/museum/">six blogs</a>, almost all of them neglected. {/if}These days, I focus my online writing on <a href="{$config.to_musicwhore}/">music</a> and <a href="{$config.to_wp}/">technology</a>.{if $smarty.const.ENVIRONMENT == 'dev'} I also dabble a bit in <a href="/index.php/crux/">fiction</a>{/if}.</p>
 
 					<ul>
 						<li><a href="{$config.to_musicwhore}/">Musicwhore.org</a></li>
 						<li><a href="{$config.to_wp}/">Bit-Wise Dilletante</a></li>
-{if $smarty.const.ENVIRONMENT == 'dev'}						<li><a href="/index.php/gb/museum/">Blog Museum</a></li>
-						<li><a href="/index.php/gb/crux/">Crux Series</a></li>{/if}
+						<li><a href="/index.php/gb/museum/">Blog Museum</a></li>
+{if $smarty.const.ENVIRONMENT == 'dev'}						<li><a href="/index.php/gb/crux/">Crux Series</a></li>{/if}
 					</ul>
 				</section>
 
@@ -41,10 +41,11 @@
 					</ul>
 
 					<ul id="nav-social">
-						<li><a href="http://twitter.com/NemesisVex/"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" /></a></li>
-						<li><a href="http://facebook.com/greg.bueno/"><img src="http://vigilante.vigilantmedia.com/images/icons/facebook.png" /></a></li>
-						<li><a href="http://last.fm/user/NemesisVex/"><img src="http://vigilante.vigilantmedia.com/images/icons/lastfm.png" /></a></li>
-						<li><a href="http://www.linkedin.com/pub/3/3a3/a98"><img src="http://vigilante.vigilantmedia.com/images/icons/linkedin.png" /></a></li>
+						<li><a href="http://twitter.com/NemesisVex/"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
+						<li><a href="http://facebook.com/greg.bueno/"><img src="http://vigilante.vigilantmedia.com/images/icons/facebook.png" alt="[Facebook]" title="[Facebook]" /></a></li>
+						<li><a href="http://last.fm/user/NemesisVex/"><img src="http://vigilante.vigilantmedia.com/images/icons/lastfm.png" alt="[Last.fm]" title="[Last.fm]" /></a></li>
+						<li><a href="http://www.linkedin.com/pub/3/3a3/a98"><img src="http://vigilante.vigilantmedia.com/images/icons/linkedin.png" alt="[LinkedIn]" title="[LinkedIn]" /></a></li>
+						<li><a href="/index.php/gb/contact/"><img src="{$config.to_vigilante}/images/icons/email.png" alt="[E-mail]" title="[E-mail]" /></a></li>
 						<li><a href="/index.php/gb/distractions/">more ...</a></li>
 					</ul>
 
