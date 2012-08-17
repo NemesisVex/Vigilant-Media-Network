@@ -14,7 +14,7 @@ class Observant extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->library('VmMailer');
-		$this->load->library('VmModel_MtEntry');
+		$this->load->library('VmModel_MtEntry', array('dsn' => 'mt'));
 		$this->load->library('ObservantView');
 		
 		$this->vmmailer->to = $this->webmaster_email;

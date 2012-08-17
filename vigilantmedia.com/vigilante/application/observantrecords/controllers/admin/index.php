@@ -6,11 +6,18 @@ class Index extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->library('ObservantView');
-		$this->load->library('VmSession');
+		$this->load->library('VmSession', array('dsn' => 'mt'));
+		$this->load->model('Obr_Artist');
 	}
 	
 	public function index() {
-		$this->vmview->section_header = 'Administration';
+		$this->vmview->format_section_head('Administration', 'Artists');
+		
+		if ($_SESSION[$this->vmsession->session_flag] === true) {
+			$rsArtists = $this->Obr_Artist->retrieve_all();
+			$this->mysmarty->assign('rsArtists', $rsArtists);
+		}
+		
 		$this->vmview->display('obr_admin_index.tpl', true);
 	}
 	

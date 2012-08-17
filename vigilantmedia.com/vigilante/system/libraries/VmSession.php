@@ -16,8 +16,8 @@ class VmSession {
 	
 	public function __construct($params = null) {
 		$this->CI = & get_instance();
-		$this->CI->load->library('VmModel_User');
-		$this->CI->load->library('VmModel_UserLog');
+		$this->CI->load->library('VmModel_User', $params);
+		$this->CI->load->library('VmModel_UserLog', $params);
 	}
 
 	public function login($login, $password, $success_location, $failure_location) {
