@@ -5,9 +5,7 @@
 {if $root_content}{include file=$root_content}{/if}
 {else}
 			<div id="column-1" class="span-15 append-1">
-					<header>
-						<h2>Administration login</h2>
-					</header>
+{include file=obr_global_header.tpl}
 
 					<p>To access site administration, please log in.</p>
 
