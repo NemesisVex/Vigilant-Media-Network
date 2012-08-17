@@ -14,12 +14,30 @@ class VmModel {
 	public $primary_index_field;
 	protected $db;
 	protected $CI;
+	protected $config;
 
 	public function __construct($params = null) {
 		$this->CI = & get_instance();
 
 		$dsn = !empty($params['dsn']) ? $params['dsn'] : 'default';
 		$this->load_database($dsn);
+	}
+
+	public function get_config($field = null) {
+		if (empty($field)) {
+			return $this->config;
+		} else {
+			return $this->config['field'];
+		}
+		return false;
+	}
+
+	public function set_config($field, $value) {
+		if (isset($this->config[$field])) {
+			$this->config[$field] = $value;
+			return true;
+		}
+		return false;
 	}
 
 	public function load_database($db_group = 'default') {
@@ -53,7 +71,7 @@ class VmModel {
 		$row = $this->retrieve($this->primary_index_field, $id);
 		return ($return_recordset === true) ? $this->return_rs($row) : $row;
 	}
-	
+
 	public function retrieve_all($select = null, $order_by = null, $return_recordset = true) {
 		if (empty($select)) {
 			$this->db->select('*');
@@ -66,13 +84,13 @@ class VmModel {
 				$this->db->select($field);
 			}
 		}
-		
-		$this->from($this->table_name);
-		
+
+		$this->db->from($this->table_name);
+
 		if (!empty($order_by)) {
 			$this->db->order_by($order_by);
 		}
-		$row = $this->get($this->table_name);
+		$row = $this->db->get();
 		return ($return_recordset === true) ? $this->return_smarty_array($row) : $row;
 	}
 

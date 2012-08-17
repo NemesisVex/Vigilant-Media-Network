@@ -1,4 +1,4 @@
-/* 
+/*
     Document   : layout
     Created on : Sep 10, 2011, 12:15:55 AM
     Author     : Greg Bueno
@@ -37,13 +37,13 @@ img.bg
 	list-style-type: none;
 }
 #nav-main li {
-	float: left;
+	display: inline;
 	margin: 0;
 	padding: 0;
 	margin-left: 24px;
 }
 #nav-social li {
-	float: left;
+	display: inline;
 	margin: 0;
 	padding: 0;
 	margin-left: 6px;
@@ -134,4 +134,8 @@ ul.album-list li
 
 .plain-list {
 	list-style: none;
+}
+
+.centered {
+	text-align: center;
 }
