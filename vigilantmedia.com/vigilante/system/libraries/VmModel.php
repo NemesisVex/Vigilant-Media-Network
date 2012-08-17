@@ -53,6 +53,28 @@ class VmModel {
 		$row = $this->retrieve($this->primary_index_field, $id);
 		return ($return_recordset === true) ? $this->return_rs($row) : $row;
 	}
+	
+	public function retrieve_all($select = null, $order_by = null, $return_recordset = true) {
+		if (empty($select)) {
+			$this->db->select('*');
+		} else {
+			if (is_array($select)) {
+				foreach ($select as $field) {
+					$this->db->select($field);
+				}
+			} else {
+				$this->db->select($field);
+			}
+		}
+		
+		$this->from($this->table_name);
+		
+		if (!empty($order_by)) {
+			$this->db->order_by($order_by);
+		}
+		$row = $this->get($this->table_name);
+		return ($return_recordset === true) ? $this->return_smarty_array($row) : $row;
+	}
 
 	public function update($field, $value, $input) {
 		$this->db->where($field, $value);
