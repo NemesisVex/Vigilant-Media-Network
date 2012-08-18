@@ -22,7 +22,8 @@ class Obr_Release extends VmModel {
 
 		$this->table_name = 'ep4_albums_releases';
 		$this->primary_index_field = 'release_id';
-
+		
+		$this->CI->load->model('Obr_Track');
 	}
 
 	public function retrieve_by_id($id, $return_recordset = true) {
@@ -30,18 +31,35 @@ class Obr_Release extends VmModel {
 			$id = $this->release_album_id;
 		}
 
+		$this->db->join('ep4_albums', 'release_album_id=album_id', 'left');
+		$this->db->join('ep4_albums_formats', 'release_format_id=format_id', 'left outer');
 		if (false !== ($rsRelease = parent::retrieve_by_id($id, $return_recordset))) {
 			if ($return_recordset === true) {
-				if (!empty($rsRelease->release_album_id)) {
-					$rsAlbum = $this->CI->Obr_Album->retrieve_by_id($rsRelease->release_album_id);
-					$rs = (object) array_merge((array) $rsAlbum, (array) $rsRelease);
-					return $rs;
+				$rs = $rsRelease;
+				if ($this->config['fetch_tracks']) {
+					if (false !== ($rsTrack = $this->CI->Obr_Track->retrieve_by_release_id($id))) {
+						$rs->tracks = $this->return_smarty_array($rsTrack);
+					}
 				}
+				return $rs;
 			} else {
 				return $rsRelease;
 			}
 			return false;
 		}
+	}
+	
+	public function retrieve_by_album_id($album_id, $return_recordset = true) {
+		$this->db->join('ep4_albums', 'release_album_id=album_id', 'left');
+		$this->db->join('ep4_albums_formats', 'release_format_id=format_id', 'left outer');
+		if (false !== ($rsRelease = parent::retrieve('release_album_id', $album_id, $return_recordset))) {
+			if ($return_recordset === true) {
+				return $this->return_smarty_array($rsRelease);
+			} else {
+				return $rsRelease;
+			}
+		}
+		return false;
 	}
 
 	public function get_latest_release($return_result = true) {
@@ -54,6 +72,7 @@ class Obr_Release extends VmModel {
 			if ($return_result === true) {
 				$rsRelease = $this->return_rs($rowRelease);
 				if (!empty($rsRelease->release_album_id)) {
+					$this->CI->load->model('Obr_Album');
 					$rsAlbum = $this->CI->Obr_Album->retrieve_by_id($rsRelease->release_album_id);
 					$rs = (object) array_merge((array) $rsAlbum, (array) $rsRelease);
 					return $rs;

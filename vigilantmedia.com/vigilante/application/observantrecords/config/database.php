@@ -44,7 +44,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = "mysql.eponymous4.com";
 $db['default']['username'] = "eponymous4";
 $db['default']['password'] = "3825crux";
-$db['default']['database'] = (ENVIRONMENT == 'development') ? "observantrecords_dev" : "observantrecords";
+$db['default']['database'] = (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') ? "observantrecords_dev" : "observantrecords";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
@@ -57,7 +57,7 @@ $db['default']['dbcollat'] = "utf8_general_ci";
 $db['mt'] = $db['default'];
 $db['mt']['hostname'] = "mysql.vigilantmedia.com";
 $db['mt']['username'] = "vigilantmedia";
-$db['mt']['database'] = (ENVIRONMENT == 'development') ? "vigilantmedia_dev" : "vigilantmedia";
+$db['mt']['database'] = (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') ? "vigilantmedia_dev" : "vigilantmedia";
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

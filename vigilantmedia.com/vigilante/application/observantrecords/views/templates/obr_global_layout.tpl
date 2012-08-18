@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.validate.pack.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
 		<!--[if lt IE9]<script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script>[/if]-->
+		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
 	</head>
 
 	<body>

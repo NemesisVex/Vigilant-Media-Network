@@ -23,7 +23,15 @@ class ObservantView {
 		$this->CI->vmmodel_mtentry->blog_id = 22;
 		
 		$this->CI->mysmarty->assign('session', $this->CI->phpsession);
+		
+		$this->CI->load->model('Obr_Artist');
 	}
+	
+	public function _set_artist_header($artist_id, $section_label = null, $section_sublabel = null) {
+		$rsArtist = $this->CI->Obr_Artist->retrieve_by_id($artist_id);
+		$this->CI->vmview->format_section_head($rsArtist->artist_display_name, $section_label, $section_sublabel);
+	}
+	
 }
 
 ?>
