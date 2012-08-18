@@ -12,6 +12,36 @@
 				<label>Title</label> {$rsSong->song_title}
 			</div>
 		</li>
+		<li>
+			<div>
+				<label>Alias</label> {$rsSong->song_alias}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Influences</label> {$rsSong->song_influences}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Style</label> {$rsSong->song_style}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Date written</label> {$rsSong->song_written_date}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Date revised</label> {$rsSong->song_revised_date}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Date recorded</label> {$rsSong->song_recorded_date}
+			</div>
+		</li>
 	</ul>
 	{else}
 		<p>This song has no information.</p>

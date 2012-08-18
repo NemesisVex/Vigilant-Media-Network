@@ -15,8 +15,6 @@ class Obr_Audio extends VmModel {
 		$this->table_name = 'ep4_audio';
 		$this->primary_index_field = 'audio_id';
 		
-		$this->config['fetch_audio'] = false;
-
 		$this->CI->load->model('Obr_Artist');
 		$this->CI->load->model('Obr_Release');
 	}
@@ -46,7 +44,11 @@ class Obr_Audio extends VmModel {
 	public function retrieve_by_track_id($track_id, $return_recordset = true) {
 		$this->db->join('ep4_songs', 'audio_song_id=song_id', 'left outer');
 		$this->db->join('ep4_audio_map', 'map_audio_id=audio_id', 'left outer');
-		if (false !== ($rsFile = parent::retrieve('track_id', $track_id, $return_recordset))) {
+		if (false !== ($rsFile = parent::retrieve('map_track_id', $track_id, $return_recordset))) {
+			if ($return_recordset === true) {
+				$rs = $this->return_smarty_array($rsFile);
+				return $rs;
+			}
 			return $rsFile;
 		}
 		return false;

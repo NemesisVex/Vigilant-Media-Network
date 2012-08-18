@@ -17,6 +17,16 @@
 				<label>File path</label> {$rsFile->audio_mp3_file_path}
 			</div>
 		</li>
+		<li>
+			<div>
+				<label>Display label</label> {$rsFile->audio_display_label}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>File type</label> {$rsFile->audio_file_type}
+			</div>
+		</li>
 	</ul>
 	{else}
 		<p>This audio file has no information.</p>

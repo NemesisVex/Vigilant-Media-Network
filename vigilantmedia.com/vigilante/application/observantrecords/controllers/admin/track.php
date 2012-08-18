@@ -35,6 +35,7 @@ class Track extends CI_Controller {
 	
 	public function view($track_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
+			$this->Obr_Track->set_config('fetch_audio', true);
 			$rsTrack = $this->Obr_Track->retrieve_by_id($track_id);
 			$rsRelease = $this->Obr_Release->retrieve_by_id($rsTrack->track_release_id);
 			$this->vmview->format_section_head($rsRelease->album_title, $rsTrack->song_title);
@@ -59,6 +60,7 @@ class Track extends CI_Controller {
 	
 	public function edit($track_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
+			$this->Obr_Track->set_config('fetch_audio', true);
 			$rsTrack = $this->Obr_Track->retrieve_by_id($track_id);
 			$rsRelease = $this->Obr_Release->retrieve_by_id($rsTrack->track_release_id);
 			$this->vmview->format_section_head($rsRelease->album_title, $rsTrack->song_title);
