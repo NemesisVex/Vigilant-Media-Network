@@ -57,18 +57,18 @@ class VmView {
 		$this->section_head = $section_head;
 		$this->section_label = $section_label;
 		$this->section_sublabel = $section_sublabel;
-		$this->page_title_delim = $delim;
+		$this->page_title_delim = empty($delim) ? ' » ' : $delim;
 
-		if (!empty($section_head)) {
-			$use_delim = !empty($section_label) ? true: false;
+		if (!empty($this->section_head)) {
+			$use_delim = !empty($this->section_label) ? true: false;
 			$this->append_page_title($section_head, $use_delim, $delim);
 		}
-		if (!empty($section_label)) {
-			$use_delim = !empty($section_sublabel) ? true: false;
+		if (!empty($this->section_label)) {
+			$use_delim = !empty($this->section_sublabel) ? true: false;
 			$this->append_page_title($section_label, $use_delim, $delim);
 		}
-		if (!empty($section_sublabel)) {
-			$this->append_page_title($section_sublabel, false);
+		if (!empty($this->section_sublabel)) {
+			$this->append_page_title($this->section_sublabel, false);
 		}
 	}
 
