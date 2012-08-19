@@ -1,8 +1,7 @@
 {include file=obr_global_header.tpl}
 
 <p>
-	<a href="/index.php/admin/artist/add/"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" alt="[Add an artist]" title="[Add an artist]" /></a>
-	<a href="/index.php/admin/artist/add/">Add an artist</a>
+	<a href="/index.php/admin/artist/add/" class="button"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" alt="[Add an artist]" title="[Add an artist]" /> Add an artist</a>
 </p>
 
 {if $rsArtists}

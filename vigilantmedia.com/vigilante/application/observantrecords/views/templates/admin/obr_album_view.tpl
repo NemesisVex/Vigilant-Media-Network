@@ -4,6 +4,7 @@
 	{if !empty($rsAlbum)}
 	<p>
 		<a href="/index.php/admin/album/edit/{$album_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
+		<a href="/index.php/admin/album/delete/{$album_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>
 	</p>
 
 	<ul class="two-column-bubble-list">
@@ -59,6 +60,8 @@
 		{foreach item=rsRelease from=$rsAlbum->releases}
 			<li>
 				<div>
+					<a href="/index.php/admin/release/edit/{$rsRelease->release_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
+					<a href="/index.php/admin/release/delete/{$rsRelease->release_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
 					<a href="/index.php/admin/release/view/{$rsRelease->release_id}/">{$rsRelease->format_name}</a>
 				</div>
 			</li>

@@ -72,7 +72,7 @@ class Artist extends CI_Controller
 			$this->mysmarty->assign('artist_id', $artist_id);
 		}
 		
-		$this->vmview->display('admin/obr_artist_delete.tpl', true);
+		$this->vmview->display('', true);
 	}
 
 	public function create() {

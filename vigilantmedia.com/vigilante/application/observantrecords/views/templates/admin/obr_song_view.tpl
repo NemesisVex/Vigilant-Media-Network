@@ -4,6 +4,7 @@
 	{if !empty($rsSong)}
 	<p>
 		<a href="/index.php/admin/song/edit/{$song_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
+		<a href="/index.php/admin/song/delete/{$song_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Edit]" title="[Edit]" /> Delete</a>
 	</p>
 
 	<ul class="two-column-bubble-list">

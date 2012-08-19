@@ -9,6 +9,8 @@
 	{foreach item=rsSong from=$rsSongs}
 	<li>
 		<div>
+			<a href="/index.php/admin/song/edit/{$rsSong->song_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
+			<a href="/index.php/admin/song/delete/{$rsSong->song_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
 			<a href="/index.php/admin/song/view/{$rsSong->song_id}/">{$rsSong->song_title}</a>
 		</div>
 	</li>
