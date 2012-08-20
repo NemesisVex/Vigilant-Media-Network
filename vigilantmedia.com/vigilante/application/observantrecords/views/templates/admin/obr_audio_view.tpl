@@ -10,7 +10,7 @@
 	<ul class="two-column-bubble-list">
 		<li>
 			<div>
-				<label>File name</label> {$rsFile->audio_mp3_file_name}
+				<label>File name</label> <span title="{$rsFile->audio_mp3_file_name}">{$rsFile->audio_mp3_file_name|truncate:'50'}</span>
 			</div>
 		</li>
 		<li>
@@ -29,10 +29,10 @@
 			</div>
 		</li>
 	</ul>
-	
+
 	{if !empty($id3v2)}
 	<h4>ID3v2 Tags</h4>
-	
+
 	<ul class="two-column-bubble-list">
 		<li>
 			<div>
@@ -69,7 +69,7 @@
 
 	{if !empty($id3v1)}
 	<h4>ID3v1 Tags</h4>
-	
+
 	<ul class="two-column-bubble-list">
 		<li>
 			<div>
@@ -98,7 +98,7 @@
 		</li>
 	</ul>
 	{/if}
-	
+
 	{else}
 		<p>This audio file has no information.</p>
 	{/if}
@@ -107,7 +107,7 @@
 <div id="column-2" class="span-6 last">
 	{if !empty($rsFile)}
 	<h3>Listen</h3>
-	
+
 	<p>
 		<a href="{$rsFile->audio_mp3_file_path}/{$rsFile->audio_mp3_file_name}" type="audio/mpeg" class="htrack" title="{$rsFile->song_title}">{$rsFile->song_title}</a>
 	</p>
