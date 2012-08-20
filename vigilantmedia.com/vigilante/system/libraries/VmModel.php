@@ -15,6 +15,7 @@ class VmModel {
 	protected $db;
 	protected $CI;
 	protected $config;
+	protected $error;
 
 	public function __construct($params = null) {
 		$this->CI = & get_instance();
@@ -95,10 +96,17 @@ class VmModel {
 	}
 
 	public function update($field, $value, $input) {
+		if (empty($input)) {
+			$this->error = 'No data was provided for the update query.';
+			return false;
+		}
+
 		$this->db->where($field, $value);
 		if (false !== $this->db->update($this->table_name, $input)) {
 			return true;
 		}
+
+		$this->error = $this->db->_error_message();
 		return false;
 	}
 
