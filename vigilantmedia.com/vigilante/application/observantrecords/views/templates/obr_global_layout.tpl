@@ -49,7 +49,7 @@
 			</div>
 
 			<footer class="span-24 last centered">
-				<p>&copy; {$smarty.now|date_format:"%Y"} Observant Records</p>
+				<p>&copy; {'now'|date_format:"%Y"} Observant Records</p>
 			</footer>
 		</div>
 
