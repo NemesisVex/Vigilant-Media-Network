@@ -56,7 +56,7 @@
 			</div>
 			
 			<footer class="span-24 last prepend-top centered">
-				<p>&copy; {$smarty.now|date_format:"%Y"} Greg Bueno</p>
+				<p>&copy; {'now'|date_format:"%Y"} Greg Bueno</p>
 			</footer>
 
 		</div>
