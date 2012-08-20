@@ -76,7 +76,7 @@ class Audio extends CI_Controller {
 			
 			$this->mysmarty->assign('audio_artist_id', $artist_id);
 			
-			$rsSongs = $this->Obr_Song->retrieve_by_artist_id($artist_id);
+			$rsSongs = $this->Obr_Song->retrieve_all();
 			$this->mysmarty->assign('rsSongs', $rsSongs);
 		}
 		

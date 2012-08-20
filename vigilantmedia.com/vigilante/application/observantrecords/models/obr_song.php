@@ -30,6 +30,10 @@ class Obr_Song extends VmModel {
 		return false;
 	}
 	
+	public function retrieve_all($select = null, $order_by = 'song_title', $return_recordset = true) {
+		return parent::retrieve_all($select, $order_by, $return_recordset);
+	}
+	
 }
 
 ?>

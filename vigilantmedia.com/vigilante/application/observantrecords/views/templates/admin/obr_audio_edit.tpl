@@ -54,3 +54,35 @@
 			<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
 		{/if}
 		</form>
+
+		{literal}
+		<script type="text/javascript">
+			var build_file_name = function ()
+			{
+				if ($('#audio_artist_id').val() > 0 && $('#audio_song_id').val() > 0) {
+					var artist_name = $('#audio_artist_id option:selected').text();
+					var song_title = $('#audio_song_id option:selected').text();
+					var file_ext = $('#audio_file_type option:selected').text();
+					var file_name = artist_name + ' - ' + song_title + '.' + file_ext;
+					file_name = file_name.replace(/ /g, '_');
+
+					$('#audio_mp3_file_name').val(file_name);
+					$('#audio_display_label').val(song_title);
+				}
+				else {
+					$('#audio_mp3_file_name').val('');
+					$('#audio_display_label').val('');
+				}
+			}
+
+			$('#audio_song_id').change(function ()
+			{
+				build_file_name();
+			});
+
+			$('#audio_artist_id').change(function ()
+			{
+				build_file_name();
+			});
+		</script>
+		{/literal}
