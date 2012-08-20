@@ -29,6 +29,76 @@
 			</div>
 		</li>
 	</ul>
+	
+	{if !empty($id3v2)}
+	<h4>ID3v2 Tags</h4>
+	
+	<ul class="two-column-bubble-list">
+		<li>
+			<div>
+				<label>Title</label> {$id3v2.title.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Artist</label> {$id3v2.artist.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Album</label> {$id3v2.album.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Track no.</label> {$id3v2.track_number.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Year</label> {$id3v2.year.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Copyright</label> {$id3v2.copyright_message.0}
+			</div>
+		</li>
+	</ul>
+	{/if}
+
+	{if !empty($id3v1)}
+	<h4>ID3v1 Tags</h4>
+	
+	<ul class="two-column-bubble-list">
+		<li>
+			<div>
+				<label>Title</label> {$id3v1.title.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Artist</label> {$id3v1.artist.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Album</label> {$id3v1.album.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Track no.</label> {$id3v1.track_number.0}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>Year</label> {$id3v1.year.0}
+			</div>
+		</li>
+	</ul>
+	{/if}
+	
 	{else}
 		<p>This audio file has no information.</p>
 	{/if}

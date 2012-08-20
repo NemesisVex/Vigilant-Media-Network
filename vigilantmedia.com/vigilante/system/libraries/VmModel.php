@@ -27,7 +27,7 @@ class VmModel {
 		if (empty($field)) {
 			return $this->config;
 		} else {
-			return $this->config['field'];
+			return $this->config[$field];
 		}
 		return false;
 	}
