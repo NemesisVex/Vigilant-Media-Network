@@ -23,6 +23,11 @@
 			</p>
 
 			<p>
+				<label for="album_release_date">Release Date:</label>
+				<input type="text" id="album_release_date" name="album_release_date" value="{$rsAlbum->album_release_date|date_format:"%Y-%m-%d"}" size="20" />
+			</p>
+
+			<p>
 				<label for="album_alias">Title locale:</label>
 				<select name="album_ctype_locale">
 					<option value="">&nbsp;</option>
@@ -63,3 +68,14 @@
 			</p>
 
 		</form>
+
+{literal}
+<script type="text/javascript">
+	$(function () {
+		// Date pickers.
+		$('#album_release_date').datepicker({
+			dateFormat: 'yy-mm-dd'
+		});
+	});
+</script>
+{/literal}

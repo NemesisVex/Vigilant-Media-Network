@@ -110,6 +110,30 @@ class Track extends CI_Controller {
 	public function remove() {
 		
 	}
+	
+	public function save_order($release_id) {
+		$tracks = $this->input->get_post('tracks');
+		
+		$is_success = true;
+		if (count($tracks) > 0) {
+			foreach ($tracks as $track) {
+				if (false === $this->_update_track($track['track_id'], $track)) {
+					$is_success = false;
+					$error = 'Track order was not saved. Check disc ' . $track['track_disc_num'] . ', track ' . $track['track_track_num'] . '.';
+					break;
+				}
+			}
+		}
+		
+		echo ($is_success == true) ? 'Track order has been saved.' : $error;
+	}
+	
+	private function _update_track($track_id, $input) {
+		if (false !== $this->Obr_Track->update_by_id($track_id, $input)) {
+			return true;
+		}
+		return false;
+	}
 }
 
 ?>

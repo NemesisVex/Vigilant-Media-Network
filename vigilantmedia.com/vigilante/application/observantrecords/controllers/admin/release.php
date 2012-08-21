@@ -84,9 +84,9 @@ class Release extends CI_Controller {
 		$redirect = $_SERVER['HTTP_REFERER'];
 		if (false !== ($release_id = $this->Obr_Release->create())) {
 			$redirect = '/index.php/admin/release/view/' . $release_id . '/';
-			$this->phpsession->flashset('msg', 'You successfully created a release.');
+			$this->phpsession->flashsave('msg', 'You successfully created a release.');
 		} else {
-			$this->phpsession->flashset('error', 'You failed to create a release.');
+			$this->phpsession->flashsave('error', 'You failed to create a release.');
 		}
 
 		header('Location: ' . $redirect);

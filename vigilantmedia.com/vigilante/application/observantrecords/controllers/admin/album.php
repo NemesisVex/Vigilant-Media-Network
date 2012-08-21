@@ -53,7 +53,7 @@ class Album extends CI_Controller {
 			$rsFormats = $this->Obr_Album_Format->retrieve_all();
 			$this->mysmarty->assign('rsFormats', $rsFormats);
 			
-			$this->mysmarty->assign('artist_id', $album_artist_id);
+			$this->mysmarty->assign('album_artist_id', $album_artist_id);
 		}
 		
 		$this->vmview->display('admin/obr_album_edit.tpl', true);

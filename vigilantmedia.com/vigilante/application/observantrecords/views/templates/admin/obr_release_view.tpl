@@ -71,9 +71,13 @@
 			
 	<h3>Tracks</h3>
 
-	<p>
-		<a href="/index.php/admin/track/add/{$release_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" alt="[Add]" title="[Add]" /> Add a track</a>
-	</p>
+		<form action="/index.php/admin/track/save_order/{$release_id}/" method="post" id="save-order-form">
+			<p>
+				<a href="/index.php/admin/track/add/{$release_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" alt="[Add]" title="[Add]" /> Add a track</a>
+				<input type="button" value="Save track order" id="save-order" class="button" />
+				<input type="hidden" name="track_id" value="{$rsTrack->track_id}" />
+			</p>
+		</form>
 
 	{if !empty($rsRelease->tracks)}
 		<ol class="track-list">
@@ -82,11 +86,62 @@
 				<div>
 					<a href="/index.php/admin/track/edit/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
 					<a href="/index.php/admin/track/delete/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
-					<a href="/index.php/admin/track/view/{$rsTrack->track_id}">{$rsTrack->song_title}</a>
+					<span class="track-num-display">{$rsTrack->track_track_num}</span>. <a href="/index.php/admin/track/view/{$rsTrack->track_id}">{$rsTrack->song_title}</a>
+					<input type="hidden" name="track_id" value="{$rsTrack->track_id}" />
 				</div>
 			</li>
 		{/foreach}
 		</ol>
+		
+		<div id="save-order-dialog">
+			<p class="msg"></p>
+		</div>
+		{literal}
+		<script type="text/javascript">
+		$('.track-list').sortable({
+			update: function (event, ui) {
+				var new_track_num = 1;
+				$(this).children().each(function () {
+					$(this).find('.track-num-display').html(new_track_num);
+					new_track_num++;
+				});
+			}
+		});
+		$('#save-order-dialog').dialog({
+			autoOpen: false,
+			modal: true,
+			buttons: {
+				"OK": function () {
+					$(this).dialog('close');
+				}
+			}
+		});
+		$('#save-order').click(function () {
+			var tracks = [], track_num, track_id, track_info;
+			$('.track-list').children().each(function () {
+				track_num = $(this).find('.track-num-display').html();
+				track_id = $(this).find('input[name=track_id]').val();
+				track_info = {
+					'track_id': track_id,
+					'track_track_num': track_num
+				}
+				tracks.push(track_info);
+			});
+			var url = $('#save-order-form').attr('action');
+			var data = {
+				'tracks': tracks
+			};
+			$.post(url, data, function (result) {
+				$('#save-order-dialog').dialog('open');
+				$('#save-order-dialog').find('.msg').html(result);
+			}).error(function (result) {
+				var error_msg = 'Your request could not be completed. The following error was given: ' + result.statusText;
+				$('#save-order-dialog').dialog('open');
+				$('#save-order-dialog').find('.msg').html(error_msg);
+			});
+		});
+		</script>
+		{/literal}
 	{else}
 		<p>This release has no tracks.</p>
 	{/if}

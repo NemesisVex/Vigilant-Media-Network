@@ -29,6 +29,7 @@ class Obr_Album extends VmModel {
 	public function retrieve_by_id($id, $return_recordset = true) {
 		if (false !==($rsAlbum = parent::retrieve_by_id($id, $return_recordset))) {
 			if ($return_recordset === true) {
+				$rs = $rsAlbum;
 				if (!empty($rsAlbum->album_artist_id)) {
 					$rsArtist = $this->CI->Obr_Artist->retrieve_by_id($rsAlbum->album_artist_id);
 					$rs = (object) array_merge((array) $rsArtist, (array) $rsAlbum);
