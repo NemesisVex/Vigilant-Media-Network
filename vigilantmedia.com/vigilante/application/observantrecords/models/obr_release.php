@@ -32,7 +32,7 @@ class Obr_Release extends VmModel {
 		}
 
 		$this->db->join('ep4_albums', 'release_album_id=album_id', 'left');
-		$this->db->join('ep4_albums_formats', 'release_format_id=format_id', 'left outer');
+		$this->db->join('ep4_albums_releases_formats', 'release_format_id=format_id', 'left outer');
 		if (false !== ($rsRelease = parent::retrieve_by_id($id, $return_recordset))) {
 			if ($return_recordset === true) {
 				$rs = $rsRelease;
@@ -51,7 +51,7 @@ class Obr_Release extends VmModel {
 	
 	public function retrieve_by_album_id($album_id, $return_recordset = true) {
 		$this->db->join('ep4_albums', 'release_album_id=album_id', 'left');
-		$this->db->join('ep4_albums_formats', 'release_format_id=format_id', 'left outer');
+		$this->db->join('ep4_albums_releases_formats', 'release_format_id=format_id', 'left outer');
 		if (false !== ($rsRelease = parent::retrieve('release_album_id', $album_id, $return_recordset))) {
 			if ($return_recordset === true) {
 				return $this->return_smarty_array($rsRelease);

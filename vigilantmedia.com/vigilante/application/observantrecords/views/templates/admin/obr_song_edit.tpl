@@ -2,12 +2,13 @@
 
 <form action="/index.php/admin/song/{if $song_id}update/{$song_id}{else}create{/if}/" method="post">
 
-{if $song_id}
+
 	<p>
-		<a href="/index.php/admin/song/save_lyrics/{$song_id}/"><img src="{$config.to_vigilante}/images/icons/download-page-blue.gif" alt="[SAVE]" /></a>
-		<a href="/index.php/admin/song/save_lyrics/{$song_id}/">Save lyrics as text</a>
-	</p>
+		<input type="submit" value="Save" class="button" />
+{if $song_id}
+		<a href="/index.php/admin/song/save_lyrics/{$song_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/download-page-blue.gif" alt="[SAVE]" /> Save lyrics as text</a>
 {/if}
+	</p>
 
 	<p>
 		<label for="">Song title:</label>
@@ -45,6 +46,10 @@
 	</p>
 
 	<p>
-		<input type="submit" value="Save" />
+		<input type="submit" value="Save" class="button" />
+{if $song_id}
+		<a href="/index.php/admin/song/save_lyrics/{$song_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/download-page-blue.gif" alt="[SAVE]" /> Save lyrics as text</a>
+{/if}
 	</p>
+
 </form>

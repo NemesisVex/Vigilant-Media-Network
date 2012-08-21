@@ -3,6 +3,10 @@
 	<form action="/index.php/admin/artist/{if !empty($artist_id)}update/{$artist_id}{else}create{/if}/" method="post" id="artist_form" name="artist_form">
 
 		<p>
+			<input type="submit" value="Save" class="button" />
+		</p>
+
+		<p>
 			<label for="artist_display_name">Display name</label>
 			<input type="text" name="artist_display_name" value="{$rsArtist->artist_display_name}" size="50" />
 		</p>
@@ -38,7 +42,7 @@
 		</p>
 
 		<p>
-			<input type="submit" value="Save" />
+			<input type="submit" value="Save" class="button" />
 		</p>
 
 	</form>

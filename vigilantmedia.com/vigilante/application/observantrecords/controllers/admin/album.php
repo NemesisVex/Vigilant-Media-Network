@@ -19,6 +19,7 @@ class Album extends CI_Controller {
 		$this->load->library('VmSession');
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Album');
+		$this->load->model('Obr_Album_Format');
 	}
 	
 	public function browse($album_artist_id) {
@@ -48,6 +49,10 @@ class Album extends CI_Controller {
 			if (empty($this->vmview->section_head)) {
 				$this->observantview->_set_artist_header($album_artist_id, 'Create an album');
 			}
+			
+			$rsFormats = $this->Obr_Album_Format->retrieve_all();
+			$this->mysmarty->assign('rsFormats', $rsFormats);
+			
 			$this->mysmarty->assign('artist_id', $album_artist_id);
 		}
 		
@@ -77,24 +82,24 @@ class Album extends CI_Controller {
 	
 	public function create() {
 		$redirect = $_SERVER['HTTP_REFERER'];
-		if (false !== ($artist_id = $this->Obr_Album->create())) {
-			$redirect = '/index.php/admin/artist/view/' . $artist_id . '/';
-			$this->phpsession->flashset('msg', 'You successfully created an album.');
+		if (false !== ($album_id = $this->Obr_Album->create())) {
+			$redirect = '/index.php/admin/album/view/' . $album_id . '/';
+			$this->phpsession->flashsave('msg', 'You successfully created an album.');
 		} else {
-			$this->phpsession->flashset('error', 'You failed to create an album.');
+			$this->phpsession->flashsave('error', 'You failed to create an album.');
 		}
 
 		header('Location: ' . $redirect);
 		die();
 	}
 	
-	public function update() {
+	public function update($album_id) {
 		$redirect = $_SERVER['HTTP_REFERER'];
-		if (false !== $this->Obr_Album->update_by_id($artist_id)) {
-			$redirect = '/index.php/admin/artist/view/' . $artist_id . '/';
+		if (false !== $this->Obr_Album->update_by_id($album_id)) {
+			$redirect = '/index.php/admin/album/view/' . $album_id . '/';
 			$this->phpsession->flashsave('msg', 'You successfully updated an album.');
 		} else {
-			$this->phpsession->flashsave('error', 'You failed to create an album.');
+			$this->phpsession->flashsave('error', 'You failed to update an album.');
 		}
 
 		header('Location: ' . $redirect);
