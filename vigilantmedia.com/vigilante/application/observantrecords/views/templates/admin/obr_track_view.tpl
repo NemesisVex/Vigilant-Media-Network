@@ -4,7 +4,7 @@
 	{if !empty($rsTrack)}
 	<p>
 		<a href="/index.php/admin/track/edit/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
-		<a href="/index.php/admin/track/delete/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>
+		{if $smarty.const.ENVIRONMENT == 'development' || $smarty.const.ENVIRONMENT == 'dev'}<a href="/index.php/admin/track/delete/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>{/if}
 	</p>
 
 	<ul class="two-column-bubble-list">
@@ -83,4 +83,13 @@
 </div>
 
 <div id="column-2" class="span-6 last">
+	{if !empty($rsRelease)}
+	<p>
+		<img src="/images/_covers/_exm_front_200_{if !empty($rsRelease->release_image)}{$rsRelease->release_image}{else}tbd.jpg{/if}" />
+	</p>
+	
+	<ul>
+		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
+	</ul>
+	{/if}
 </div>

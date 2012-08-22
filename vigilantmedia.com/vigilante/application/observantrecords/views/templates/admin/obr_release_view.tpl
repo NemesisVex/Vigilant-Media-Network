@@ -1,10 +1,10 @@
-<div id="column-1" class="span-17 append-1">
 {include file=obr_global_header.tpl}
+<div id="column-1" class="span-17 append-1">
 
 	{if !empty($rsRelease)}
 	<p>
 		<a href="/index.php/admin/release/edit/{$release_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
-		<a href="/index.php/admin/release/delete/{$release_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>
+		{if $smarty.const.ENVIRONMENT == 'development' || $smarty.const.ENVIRONMENT == 'dev'}<a href="/index.php/admin/release/delete/{$release_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>{/if}
 	</p>
 
 	<ul class="two-column-bubble-list">
@@ -156,5 +156,9 @@
 	<p>
 		<img src="/images/_covers/_exm_front_200_{if !empty($rsRelease->release_image)}{$rsRelease->release_image}{else}tbd.jpg{/if}" />
 	</p>
+	
+	<ul>
+		<li><a href="/index.php/admin/album/view/{$rsRelease->release_album_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
+	</ul>
 	{/if}
 </div>

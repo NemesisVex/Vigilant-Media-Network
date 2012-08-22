@@ -6,7 +6,7 @@
 
 	<p>
 		<a href="/index.php/admin/artist/edit/{$rsArtist->artist_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" /> Edit</a>
-		<a href="/index.php/admin/artist/delete/{$rsArtist->artist_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" /> Delete</a>
+		{if $smarty.const.ENVIRONMENT == 'development' || $smarty.const.ENVIRONMENT == 'dev'}<a href="/index.php/admin/artist/delete/{$rsArtist->artist_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" /> Delete</a>{/if}
 	</p>
 
 	<ul class="two-column-bubble-list">

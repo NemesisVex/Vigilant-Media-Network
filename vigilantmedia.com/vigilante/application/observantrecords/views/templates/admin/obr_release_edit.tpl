@@ -1,4 +1,5 @@
 {include file=obr_global_header.tpl}
+<div id="column-1" class="span-17 append-1">
 
 		<form action="/index.php/admin/release/{if $release_id}update/{$release_id}{else}create/{$album_artist_id}{/if}/" method="post" name="album">
 			<p>
@@ -87,13 +88,26 @@
 
 		</form>
 
-{literal}
-<script type="text/javascript">
-	$(function () {
-		// Date pickers.
-		$('#release_release_date').datepicker({
-			dateFormat: 'yy-mm-dd'
-		});
-	});
-</script>
-{/literal}
+		{literal}
+		<script type="text/javascript">
+			$(function () {
+				// Date pickers.
+				$('#release_release_date').datepicker({
+					dateFormat: 'yy-mm-dd'
+				});
+			});
+		</script>
+		{/literal}
+</div>
+
+<div id="column-2" class="span-6 last">
+	{if !empty($rsRelease)}
+	<p>
+		<img src="/images/_covers/_exm_front_200_{if !empty($rsRelease->release_image)}{$rsRelease->release_image}{else}tbd.jpg{/if}" />
+	</p>
+	
+	<ul>
+		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
+	</ul>
+	{/if}
+</div>

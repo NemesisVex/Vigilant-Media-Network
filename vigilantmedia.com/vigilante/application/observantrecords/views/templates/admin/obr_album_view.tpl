@@ -1,10 +1,10 @@
-<div id="column-1" class="span-17 append-1">
 {include file=obr_global_header.tpl}
 
+<div id="column-1" class="span-17 append-1">
 	{if !empty($rsAlbum)}
 	<p>
 		<a href="/index.php/admin/album/edit/{$album_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
-		<a href="/index.php/admin/album/delete/{$album_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>
+		{if $smarty.const.ENVIRONMENT == 'development' || $smarty.const.ENVIRONMENT == 'dev'}<a href="/index.php/admin/album/delete/{$album_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>{/if}
 	</p>
 
 	<ul class="two-column-bubble-list">
@@ -81,5 +81,9 @@
 	<p>
 		<img src="/images/_covers/_exm_front_200_{if !empty($rsAlbum->album_image)}{$rsAlbum->album_image}{else}tbd.jpg{/if}" />
 	</p>
+	
+	<ul>
+		<li><a href="/index.php/admin/artist/view/{$rsAlbum->album_artist_id}/">Back to artist</a></li>
+	</ul>
 	{/if}
 </div>
