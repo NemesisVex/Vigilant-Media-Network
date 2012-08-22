@@ -1,7 +1,7 @@
 {include file=obr_global_header.tpl}
 
 <form action="/index.php/admin/song/{if $song_id}update/{$song_id}{else}create{/if}/" method="post">
-
+	<input type="hidden" name="song_primary_artist_id" value="{$artist_id}" />
 
 	<p>
 		<input type="submit" value="Save" class="button" />
