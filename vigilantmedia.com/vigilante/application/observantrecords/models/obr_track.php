@@ -18,6 +18,7 @@ class Obr_Track extends VmModel {
 		$this->primary_index_field = 'track_id';
 		
 		$this->config['fetch_audio'] = true;
+		$this->config['return_discs'] = false;
 		
 		$this->CI->load->model('Obr_Song');
 	}
@@ -36,20 +37,30 @@ class Obr_Track extends VmModel {
 	public function retrieve_by_release_id($release_id, $return_recordset = true) {
 		$this->db->join('ep4_songs', 'track_song_id=song_id', 'left');
 		$this->db->order_by('track_disc_num, track_track_num');
-		if (false !== ($rsTrack = parent::retrieve('track_release_id', $release_id, $return_recordset))) {
-			if ($release_id === true) {
+		if (false !== ($rsTrack = parent::retrieve('track_release_id', $release_id))) {
+			if ($return_recordset === true) {
 				$rs = $this->return_smarty_array($rsTrack);
 				
-				if ($this->config['fetch_audio'] === true) {
-					$this->CI->load->model('Obr_Audio');
-					$rs->audio = $this->CI->Obr_Audio->retrieve_by_track_id($rs->track_id);
+				if ($this->config['return_discs'] === true) {
+					$this->order_by_disc_num($rs);
 				}
-				
 				return $rs;
 			}
-			return $rsTrack;
+			else {
+				return $rsTrack;
+			}
 		}
 		return false;
+	}
+	
+	protected function order_by_disc_num(&$rs) {
+		$rsTracks = array();
+		
+		foreach ($rs as $rsTrack) {
+			$rsTracks[$rsTrack->track_disc_num][$rsTrack->track_track_num] = $rsTrack;
+		}
+		
+		$rs = $rsTracks;
 	}
 }
 

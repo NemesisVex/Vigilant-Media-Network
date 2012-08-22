@@ -20,7 +20,7 @@
 		</li>
 		<li>
 			<div>
-				<label>Disc no.</label> {$rsTrack->track_track_num}
+				<label>Track no.</label> {$rsTrack->track_track_num}
 			</div>
 		</li>
 		{if $rsTrack->track_alias}

@@ -38,7 +38,7 @@ class Obr_Release extends VmModel {
 				$rs = $rsRelease;
 				if ($this->config['fetch_tracks']) {
 					if (false !== ($rsTrack = $this->CI->Obr_Track->retrieve_by_release_id($id))) {
-						$rs->tracks = $this->return_smarty_array($rsTrack);
+						$rs->tracks = $rsTrack;
 					}
 				}
 				return $rs;
