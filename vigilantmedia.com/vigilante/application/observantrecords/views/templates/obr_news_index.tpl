@@ -1,8 +1,5 @@
 				<div id="column-1" class="span-15 append-1">
-
-					<header>
-						<h2>Blog</h2>
-					</header>
+{include file=obr_global_header.tpl}
 
 {if $rsNews}
 {foreach item=rsNewsItem from=$rsNews}

@@ -8,7 +8,7 @@ class News extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('pagination');
-		$this->load->library('VmModel_MtEntry');
+		$this->load->library('VmModel_MtEntry', array('dsn' => 'mt'));
 		$this->load->library('ObservantView');
 	}
 	

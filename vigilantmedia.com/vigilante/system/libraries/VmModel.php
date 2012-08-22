@@ -14,12 +14,31 @@ class VmModel {
 	public $primary_index_field;
 	protected $db;
 	protected $CI;
+	protected $config;
+	protected $error;
 
 	public function __construct($params = null) {
 		$this->CI = & get_instance();
 
 		$dsn = !empty($params['dsn']) ? $params['dsn'] : 'default';
 		$this->load_database($dsn);
+	}
+
+	public function get_config($field = null) {
+		if (empty($field)) {
+			return $this->config;
+		} else {
+			return $this->config[$field];
+		}
+		return false;
+	}
+
+	public function set_config($field, $value) {
+		if (isset($this->config[$field])) {
+			$this->config[$field] = $value;
+			return true;
+		}
+		return false;
 	}
 
 	public function load_database($db_group = 'default') {
@@ -54,11 +73,40 @@ class VmModel {
 		return ($return_recordset === true) ? $this->return_rs($row) : $row;
 	}
 
+	public function retrieve_all($select = null, $order_by = null, $return_recordset = true) {
+		if (empty($select)) {
+			$this->db->select('*');
+		} else {
+			if (is_array($select)) {
+				foreach ($select as $field) {
+					$this->db->select($field);
+				}
+			} else {
+				$this->db->select($field);
+			}
+		}
+
+		$this->db->from($this->table_name);
+
+		if (!empty($order_by)) {
+			$this->db->order_by($order_by);
+		}
+		$row = $this->db->get();
+		return ($return_recordset === true) ? $this->return_smarty_array($row) : $row;
+	}
+
 	public function update($field, $value, $input) {
+		if (empty($input)) {
+			$this->error = 'No data was provided for the update query.';
+			return false;
+		}
+
 		$this->db->where($field, $value);
 		if (false !== $this->db->update($this->table_name, $input)) {
 			return true;
 		}
+
+		$this->error = $this->db->_error_message();
 		return false;
 	}
 
