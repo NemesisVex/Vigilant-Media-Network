@@ -20,7 +20,7 @@ class VmMailer {
 	public $message;
 	public $redirect;
 
-	public function __construct() {
+	public function __construct($params = null) {
 		$this->mail_config['protocol'] = 'mail';
 		$this->mail_config['mailpath'] = '/usr/bin/mail';
 		$this->mail_config['charset'] = 'utf-8';

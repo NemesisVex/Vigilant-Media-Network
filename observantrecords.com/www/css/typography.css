@@ -54,3 +54,14 @@ table.track-table
 {
 	font-family: 'Helvetica', 'Arial', sans-serif;
 }
+
+.button
+{
+	font-size: 120%;
+	text-decoration: none;
+	color: #FFF;
+}
+
+.button:hover {
+	color: #FFF;
+}
