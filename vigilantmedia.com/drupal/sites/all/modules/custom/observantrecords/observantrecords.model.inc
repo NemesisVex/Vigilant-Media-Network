@@ -15,10 +15,11 @@ class OR_Model {
 	private $driver;
 
 	public function __construct() {
-		$this->database_name = (ENVIRONMENT == 'development') ? 'vigilantmedia_dev' : 'vigilantmedia';
-		$this->username = 'vigilantmedia';
+		//TODO: Store database configuration in separate file.
+		$this->database_name = (ENVIRONMENT == 'development') ? 'observantrecords_dev' : 'observantrecords';
+		$this->username = 'eponymous4';
 		$this->password = '3825crux';
-		$this->host =  'mysql.vigilantmedia.com';
+		$this->host =  'mysql.eponymous4.com';
 		$this->driver = 'mysql';
 	}
 
