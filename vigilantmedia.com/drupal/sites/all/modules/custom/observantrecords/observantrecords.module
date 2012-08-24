@@ -177,12 +177,14 @@ function observantrecords_audio($id) {
 	if (!empty($rsAudio)) {
 		$config_path = variable_get('observantrecords_file_path_override', $rsAudio['audio_mp3_file_path']);
 		$config_root = variable_get('observantrecords_file_root', conf_path() . '/files');
+		$config_url_path = variable_get('observantrecords_url_root', conf_path() . '/files');
 
 		$file_path = (!empty($config_path)) ? $config_path : $rsAudio['audio_mp3_file_path'];
-		$root_path = (!empty($config_root)) ? $config_root : conf_path() . '/files';
+		$root_path = (!empty($config_root)) ? $config_root : $_SERVER['DOCUMENT_ROOT'] . conf_path() . '/files';
+		$url_path = (!empty($config_url_path)) ? $config_url_path : conf_path() . '/files';
 
-		$complete_path = $_SERVER['DOCUMENT_ROOT'] . '/' . $root_path . '/' . $file_path . '/' . $rsAudio['audio_mp3_file_name'];
-		$complete_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $root_path . '/' . $file_path . '/' . $rsAudio['audio_mp3_file_name'];
+		$complete_path = $root_path . '/' . $file_path . '/' . $rsAudio['audio_mp3_file_name'];
+		$complete_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $url_path . '/' . $file_path . '/' . $rsAudio['audio_mp3_file_name'];
 
 		if (file_exists($complete_path)) {
 			header('Location:' . $complete_url);
@@ -201,7 +203,7 @@ function observantrecords_audio_form($form, &$form_state) {
 		'#title' => t('File Root Path'),
 		'#default_value' => variable_get('observantrecords_file_root', conf_path() . '/files'),
 		'#size' => 50,
-		'#description' => t('The local file system root where audio files are stored, usually in sites/yoursite/files.'),
+		'#description' => t('The local file system root where audio files are stored, usually in /path/to/sites/yoursite/files.'),
 	);
 	$form['observantrecords_file_path_override'] = array(
 		'#type' => 'textfield',
@@ -209,6 +211,13 @@ function observantrecords_audio_form($form, &$form_state) {
 		'#default_value' => variable_get('observantrecords_file_path_override'),
 		'#size' => 50,
 		'#description' => t('The local file system path to override the value of the path stored in the database (i.e. audio_mp3_file_name.) This path will be concatenated with <strong>File Root Path</strong>.'),
+	);
+	$form['observantrecords_url_root'] = array(
+		'#type' => 'textfield',
+		'#title' => t('URL Root Path'),
+		'#default_value' => variable_get('observantrecords_url_root', conf_path() . '/files'),
+		'#size' => 50,
+		'#description' => t('The URL root where audio files are stored, usually sites/yoursite/files.'),
 	);
 
 	return system_settings_form($form);
