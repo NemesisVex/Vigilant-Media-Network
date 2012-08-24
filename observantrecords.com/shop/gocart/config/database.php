@@ -47,10 +47,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = (ENVIRONMENT != 'production') ? 'mysql.gregbueno.com' : 'mysql.vigilantmedia.com';
-$db['default']['username'] = (ENVIRONMENT != 'production') ? 'gbueno': 'vigilantmedia';
+$db['default']['hostname'] = 'mysql.eponymous4.com';
+$db['default']['username'] = 'eponymous4';
 $db['default']['password'] = '3825crux';
-$db['default']['database'] = (ENVIRONMENT != 'production') ? 'gregbueno' : 'vigilantmedia';
+$db['default']['database'] = (ENVIRONMENT != 'production') ? 'observantrecords_dev' : 'observantrecords';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = 'gc_';
 $db['default']['pconnect'] = TRUE;

@@ -205,7 +205,10 @@ class Cart extends CI_Controller {
 		
 		// Observant Records customization begin
 		$this->load->model('Obr_product_map_model');
-		$this->load->library('VmView');
+		$this->load->library('VmView', array(
+			'use_mobile_templates' => false,
+			'load_global_config' => true,
+			));
 		
 		// Find a release related to this product.
 		$data['related_release'] = $this->Obr_product_map_model->get_release_by_product_id($id);

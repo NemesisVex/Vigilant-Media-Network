@@ -24,6 +24,7 @@ class VmView {
 	public $config = array();
 	public $error_codes = array('401' => 'Authentication required', '403' => 'Forbidden', '404' => 'Not found', '500' => 'Internal server error');
 	protected $CI;
+	
 
 	public function __construct($params = null) {
 		if (!empty($params)) {
@@ -31,34 +32,43 @@ class VmView {
 				$this->$param = $value;
 			}
 		}
-
-		require_once('../../vigilantmedia.com/vigilante/includes/global.php');
-		$this->config = array_merge($this->config, $config_url_base);
+		
+		if (empty($params['load_global_config'])) {$params['load_global_config'] = true;}
+		if (empty($params['use_mobile_templates'])) {$params['use_mobile_templates'] = true;}
+		
+		
+		if ($params['load_global_config'] === true) {
+			require_once('../../vigilantmedia.com/vigilante/includes/global.php');
+			$this->config = array_merge($this->config, $config_url_base);
+		}
 
 		$this->CI = & get_instance();
-		if ($this->CI->agent->is_mobile() == true) {
-			$this->CI->mysmarty->template_dir = APPPATH . "/views/templates_mobile/";
-			$this->CI->mysmarty->compile_dir = APPPATH . '/views/templates_mobile_c';
+		
+		if ($params['use_mobile_templates'] === true) {
+			if ($this->CI->agent->is_mobile() == true) {
+				$this->CI->mysmarty->template_dir = APPPATH . "/views/templates_mobile/";
+				$this->CI->mysmarty->compile_dir = APPPATH . '/views/templates_mobile_c';
+			}
 		}
 		$this->CI->content_template = 'root_index.tpl';
 	}
 
 	public function format_section_head($section_head = null, $section_label = null, $section_sublabel = null, $delim = null) {
-		if (empty($section_head)) {$section_head = $this->section_head;}
-		if (empty($section_label)) {$section_label = $this->section_label;}
-		if (empty($section_sublabel)) {$section_sublabel = $this->section_sublabel;}
-		if (empty($delim)) {$delim = $this->page_title_delim;}
+		$this->section_head = $section_head;
+		$this->section_label = $section_label;
+		$this->section_sublabel = $section_sublabel;
+		$this->page_title_delim = empty($delim) ? ' » ' : $delim;
 
-		if (!empty($section_head)) {
-			$use_delim = !empty($section_label) ? true: false;
+		if (!empty($this->section_head)) {
+			$use_delim = !empty($this->section_label) ? true: false;
 			$this->append_page_title($section_head, $use_delim, $delim);
 		}
-		if (!empty($section_label)) {
-			$use_delim = !empty($section_sublabel) ? true: false;
+		if (!empty($this->section_label)) {
+			$use_delim = !empty($this->section_sublabel) ? true: false;
 			$this->append_page_title($section_label, $use_delim, $delim);
 		}
-		if (!empty($section_sublabel)) {
-			$this->append_page_title($section_sublabel, false);
+		if (!empty($this->section_sublabel)) {
+			$this->append_page_title($this->section_sublabel, false);
 		}
 	}
 
@@ -90,7 +100,7 @@ class VmView {
 		$this->CI->mysmarty->content_template = ($is_protected === true) ? $this->protected_template : $content_template;
 		$this->CI->mysmarty->layout_template = $this->layout_template;
 		$this->CI->mysmarty->page_template = $this->page_template;
-
+		
 		$this->CI->mysmarty->assign('page_title', $this->page_title);
 		$this->CI->mysmarty->assign('section_head', $this->section_head);
 		$this->CI->mysmarty->assign('section_label', $this->section_label);

@@ -12,7 +12,7 @@
  */
 class VmDebug {
 
-	public function __construct() {
+	public function __construct($params = null) {
 		
 	}
 
@@ -22,13 +22,13 @@ class VmDebug {
 
 	public function debug_print_r($msg, $die_after_print = false) {
 		echo '<pre>';
-		if (is_array($msg)) {
-			foreach ($msg as $message) {
-				print_r($message);
-			}
-		} else {
+//		if (is_array($msg)) {
+//			foreach ($msg as $message) {
+//				print_r($message);
+//			}
+//		} else {
 			print_r($msg);
-		}
+//		}
 		echo '</pre>';
 		if ($die_after_print === true) {
 			die();
