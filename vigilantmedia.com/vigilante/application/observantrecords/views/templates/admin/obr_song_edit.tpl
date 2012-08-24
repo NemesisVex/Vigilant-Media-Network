@@ -11,37 +11,42 @@
 	</p>
 
 	<p>
-		<label for="">Song title:</label>
+		<label for="song_title">Song title:</label>
 		<input type="text" name="song_title" value="{$rsSong->song_title|escape}" size="50">
 	</p>
 
 	<p>
-		<label for="">Influences:</label>
+		<label for="song_alias">Alias:</label>
+		<input type="text" name="song_alias" value="{$rsSong->song_alias|escape}" size="50">
+	</p>
+
+	<p>
+		<label for="song_influences">Influences:</label>
 		<input type="text" name="song_influences" value="{$rsSong->song_influences}" size="50">
 	</p>
 
 	<p>
-		<label for="">Style:</label>
+		<label for="song_style">Style:</label>
 		<input type="text" name="song_style" value="{$rsSong->song_style}" size="50">
 	</p>
 
 	<p>
-		<label for="">Date revised:</label>
+		<label for="song_revised_date">Date revised:</label>
 		<input type="text" name="song_revised_date" value="{$rsSong->song_revised_date}" size="50" />
 	</p>
 
 	<p>
-		<label for="">Date recorded:</label>
+		<label for="song_recorded_date">Date recorded:</label>
 		<input type="text" name="song_recorded_date" value="{$rsSong->song_recorded_date}" size="50" />
 	</p>
 
 	<p>
-		<label for="">Lyrics:</label>
+		<label for="song_lyrics">Lyrics:</label>
 		<textarea name="song_lyrics" rows="10" cols="50">{$rsSong->song_lyrics|escape}</textarea>
 	</p>
 
 	<p>
-		<label for="">Abstract:</label>
+		<label for="song_abstract">Abstract:</label>
 		<textarea name="song_abstract" rows="10" cols="50">{$rsSong->song_abstract|escape}</textarea>
 	</p>
 
