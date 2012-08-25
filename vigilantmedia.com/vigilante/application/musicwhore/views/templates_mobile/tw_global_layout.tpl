@@ -106,7 +106,7 @@
 					<p>
 						&copy; {"now"|date_format:"%Y"} <a href="{$config.to_gregbueno}">Greg Bueno</a><br />
 						<a href="/index.php/mw/terms/">Terms &amp; conditions</a><br />
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 						<a href="http://dev.tv.musicwhore.org{$smarty.server.REQUEST_URI}">DEV</a> |
 						<a href="http://test.tv.musicwhore.org{$smarty.server.REQUEST_URI}">TEST</a> |
 						<a href="http://www.tvwhore.org{$smarty.server.REQUEST_URI}">PROD</a>

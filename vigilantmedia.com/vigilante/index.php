@@ -18,7 +18,8 @@
  * NOTE: If you change these, also change the error_reporting() code below
  *
  */
-	define('ENVIRONMENT', 'development');
+	require_once '../../vigilantmedia.com/vigilante/includes/env.php';
+	//define('ENVIRONMENT', 'development');
 /*
  *---------------------------------------------------------------
  * ERROR REPORTING
@@ -74,7 +75,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = 'application/vigilantmedia';
+	$application_folder = '../../vigilantmedia.com/vigilante/application/vigilantmedia';
 
 /*
  * --------------------------------------------------------------------

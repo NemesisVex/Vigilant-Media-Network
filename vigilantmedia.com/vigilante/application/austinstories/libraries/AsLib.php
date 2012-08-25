@@ -21,7 +21,7 @@ class AsLib
 		
 		switch (ENVIRONMENT)
 		{
-			case 'dev':
+			case 'development':
 				$this->as_config['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
 				$this->as_config['to_vigilante'] = 'http://dev.vigilante.vigilantmedia.com';
 				$this->as_config['to_mt'] = 'http://dev.mt.vigilantmedia.com';
@@ -53,7 +53,7 @@ class AsLib
 				$this->as_config['to_journalcon'] = 'http://test.journalcon.austin-stories.com';
 				$this->as_config['to_austinstories'] = 'http://test.austin-stories.com';
 				break;
-			case 'prod':
+			case 'production':
 				$this->as_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
 				$this->as_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->as_config['to_mt'] = 'http://mt.vigilantmedia.com';

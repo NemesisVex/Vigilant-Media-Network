@@ -4,7 +4,7 @@
 	{if !empty($rsTrack)}
 	<p>
 		<a href="/index.php/admin/track/edit/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
-		{if $smarty.const.ENVIRONMENT == 'development' || $smarty.const.ENVIRONMENT == 'dev'}<a href="/index.php/admin/track/delete/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>{/if}
+		{if $smarty.const.ENVIRONMENT == 'development' || $smarty.const.ENVIRONMENT == 'development'}<a href="/index.php/admin/track/delete/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>{/if}
 	</p>
 
 	<ul class="two-column-bubble-list">
@@ -68,7 +68,7 @@
 			<li>
 				<div>
 					<a href="/index.php/admin/audio/edit/{$rsTrack->audio_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-					{if ENVIRONMENT=='dev' || ENVIRONMENT=='development'}<a href="/index.php/admin/audio/delete/{$rsTrack->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
+					{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/audio/delete/{$rsTrack->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
 					<a href="/index.php/admin/audio/view/{$rsTrack->audio_id}/" title="{$rsTrack->audio_mp3_file_path}/{$rsTrack->audio_mp3_file_name}">{$rsTrack->audio_mp3_file_name}</a>
 				</div>
 			</li>

@@ -9,7 +9,7 @@
 						<li><a href="{$config.to_eponymous4}/">Eponymous 4</a></li>
 						<li><a href="{$config.to_emptyensemble}/">Empty Ensemble</a></li>
 						<li><a href="{$config.to_observant}/">Observant Records</a></li>
-{if $smarty.const.ENVIRONMENT == 'dev'}						<li><a href="{$config.to_shinkyokuadvocacy}/">Shinkyoku Advocacy</a></li>{/if}
+{if $smarty.const.ENVIRONMENT == 'development'}						<li><a href="{$config.to_shinkyokuadvocacy}/">Shinkyoku Advocacy</a></li>{/if}
 					</ul>
 				</section>
 
@@ -18,13 +18,13 @@
 
 					<p>I've been writing online since before it was called blogging. (Back then, it was called &quot;keeping an online journal.&quot;)</p>
 
-					<p>At one point, I had at least  <a href="/index.php/gb/museum/">six blogs</a>, almost all of them neglected. These days, I focus my online writing on <a href="{$config.to_musicwhore}/">music</a> and <a href="{$config.to_wp}/">technology</a>.{if $smarty.const.ENVIRONMENT == 'dev'} I also dabble a bit in <a href="/index.php/crux/">fiction</a>{/if}.</p>
+					<p>At one point, I had at least  <a href="/index.php/gb/museum/">six blogs</a>, almost all of them neglected. These days, I focus my online writing on <a href="{$config.to_musicwhore}/">music</a> and <a href="{$config.to_wp}/">technology</a>.{if $smarty.const.ENVIRONMENT == 'development'} I also dabble a bit in <a href="/index.php/crux/">fiction</a>{/if}.</p>
 
 					<ul>
 						<li><a href="{$config.to_musicwhore}/">Musicwhore.org</a></li>
 						<li><a href="{$config.to_wp}/">Bit-Wise Dilletante</a></li>
 						<li><a href="/index.php/gb/museum/">Blog Museum</a></li>
-{if $smarty.const.ENVIRONMENT == 'dev'}						<li><a href="/index.php/gb/crux/">Crux Series</a></li>{/if}
+{if $smarty.const.ENVIRONMENT == 'development'}						<li><a href="/index.php/gb/crux/">Crux Series</a></li>{/if}
 					</ul>
 				</section>
 

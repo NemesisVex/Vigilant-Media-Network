@@ -24,9 +24,9 @@
 				</hgroup>
 
 				<nav id="masthead-right" class="span-12 prepend-top last">
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 					<span class="smaller">
-{if $smarty.const.ENVIRONMENT=="dev"}
+{if $smarty.const.ENVIRONMENT=="development"}
 						<strong>&raquo;</strong>
 {else}
 						&#8226;

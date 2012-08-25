@@ -10,7 +10,7 @@
 	<li>
 		<div>
 			<a href="/index.php/admin/audio/edit/{$rsFile->audio_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-			{if ENVIRONMENT=='dev' || ENVIRONMENT=='development'}<a href="/index.php/admin/audio/delete/{$rsFile->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
+			{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/audio/delete/{$rsFile->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
 			<a href="/index.php/admin/audio/view/{$rsFile->audio_id}/" title="{$rsFile->audio_mp3_file_path}/{$rsFile->audio_mp3_file_name}">{$rsFile->song_title}</a>
 		</div>
 	</li>

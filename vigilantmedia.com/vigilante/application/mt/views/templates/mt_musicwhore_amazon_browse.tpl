@@ -47,7 +47,7 @@ Channel:
 <a href="/index.php/musicwhore/album/add/{$artist_id}/{$item->ASIN}/">Import album</a><br>
 <a href="/index.php/musicwhore/release/albums/{$artist_id}/{$item->ASIN}/">Import release</a><br>
 <a href="/index.php/musicwhore/release/browse/{$artist_id}/edit/{$item->ASIN}/">Update release</a><br>
-{if ENVIRONMENT!='prod'}<a href="/index.php/musicwhore/amazon/tracks/{$item->ASIN}/{$artist_id}/{$locale}/{$item->ItemAttributes->Title|escape:"url"|escape:"url"}/">Import tracks</a>{/if}
+{if ENVIRONMENT!='production'}<a href="/index.php/musicwhore/amazon/tracks/{$item->ASIN}/{$artist_id}/{$locale}/{$item->ItemAttributes->Title|escape:"url"|escape:"url"}/">Import tracks</a>{/if}
 	</td>
 </tr>
 {/foreach}

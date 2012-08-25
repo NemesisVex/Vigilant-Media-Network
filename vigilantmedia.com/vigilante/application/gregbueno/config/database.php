@@ -44,7 +44,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = "mysql.vigilantmedia.com";
 $db['default']['username'] = "vigilantmedia";
 $db['default']['password'] = "3825crux";
-$db['default']['database'] = (ENVIRONMENT == 'dev') ? "vigilantmedia_dev" : "vigilantmedia";
+$db['default']['database'] = (ENVIRONMENT == 'development') ? "vigilantmedia_dev" : "vigilantmedia";
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;

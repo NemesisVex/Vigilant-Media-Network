@@ -16,7 +16,7 @@ class GbLib {
 	function __construct() {
 		$CI = & get_instance();
 		switch (ENVIRONMENT) {
-			case 'dev':
+			case 'development':
 				$this->gb_config['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
 				$this->gb_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->gb_config['to_mt'] = 'http://dev.mt.vigilantmedia.com';
@@ -56,7 +56,7 @@ class GbLib {
 				$this->gb_config['to_shinkyokuadvocacy'] = 'http://test.shinkyokuadvocacy.com';
 				$this->gb_config['to_emptyensemble'] = 'http://test.emptyensemble.com';
 				break;
-			case 'prod':
+			case 'production':
 				$this->gb_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
 				$this->gb_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->gb_config['to_mt'] = 'http://mt.vigilantmedia.com';

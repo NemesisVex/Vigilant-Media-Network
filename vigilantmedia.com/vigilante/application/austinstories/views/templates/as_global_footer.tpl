@@ -4,7 +4,7 @@
 <tr>
 	<td class="nav-cell" colspan="3">
 	all posts &copy; respective authors. site design and code &copy; 2003-{"now"|date_format:"%Y"} <a href="http://www.gregbueno.com/">greg bueno</a>. <a href="/index.php/aus/terms/">terms and conditions of services</a>.
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 <a href="http://austinstories{$smarty.env.REQUEST_URI|escape:"html"}">dev</a>.
 <a href="http://test.austin-stories.com{$smarty.env.REQUEST_URI|escape:"html"}">test</a>.
 <a href="http://www.austin-stories.com{$smarty.env.REQUEST_URI|escape:"html"}">prod</a>.
