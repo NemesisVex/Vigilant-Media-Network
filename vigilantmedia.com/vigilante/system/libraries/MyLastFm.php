@@ -1,8 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-define('LASTFM_API_KEY', 'd2495dace08fa9c639391487d373237a');
-define('LASTFM_SECRET_KEY', '40aa804721886efbfda2df7109940a35');
-
 class MyLastFm
 {
 	var $CI;
