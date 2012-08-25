@@ -33,8 +33,8 @@ class VmView {
 			}
 		}
 		
-		if (empty($params['load_global_config'])) {$params['load_global_config'] = true;}
-		if (empty($params['use_mobile_templates'])) {$params['use_mobile_templates'] = true;}
+		if (!isset($params['load_global_config'])) {$params['load_global_config'] = true;}
+		if (!isset($params['use_mobile_templates'])) {$params['use_mobile_templates'] = true;}
 		
 		
 		if ($params['load_global_config'] === true) {

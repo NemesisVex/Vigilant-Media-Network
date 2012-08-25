@@ -23,7 +23,7 @@ switch(ENVIRONMENT) {
 		$env_db_name = VIGILANTMEDIA_WP_DB_DEVELOPMENT;
 		$env_domain_current_site = 'wp.vigilantmedia.com';
 		break;
-	case 'test':
+	case 'testing':
 		$env_db_name = VIGILANTMEDIA_WP_DB_TEST;
 		$env_domain_current_site = 'wp-test.vigilantmedia.com';
 		break;

@@ -25,7 +25,6 @@ switch (ENVIRONMENT) {
         break;
     case 'test':
     case 'testing':
-	    die();
         $config_url_base['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
         $config_url_base['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
         $config_url_base['to_mt'] = 'http://test.mt.vigilantmedia.com';
