@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/jquery.autocomplete.css" type="text/css" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/js/lib/thickbox.css" type="text/css" />
-		<link rel="stylesheet" href="{$config.to_vigilante}/js/ui/css/custom-theme/jquery-ui-1.8.16.custom.css" type="text/css" />
+		<link rel="stylesheet" href="{$config.to_vigilante}/js/ui/css/smoothness/jquery-ui-1.8.23.custom.css" type="text/css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.ext.js"></script>
