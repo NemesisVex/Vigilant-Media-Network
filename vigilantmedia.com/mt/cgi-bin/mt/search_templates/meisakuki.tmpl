@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title><$MTBlogName$>: Search: <$MTSearchString$></title>
+<$MTInclude module="Meisakuki Header"$>
+<h1>Archives</h1>
+
+<form method="post" action="<$MTCGIPath$><$MTSearchScript$>">
+<strong>Search</strong><br>
+<input type="hidden" name="Template" value="meisakukisearch" />
+<input type="hidden" name="IncludeBlogs" value="<$MTBlogID$>">
+<input type="text" size="30" name="search" value="<$MTSearchString$>">
+<input type="submit" value="Search"><br>
+<input type="checkbox" name="CaseSearch"> Match case
+<input type="checkbox" name="RegexSearch"> Regex search
+</form>
+
+<MTSearchResults>
+
+	<MTBlogResultHeader>
+	<h3>Search results</h3>
+	<hr size="1">
+	</MTBlogResultHeader>
+
+	<p><strong><a href="<$MTBlogURL$>entry/<$MTEntryID$>/"><$MTEntryTitle$></a></strong><br>
+	<$MTEntryExcerpt$></p>
+
+</MTSearchResults>
+
+<MTNoSearchResults>
+	<h2 class="date">Searched for "<$MTSearchString$>"</h2>
+
+	<div class="blogbody">
+	<p>No pages were found containing "<$MTSearchString$>".</p>
+	</div>
+</MTNoSearchResults>
+
+<MTNoSearch>
+	<h2 class="date">Instructions</h2>
+
+	<div class="blogbody">
+	<p>By default, this search engine looks for all words in any order. To search for an exact phrase, enclose the phrase in quotes:</p>
+
+	<blockquote><pre>"movable type"</pre></blockquote>
+
+	<p>The search engine also supports AND, OR, and NOT keywords to specify boolean expressions:</p>
+
+	<blockquote><pre>personal OR publishing</pre></blockquote>
+
+	<blockquote><pre>publishing NOT personal</pre></blockquote>
+	</div>
+</MTNoSearch>
+<$MTInclude module="Meisakuki Footer"$>
