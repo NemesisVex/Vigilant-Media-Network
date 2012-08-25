@@ -1,7 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-define('YESASIA_ID','BFHQSKPC');
-
 class MyEcommerce
 {
 	var $locale;
