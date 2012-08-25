@@ -14,7 +14,7 @@
 <a href="/index.php/jcon/sponsors/">Sponsors</a><br />
 <a href="/index.php/jcon/thanks/">Thanks</a><br />
 <a href="/index.php/jcon/links/">Link To Us</a><br />
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 <hr size=1 width=50%>
 <a href="http://journalcon{$smarty.server.REQUEST_URI}">DEV</a><br>
 <a href="http://test.journalcon.austin-stories.com{$smarty.server.REQUEST_URI}">TEST</a><br>

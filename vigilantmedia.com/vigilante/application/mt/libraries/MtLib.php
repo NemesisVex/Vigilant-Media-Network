@@ -14,7 +14,7 @@ class MtLib
 		$CI =& get_instance();
 		switch (ENVIRONMENT)
 		{
-			case 'dev':
+			case 'development':
 				$this->mt_config['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
 				$this->mt_config['to_vigilante'] = 'http://dev.vigilante.vigilantmedia.com';
 				$this->mt_config['to_gregbueno'] = 'http://dev.gregbueno.com';
@@ -33,7 +33,7 @@ class MtLib
 				$this->mt_config['ep4_cover_root_path'] = '/home/nemesisv/websites/test/eponymous4.com/www/images/_covers';
 				$this->mt_config['google_map_key'] = $this->google_map_key;
 				break;
-			case 'prod':
+			case 'production':
 				$this->mt_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
 				$this->mt_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->mt_config['to_gregbueno'] = 'http://www.gregbueno.com';

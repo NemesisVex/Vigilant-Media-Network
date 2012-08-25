@@ -60,7 +60,7 @@
 {include file=gb_journal_home_box.tpl}
 
 				<p>
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 					<a href="http://gbueno{$smarty.server.REQUEST_URI}">DEV</a> &middot;
 					<a href="http://test.gregbueno.com{$smarty.server.REQUEST_URI}">TEST</a> &middot;
 					<a href="http://www.gregbueno.com{$smarty.server.REQUEST_URI}">PROD</a><br>

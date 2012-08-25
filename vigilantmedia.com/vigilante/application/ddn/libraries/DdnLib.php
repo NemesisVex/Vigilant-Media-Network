@@ -18,7 +18,7 @@ class DdnLib
 		$CI =& get_instance();
 		switch (ENVIRONMENT)
 		{
-			case 'dev':
+			case 'development':
 				$this->ddn_config['google_map_key'] = 'ABQIAAAAenOcDWY3GB5qVSPOQiBt_xS-obO4ViuHZ5qc-smcREWmAs02qBTq0YtPkqmAgwPrL4BbTY2Bh__eUg';
 				$this->ddn_config['ilike_key'] = 'dk013GWHtWSd7L_9R0MGcfOKynz_RgDDJa5SXwxwFAJ1WBQ=';
 				$this->ddn_config['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
@@ -50,7 +50,7 @@ class DdnLib
 				$this->ddn_config['to_journalcon'] = 'http://test.journalcon.austin-stories.com';
 				$this->ddn_config['to_austinstories'] = 'http://test.austin-stories.com';
 				break;
-			case 'prod':
+			case 'production':
 				$this->ddn_config['google_map_key'] = $this->google_map_key;
 				$this->ddn_config['ilike_key'] = $this->ilike_key;
 				$this->ddn_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';

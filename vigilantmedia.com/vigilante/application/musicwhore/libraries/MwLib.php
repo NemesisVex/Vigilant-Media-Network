@@ -15,7 +15,7 @@ class MwLib
 		$CI =& get_instance();
 		switch (ENVIRONMENT)
 		{
-			case 'dev':
+			case 'development':
 				$this->mw_config['to_vigilante'] = 'http://dev.vigilante.vigilantmedia.com';
 				$this->mw_config['to_gregbueno'] = 'http://dev.dev.gregbueno.com';
 				$this->mw_config['to_archive'] = 'http://dev.archive.musicwhore.org';
@@ -39,7 +39,7 @@ class MwLib
 				$this->mw_config['img_artist_root'] = '/home/nemesisv/websites/prod/musicwhore.org/archive/images/artists';
 				$this->mw_config['img_discog_root'] = '/home/nemesisv/websites/prod/musicwhore.org/archive/images/discog';
 				break;
-			case 'prod':
+			case 'production':
 				$this->mw_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->mw_config['to_gregbueno'] = 'http://www.gregbueno.com';
 				$this->mw_config['to_archive'] = 'http://archive.musicwhore.org';

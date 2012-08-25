@@ -33,7 +33,7 @@
 					<a href="/index.php/music/">music</a> &#8226;
 					<a href="/index.php/music/video/">video</a> &#8226;
 					<a href="/index.php/contact/">contact</a><br>
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 					<span class="smaller">
 						<a href="http://eponymous4{$smarty.server.REQUEST_URI}">DEV</a> &#8226;
 						<a href="http://test.eponymous4.com{$smarty.server.REQUEST_URI}">TEST</a> &#8226;

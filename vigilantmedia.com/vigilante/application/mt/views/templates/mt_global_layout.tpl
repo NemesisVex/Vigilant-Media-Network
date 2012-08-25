@@ -35,9 +35,9 @@
 				</div>
 
 				<div id="masthead-right" class="span-12 prepend-top last">
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 					<span style="font-size: smaller;">
-{if $smarty.const.ENVIRONMENT=="dev"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://mt{$smarty.server.REQUEST_URI|escape}">DEV</a>
+{if $smarty.const.ENVIRONMENT=="development"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://mt{$smarty.server.REQUEST_URI|escape}">DEV</a>
 {if $smarty.const.ENVIRONMENT=="test"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://test.mt.vigilantmedia.com{$smarty.server.REQUEST_URI|escape}">TEST</a>
 						&#8226; <a href="http://mt.vigilantmedia.com{$smarty.server.REQUEST_URI|escape}">PROD</a>
 					</span>
