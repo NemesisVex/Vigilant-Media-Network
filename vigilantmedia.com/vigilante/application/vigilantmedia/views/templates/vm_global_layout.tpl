@@ -24,15 +24,15 @@
 				</hgroup>
 
 				<nav id="masthead-right" class="span-12 prepend-top last">
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 					<span class="smaller">
-{if $smarty.const.ENVIRONMENT=="dev"}
+{if $smarty.const.ENVIRONMENT=="development"}
 						<strong>&raquo;</strong>
 {else}
 						&#8226;
 {/if}
 						<a href="http://vigilantmedia{$smarty.server.REQUEST_URI}">DEV</a>
-{if $smarty.const.ENVIRONMENT=="test"}
+{if $smarty.const.ENVIRONMENT=="testing"}
 						<strong>&raquo;</strong>
 {else}
 						&#8226;

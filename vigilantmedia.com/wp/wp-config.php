@@ -15,17 +15,21 @@
  */
 
 // Read environment variable from file and determine connection settings.
+require_once('../../vigilantmedia.com/vigilante/includes/env.php');
 require_once('environment.php');
 
 switch(ENVIRONMENT) {
 	case 'development':
-		$env_db_name = 'vigilantmedia_wp_dev';
+		$env_db_name = VIGILANTMEDIA_WP_DB_DEVELOPMENT;
+		$env_domain_current_site = 'wp.vigilantmedia.com';
 		break;
 	case 'test':
-		$env_db_name = 'vigilantmedia_wp_test';
+		$env_db_name = VIGILANTMEDIA_WP_DB_TEST;
+		$env_domain_current_site = 'wp-test.vigilantmedia.com';
 		break;
 	case 'production':
-		$env_db_name = 'vigilantmedia_wp';
+		$env_db_name = VIGILANTMEDIA_WP_DB_PRODUCTION;
+		$env_domain_current_site = 'blog.vigilantmedia.com';
 		break;
 }
 
@@ -35,13 +39,13 @@ switch(ENVIRONMENT) {
 define('DB_NAME', $env_db_name);
 
 /** MySQL database username */
-define('DB_USER', 'vigilantmedia');
+define('DB_USER', VIGILANTMEDIA_DB_USER);
 
 /** MySQL database password */
-define('DB_PASSWORD', '3825crux');
+define('DB_PASSWORD', VIGILANTMEDIA_DB_PASS);
 
 /** MySQL hostname */
-define('DB_HOST', 'mysql.vigilantmedia.com');
+define('DB_HOST', VIGILANTMEDIA_DB_HOST);
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -109,7 +113,7 @@ define('WP_ALLOW_MULTISITE', true);
 define('MULTISITE', true);
 define('SUBDOMAIN_INSTALL', true);
 $base = '/';
-define('DOMAIN_CURRENT_SITE', 'wp.vigilantmedia.com');
+define('DOMAIN_CURRENT_SITE', $env_domain_current_site);
 define('PATH_CURRENT_SITE', '/');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);

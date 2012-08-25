@@ -1,7 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-define('DISCOGS_API_KEY', '13ca2e19fe');
-
 class MyDiscogs
 {
 	var $CI;

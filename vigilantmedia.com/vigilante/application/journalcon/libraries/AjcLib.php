@@ -13,15 +13,15 @@ class AjcLib
 		$CI =& get_instance();
 		switch (ENVIRONMENT)
 		{
-			case 'dev':
+			case 'development':
 				$this->as_config['to_vigilante'] = 'http://vigilante';
 				$this->as_config['to_vigilantmedia'] = 'http://vigilantmedia';
 				break;
-			case 'test':
+			case 'testing':
 				$this->as_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->as_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
 				break;
-			case 'prod':
+			case 'production':
 				$this->as_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->as_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
 				break;

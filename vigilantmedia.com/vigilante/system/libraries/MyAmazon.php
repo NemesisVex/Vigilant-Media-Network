@@ -2,10 +2,6 @@
 
 require_once('sha256.inc.php');
 
-define('SUBSCRIBER_ID','00GCWZENCGTF9HTN0F02'); //EWS 4.0
-define('ACCESS_KEY_ID','1GR567CGCNA6HFCRM782'); //AWS authentication
-define('SECRET_ACCESS_KEY','W6JDL087SUbHDMS2uLCaqd19D4DVYSgnGQLdnTYI'); //AWS authentication
-
 class MyAmazon
 {
 	var $CI;

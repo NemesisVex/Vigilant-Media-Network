@@ -52,10 +52,10 @@
 				</div>
 
 				<div id="masthead-right" class="span-12 last">
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 					<span class="smaller">
-{if $smarty.const.ENVIRONMENT=="dev"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://gbueno{$smarty.server.REQUEST_URI}">DEV</a>
-{if $smarty.const.ENVIRONMENT=="test"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://test.gregbueno.com{$smarty.server.REQUEST_URI}">TEST</a>
+{if $smarty.const.ENVIRONMENT=="development"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://gbueno{$smarty.server.REQUEST_URI}">DEV</a>
+{if $smarty.const.ENVIRONMENT=="testing"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://test.gregbueno.com{$smarty.server.REQUEST_URI}">TEST</a>
 						&#8226; <a href="http://www.gregbueno.com{$smarty.server.REQUEST_URI}">PROD</a>
 					</span>
 {/if}

@@ -14,7 +14,7 @@ class VmLib
 		$CI =& get_instance();
 		switch (ENVIRONMENT)
 		{
-			case 'dev':
+			case 'development':
 				$this->vm_config['to_vigilante'] = 'http://dev.vigilante.vigilantmedia.com';
 				$this->vm_config['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
 				$this->vm_config['to_gregbueno'] = 'http://dev.gregbueno.com';
@@ -26,7 +26,7 @@ class VmLib
 				$this->vm_config['to_austinstories'] = 'http://dev.austin-stories.com';
 				$this->vm_config['to_allaboard'] = 'http://allaboard';
 				break;
-			case 'test':
+			case 'testing':
 				$this->vm_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->vm_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
 				$this->vm_config['to_gregbueno'] = 'http://test.gregbueno.com';
@@ -38,7 +38,7 @@ class VmLib
 				$this->vm_config['to_austinstories'] = 'http://test.austin-stories.com';
 				$this->vm_config['to_allaboard'] = 'http://allaboard.vigilantmedia.com';
 				break;
-			case 'prod':
+			case 'production':
 				$this->vm_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->vm_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
 				$this->vm_config['to_gregbueno'] = 'http://www.gregbueno.com';

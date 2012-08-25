@@ -14,7 +14,7 @@ class MtLib
 		$CI =& get_instance();
 		switch (ENVIRONMENT)
 		{
-			case 'dev':
+			case 'development':
 				$this->mt_config['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
 				$this->mt_config['to_vigilante'] = 'http://dev.vigilante.vigilantmedia.com';
 				$this->mt_config['to_gregbueno'] = 'http://dev.gregbueno.com';
@@ -24,7 +24,7 @@ class MtLib
 				//$this->mt_config['google_map_key'] = 'ABQIAAAAenOcDWY3GB5qVSPOQiBt_xRYgBa5qr4ok_UN7j0bcQkTnH7_0hQ7D7lmeKWY1Ws1kmvAwIeusA1jGg';
 				$this->mt_config['google_map_key'] = $this->google_map_key;
 				break;
-			case 'test':
+			case 'testing':
 				$this->mt_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
 				$this->mt_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->mt_config['to_gregbueno'] = 'http://test.gregbueno.com';
@@ -33,7 +33,7 @@ class MtLib
 				$this->mt_config['ep4_cover_root_path'] = '/home/nemesisv/websites/test/eponymous4.com/www/images/_covers';
 				$this->mt_config['google_map_key'] = $this->google_map_key;
 				break;
-			case 'prod':
+			case 'production':
 				$this->mt_config['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
 				$this->mt_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->mt_config['to_gregbueno'] = 'http://www.gregbueno.com';

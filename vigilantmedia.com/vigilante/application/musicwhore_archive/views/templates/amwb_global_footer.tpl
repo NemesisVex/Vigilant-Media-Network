@@ -3,7 +3,7 @@
 <div id="Nav-Bottom">
 <p>
 &copy; {"now"|date_format:"%Y"} <a href="{$config.to_gregbueno}">Greg Bueno</a> | <a href="/index.php/archive/terms/">Terms &amp; conditions</a>
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 | <a href="http://archive{$smarty.server.REQUEST_URI}">DEV</a> |
 <a href="http://test.archive.musicwhore.org{$smarty.server.REQUEST_URI}">TEST</a> |
 <a href="http://archive.musicwhore.org{$smarty.server.REQUEST_URI}">PROD</a>

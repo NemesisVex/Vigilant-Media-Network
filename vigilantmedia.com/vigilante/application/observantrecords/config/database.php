@@ -41,23 +41,24 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = "mysql.eponymous4.com";
-$db['default']['username'] = "eponymous4";
-$db['default']['password'] = "3825crux";
-$db['default']['database'] = (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') ? "observantrecords_dev" : "observantrecords";
+$db['default']['hostname'] = OBSERVANTRECORDS_DB_HOST;
+$db['default']['username'] = OBSERVANTRECORDS_DB_USER;
+$db['default']['password'] = OBSERVANTRECORDS_DB_PASS;
+$db['default']['database'] = OBSERVANTRECORDS_DB_DB;
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') ? TRUE : FALSE;
+$db['default']['db_debug'] = (ENVIRONMENT == 'development') ? TRUE : FALSE;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = "";
 $db['default']['char_set'] = "utf8";
 $db['default']['dbcollat'] = "utf8_general_ci";
 
 $db['mt'] = $db['default'];
-$db['mt']['hostname'] = "mysql.vigilantmedia.com";
-$db['mt']['username'] = "vigilantmedia";
-$db['mt']['database'] = (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') ? "vigilantmedia_dev" : "vigilantmedia";
+$db['mt']['hostname'] = VIGILANTMEDIA_DB_HOST;
+$db['mt']['username'] = VIGILANTMEDIA_DB_USER;
+$db['mt']['password'] = VIGILANTMEDIA_DB_PASS;
+$db['mt']['database'] = VIGILANTMEDIA_DB_DB;
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

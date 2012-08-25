@@ -14,7 +14,7 @@ class ArchiveLib
 		$CI =& get_instance();
 		switch (ENVIRONMENT)
 		{
-			case 'dev':
+			case 'development':
 				$this->mw_config['to_vigilante'] = 'http://dev.vigilante.vigilantmedia.com';
 				$this->mw_config['to_gregbueno'] = 'http://dev.gregbueno.com';
 				$this->mw_config['to_musicwhore'] = 'http://dev.musicwhore.org';
@@ -25,7 +25,7 @@ class ArchiveLib
 				$this->mw_config['img_artist_root'] = '/home/nemesisv/websites/prod/musicwhore.org/archive/images/artists';
 				$this->mw_config['img_discog_root'] = '/home/nemesisv/websites/prod/musicwhore.org/archive/images/discog';
 				break;
-			case 'test':
+			case 'testing':
 				$this->mw_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->mw_config['to_gregbueno'] = 'http://test.gregbueno.com';
 				$this->mw_config['to_musicwhore'] = 'http://test.musicwhore.org';
@@ -36,7 +36,7 @@ class ArchiveLib
 				$this->mw_config['img_artist_root'] = '/home/nemesisv/websites/prod/musicwhore.org/archive/images/artists';
 				$this->mw_config['img_discog_root'] = '/home/nemesisv/websites/prod/musicwhore.org/archive/images/discog';
 				break;
-			case 'prod':
+			case 'production':
 				$this->mw_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
 				$this->mw_config['to_gregbueno'] = 'http://www.gregbueno.com';
 				$this->mw_config['to_musicwhore'] = 'http://www.musicwhore.org';

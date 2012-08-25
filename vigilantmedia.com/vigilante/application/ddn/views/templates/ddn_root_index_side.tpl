@@ -2,7 +2,7 @@
 
 <ul>
 	<li><a href="/index.php/tour/">Tour History Map</a></li>
-{if $smarty.const.ENVIRONMENT!='prod'}
+{if $smarty.const.ENVIRONMENT!='production'}
 	<li><a href="/index.php/album/">Social Network Discography</a></li>
 {/if}
 </ul>

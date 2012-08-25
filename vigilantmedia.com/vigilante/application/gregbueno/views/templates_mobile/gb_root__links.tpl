@@ -16,7 +16,7 @@
 	<p>
 		<a href="/index.php/sakufu/" title="A neglected blog">作譜</a><br />
 		<a href="/index.php/meisakuki/" title="A creative scrapbook">名作記</a><br />
-{if $smarty.const.ENVIRONMENT!='prod'}<a href="/index.php/journal/" title="A defunct online journal">日々の本</a><br />
+{if $smarty.const.ENVIRONMENT!='production'}<a href="/index.php/journal/" title="A defunct online journal">日々の本</a><br />
 		<a href="/index.php/work/" title="Stories and lies">work in progress</a><br />{/if}
 		<a href="/index.php/vexvox/" title="An online journal">vexvox</a><br />
 		<a href="{$config.to_austinstories}" title="An online journal portal">austin stories</a><br />
@@ -59,7 +59,7 @@
 	<p><a href="/index.php/gb/distractions/">more ...</a></p>
 </nav>
 
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 <hr />
 
 <nav>

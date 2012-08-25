@@ -8,7 +8,7 @@
 	<p>
 		<a href="{$config.to_eponymous4}" title="My home studio project">eponymous 4</a><br />
 		<a href="{$config.to_observant}" title="My home studio label">observant records</a><br />
-{if $smarty.const.ENVIRONMENT!='prod'}
+{if $smarty.const.ENVIRONMENT!='production'}
 		<a href="{$config.to_emptyensemble}" title="My other home studio label">empty ensemble</a><br />
 		<a href="{$config.to_shinkyokuadvocacy}" title="My music publishing company">shinkyoku advocacy</a><br />
 {/if}
@@ -19,10 +19,10 @@
 	<p>
 		<a href="/index.php/sakufu/" title="A neglected blog">作譜</a><br />
 		<a href="/index.php/meisakuki/" title="A creative scrapbook">名作記</a><br />
-{if $smarty.const.ENVIRONMENT!='prod'}<a href="/index.php/journal/" title="A defunct online journal">日々の本</a><br />
+{if $smarty.const.ENVIRONMENT!='production'}<a href="/index.php/journal/" title="A defunct online journal">日々の本</a><br />
 		<a href="/index.php/work/" title="Stories and lies">work in progress</a><br />{/if}
 		<a href="/index.php/vexvox/" title="An online journal">vexvox</a><br />
-{if $smarty.const.ENVIRONMENT!='prod'}<a href="{$config.to_austinstories}" title="An online journal portal">austin stories</a><br />{/if}
+{if $smarty.const.ENVIRONMENT!='production'}<a href="{$config.to_austinstories}" title="An online journal portal">austin stories</a><br />{/if}
 	</p>
 
 	<h5 class="link-subhead">media</h5>
@@ -62,7 +62,7 @@
 	<p><a href="/index.php/gb/distractions/">more ...</a></p>
 </nav>
 
-{if $smarty.const.ENVIRONMENT!="prod"}
+{if $smarty.const.ENVIRONMENT!="production"}
 <hr />
 
 <nav>

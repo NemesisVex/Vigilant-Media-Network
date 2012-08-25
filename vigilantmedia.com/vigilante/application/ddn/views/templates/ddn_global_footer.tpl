@@ -6,7 +6,7 @@
 </div>
 {/if}
 
-{if $smarty.const.ENVIRONMENT!='prod'}
+{if $smarty.const.ENVIRONMENT!='production'}
 <div class="span-22 last smaller">
 <a href="http://ddn{$smarty.server.REQUEST_URI}">DEV</a> &#8226;
 <a href="http://test.duran-duran.net{$smarty.server.REQUEST_URI}">TEST</a> &#8226;

@@ -2,15 +2,52 @@
 
 /*
  *---------------------------------------------------------------
- * PHP ERROR REPORTING LEVEL
+ * APPLICATION ENVIRONMENT
  *---------------------------------------------------------------
  *
- * By default CI runs with error reporting set to ALL.  For security
- * reasons you are encouraged to change this to 0 when your site goes live.
- * For more info visit:  http://www.php.net/error_reporting
+ * You can load different configurations depending on your
+ * current environment. Setting the environment also influences
+ * things like logging and error reporting.
  *
-*/
-	error_reporting(E_ALL);
+ * This can be set to anything, but default usage is:
+ *
+ *     development
+ *     testing
+ *     production
+ *
+ * NOTE: If you change these, also change the error_reporting() code below
+ *
+ */
+	require_once '../../vigilantmedia.com/vigilante/includes/env.php';
+	//define('ENVIRONMENT', 'development');
+/*
+ *---------------------------------------------------------------
+ * ERROR REPORTING
+ *---------------------------------------------------------------
+ *
+ * Different environments will require different levels of error reporting.
+ * By default development will show errors but testing and live will hide them.
+ */
+
+if (defined('ENVIRONMENT'))
+{
+	switch (ENVIRONMENT)
+	{
+		case 'development':
+		case 'dev': //DEPRECATED
+			error_reporting(E_ALL);
+		break;
+
+		case 'testing':
+		case 'production':
+		case 'prod': //DEPRECATED
+			error_reporting(0);
+		break;
+
+		default:
+			exit('The application environment is not set correctly.');
+	}
+}
 
 /*
  *---------------------------------------------------------------
@@ -21,8 +58,8 @@
  * Include the path if the folder is not in the same  directory
  * as this file.
  *
-*/
-	$system_path = "../../vigilantmedia.com/vigilante/system/";
+ */
+	$system_path = '../../vigilantmedia.com/vigilante/system';
 
 /*
  *---------------------------------------------------------------
@@ -37,8 +74,8 @@
  *
  * NO TRAILING SLASH!
  *
-*/
-	$application_folder = "../../vigilantmedia.com/vigilante/application/ep4";
+ */
+	$application_folder = '../../vigilantmedia.com/vigilante/application/ep4';
 
 /*
  * --------------------------------------------------------------------
@@ -59,12 +96,12 @@
  *
  * Un-comment the $routing array below to use this feature
  *
-*/
+ */
 	// The directory name, relative to the "controllers" folder.  Leave blank
 	// if your controller is not in a sub-folder within the "controllers" folder
 	// $routing['directory'] = '';
 
-	// The controller class file name.  Example:  Mycontroller.php
+	// The controller class file name.  Example:  Mycontroller
 	// $routing['controller'] = '';
 
 	// The controller function you wish to be called.
@@ -85,7 +122,7 @@
  *
  * Un-comment the $assign_to_config array below to use this feature
  *
-*/
+ */
 	// $assign_to_config['name_of_config_item'] = 'value of config item';
 
 
@@ -94,14 +131,18 @@
 // END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
 // --------------------------------------------------------------------
 
-
-
-
 /*
  * ---------------------------------------------------------------
  *  Resolve the system path for increased reliability
  * ---------------------------------------------------------------
-*/
+ */
+
+	// Set the current directory correctly for CLI requests
+	if (defined('STDIN'))
+	{
+		chdir(dirname(__FILE__));
+	}
+
 	if (realpath($system_path) !== FALSE)
 	{
 		$system_path = realpath($system_path).'/';
@@ -122,9 +163,10 @@
  * -------------------------------------------------------------------
  */
 	// The name of THIS file
-define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
 	// The PHP file extension
+	// this global constant is deprecated.
 	define('EXT', '.php');
 
 	// Path to the system folder
@@ -138,19 +180,19 @@ define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
 
 
 	// The path to the "application" folder
-if (is_dir($application_folder))
-{
-	define('APPPATH', $application_folder.'/');
-}
-else
-{
-		if ( ! is_dir(BASEPATH.$application_folder.'/'))
+	if (is_dir($application_folder))
 	{
-			exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
+		define('APPPATH', $application_folder.'/');
 	}
+	else
+	{
+		if ( ! is_dir(BASEPATH.$application_folder.'/'))
+		{
+			exit("Your application folder path does not appear to be set correctly. Please open the following file and correct this: ".SELF);
+		}
 
-	define('APPPATH', BASEPATH.$application_folder.'/');
-}
+		define('APPPATH', BASEPATH.$application_folder.'/');
+	}
 
 /*
  * --------------------------------------------------------------------
@@ -159,8 +201,8 @@ else
  *
  * And away we go...
  *
-*/
-require_once 'includes/env.php';
-require_once BASEPATH.'core/CodeIgniter'.EXT;
+ */
+require_once BASEPATH.'core/CodeIgniter.php';
+
 /* End of file index.php */
 /* Location: ./index.php */
