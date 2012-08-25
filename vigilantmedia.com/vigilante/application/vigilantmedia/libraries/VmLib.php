@@ -26,7 +26,7 @@ class VmLib
 				$this->vm_config['to_austinstories'] = 'http://dev.austin-stories.com';
 				$this->vm_config['to_allaboard'] = 'http://allaboard';
 				break;
-			case 'test':
+			case 'testing':
 				$this->vm_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->vm_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
 				$this->vm_config['to_gregbueno'] = 'http://test.gregbueno.com';

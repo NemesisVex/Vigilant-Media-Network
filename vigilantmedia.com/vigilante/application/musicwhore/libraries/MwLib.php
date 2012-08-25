@@ -27,7 +27,7 @@ class MwLib
 				$this->mw_config['img_artist_root'] = '/home/nemesisv/websites/prod/musicwhore.org/archive/images/artists';
 				$this->mw_config['img_discog_root'] = '/home/nemesisv/websites/prod/musicwhore.org/archive/images/discog';
 				break;
-			case 'test':
+			case 'testing':
 				$this->mw_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->mw_config['to_gregbueno'] = 'http://test.gregbueno.com';
 				$this->mw_config['to_archive'] = 'http://test.archive.musicwhore.org';

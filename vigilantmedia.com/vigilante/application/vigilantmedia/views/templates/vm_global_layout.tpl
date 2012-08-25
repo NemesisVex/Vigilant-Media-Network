@@ -32,7 +32,7 @@
 						&#8226;
 {/if}
 						<a href="http://vigilantmedia{$smarty.server.REQUEST_URI}">DEV</a>
-{if $smarty.const.ENVIRONMENT=="test"}
+{if $smarty.const.ENVIRONMENT=="testing"}
 						<strong>&raquo;</strong>
 {else}
 						&#8226;

@@ -24,7 +24,7 @@ class Ep4Lib
 				$this->ep4_config['ep4_zip_root_path'] = '/home/nemesisv/websites/prod/gregbueno.com/eponymous4/audio/_zip';
 				$this->ep4_config['ep4_cover_root_path'] = '/home/nemesisv/websites/dev/trunk/eponymous4.com/www/images/_covers';
 				break;
-			case 'test':
+			case 'testing':
 				$this->ep4_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->ep4_config['to_gregbueno'] = 'http://test.gregbueno.com';
 				$this->ep4_config['to_eponymous4'] = 'http://test.eponymous4.com';

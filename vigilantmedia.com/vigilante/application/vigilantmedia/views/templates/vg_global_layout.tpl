@@ -28,7 +28,7 @@
 {if $smarty.const.ENVIRONMENT!="production"}
 					<span class="smaller">
 						{if $smarty.const.ENVIRONMENT=="development"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://vigilante{$smarty.server.REQUEST_URI}">DEV</a>
-						{if $smarty.const.ENVIRONMENT=="test"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://test.vigilante.vigilantmedia.com{$smarty.server.REQUEST_URI}">TEST</a>
+						{if $smarty.const.ENVIRONMENT=="testing"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://test.vigilante.vigilantmedia.com{$smarty.server.REQUEST_URI}">TEST</a>
 						&#8226; <a href="http://vigilante.vigilantmedia.com{$smarty.server.REQUEST_URI}">PROD</a>
 					</span>
 {/if}
