@@ -21,12 +21,15 @@ require_once('environment.php');
 switch(ENVIRONMENT) {
 	case 'development':
 		$env_db_name = VIGILANTMEDIA_WP_DB_DEVELOPMENT;
+		$env_domain_current_site = 'wp.vigilantmedia.com';
 		break;
 	case 'test':
 		$env_db_name = VIGILANTMEDIA_WP_DB_TEST;
+		$env_domain_current_site = 'wp-test.vigilantmedia.com';
 		break;
 	case 'production':
 		$env_db_name = VIGILANTMEDIA_WP_DB_PRODUCTION;
+		$env_domain_current_site = 'blog.vigilantmedia.com';
 		break;
 }
 
@@ -110,7 +113,7 @@ define('WP_ALLOW_MULTISITE', true);
 define('MULTISITE', true);
 define('SUBDOMAIN_INSTALL', true);
 $base = '/';
-define('DOMAIN_CURRENT_SITE', 'wp.vigilantmedia.com');
+define('DOMAIN_CURRENT_SITE', $env_domain_current_site);
 define('PATH_CURRENT_SITE', '/');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
