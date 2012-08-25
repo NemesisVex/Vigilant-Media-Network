@@ -41,14 +41,14 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = "mysql.vigilantmedia.com";
-$db['default']['username'] = "vigilantmedia";
-$db['default']['password'] = "3825crux";
-$db['default']['database'] = (ENVIRONMENT == 'development') ? "vigilantmedia_dev" : "vigilantmedia";
+$db['default']['hostname'] = VIGILANTMEDIA_DB_HOST;
+$db['default']['username'] = VIGILANTMEDIA_DB_USER;
+$db['default']['password'] = VIGILANTMEDIA_DB_PASS;
+$db['default']['database'] = VIGILANTMEDIA_DB_DB;
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
-$db['default']['db_debug'] = TRUE;
+$db['default']['db_debug'] = (ENVIRONMENT == 'development') ? TRUE : FALSE;
 $db['default']['cache_on'] = FALSE;
 $db['default']['cachedir'] = "";
 $db['default']['char_set'] = "utf8";

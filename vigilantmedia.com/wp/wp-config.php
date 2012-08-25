@@ -15,17 +15,18 @@
  */
 
 // Read environment variable from file and determine connection settings.
+require_once('../../vigilantmedia.com/vigilante/includes/env.php');
 require_once('environment.php');
 
 switch(ENVIRONMENT) {
 	case 'development':
-		$env_db_name = 'vigilantmedia_wp_dev';
+		$env_db_name = VIGILANTMEDIA_WP_DB_DEVELOPMENT;
 		break;
 	case 'test':
-		$env_db_name = 'vigilantmedia_wp_test';
+		$env_db_name = VIGILANTMEDIA_WP_DB_TEST;
 		break;
 	case 'production':
-		$env_db_name = 'vigilantmedia_wp';
+		$env_db_name = VIGILANTMEDIA_WP_DB_PRODUCTION;
 		break;
 }
 
@@ -35,13 +36,13 @@ switch(ENVIRONMENT) {
 define('DB_NAME', $env_db_name);
 
 /** MySQL database username */
-define('DB_USER', 'vigilantmedia');
+define('DB_USER', VIGILANTMEDIA_DB_USER);
 
 /** MySQL database password */
-define('DB_PASSWORD', '3825crux');
+define('DB_PASSWORD', VIGILANTMEDIA_DB_PASS);
 
 /** MySQL hostname */
-define('DB_HOST', 'mysql.vigilantmedia.com');
+define('DB_HOST', VIGILANTMEDIA_DB_HOST);
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
