@@ -36,7 +36,7 @@ class GbLib {
 				$this->gb_config['to_shinkyokuadvocacy'] = 'http://dev.shinkyokuadvocacy.com';
 				$this->gb_config['to_emptyensemble'] = 'http://dev.emptyensemble.com';
 				break;
-			case 'test':
+			case 'testing':
 				$this->gb_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
 				$this->gb_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->gb_config['to_mt'] = 'http://test.mt.vigilantmedia.com';

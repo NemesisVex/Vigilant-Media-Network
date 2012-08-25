@@ -24,7 +24,7 @@ class MtLib
 				//$this->mt_config['google_map_key'] = 'ABQIAAAAenOcDWY3GB5qVSPOQiBt_xRYgBa5qr4ok_UN7j0bcQkTnH7_0hQ7D7lmeKWY1Ws1kmvAwIeusA1jGg';
 				$this->mt_config['google_map_key'] = $this->google_map_key;
 				break;
-			case 'test':
+			case 'testing':
 				$this->mt_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
 				$this->mt_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->mt_config['to_gregbueno'] = 'http://test.gregbueno.com';

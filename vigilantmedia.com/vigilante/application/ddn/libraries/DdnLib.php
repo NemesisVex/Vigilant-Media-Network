@@ -34,7 +34,7 @@ class DdnLib
 				$this->ddn_config['to_journalcon'] = 'http://dev.journalcon.austin-stories.com';
 				$this->ddn_config['to_austinstories'] = 'http://dev.austin-stories.com';
 				break;
-			case 'test':
+			case 'testing':
 				$this->ddn_config['google_map_key'] = $this->google_map_key;
 				$this->ddn_config['ilike_key'] = $this->ilike_key;
 				$this->ddn_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';

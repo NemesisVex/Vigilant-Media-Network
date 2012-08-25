@@ -24,7 +24,7 @@ class Ep4View {
 				$this->CI->vmview->config['ep4_zip_root_path'] = '/home/nemesisv/websites/prod/gregbueno.com/eponymous4/audio/_zip';
 				$this->CI->vmview->config['ep4_cover_root_path'] = '/home/nemesisv/websites/dev/eponymous4.com/www/images/_covers';
 				break;
-			case 'test':
+			case 'testing':
 				$this->CI->vmview->config['ep4_mp3_root_path'] = '/home/nemesisv/websites/prod/gregbueno.com/eponymous4/audio/_mp3';
 				$this->CI->vmview->config['ep4_zip_root_path'] = '/home/nemesisv/websites/prod/gregbueno.com/eponymous4/audio/_zip';
 				$this->CI->vmview->config['ep4_cover_root_path'] = '/home/nemesisv/websites/test/eponymous4.com/www/images/_covers';

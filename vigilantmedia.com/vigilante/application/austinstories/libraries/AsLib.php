@@ -37,7 +37,7 @@ class AsLib
 				$this->as_config['to_journalcon'] = 'http://dev.journalcon.austin-stories.com';
 				$this->as_config['to_austinstories'] = 'http://dev.austin-stories.com';
 				break;
-			case 'test':
+			case 'testing':
 				$this->as_config['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
 				$this->as_config['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
 				$this->as_config['to_mt'] = 'http://test.mt.vigilantmedia.com';
