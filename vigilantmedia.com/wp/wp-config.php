@@ -14,10 +14,25 @@
  * @package WordPress
  */
 
+// Read environment variable from file and determine connection settings.
+require_once('environment.php');
+
+switch(ENVIRONMENT) {
+	case 'development':
+		$env_db_name = 'vigilantmedia_wp_dev';
+		break;
+	case 'test':
+		$env_db_name = 'vigilantmedia_wp_test';
+		break;
+	case 'production':
+		$env_db_name = 'vigilantmedia_wp';
+		break;
+}
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 
-define('DB_NAME', 'vigilantmedia_wp_dev');
+define('DB_NAME', $env_db_name);
 
 /** MySQL database username */
 define('DB_USER', 'vigilantmedia');
