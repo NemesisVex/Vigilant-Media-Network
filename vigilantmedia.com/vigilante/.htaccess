@@ -6,11 +6,17 @@ ErrorDocument 500 /index.php/vg/error/500/
 AddType image/x-icon .ico
 AddType text/xml .rdf
 
-IndexIgnore CVS
-
 RedirectMatch ^/$ /index.php/vg/
 
+SetEnvIf HOST dev.vigilante.vigilantmedia.com dev
+SetEnvIf HOST test.vigilante.vigilantmedia.com test
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
 AuthName "vigilante.vigilantmedia.com development trunk site"
 require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any

@@ -6,9 +6,16 @@ ErrorDocument 500 /index.php/gb/error/500/
 AddType image/x-icon .ico
 AddType text/xml .rdf
 
-IndexIgnore CVS
+SetEnvIf HOST dev.austin-stories.com dev
+SetEnvIf HOST test.austin-stories.com test
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "JournalCon 2003 development site"
+require valid-user
 
-#AuthType Basic
-#AuthUserFile /home/nemesisv/.htpasswd
-#AuthName "JournalCon test site"
-#require valid-user
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
+

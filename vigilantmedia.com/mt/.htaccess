@@ -22,30 +22,15 @@ AddType text/xml .rdf
 
 IndexIgnore CVS
 
-#RewriteEngine On
-#RewriteRule ^as/([0-9]*)/alias(/|$) /as.php?module=as_alias&userID=$1&view=edit
-#RewriteRule ^as/([0-9]*)/favorite(/|$) /as.php?module=as_favorite&userID=$1&view=edit
-#RewriteRule ^as/([0-9]*)/post/([0-9]*)(/|$) /as.php?module=as_portal&userID=$1&view=post&portalID=$2
-#RewriteRule ^as/([0-9]*)/posts(/|$) /as.php?module=as_portal&userID=$1&view=posts
-#RewriteRule ^as/([0-9]*)/site/([0-9]*)(/|$) /as.php?module=as_site&userID=$1&view=site&siteID=$2
-
-#RewriteRule ^artist/([0-9]*)/info(/|$) /artist.php?artistID=$1&module=artist_info
-#RewriteRule ^artist/([0-9]*)/link(/|$) /artist.php?artistID=$1&module=artist_link
-#RewriteRule ^artist/([0-9]*)/personell(/|$) /artist.php?artistID=$1&module=personell
-#RewriteRule ^artist/([0-9]*)(/|$) /artist.php?artistID=$1
-
-
-#RewriteRule ^members/([0-9]*)/bin(/|$) /members.php?module=members&userID=$1&view=bin
-#RewriteRule ^members/([0-9]*)/delete(/|$) /members.php?module=members&userID=$1&view=delete
-#RewriteRule ^members/([0-9]*)/donate/([0-9]*)/delete(/|$) /members.php?module=members_donate&userID=$1&donateID=$2&view=delete
-#RewriteRule ^members/([0-9]*)/donate/([0-9]*)/edit(/|$) /members.php?module=members_donate&userID=$1&donateID=$2&view=edit
-#RewriteRule ^members/([0-9]*)/donate(/|$) /members.php?module=members_donate&userID=$1&view=edit
-#RewriteRule ^members/([0-9]*)/edit(/|$) /members.php?module=members&userID=$1&view=edit
-#RewriteRule ^members/([0-9]*)/stats/([^/|$]*)(/|$) /members.php?module=members&userID=$1&view=stats&status=$2
-#RewriteRule ^members/([0-9]*)(/|$) /members.php?module=members&userID=$1 [L]
-
-
+SetEnvIf HOST dev.mt.vigilantmedia.com dev
+SetEnvIf HOST test.mt.vigilantmedia.com test
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
-AuthName "mt.vigilantmedia.com dev trunk site"
+AuthName "Vigilant Media Central Administration development site"
 require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any

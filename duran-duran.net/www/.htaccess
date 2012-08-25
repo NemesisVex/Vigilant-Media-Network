@@ -7,12 +7,19 @@ AddType image/x-icon .ico
 AddType audio/x-mpeg .mp3
 AddType video/mp4 .mp4
 
-IndexIgnore CVS
-
 Redirect 410 /includes/skins/buy/
 RedirectMatch 301 ^/entry/([0-9]*)(/|$) /index.php/news/entry/$1/
 
+SetEnvIf HOST dev.duran-duran.net dev
+SetEnvIf HOST test.duran-duran.net test
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
-AuthName "duran-duran.net dev trunk site"
+AuthName "Duran Duran Networks development site"
 require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
+

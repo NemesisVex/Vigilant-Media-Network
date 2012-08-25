@@ -19,13 +19,6 @@ deny from 122.
 deny from 184.105.140.157
 </LIMIT>
 
-IndexIgnore CVS
-
-AuthType Basic
-AuthUserFile /home/nemesisv/.htpasswd
-AuthName "austin-stories.com dev trunk site"
-require valid-user
-
 Redirect 410 /meetings.php
 Redirect 410 /survey.php
 RedirectMatch 301 /members/register.php /index.php/members/register/
@@ -57,4 +50,17 @@ RewriteCond %{QUERY_STRING} ^PHPSESSID=.*$
 RewriteRule ^index\.php(.*)/$ /index.php$1/? [R=301]
 RewriteCond %{QUERY_STRING} ^C=(.*)$
 RewriteRule ^(.*)/$ /index.php/$1/? [R=301]
+
+SetEnvIf HOST dev.austin-stories.com dev
+SetEnvIf HOST test.austin-stories.com test
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "Austin Stories development site"
+require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
 

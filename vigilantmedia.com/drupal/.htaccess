@@ -129,3 +129,17 @@ DirectoryIndex index.php index.html index.htm
     </FilesMatch>
   </IfModule>
 </IfModule>
+
+SetEnvIf HOST dev.emptyensemble.com dev
+SetEnvIf HOST dev.drupal.vigilantmedia.com dev
+SetEnvIf HOST test.emptyensemble.com test
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "Empty Ensemble development site"
+require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any

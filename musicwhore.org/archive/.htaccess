@@ -93,7 +93,16 @@ RewriteRule ^$ http://astore.amazon.com/musicwhoreorg-20/detail/%1? [R=301]
 RewriteCond %{QUERY_STRING} ^asin=([^\&]*)\&.*$
 RewriteRule ^shop\/amazon\/product\.php$ http://astore.amazon.com/musicwhoreorg-20/detail/%1? [R=301]
 
+SetEnvIf HOST dev.archive.musicwhore.org dev
+SetEnvIf HOST test.archive.musicwhore.org test
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
-AuthName "archive.musicwhore.org dev trunk site"
+AuthName "Musicwhore.org Archive development site"
 require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
+

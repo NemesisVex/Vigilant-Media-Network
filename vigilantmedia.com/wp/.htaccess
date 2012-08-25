@@ -10,7 +10,15 @@ RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 RewriteRule . index.php [L]
 
+SetEnvIf HOST wp.vigilantmedia.com dev
+SetEnvIf HOST wp-test.vigilantmedia.com test
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
-AuthName "dev.blog.vigilantmedia.com development trunk site"
+AuthName "Vigilant Media WordPress development site"
 require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any

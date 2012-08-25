@@ -18,8 +18,6 @@ AddType video/mp4 .mp4
 AddType video/ogg .ogv
 AddType video/webm .webm
 
-IndexIgnore CVS
-
 Redirect 410 /includes/bio.php
 Redirect 410 /index.php/links/
 Redirect 410 /index.php/news/newsletter/
@@ -29,12 +27,19 @@ RedirectMatch 301 ^/news/archives.php /index.php/news/archives/
 RedirectMatch 301 ^/music/$ /index.php/music/
 
 RewriteEngine On
-#RewriteCond %{QUERY_STRING} ^address=([^&]*)\&name=([^&]*)\&code=([^&]*)$
-#RewriteRule ^index\.php/news/newsletter/$ /index.php/news/newsletter/%3/%1/%2/? [R=301]
 RewriteCond %{QUERY_STRING} ^C=(.*)$
 RewriteRule ^index\.php/music/$ /index.php/music/? [R=301]
 
+SetEnvIf HOST dev.eponymous4.com dev
+SetEnvIf HOST test.eponymous4.com test
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
-AuthName "eponymous4.com dev trunk site"
+AuthName "Eponymous 4 development site"
 require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
+

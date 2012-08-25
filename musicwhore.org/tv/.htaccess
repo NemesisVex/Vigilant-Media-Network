@@ -46,7 +46,16 @@ RewriteRule ^index\.rdf index.xml
 RewriteCond %{QUERY_STRING} ^entry_id=([0-9]+)$
 RewriteRule ^entry\.php$ /index.php/tw/entry/%1/? [R=301]
 
+SetEnvIf HOST dev.tv.musicwhore.org dev
+SetEnvIf HOST test.tv.musicwhore.org test
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
-AuthName "tvwhore.org dev trunk site"
+AuthName "TVWhore.org development site"
 require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev
+Deny from env=test
+Satisfy any
+

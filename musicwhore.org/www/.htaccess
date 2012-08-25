@@ -78,5 +78,5 @@ RewriteRule ^reviews\/index\.php$ http://archive.musicwhore.org/index.php/artist
 
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
-AuthName "musicwhore.org dev trunk site"
+AuthName "Musicwhore.org Movable Type site"
 require valid-user
