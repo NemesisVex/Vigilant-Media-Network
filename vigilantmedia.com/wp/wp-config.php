@@ -15,7 +15,6 @@
  */
 
 // Read environment variable from file and determine connection settings.
-require_once('../../vigilantmedia.com/vigilante/includes/env.php');
 require_once('environment.php');
 
 switch(ENVIRONMENT) {
