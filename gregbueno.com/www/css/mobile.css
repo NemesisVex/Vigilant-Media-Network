@@ -1,0 +1,87 @@
+#title {
+	font-size: 4em;
+}
+
+#music h3, #web h3, #writing h3, #contact h3 {
+	font-family: "Novecentowide", Helvetica, Arial, sans-serif;
+	font-size: 2em;
+	margin-bottom: 0.5em;
+}
+
+body {
+	color: #FFF;
+	background-color: #000;
+}
+
+input[type=text], input[type=password], input[type=email], textarea {
+	border-radius: 3px;
+	padding: 4px;
+	width: 200px;
+}
+
+textarea {
+	height: 200px;
+}
+
+a, a:hover, a:visited, a:active {
+	color: #1D4575;
+}
+
+label {
+	float: left;
+	width: 150px;
+	margin-left: 10px;
+}
+
+label.error, span.error {
+	color: #F99;
+	display: none;
+}
+
+footer {
+}
+
+#content-header {
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+#masthead {
+	background-color: #9C0;
+	border-radius: 12px;
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	margin-bottom: 1.5em;
+	text-align: center;
+}
+
+#masthead #logo-pic {
+	display: none;
+}
+
+#nav-social {
+	list-style-type: none;
+}
+
+#nav-social li {
+	display: inline;
+	margin: 0 6px 0 0;
+	padding: 0;
+}
+
+.home-column, .full-column {
+	background-color: #FFF;
+	color: #000;
+	padding: 1em 40px 1em 40px;
+	margin-bottom: 1.5em;
+	border-radius: 10px;
+	box-shadow: 2px 2px 0px #399FD5;
+}
+
+.form_hidden {
+	display: none;
+}
+
+.centered {
+	text-align: center;
+}

@@ -1,4 +1,4 @@
-<section class="prepend-1 span-22 append-1 full-column">
+<section class="full-column">
 	
 	<p>I've launched a lot of blogs over the years, and most of them have died from neglect. This page is a museum for those sites.</p>
 	

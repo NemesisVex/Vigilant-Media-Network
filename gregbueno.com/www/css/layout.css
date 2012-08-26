@@ -3,8 +3,9 @@ body {
 	background-color: #000;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	color: #000;
+input[type=text], input[type=password], input[type=email], textarea {
+	border-radius: 3px;
+	padding: 4px;
 }
 
 a, a:hover, a:visited, a:active {
@@ -22,15 +23,40 @@ label.error, span.error {
 	display: none;
 }
 
+footer {
+	float: left;
+	width: 950px;
+	margin-left: 0;
+	margin-top: 1.5em;
+}
+
+#container {
+	display: block;
+	width: 950px;
+	margin: 0 auto;
+}
+
 #masthead {
+	float: left;
+	width: 960px;
+	margin-right: 0;
 	background-color: #9C0;
 	border-radius: 18px;
 	padding-top: 3em;
 	margin-bottom: 1.5em;
 }
 
-#title {
-	color: #000;
+#masthead #logo {
+	float: left;
+	width: 550px;
+	margin-right: 10px;
+	padding-left: 160px;
+}
+
+#masthead #logo-pic {
+	float: left;
+	width: 230px;
+	margin-right: 0;
 }
 
 #nav-social {
@@ -43,7 +69,20 @@ label.error, span.error {
 	padding: 0;
 }
 
+#content-header {
+	float: left;
+	padding-left: 40px;
+	width: 870px;
+	margin-left: 0;
+	padding-right: 40px;
+}
+
 .home-column {
+	float: left;
+	width: 230px;
+	margin-right: 10px;
+	padding-left: 40px;
+	padding-right: 40px;
 	background-color: #FFF;
 	color: #000;
 	padding-top: 1em;
@@ -52,7 +91,16 @@ label.error, span.error {
 	box-shadow: 2px 2px 0px #399FD5;
 }
 
+.home-column.final {
+	margin-right: 0;
+}
+
 .full-column {
+	float: left;
+	width: 870px;
+	margin-right: 0;
+	padding-left: 40px;
+	padding-right: 40px;
 	background-color: #FFF;
 	color: #000;
 	padding-top: 1em;

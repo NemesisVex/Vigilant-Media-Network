@@ -11,6 +11,7 @@ class ObservantView {
 	
 	public function __construct() {
 		$this->CI =& get_instance();
+		$this->CI->load->library('VmView', array('use_mobile_templates' => false));
 		
 		// Configure VmView for all pages on the site.
 		$this->CI->vmview->layout_template = 'obr_global_layout.tpl';

@@ -1,4 +1,4 @@
-<section class="prepend-1 span-22 append-1 full-column">
+<section class="full-column">
 
 	<p>
 		<a href="http://www.billboard.com/">Billboard</a><br />
