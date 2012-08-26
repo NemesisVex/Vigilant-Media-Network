@@ -419,9 +419,11 @@ class Members extends CI_Controller
 		$this->email->subject($subject);
 		$this->email->message($text);
 
-		$this->email->send();
+		if (false === $this->email->send())
+		{
+			echo $this->email->print_debugger();
+		}
 
-		echo $this->email->print_debugger();
 	}
 }
 ?>
