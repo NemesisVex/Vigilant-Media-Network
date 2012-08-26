@@ -20,6 +20,7 @@
 		<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/jquery.js"></script>
 		<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/modernizr-1.6.min.js"></script>
 		<!--[if lt IE9]<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/html5.js"></script>[/if]-->
+		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
 	<?php
 		if ( is_singular() && get_option( 'thread_comments' ) )
 			wp_enqueue_script( 'comment-reply' );
