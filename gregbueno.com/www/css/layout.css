@@ -22,11 +22,34 @@ label.error, span.error {
 	display: none;
 }
 
+footer {
+	float: left;
+	width: 950px;
+	margin-left: 0;
+	margin-top: 1.5em;
+}
+
 #masthead {
+	float: left;
+	width: 960px;
+	margin-right: 0;
 	background-color: #9C0;
 	border-radius: 18px;
 	padding-top: 3em;
 	margin-bottom: 1.5em;
+}
+
+#masthead #logo {
+	float: left;
+	width: 550px;
+	margin-right: 10px;
+	padding-left: 160px;
+}
+
+#masthead #logo-pic {
+	float: left;
+	width: 230px;
+	margin-right: 0;
 }
 
 #title {
@@ -43,13 +66,30 @@ label.error, span.error {
 	padding: 0;
 }
 
+#content-header {
+	float: left;
+	padding-left: 40px;
+	width: 870px;
+	margin-left: 0;
+	padding-right: 40px;
+}
+
 .home-column {
+	float: left;
+	width: 230px;
+	margin-right: 10px;
+	padding-left: 40px;
+	padding-right: 40px;
 	background-color: #FFF;
 	color: #000;
 	padding-top: 1em;
 	height: 30em;
 	border-radius: 10px;
 	box-shadow: 2px 2px 0px #399FD5;
+}
+
+.home-column.final {
+	margin-right: 0;
 }
 
 .full-column {

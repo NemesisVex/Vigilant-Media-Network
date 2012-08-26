@@ -22,6 +22,8 @@ class VmView {
 	public $section_label;
 	public $section_sublabel;
 	public $config = array();
+	public $load_global_config;
+	public $use_mobile_templates;
 	public $error_codes = array('401' => 'Authentication required', '403' => 'Forbidden', '404' => 'Not found', '500' => 'Internal server error');
 	protected $CI;
 	
@@ -33,11 +35,11 @@ class VmView {
 			}
 		}
 		
-		if (!isset($params['load_global_config'])) {$params['load_global_config'] = true;}
-		if (!isset($params['use_mobile_templates'])) {$params['use_mobile_templates'] = true;}
+		$this->load_global_config = (isset($params['load_global_config'])) ? $params['load_global_config'] : true;
+		$this->use_mobile_templates = (isset($params['use_mobile_templates'])) ? $params['use_mobile_templates'] : true;
+		die($this->load_global_config);
 		
-		
-		if ($params['load_global_config'] === true) {
+		if ($this->load_global_config === true) {
 			require_once('../../vigilantmedia.com/vigilante/includes/global.php');
 			$this->config = array_merge($this->config, $config_url_base);
 		}

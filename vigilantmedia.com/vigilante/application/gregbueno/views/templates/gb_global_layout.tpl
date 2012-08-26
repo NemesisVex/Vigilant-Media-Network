@@ -9,7 +9,11 @@
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
+		{if ($is_mobile === true)}
+		<link rel="stylesheet" href="/css/mobile.css" type="text/css" media="screen, projection" />
+		{else}
 		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
+		{/if}
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.ext.js"></script>
@@ -20,21 +24,21 @@
 
 		<div class="container">
 
-			<div id="masthead" class="span-24">
-				<header class="prepend-4 span-14">
+			<div id="masthead">
+				<header id="logo">
 					<hgroup>
 						<h1 id="title"><a href="/">Greg Bueno</a></h1>
 					</hgroup>
 				</header>
 
-				<section class="span-6 last">
+				<section id="logo-pic">
 					<img width="100" height="100" title="[Greg Bueno]" alt="[Greg Bueno]" src="http://www.eponymous4.com/images/bio_wrp_vol_03_restraint.jpg" />
 				</section>
 			</div>
 
 			<div id="content">
 {if $section_head}
-					<header id="content-header" class="prepend-1 span-22 append-1 last header-column">
+					<header id="content-header">
 {/if}
 {if $section_label}
 						<hgroup>
@@ -55,7 +59,7 @@
 {if $content_template}{include file=$content_template}{/if}
 			</div>
 			
-			<footer class="span-24 last prepend-top centered">
+			<footer class="centered">
 				<p>&copy; {'now'|date_format:"%Y"} Greg Bueno</p>
 			</footer>
 
