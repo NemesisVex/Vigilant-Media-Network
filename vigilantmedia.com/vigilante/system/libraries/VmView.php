@@ -37,7 +37,6 @@ class VmView {
 		
 		$this->load_global_config = (isset($params['load_global_config'])) ? $params['load_global_config'] : true;
 		$this->use_mobile_templates = (isset($params['use_mobile_templates'])) ? $params['use_mobile_templates'] : true;
-		die($this->load_global_config);
 		
 		if ($this->load_global_config === true) {
 			require_once('../../vigilantmedia.com/vigilante/includes/global.php');
