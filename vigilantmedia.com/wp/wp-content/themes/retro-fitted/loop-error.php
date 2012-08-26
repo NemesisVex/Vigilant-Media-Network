@@ -8,7 +8,7 @@
  * @subpackage Template
  */
 ?>
-	<div id="error404" class="hentry">
+	<div id="post-0" class="<?php hybrid_entry_class(); ?>">
 
 		<div class="entry-content">
 

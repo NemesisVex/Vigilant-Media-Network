@@ -1,9 +1,9 @@
 <?php
 /**
- * Home Template
+ * Index Template
  *
- * This is the home template.  Technically, it is the "posts page" template.  It is used when a visitor is on the
- * page assigned to show a site's latest blog posts.
+ * This is the default template.  It is used when a more specific template can't be found to display
+ * posts.  It is unlikely that this template will ever be used, but there may be rare cases.
  *
  * @package Retro-fitted
  * @subpackage Template
@@ -11,77 +11,63 @@
 
 get_header(); // Loads the header.php template. ?>
 
+	<?php do_atomic( 'before_content' ); // retro-fitted_before_content ?>
+
 	<div id="content">
 
+		<?php get_sidebar( 'before-content' ); // Loads the sidebar-before-content.php template. ?>
+
+		<?php do_atomic( 'open_content' ); // retro-fitted_open_content ?>
+
 		<div class="hfeed">
+
+			<?php get_template_part( 'loop-meta' ); // Loads the loop-meta.php template. ?>
 
 			<?php if ( have_posts() ) : ?>
 
 				<?php while ( have_posts() ) : the_post(); ?>
 
-					<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<?php do_atomic( 'before_entry' ); // retro-fitted_before_entry ?>
 
-						<?php the_title( '<h1 class="entry-title"><a href="' . esc_attr( get_permalink() ) . '" title="' . the_title_attribute( array( 'echo' => 0 ) ) . '" rel="bookmark">', '</a></h1>' ); ?>
+					<div id="post-<?php the_ID(); ?>" class="<?php hybrid_entry_class(); ?>">
 
-						<div class="byline">
-							<?php printf( __( 'By %1$s on %2$s', 'retro-fitted' ),
-								'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . get_the_author_meta( 'display_name' ) . '</a></span>',
-								'<a href="' . esc_url( get_permalink() ) . '"><time datetime="' . esc_attr( get_the_date( 'c' ) ) . '" title="' . esc_attr( sprintf( __( 'Posted at %1$s', 'retro-fitted' ), get_the_time( get_option( 'time_format' ) ) ) ) . '" pubdate>' . sprintf( get_the_time( get_option( 'date_format' ) ) ) . '</time></a>'
-							); ?>
+						<?php do_atomic( 'open_entry' ); // retro-fitted_open_entry ?>
 
-							<?php if ( ! post_password_required() && ( comments_open() || '0' != get_comments_number() ) ) : ?>
-								| <?php comments_popup_link(
-									__( 'Leave a Comment', 'retro-fitted' ),
-									__( '1 Comment',       'retro-fitted' ),
-									__( '% Comments',      'retro-fitted' )
-								); ?>
-							<?php endif; ?>
+						<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
 
-							<?php edit_post_link( __( 'Edit', 'retro-fitted' ), '<span class="edit-link"> | ', '</span>' ); ?>
+						<?php echo apply_atomic_shortcode( 'byline', '<div class="byline">' . __( 'By [entry-author] on [entry-published] [entry-edit-link before=" | "]', 'retro-fitted' ) . '</div>' ); ?>
 
+						<div class="entry-content">
+							<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'retro-fitted' ) ); ?>
+							<?php wp_link_pages( array( 'before' => '<p class="page-links">' . __( 'Pages:', 'retro-fitted' ), 'after' => '</p>' ) ); ?>
+						</div><!-- .entry-content -->
 
-						</div>
+						<?php echo apply_atomic_shortcode( 'entry_meta', '<div class="entry-meta">' . __( '[entry-terms taxonomy="category" before="Posted in "] [entry-terms before="| Tagged "] [entry-comments-link before=" | "]', 'retro-fitted' ) . '</div>' ); ?>
 
-						<div class="entry-summary">
-
-							<?php the_content( __( 'Continue reading &rarr;', 'retro-fitted' ) ); ?>
-
-							<?php wp_link_pages( array(
-								'after'       => '</p>',
-								'before'      => '<p class="entry-navigation">' . __( 'Pages:', 'retro-fitted' ),
-								'link_after'  => '</span>',
-								'link_before' => '<span>',
-							) ); ?>
-
-						</div><!-- .entry-summary -->
-
-						<div class="entry-meta">
-							<?php
-								/* translators: %1$s is a comma-separated list of categories. */
-								printf( __( 'Posted in: %1$s', 'retro-fitted' ), get_the_category_list( __( ', ', 'retro-fitted' ) ) );
-							?>
-							<?php
-								/* translators: Both strings end with a space. */
-								the_tags( __( '| Tagged: ', 'retro-fitted' ), __( ', ', 'retro-fitted' ) );
-							?>
-						</div>
+						<?php do_atomic( 'close_entry' ); // retro-fitted_close_entry ?>
 
 					</div><!-- .hentry -->
+
+					<?php do_atomic( 'after_entry' ); // retro-fitted_after_entry ?>
 
 				<?php endwhile; ?>
 
 			<?php else : ?>
 
-				<?php get_template_part( 'loop-error' ); ?>
+				<?php get_template_part( 'loop-error' ); // Loads the loop-error.php template. ?>
 
 			<?php endif; ?>
 
 		</div><!-- .hfeed -->
 
-		<?php get_template_part( 'nav-posts' ); ?>
+		<?php do_atomic( 'close_content' ); // retro-fitted_close_content ?>
+
+		<?php get_sidebar( 'after-content' ); // Loads the sidebar-after-content.php template. ?>
+
+		<?php get_template_part( 'loop-nav' ); // Loads the loop-nav.php template. ?>
 
 	</div><!-- #content -->
 
-	<?php get_sidebar(); ?>
+	<?php do_atomic( 'after_content' ); // retro-fitted_after_content ?>
 
-<?php get_footer(); ?>
+<?php get_footer(); // Loads the footer.php template. ?>
