@@ -230,7 +230,7 @@ class Members extends CI_Controller
 
 	function update_password($user_id, $user_temp_password)
 	{
-		$this->gblib->_format_section_head('members', 'create a new password');
+		$this->gblib->_format_section_head('Members', 'Create a new password');
 
 		$change_password = true;
 		$user_temp_password = $this->uri->segment(4);
@@ -419,9 +419,11 @@ class Members extends CI_Controller
 		$this->email->subject($subject);
 		$this->email->message($text);
 
-		$this->email->send();
+		if (false === $this->email->send())
+		{
+			echo $this->email->print_debugger();
+		}
 
-		echo $this->email->print_debugger();
 	}
 }
 ?>

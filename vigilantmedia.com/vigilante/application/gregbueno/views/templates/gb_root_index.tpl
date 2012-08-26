@@ -1,4 +1,4 @@
-				<section id="music" class="prepend-1 span-6 append-1 home-column">
+				<section id="music" class="home-column">
 					<h3>Music</h3>
 
 					<p>I've been writing songs since high school, and I even got a degree in music from the University of Hawai&#699;i.</p>
@@ -13,7 +13,7 @@
 					</ul>
 				</section>
 
-				<section id="writing" class="prepend-1 span-6 append-1 home-column">
+				<section id="writing" class="home-column">
 					<h3>Writing</h3>
 
 					<p>I've been writing online since before it was called blogging. (Back then, it was called &quot;keeping an online journal.&quot;)</p>
@@ -28,7 +28,7 @@
 					</ul>
 				</section>
 
-				<section id="web" class="prepend-1 span-6 append-1 home-column last">
+				<section id="web" class="home-column final">
 					<h3>Web</h3>
 
 					<p>I make a living as a web software engineer, working mostly with the CodeIgniter framework. Details can be found in my <a href="{$config.to_vigilantmedia}/">online portfolio</a>.</p>

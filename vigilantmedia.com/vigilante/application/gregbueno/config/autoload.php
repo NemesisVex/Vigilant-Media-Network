@@ -52,7 +52,11 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('session', 'database', 'MySmarty', 'email', 'VigilanteCoreLib', 'VigilanteDbLib', 'VigilanteSmartyLib', 'Phpsession', 'user_agent');
+$autoload['libraries'] = array('session', 'database', 'MySmarty', 'email', 'Phpsession', 'user_agent');
+// TO DELETE
+$autoload['libraries'][] = 'VigilanteCoreLib';
+$autoload['libraries'][] = 'VigilanteDbLib';
+$autoload['libraries'][] = 'VigilanteSmartyLib';
 
 
 /*
