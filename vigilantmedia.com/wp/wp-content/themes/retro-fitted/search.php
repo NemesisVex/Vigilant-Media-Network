@@ -11,49 +11,60 @@
 
 get_header(); // Loads the header.php template. ?>
 
+	<?php do_atomic( 'before_content' ); // retro-fitted_before_content ?>
+
 	<div id="content">
+
+		<?php get_sidebar( 'before-content' ); // Loads the sidebar-before-content.php template. ?>
+
+		<?php do_atomic( 'open_content' ); // retro-fitted_open_content ?>
 
 		<div class="hfeed">
 
-			<div class="loop-meta">
+			<?php get_template_part( 'loop-meta' ); // Loads the loop-meta.php template. ?>
 
-				<h1 class="loop-title"><?php _e( 'Search Results', 'retro-fitted' ); ?></h1>
+			<?php if ( have_posts() ) : ?>
 
-				<div class="loop-description">
-					<?php if ( have_posts() ) : ?>
-						<p><?php printf( __( 'You are browsing the search results for &quot;%1$s&quot;.', 'retro-fitted' ), get_search_query() ); ?></p>
-					<?php else : ?>
-						<p><?php printf( __( 'No results found for &quot;%1$s&quot;.', 'retro-fitted' ), get_search_query() ); ?></p>
-					<?php endif; ?>
+				<?php while ( have_posts() ) : the_post(); ?>
 
-				</div><!-- .loop-description -->
+					<?php do_atomic( 'before_entry' ); // retro-fitted_before_entry ?>
 
-			</div><!-- .loop-meta -->
+					<div id="post-<?php the_ID(); ?>" class="<?php hybrid_entry_class(); ?>">
 
-			<?php while ( have_posts() ) : the_post(); ?>
+						<?php do_atomic( 'open_entry' ); // retro-fitted_open_entry ?>
 
-				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+						<?php echo apply_atomic_shortcode( 'entry_title', '[entry-title]' ); ?>
 
-					<?php the_title( '<h1 class="entry-title"><a href="' . esc_attr( get_permalink() ) . '" title="' . the_title_attribute( array( 'echo' => 0 ) ) . '" rel="bookmark">', '</a></h1>' ); ?>
+						<div class="entry-summary">
+							<?php the_excerpt(); ?>
+						</div><!-- .entry-summary -->
 
-					<div class="entry-summary">
-						<?php the_excerpt(); ?>
-					</div><!-- .entry-summary -->
+						<?php echo apply_atomic_shortcode( 'entry_meta', '<div class="entry-meta">' . sprintf( __( '[entry-published] &mdash; <code>%s</code>', 'retro-fitted' ), get_permalink() ) . '</div>' ); ?>
 
-					<div class="entry-meta">
-						<a class="permalink" href="<?php echo esc_url( get_permalink() ); ?>"><time datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>" title="<?php echo esc_attr( sprintf( __( 'Posted at %1$s', 'retro-fitted' ), get_the_time( get_option( 'time_format' ) ) ) ); ?>" pubdate><?php echo get_the_time( get_option( 'date_format' ) ); ?></time></a>
-					</div>
+						<?php do_atomic( 'close_entry' ); // retro-fitted_close_entry ?>
 
-				</div><!-- .hentry -->
+					</div><!-- .hentry -->
 
-			<?php endwhile; ?>
+					<?php do_atomic( 'after_entry' ); // retro-fitted_after_entry ?>
+
+				<?php endwhile; ?>
+
+			<?php else : ?>
+
+				<?php get_template_part( 'loop-error' ); // Loads the loop-error.php template. ?>
+
+			<?php endif; ?>
 
 		</div><!-- .hfeed -->
 
-		<?php get_template_part( 'nav-posts' ); ?>
+		<?php do_atomic( 'close_content' ); // retro-fitted_close_content ?>
+
+		<?php get_sidebar( 'after-content' ); // Loads the sidebar-after-content.php template. ?>
+
+		<?php get_template_part( 'loop-nav' ); // Loads the loop-nav.php template. ?>
 
 	</div><!-- #content -->
 
-	<?php get_sidebar(); ?>
+	<?php do_atomic( 'after_content' ); // retro-fitted_after_content ?>
 
-<?php get_footer(); ?>
+<?php get_footer(); // Loads the footer.php template. ?>

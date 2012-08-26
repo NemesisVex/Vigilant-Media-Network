@@ -85,11 +85,12 @@ class Wickett_Twitter_Widget extends WP_Widget {
 
 		echo "{$before_widget}{$before_title}<a href='" . esc_url( "http://twitter.com/{$account}" ) . "'>" . esc_html($title) . "</a>{$after_title}";
  
-		if ( false === ( $tweets = get_transient( 'widget-twitter-' . $this->number ) ) ) {
+		$tweets = get_transient( 'widget-twitter-' . $this->number );
+		if ( false === $tweets ) {
 			$params = array(
 				'screen_name'=>$account, // Twitter account name
 				'trim_user'=>true, // only basic user data (slims the result)
-				'include_entities'=>false // as of Sept 2010 entities were not included in all applicable Tweets. regex still better
+				'include_entities' => true
 			);
 
 			/**
@@ -109,15 +110,20 @@ class Wickett_Twitter_Widget extends WP_Widget {
 			if ( 200 == $response_code ) {
 				$tweets = wp_remote_retrieve_body( $response );
 				$tweets = json_decode( $tweets, true );
-				$expire = 900;
+				$expire = 900; // 15 minutes
 				if ( !is_array( $tweets ) || isset( $tweets['error'] ) ) {
 					$tweets = 'error';
-					$expire = 300;
+					$expire = 300; // 5 minutes
+				} else {				
+					set_transient( 'widget-twitter-backup-' . $this->number, $tweets, 86400 ); // 1 day
 				}
 			} else {
-				$tweets = 'error';
-				$expire = 300;
-				set_transient( 'widget-twitter-response-code-' . $this->number, $response_code, $expire );
+				$expire = 300; // 5 minutes
+				$tweets = get_transient( 'widget-twitter-backup-' . $this->number );
+				if ( !is_array( $tweets ) || isset( $tweets['error'] ) ) {
+					$tweets = 'error';
+					set_transient( 'widget-twitter-response-code-' . $this->number, $response_code, $expire );
+				}
 			}
 
 			set_transient( 'widget-twitter-' . $this->number, $tweets, $expire );
@@ -142,14 +148,26 @@ class Wickett_Twitter_Widget extends WP_Widget {
 				if ( empty( $tweet['text'] ) )
 					continue;
 
-				$text = make_clickable( esc_html( $tweet['text'] ) );
+				$text = esc_html( $tweet['text'] );
+					
+				// expand t.co links
+				if ( !empty( $tweet['entities']['urls'] ) ) {
+					foreach ( $tweet['entities']['urls'] as $entity_url ) {
+						if ( !empty( $entity_url['expanded_url'] ) ) {
+							$expanded = '<a href="' . esc_url( $entity_url['expanded_url'] ) . '"> ' . esc_html( $entity_url['display_url'] ) . '</a>';
+							$text = str_replace( $entity_url['url'], $expanded, $text );
+						}
+					}
+				}
+
+				$text = make_clickable( $text );
 
 				/*
 				 * Create links from plain text based on Twitter patterns
 				 * @link http://github.com/mzsanford/twitter-text-rb/blob/master/lib/regex.rb Official Twitter regex
 				 */
-				$text = preg_replace_callback( '/(^|[^0-9A-Z&\/]+)(#|\xef\xbc\x83)([0-9A-Z_]*[A-Z_]+[a-z0-9_\xc0-\xd6\xd8-\xf6\xf8\xff]*)/iu',  array( &$this, '_wpcom_widget_twitter_hashtag' ), $text );
-				$text = preg_replace_callback( '/([^a-zA-Z0-9_]|^)([@\xef\xbc\xa0]+)([a-zA-Z0-9_]{1,20})(\/[a-zA-Z][a-zA-Z0-9\x80-\xff-]{0,79})?/u', array( &$this, '_wpcom_widget_twitter_username' ), $text );
+				$text = preg_replace_callback( '/(^|[^0-9A-Z&\/]+)(#|\xef\xbc\x83)([0-9A-Z_]*[A-Z_]+[a-z0-9_\xc0-\xd6\xd8-\xf6\xf8\xff]*)/iu',  array( $this, '_wpcom_widget_twitter_hashtag' ), $text );
+				$text = preg_replace_callback( '/([^a-zA-Z0-9_]|^)([@\xef\xbc\xa0]+)([a-zA-Z0-9_]{1,20})(\/[a-zA-Z][a-zA-Z0-9\x80-\xff-]{0,79})?/u', array( $this, '_wpcom_widget_twitter_username' ), $text );
 				if ( isset( $tweet['id_str'] ) )
 					$tweet_id = urlencode( $tweet['id_str'] );
 				else
