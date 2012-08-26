@@ -1,4 +1,4 @@
-<section class="prepend-1 span-22 append-1 full-column">
+<section class="full-column">
 {if $session->flashget('error')}{catch_error error=$session->flashget('error') color=#F99}{/if}
 {if $session->flashget('msg')}{catch_message msg=$session->flashget('msg') color=#CCF}{/if}
 
