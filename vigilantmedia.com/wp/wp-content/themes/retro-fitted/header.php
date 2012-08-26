@@ -2,9 +2,9 @@
 /**
  * Header Template
  *
- * The header template is generally used on every page of your site. Nearly all other templates call it
- * somewhere near the top of the file. It is used mostly as an opening wrapper, which is closed with the
- * footer.php file. It also executes key functions needed by the theme, child themes, and plugins.
+ * The header template is generally used on every page of your site. Nearly all other templates call it 
+ * somewhere near the top of the file. It is used mostly as an opening wrapper, which is closed with the 
+ * footer.php file. It also executes key functions needed by the theme, child themes, and plugins. 
  *
  * @package Retro-fitted
  * @subpackage Template
@@ -14,47 +14,53 @@
 <html <?php language_attributes(); ?>>
 <head>
 <meta http-equiv="Content-Type" content="<?php bloginfo( 'html_type' ); ?>; charset=<?php bloginfo( 'charset' ); ?>" />
-<title><?php wp_title(); ?> <?php bloginfo( 'name' ); ?></title>
+<title><?php hybrid_document_title(); ?></title>
 
 <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="all" />
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 
-<?php wp_head(); ?>
+<?php wp_head(); // wp_head ?>
 
 </head>
 
-<body <?php body_class(); ?>>
+<body class="<?php hybrid_body_class(); ?>">
+
+	<?php do_atomic( 'open_body' ); // retro-fitted_open_body ?>
 
 	<div id="container">
 
-		<div id="header" class="contain">
+		<?php do_atomic( 'before_header' ); // retro-fitted_before_header ?>
+
+		<div id="header">
+
+			<?php do_atomic( 'open_header' ); // retro-fitted_open_header ?>
 
 			<div class="wrap">
 
-				<?php if ( '' == get_header_image() ) : ?>
-					<div id="branding">
-						<h1 id="site-title"><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-						<div id="site-description"><?php bloginfo( 'description' ); ?></div><!-- #site-description -->
-					</div><!-- #branding -->
-				<?php else : ?>
-					<a id="branding" href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
-						<h1 id="site-title"><?php bloginfo( 'name' ); ?></h1>
-						<div id="site-description"><?php bloginfo( 'description' ); ?></div><!-- #site-description -->
-					</a><!-- #branding -->
+				<div id="branding">
+					<?php hybrid_site_title(); ?>
+					<?php hybrid_site_description(); ?>
+				</div><!-- #branding -->
 
-				<?php endif; ?>
+				<?php do_atomic( 'header' ); // retro-fitted_header ?>
 
 			</div><!-- .wrap -->
+
+			<?php do_atomic( 'close_header' ); // retro-fitted_close_header ?>
+
 		</div><!-- #header -->
+
+		<?php do_atomic( 'after_header' ); // retro-fitted_after_header ?>
+
+		<?php get_template_part( 'menu', 'primary' ); // Loads the menu-primary.php template. ?>
+
+		<?php do_atomic( 'before_main' ); // retro-fitted_before_main ?>
 
 		<div id="main">
 
-			<div class="wrap contain">
+			<div class="wrap">
 
-				<div id="access">
-					<?php wp_nav_menu( array(
-						'theme_location'  => 'primary',
-						'container_class' => 'menu',
-					) ); ?>
-				</div><!-- #access -->
+			<?php do_atomic( 'open_main' ); // retro-fitted_open_main ?>
+
+			<?php if ( current_theme_supports( 'breadcrumb-trail' ) ) breadcrumb_trail( array( 'before' => __( 'You are here:', 'retro-fitted' ) ) ); ?>
