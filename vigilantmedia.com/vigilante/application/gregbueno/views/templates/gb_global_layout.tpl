@@ -3,17 +3,15 @@
 	<head>
 		<title>Greg Bueno{if $page_title}: {$page_title}{/if}</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" href="/images/gbueno.ico" type="image/vnd.microsoft.icon" />
 		<link rel="shortcut icon" href="/images/gbueno.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
-		{if ($is_mobile === true)}
 		<link rel="stylesheet" href="/css/mobile.css" type="text/css" media="screen, projection" />
-		{else}
-		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
-		{/if}
+		{*<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />*}
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.ext.js"></script>
@@ -22,7 +20,7 @@
 	</head>
 	<body>
 
-		<div class="container">
+		<div id="container">
 
 			<div id="masthead">
 				<header id="logo">

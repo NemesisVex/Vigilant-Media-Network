@@ -2,7 +2,7 @@
 
 class Gb extends CI_Controller
 {
-	public $webmaster_email = 'greg@eponymous4.com';
+	public $webmaster_email = 'greg@gregbueno.com';
 	public $site_name = 'gregbueno.com';
 	
 	public function __construct()
@@ -12,56 +12,56 @@ class Gb extends CI_Controller
 		$this->load->library('GbView');
 		
 		$this->vmmailer->to = $this->webmaster_email;
-		$this->vmmailer->redirect = '/index.php/contact/sent/';
+		$this->vmmailer->redirect = '/index.php/gb/contact/sent/';
 		$this->vmmailer->subject_prefix = $this->site_name . ': feedback';
 	}
 
-	function index()
+	public function index()
 	{
 		$this->vmview->display('gb_root_index.tpl');
 	}
 
-	function distractions()
+	public function distractions()
 	{
 		$this->vmview->format_section_head('Distractions');
 		$this->vmview->display('gb_root_distractions.tpl');
 	}
 	
-	function museum()
+	public function museum()
 	{
 		$this->vmview->format_section_head('Blog Museum');
 		$this->vmview->display('gb_root_museum.tpl');
 	}
 	
-	function crux()
+	public function crux()
 	{
 		
 	}
 
-	function profile()
+	public function profile()
 	{
 		header('Location: /', 301);
 	}
 
-	function contact()
+	public function contact()
 	{
 		$this->vmview->format_section_head('Contact');
 		$this->vmview->display('gb_root_contact.tpl');
 	}
 
-	function contact_sent()
+	public function contact_sent()
 	{
 		$this->vmview->format_section_head('Contact');
 		$this->vmview->display('gb_root_contact_sent.tpl');
 	}
 
-	function error($code)
+	public function error($code)
 	{
 		$this->vmview->display_error_page($code, 'gb_error_' . $code . '.tpl');
 	}
 
 	//Processing methods
-	function email()
+	public function email()
 	{
 		$hidden_fields = array('i', 's', 'r', 'm');
 		$shown_fields = array('from_name' => 'n',
