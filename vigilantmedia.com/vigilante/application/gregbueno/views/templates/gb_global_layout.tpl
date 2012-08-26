@@ -10,8 +10,11 @@
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
+		{if !empty($is_mobile)}
 		<link rel="stylesheet" href="/css/mobile.css" type="text/css" media="screen, projection" />
-		{*<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />*}
+		{else}
+		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
+		{/if}
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.ext.js"></script>
