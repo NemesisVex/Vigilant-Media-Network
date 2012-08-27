@@ -9,7 +9,7 @@
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/screen.css" />
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/print.css" media="print" />
 		<!--[if IE]><link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/ie.css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" type="text/css" href="{$config.to_musicwhore}/css/global.css" />
+		<link rel="stylesheet" type="text/css" href="{$config.to_archive}/css/global.css" />
 		<link rel="stylesheet" type="text/css" href="/css/musicwhore.css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.cookie.js"></script>
@@ -120,13 +120,13 @@
 	{/php}
 					<script type="text/javascript">
 					<!--
-					amazon_ad_tag="musicwhoreorg-{if $amazonRnd % 2==0}22{else}20{/if}"; 
-					amazon_ad_width="120"; 
-					amazon_ad_height="240"; 
-					amazon_color_background="666666"; 
-					amazon_color_border="CCCC99"; 
-					amazon_color_logo="000000"; 
-					amazon_color_text="FFFFFF"; 
+					amazon_ad_tag="musicwhoreorg-{if $amazonRnd % 2==0}22{else}20{/if}";
+					amazon_ad_width="120";
+					amazon_ad_height="240";
+					amazon_color_background="666666";
+					amazon_color_border="CCCC99";
+					amazon_color_logo="000000";
+					amazon_color_text="FFFFFF";
 					amazon_color_link="FFCC00";
 					//-->
 					</script>

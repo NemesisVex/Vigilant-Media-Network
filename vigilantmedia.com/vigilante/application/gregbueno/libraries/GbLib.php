@@ -18,7 +18,7 @@ class GbLib {
 		switch (ENVIRONMENT) {
 			case 'development':
 				$this->gb_config['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
-				$this->gb_config['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
+				$this->gb_config['to_vigilante'] = 'http://dev.vigilante.vigilantmedia.com';
 				$this->gb_config['to_mt'] = 'http://dev.mt.vigilantmedia.com';
 		        $this->gb_config['to_wp'] = 'http://wp.vigilantmedia.com';
 				$this->gb_config['to_gregbueno'] = 'http://dev.gregbueno.com';
