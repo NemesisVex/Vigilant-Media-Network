@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -47,10 +47,10 @@
 	var window = this;
 	var Ep4 = function (selector)
 	{
-		this.uri_base = 'http://eponymous4.gregbueno.com';
+		this.uri_base = 'http://eponymous4.com';
 		this.playlist_path = '/audio/_playlists';
-		this.mp3_path = '/audio/_mp3';
-		this.player_path = '/audio/mediaplayer.swf';
+		this.mp3_path = '/music/audio/_mp3';
+		this.player_path = 'http://vigilante.vigilantmedia.com/swf/player.swf';
 		return (this instanceof Ep4) ? this.init_ep4(selector) : new Ep4(selector);
 	};
 	Ep4.prototype =

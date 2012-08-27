@@ -12,8 +12,8 @@
 		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="/css/greg.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="/css/greg_mobile.css" type="text/css" media="screen, projection" />
-		<link rel="stylesheet" href="/css/meisakuki_blueprint.css" type="text/css" />
-		<link rel="stylesheet" href="/css/meisakuki_blueprint_mobile.css" type="text/css" />
+		<link rel="stylesheet" href="/css/meisakuki.css" type="text/css" />
+		<link rel="stylesheet" href="/css/meisakuki_mobile.css" type="text/css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
 		<!--[if lt IE9]<script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script>[/if]-->
 	</head>
@@ -95,7 +95,6 @@
 		</div>
 
 
-		<script type="text/javascript" src="http://track3.mybloglog.com/js/jsserv.php?mblID=2006120810441128"></script>
 {literal}
 		<script type="text/javascript">
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
