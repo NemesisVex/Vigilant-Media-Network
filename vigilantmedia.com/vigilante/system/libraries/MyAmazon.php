@@ -1,5 +1,7 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+require_once('sha256.inc.php');
+
 class MyAmazon
 {
 	var $CI;
@@ -143,12 +145,23 @@ class MyAmazon
 
 		$signature_string = "GET" . chr(10) . $url['host'] . chr(10) . $url['path'] . chr(10) . $request;
 
-		$signature = urlencode(base64_encode(hash_hmac("sha256", $signature_string, $secret_key)));
+		$signature = urlencode(base64_encode(hash_hmac("sha256", $signature_string, $secret_key, true)));
 
 		$request = "http://" . $url['host'] . $url['path'] . "?" . $request . "&Signature=" . $signature;
 
 		return $request;
 	}
 
+	function hmac($key, $data, $hashfunc='sha256')
+	{
+		$blocksize=64;
+
+		if (strlen($key) > $blocksize) $key=pack('H*', $hashfunc($key));
+		$key=str_pad($key, $blocksize, chr(0x00));
+		$ipad=str_repeat(chr(0x36), $blocksize);
+		$opad=str_repeat(chr(0x5c), $blocksize);
+		$hmac = pack('H*', $hashfunc(($key^$opad) . pack('H*', $hashfunc(($key^$ipad) . $data))));
+		return $hmac;
+	}
   }
 ?>
