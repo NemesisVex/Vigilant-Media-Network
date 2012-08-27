@@ -1,7 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once('sha256.inc.php');
-
 class MyAmazon
 {
 	var $CI;
@@ -12,7 +10,7 @@ class MyAmazon
 	var $request_uri;
 	var $auth_request_uri;
 	var $results;
-	
+
 	var $associate_tags = array('us' => 'musicwhore-20',
 						  'jp' => 'musicwhore-22',
 						  'uk' => 'musicwhore-21',
@@ -31,7 +29,7 @@ class MyAmazon
 							   'de' => array('domain' => 'www.amazon.de', 'associateID' => 'webservices-20', 'country' => 'Germany'),
 							   'ca' => array('domain' => 'www.amazon.ca', 'associateID' => 'webservices-20', 'country' => 'Canada'),
 							   'fr' => array('domain' => 'www.amazon.fr', 'associateID' => 'webservices-20', 'country' => 'France'));
-	
+
 	function __construct($locale = 'us', $id = SUBSCRIBER_ID, $id_type = 'SubscriptionId')
 	{
 		$this->CI =& get_instance();
@@ -39,13 +37,13 @@ class MyAmazon
 
 		$args = func_get_args();
 		$secret_key = !empty($args[3]) ? $args[3] : NULL;
-		
+
 		$this->locale = $locale;
 		$this->uri_base = $this->uri_bases[$locale];
 		if (!empty($secret_key)) {$this->secret_access_key = $secret_key;}
-		
+
 		$request_uri = $this->uri_base;
-		
+
 		switch ($id_type)
 		{
 			case 'AccessKey':
@@ -53,10 +51,10 @@ class MyAmazon
 			case 'SubscriptionId':
 				$request_uri .= '&SubscriptionId=' . $id;
 		}
-		
+
 		$this->request_uri = $request_uri;
 	}
-	
+
 	function build_request_uri($operation, $params)
 	{
 		$this->associate_tag = $this->associate_tags[$this->locale];
@@ -66,7 +64,7 @@ class MyAmazon
 		$request_uri .= http_build_query($params);
 		$this->request_uri .= $request_uri;
 	}
-	
+
 	function send_request($request_uri)
 	{
 		$auth_request_uri = $this->auth_get_request(SECRET_ACCESS_KEY, $request_uri, ACCESS_KEY_ID);
@@ -74,44 +72,44 @@ class MyAmazon
 		$this->results = simplexml_load_string($results);
 		$this->auth_request_uri = $auth_request_uri;
 	}
-	
+
 	function item_search($searchIndex='Music', $keywords)
 	{
 		$args = func_get_args();
 		$more_params = !empty($args[2]) ? $args[2] : NULL;
-		
+
 		$params['SearchIndex'] = $searchIndex;
 		$params['Keywords'] = urlencode($keywords);
 		if (!empty($more_params)) {$params = array_merge($params, $more_params);}
-		
+
 		$this->build_request_uri('ItemSearch', $params);
 		$this->send_request($this->request_uri);
 		return $this->results;
 	}
-	
+
 	function item_lookup($item_id)
 	{
 		$args = func_get_args();
 		$more_params = !empty($args[1]) ? $args[1] : NULL;
-		
+
 		$params['ItemId'] = $item_id;
 		if (!empty($more_params)) {$params = array_merge($params, $more_params);}
-		
+
 		$this->build_request_uri('ItemLookup', $params);
 		$this->send_request($this->request_uri);
 		return $this->results;
 	}
-	
+
 	function build_amazon_url($asin, $locale = 'us', $type = 'domain')
 	{
 		$amazon_url = 'http://' . $this->amazon_locale[$locale][$type];
 		switch ($type)
 		{
 			case 'astore':
-				$amazon_url .= '/' . $this->associate_tags[$locale] . '/detail/' . $asin; 
+				$amazon_url .= '/' . $this->associate_tags[$locale] . '/detail/' . $asin;
 				break;
 			case 'domain':
-				$amazon_url .= '/exec/obidos/ASIN/' . $asin . '/detail/' . $this->associate_tags[$locale]; 
+				$amazon_url .= '/exec/obidos/ASIN/' . $asin . '/detail/' . $this->associate_tags[$locale];
 				break;
 		}
 		return $amazon_url;
@@ -145,24 +143,12 @@ class MyAmazon
 
 		$signature_string = "GET" . chr(10) . $url['host'] . chr(10) . $url['path'] . chr(10) . $request;
 
-		$signature = urlencode(base64_encode($this->hmac($secret_key, $signature_string)));
+		$signature = urlencode(base64_encode(hash_hmac("sha256", $signature_string, $secret_key)));
 
 		$request = "http://" . $url['host'] . $url['path'] . "?" . $request . "&Signature=" . $signature;
 
 		return $request;
 	}
-
-	function hmac($key, $data, $hashfunc='sha256')
-	{
-		$blocksize=64;
-
-		if (strlen($key) > $blocksize) $key=pack('H*', $hashfunc($key));
-		$key=str_pad($key, $blocksize, chr(0x00));
-		$ipad=str_repeat(chr(0x36), $blocksize);
-		$opad=str_repeat(chr(0x5c), $blocksize);
-		$hmac = pack('H*', $hashfunc(($key^$opad) . pack('H*', $hashfunc(($key^$ipad) . $data))));
-		return $hmac;
-    }
 
   }
 ?>
