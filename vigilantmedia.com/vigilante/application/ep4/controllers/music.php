@@ -19,7 +19,7 @@ class Music extends CI_Controller
 		$this->page_title .= 'Music';
 		$this->mysmarty->assign('bgImage', 'RL000796.jpg');
 
-		$this->ep4_audio_file_base = '/home/nemesisv/websites/prod/eponymous4.com/www';
+		$this->ep4_audio_file_base = OBSERVANTRECORDS_ROOT_PATH;
 		$this->ep4_audio_url_base = 'http://eponymous4.com';
 		$this->ep4_audio_path_base = '/music/audio';
 	}
@@ -35,7 +35,7 @@ class Music extends CI_Controller
 			$rsDigitals = $this->vigilantedblib->_db_return_smarty_array($rowDigitals);
 			$this->mysmarty->assign('rsDigitals', $rsDigitals);
 		}
-		
+
 		$this->vmview->display('ep4_music_index.tpl');
 	}
 

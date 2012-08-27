@@ -4,7 +4,7 @@
 		<li><a href="#products">Products</a></li>
 		<li><a href="#orders">Sales orders</a></li>
 	</ul>
-	
+
 	<div id="file-info">
 		<form action="/index.php/ep4/file/{if $file_id}update/{$file_id}{else}create{/if}/" enctype="multipart/form-data" method="post">
 
@@ -17,12 +17,12 @@
 				<label>Label:</label>
 				<input type="text" name="file_label" value="{$rsFile->file_label}" size="50" />
 			</p>
-			
+
 			<p>Fill out the following fields if a file has already been uploaded.</p>
 
 			<p>
 				<label>File path:</label>
-				<input type="text" name="file_path" value="{if $rsFile->file_path}{$rsFile->file_path}{else}/home/nemesisv/websites/prod/observantrecords.com/www/files{/if}" size="50" />
+				<input type="text" name="file_path" value="{if $rsFile->file_path}{$rsFile->file_path}{else}{$smarty.const.OBSERVANTRECORDS_FILES_PATH}{/if}" size="50" />
 			</p>
 
 			<p>
@@ -36,14 +36,14 @@
 
 		</form>
 	</div>
-	
+
 	<div id="products">
 	{if $file_id}
 		<p>
 			<a href="javascript:" class="create-product-map"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" alt="[ADD]" /></a>
 			<a href="javascript:" class="create-product-map">Map to a product</a>
 		</p>
-		
+
 	{if $rsProductMaps}
 		<ul class="browse-list">
 		{foreach item=rsProductMap from=$rsProductMaps}
@@ -54,11 +54,11 @@
 			</li>
 		{/foreach}
 		</ul>
-		
+
 	{else}
 		<p>No products have yet been associated.</p>
 	{/if}
-	
+
 	<div id="map-product" title="Create product map">
 		<form action="/index.php/ep4/file/map/{$file_id}/" method="post" name="product-form">
 
@@ -76,7 +76,7 @@
 		<p>A file must be created before products may be associated with it.</p>
 	{/if}
 	</div>
-			
+
 	<div id="orders">
 	{if $file_id}
 	{if $rsOrderMaps}
