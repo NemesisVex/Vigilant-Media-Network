@@ -25,25 +25,25 @@
 	<body>
 		<div id="masthead">
 			<div>
-				<header id="masthead-left" class="span-12">
+				<header id="masthead-left">
 					<h1 id="title"><a href="/">TVwhore.org</a></h1>
 				</header>
-				<nav id="masthead-right" class="span-12 last">
+				<nav id="masthead-right">
 					<form method="get" action="{$config.to_mt}/cgi-bin/mt/mt-search.cgi">
 						<a href="/index.php/tw/about/">About this site</a> &#8226;
 						<a href="/index.php/tw/contact/">Contact</a> |
 						<strong>Search:</strong>
 						<input type="hidden" name="IncludeBlogs" value="{$config.blog_id}">
-						<input type="hidden" name="Template" value="tvsearch">
-						<input id="search" name="search" size="20">
-						<input type="submit" value="Go">
+						<input type="hidden" name="Template" value="tvsearch" />
+						<input id="search" name="search" size="20" />
+						<input type="submit" value="Go" />
 					</form>
 				</nav>
 			</div>
 		</div>
 
 		<div id="content">
-			<div class="container">
+			<div>
 				<section id="body" class="box">
 					<div id="body_text">
 
@@ -58,7 +58,7 @@
 					</div>
 				</section>
 
-				<aside id="sidebar-col-1" class="prepend-1 prepend-top">
+				<aside class="prepend-1 prepend-top">
 					<script type="text/javascript" src="http://embed.technorati.com/embed/v6ayg9gm6x.js"></script>
 
 {if $rsLatest}
