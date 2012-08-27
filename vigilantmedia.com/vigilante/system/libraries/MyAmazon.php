@@ -1,7 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-require_once('sha256.inc.php');
-
 class MyAmazon
 {
 	var $CI;
