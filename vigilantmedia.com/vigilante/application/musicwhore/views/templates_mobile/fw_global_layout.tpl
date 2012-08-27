@@ -25,7 +25,7 @@
 	<body>
 		<div id="masthead">
 			<div>
-				<header id="masthead-left>
+				<header id="masthead-left">
 					<h1 id="title"><a href="/">Filmwhore.org</a></h1>
 				</header>
 				<nav id="masthead-right">
