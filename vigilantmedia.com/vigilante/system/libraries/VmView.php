@@ -45,7 +45,7 @@ class VmView {
 
 		$this->CI = & get_instance();
 		
-		if ($params['use_mobile_templates'] === true) {
+		if ($this->use_mobile_templates === true) {
 			if ($this->CI->agent->is_mobile() == true) {
 				$this->CI->mysmarty->template_dir = APPPATH . "/views/templates_mobile/";
 				$this->CI->mysmarty->compile_dir = APPPATH . '/views/templates_mobile_c';
