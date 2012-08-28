@@ -164,6 +164,7 @@ input[type=text], input[type=password], input[type=email], select, textarea
 	border-radius: 3px;
 	padding: 4px;
 	background-color: #F2F2F2;
+	width: 230px;
 }
 
 table.track-table

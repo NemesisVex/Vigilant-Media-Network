@@ -1,5 +1,5 @@
 {if $rsTrack}
-				<div id="column-1" class="span-14 prepend-1 append-1">
+				<div id="column-1">
 					<hgroup>
 						<h2>Music</h2>
 						<h3>{$rsTrack->song_title}</h3>
@@ -28,7 +28,7 @@
 {parse_line_breaks txt=$rsTrack->song_lyrics}
 {/if}
 				</div>
-				<div id="column-2" class="span-6 prepend-1 append-1 last">
+				<div id="column-2">
 {if $rsRelease}
 					<header>
 						<h4>Available on ...</h4>

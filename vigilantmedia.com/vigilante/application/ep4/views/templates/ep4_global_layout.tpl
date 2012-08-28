@@ -3,6 +3,7 @@
 	<head>
 		<title>Eponymous 4{if $page_title} &raquo; {$page_title}{else} &raquo; Official Site{/if}</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, intial-scale=1.0" />
 		<link rel="alternate" type="application/rss+xml" title="Eponymous 4 News" href="/index.xml" />
 		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -10,8 +11,9 @@
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/facebox.css" type="text/css" media="screen, projection" />
-		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/mobile.css" type="text/css" media="screen and (max-width: 600px)" />
 		<link rel="stylesheet" href="/css/skins/ep4/skin.css" type="text/css" media="screen, projection" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
@@ -52,13 +54,13 @@
 	</head>
 
 	<body>
-		<div id="container" class="container showgrid">
-			<div id="masthead" class="span-22 prepend-1 append-1 last">
-				<header class="span-7">
+		<div id="container" class="container">
+			<div id="masthead">
+				<header>
 					<h1 id="title"><a href="/">eponymous 4</a></h1>
 				</header>
 
-				<nav id="nav-column-1" class="span-10 prepend-top">
+				<nav id="nav-column-1">
 					<ul id="nav-main">
 						<li><a href="/index.php/news/">Blog</a></li>
 						<li><a href="/index.php/music/">Music</a></li>
@@ -68,7 +70,7 @@
 					</ul>
 				</nav>
 
-				<nav id="nav-column-2" class="span-5 last prepend-top">
+				<nav id="nav-column-2">
 					<ul id="nav-social">
 						<li><a href="http://twitter.com/eponymous4/"><img src="{$config.to_vigilante}/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
 						<li><a href="http://facebook.com/eponymous4/"><img src="{$config.to_vigilante}/images/icons/facebook.png" alt="[Facebook]" title="[Facebook]" /></a></li>
@@ -95,7 +97,7 @@
 			<div id="content">
 {if $content_template}{include file=$content_template}{/if}
 			</div>
-			
+
 			<img src="/images/exm_vol_03_restraint.jpg" class="bg" alt="[Eponymous 4 Background]"/>
 		</div>
 

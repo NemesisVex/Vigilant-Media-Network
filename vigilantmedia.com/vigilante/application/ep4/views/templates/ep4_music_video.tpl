@@ -1,4 +1,4 @@
-				<div id="column-1" class="span-14 prepend-1 append-1">
+				<div id="column-1">
 
 					<header>
 						<h2>Video</h2>
@@ -51,5 +51,5 @@ $(function () {
 {/literal}
 				</div>
 
-				<div id="column-2" class="span-6 prepend-1 append-1 last">
+				<div id="column-2">
 				</div>

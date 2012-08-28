@@ -1,4 +1,4 @@
-				<div id="column-1" class="span-14 prepend-1 append-1">
+				<div id="column-1">
 
 					<header>
 						<h2>Contact</h2>
@@ -7,7 +7,7 @@
 					<p>Thanks for e-mailing!</p>
 				</div>
 
-				<div id="column-2" class="span-6 prepend-1 append-1 last">
+				<div id="column-2">
 					<h3>More ways to get in touch</h3>
 					
 					<ul>

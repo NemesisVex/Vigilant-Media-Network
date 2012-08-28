@@ -1,4 +1,4 @@
-				<div id="column-1" class="span-14 prepend-1 append-1">
+				<div id="column-1">
 					<hgroup>
 						<h2>Music</h2>
 						<h3>{$rsRelease->album_title}</h3>
@@ -33,7 +33,7 @@
 
 				</div>
 
-				<div id="column-2" class="span-6 prepend-1 append-1 last">
+				<div id="column-2">
 					<p>
 						<img src="/images/_covers/_color_front_200_{$rsRelease->album_image}" alt="[{$rsRelease->album_title}]" title="[{$rsRelease->album_title}]" class="album-cover" width="200" height="200">
 					</p>
