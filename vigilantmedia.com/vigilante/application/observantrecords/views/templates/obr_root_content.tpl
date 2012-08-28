@@ -4,7 +4,7 @@
 {if $smarty.session.is_logged_in==true}
 {if $root_content}{include file=$root_content}{/if}
 {else}
-			<div id="column-1" class="span-15 append-1">
+			<div id="column-1">
 {include file=obr_global_header.tpl}
 
 					<p>To access site administration, please log in.</p>
@@ -13,6 +13,6 @@
 
 			</div>
 
-			<div id="column-2" class="span-8 last">
+			<div id="column-2">
 			</div>
 {/if}

@@ -1,4 +1,4 @@
-			<div id="column-1" class="span-15 append-1">
+			<div id="column-1">
 {include file=obr_global_header.tpl}
 {if $rsNews}
 {foreach item=rsNewsItem from=$rsNews}
@@ -34,7 +34,7 @@
 
 			</div>
 
-			<div id="column-2" class="span-8 last">
+			<div id="column-2">
 				<div id="bandcamp_player">[]</div>
 
 			{literal}

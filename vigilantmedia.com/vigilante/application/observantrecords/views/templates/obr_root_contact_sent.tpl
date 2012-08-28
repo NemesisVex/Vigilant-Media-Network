@@ -1,4 +1,4 @@
-				<div id="column-1" class="span-15 append-1">
+				<div id="column-1">
 
 					<header>
 						<h2>Contact</h2>
@@ -7,5 +7,5 @@
 					<p>Thanks for e-mailing!</p>
 				</div>
 
-				<div id="column-2" class="span-8 last">
+				<div id="column-2">
 				</div>
