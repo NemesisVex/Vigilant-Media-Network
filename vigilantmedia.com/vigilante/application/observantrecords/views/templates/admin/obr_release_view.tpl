@@ -1,5 +1,5 @@
 {include file=obr_global_header.tpl}
-<div id="column-1" class="span-17 append-1">
+<div id="admin-column-1">
 
 	{if !empty($rsRelease)}
 	<p>
@@ -151,7 +151,7 @@
 	{/if}
 </div>
 
-<div id="column-2" class="span-6 last">
+<div id="admin-column-2">
 	{if !empty($rsRelease)}
 	<p>
 		<img src="/images/_covers/_exm_front_200_{if !empty($rsRelease->release_image)}{$rsRelease->release_image}{else}tbd.jpg{/if}" />

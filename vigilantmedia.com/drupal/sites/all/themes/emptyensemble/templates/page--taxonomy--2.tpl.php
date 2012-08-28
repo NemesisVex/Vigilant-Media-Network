@@ -1,4 +1,4 @@
-		<div id="container" class="container">
+		<div id="container">
 			<div id="masthead">
 				<header>
 					<?php if ($site_name): ?>
@@ -27,7 +27,7 @@
 			</div>
 
 			<div id="content">
-				<div class="span-22 prepend-1 append-1 last">
+				<div id="music-index">
 				<?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 				<a id="main-content"></a>
 				<?php print render($title_prefix); ?>

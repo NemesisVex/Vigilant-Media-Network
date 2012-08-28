@@ -3,7 +3,7 @@
     Created on : Jul 31, 2012, 9:14:47 PM
     Author     : Greg Bueno
     Description:
-        Purpose of the stylesheet follows.
+        Control layout for desktop web browsers.
 */
 
 #masthead {
@@ -50,6 +50,11 @@
 	padding: 0;
 }
 
+#container {
+	width: 950px;
+	margin: 0 auto;
+}
+
 #content {
 	float: left;
 	margin-right: 0;
@@ -57,7 +62,7 @@
 
 #column-1 {
 	float: left;
-	width: 630px;
+	width: 590px;
 	margin-right: 10px;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -65,13 +70,21 @@
 
 #column-2 {
 	float: left;
-	width: 220px;
+	width: 320px;
 	margin-right: 0px;
 }
 
 #splash {
 	width: 960px;
 	margin-right: 0;
+}
+
+#music-index {
+	float: left;
+	width: 870px;
+	margin-right: 0;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
 .inline-list {

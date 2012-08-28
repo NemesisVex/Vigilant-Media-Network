@@ -1,9 +1,9 @@
-				<div id="column-1" class="span-22 prepend-1 append-1">
+				<div id="music-index">
 					<header>
 						<h2>Music</h2>
 					</header>
 
-					
+
 {if $rsDigitals}
 					<ul class="album-list">
 {foreach key=e item=rsDigital from=$rsDigitals name=digital}

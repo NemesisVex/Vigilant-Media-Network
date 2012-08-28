@@ -1,4 +1,4 @@
-		<div id="container" class="container">
+		<div id="container">
 			<div id="masthead">
 				<header>
 					<?php if ($site_name): ?>
@@ -27,7 +27,7 @@
 			</div>
 
 			<div id="content">
-				<div id="column-1" class="span-15 append-1">
+				<div id="column-1">
 				<?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 				<a id="main-content"></a>
 				<?php print render($title_prefix); ?>
@@ -40,7 +40,7 @@
 				<?php //print $feed_icons; ?>
 				</div>
 
-				<div id="column-2" class="span-8 last">
+				<div id="column-2">
 				<?php if ($page['sidebar_first']): ?>
 					<?php print render($page['sidebar_first']); ?>
 				<?php endif; ?>

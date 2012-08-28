@@ -19,53 +19,67 @@ body {
 	color: #000;
 }
 
+.container {
+	width: auto;
+	margin: 0 auto;
+}
+
 #masthead {
-	float: left;
-	width: 870px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	padding-left: 40px;
 	padding-right: 40px;
 }
 
 #masthead header {
-	float: left;
-	width: 270px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
 }
 
 #nav-column-1 {
-	float: left;
-	width: 390px;
-	margin-right: 10px;
+	float: none;
+	width: auto;
+	margin-right: 0;
 	margin-top: 1.5em;
 }
 
 #nav-column-2 {
-	float: left;
-	width: 190px;
-	margin-right: 0px;
+	float: none;
+	width: auto;
+	margin-right: 0;
 	margin-top: 1.5em;
 }
 
 #masthead ul {
 	list-style-type: none;
 }
+
 #nav-main li {
-	float: left;
+	float: none;
+	display: block;
 	margin: 0;
 	padding: 0;
-	margin-left: 24px;
+	margin-left: 0;
 }
 #nav-social li {
-	float: left;
+	float: none;
+	display: inline-block;
 	margin: 0;
 	padding: 0;
 	margin-left: 6px;
 }
 
+#content {
+	float: none;
+	width: auto;
+	margin-right: 0px;
+}
+
 #content #featured {
-	float: left;
-	width: 870px;
+	float: none;
+	width: auto;
 	margin-right: 0px;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -73,24 +87,24 @@ body {
 }
 
 #content #column-1 {
-	float: left;
-	width: 550px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
 	padding-left: 40px;
 	padding-right: 40px;
 }
 
 #content #column-2 {
-	float: left;
-	width: 230px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	padding-left: 40px;
 	padding-right: 40px;
 }
 
 #content #music-index {
-	float: left;
-	width: 870px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -105,6 +119,7 @@ label
 	float: left;
 	font-weight: bold;
 	width: 150px;
+	margin-right: 10px;
 }
 
 label.error, span.error
@@ -118,6 +133,7 @@ input[type=text], input[type=email], select, textarea
 	font-size: 100%;
 	font-family: inherit;
 	border: 1px solid #402C29;
+	width: 230px;
 }
 
 img.bg

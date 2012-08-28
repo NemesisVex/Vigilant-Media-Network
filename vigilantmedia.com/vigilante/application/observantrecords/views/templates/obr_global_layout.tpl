@@ -3,13 +3,15 @@
 	<head lang="en-us">
 		<title>Observant Records{if $page_title} &raquo; {$page_title}{/if}</title>
 		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/mobile.css" type="text/css" media="screen and (max-width: 600px)" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/jquery.autocomplete.css" type="text/css" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/js/lib/thickbox.css" type="text/css" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/js/ui/css/smoothness/jquery-ui-1.8.23.custom.css" type="text/css" />
@@ -24,13 +26,13 @@
 	</head>
 
 	<body>
-		<div id="container" class="container">
-			<div id="masthead" class="prepend-top">
-				<header class="span-16 prepend-4 append-4 last">
-					<a href="/"><img src="/images/observant_records_logo.png" alt="[Observant Records]" /></a>
+		<div id="container">
+			<div id="masthead">
+				<header id="logo">
+					<a href="/"><img src="/images/observant_records_logo.png" alt="[Observant Records]" id="observant-records-logo" /></a>
 				</header>
 
-				<nav id="nav-column-1" class="span-9 prepend-4 centered">
+				<nav id="nav-column-1">
 					<ul id="nav-main">
 						<li><a href="/index.php/news/">Blog</a></li>
 						<li><a href="{$config.to_observantshop}/">Shop</a></li>
@@ -39,7 +41,7 @@
 					</ul>
 				</nav>
 
-				<nav id="nav-column-2" class="span-7 append-4 last centered">
+				<nav id="nav-column-2">
 					<ul id="nav-social">
 						<li><a href="http://twitter.com/ObservantRecs"><img src="{$config.to_vigilante}/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
 						<li><a href="http://youtube.com/user/observantrecords"><img src="{$config.to_vigilante}/images/icons/youtube.png" alt="[YouTube]" title="[YouTube]" /></a></li>
@@ -48,11 +50,11 @@
 				</nav>
 			</div>
 
-			<div id="content" class="span-24 last">
+			<div id="content">
 			{if $content_template}{include file=$content_template}{/if}
 			</div>
 
-			<footer class="span-24 last centered">
+			<footer class="centered">
 				<p>&copy; {'now'|date_format:"%Y"} Observant Records</p>
 			</footer>
 		</div>

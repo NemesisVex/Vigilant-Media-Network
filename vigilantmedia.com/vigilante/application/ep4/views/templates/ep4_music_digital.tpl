@@ -1,5 +1,5 @@
 {if $rsRelease->release_is_visible}
-				<div id="column-1" class="span-14 prepend-1 append-1">
+				<div id="column-1">
 					<hgroup>
 						<h2>Music</h2>
 						<h3>{$album_title}</h3>
@@ -60,7 +60,7 @@
 
 				</div>
 
-				<div id="column-2" class="span-6 prepend-1 append-1 last">
+				<div id="column-2">
 					<p>
 {assign var=wrp_file value=$config.ep4_cover_root_path|cat:"/_exm_front_200_"|cat:$rsRelease->album_image}
 {assign var=exm_file value=$config.ep4_cover_root_path|cat:"/_exm_front_342_"|cat:$rsRelease->album_image}

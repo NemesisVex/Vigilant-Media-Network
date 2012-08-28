@@ -1,4 +1,4 @@
-				<div id="column-1" class="span-15 append-1">
+				<div id="column-1">
 {include file=obr_global_header.tpl}
 
 {if $rsNews}
@@ -34,7 +34,7 @@
 {/if}
 				</div>
 
-				<div id="column-2" class="span-8 last">
+				<div id="column-2">
 					<header>
 						<h3>More News</h3>
 					</header>
@@ -44,5 +44,5 @@
 						<li> <a href="/index.xml" class="feed">RSS</a></li>
 					</ul>
 				</div>
-					
+
 				<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>

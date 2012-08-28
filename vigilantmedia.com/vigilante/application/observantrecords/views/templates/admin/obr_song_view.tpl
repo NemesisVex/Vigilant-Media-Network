@@ -1,4 +1,4 @@
-<div id="column-1" class="span-17 append-1">
+<div id="admin-column-1">
 {include file=obr_global_header.tpl}
 
 	{if !empty($rsSong)}
@@ -49,5 +49,5 @@
 	{/if}
 </div>
 
-<div id="column-2" class="span-6 last">
+<div id="admin-column-2">
 </div>

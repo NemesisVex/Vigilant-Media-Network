@@ -1,6 +1,6 @@
 {include file=obr_global_header.tpl}
 
-<div id="column-1" class="span-17 append-1">
+<div id="admin-column-1">
 		<form action="/index.php/admin/album/{if $album_id}update/{$album_id}{else}create{/if}/{$album_artist_id}/" method="post" name="album">
 			<p>
 				<input type="submit" value="Save" class="button" />
@@ -82,7 +82,7 @@
 {/literal}
 </div>
 
-<div id="column-2" class="span-6 last">
+<div id="admin-column-2">
 	{if !empty($rsAlbum)}
 	<p>
 		<img src="/images/_covers/_exm_front_200_{if !empty($rsAlbum->album_image)}{$rsAlbum->album_image}{else}tbd.jpg{/if}" alt="[{$rsAlbum->album_title}]" title="{$rsAlbum->album_title}]" />
