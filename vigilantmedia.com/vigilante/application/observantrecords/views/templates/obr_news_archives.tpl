@@ -1,4 +1,4 @@
-				<div id="column-1" class="span-15 append-1">
+				<div id="column-1">
 					<hgroup>
 						<header>
 							<h2>Blog</h2>
@@ -7,7 +7,7 @@
 							<h3>{$displayDate}</h3>
 						</header>
 					</hgroup>
-							
+
 {if $rsNews}
 {foreach item=rsNewsItem from=$rsNews}
 					<section>
@@ -41,11 +41,11 @@ No entries written for this year.
 {/if}
 				</div>
 
-				<div id="column-2" class="span-8 last">
+				<div id="column-2">
 					<header>
 						<h3>Browse by year</h3>
 					</header>
-					
+
 					<ul>
 {foreach item=archiveNav from=$archiveNav name=archive}
 						<li><a href="/index.php/news/archives/{$archiveNav}/">{$archiveNav}</a></li>

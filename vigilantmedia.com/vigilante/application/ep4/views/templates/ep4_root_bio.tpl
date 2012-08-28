@@ -1,4 +1,4 @@
-				<div id="column-1" class="span-14 prepend-1 append-1">
+				<div id="column-1">
 
 					<header>
 						<h2>About Eponymous 4</h2>
@@ -28,7 +28,7 @@
 
 				</div>
 
-				<div id="column-2" class="span-6 prepend-1 append-1 last">
+				<div id="column-2">
 					<p>
 						<img src="/images/bio_wrp_vol_03_restraint.jpg" alt="[Eponymous 4]" title="[Eponymous 4]" align="right" class="right">
 					</p>

@@ -35,7 +35,7 @@ img.bg
 
 #container {
 	display: block;
-	width: 950px;
+	width: auto;
 	margin: 0 auto;
 }
 
@@ -47,36 +47,48 @@ img.bg
 	list-style-type: none;
 }
 
+#observant-records-logo {
+	width: 319px;
+}
+
 #masthead #logo {
-	float: left;
-	width: 630px;
+	float: none;
+	width: auto;
 	margin-right: 0px;
-	padding-left: 160px;
-	padding-right: 160px;
+	margin-bottom: 1.5em;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 #nav-column-1 {
-	float: left;
-	width: 350px;
-	margin-right: 10px;
-	padding-left: 160px;
-	text-align: center;
+	float: none;
+	width: auto;
+	margin-right: 0px;
+	padding-left: 40px;
+	padding-right: 40px;
+	text-align: left;
 }
 
 #nav-column-2 {
-	float: left;
-	width: 270px;
+	float: none;
+	width: auto;
 	margin-right: 0px;
-	padding-right: 160px;
-	text-align: center;
+	padding-left: 40px;
+	padding-right: 40px;
+	text-align: left;
+}
+
+#nav-main {
+	list-style-type: disc;
 }
 
 #nav-main li {
-	display: inline-block;
+	display: block;
 	margin: 0;
 	padding: 0;
-	margin-left: 24px;
+	margin-left: 0;
 }
+
 #nav-social li {
 	display: inline-block;
 	margin: 0;
@@ -85,35 +97,41 @@ img.bg
 }
 
 #content {
-	float: left;
-	width: 950px;
+	float: none;
+	width: auto;
 	margin-right: 0px;
 }
 
 #content #column-1 {
-	float: left;
-	width: 590px;
-	margin-right: 10px;
+	float: none;
+	width: auto;
+	margin-right: 0px;
+	padding-left: 40px;
 	padding-right: 40px;
 }
 
 #content #column-2 {
-	float: left;
-	width: 310px;
+	float: none;
+	width: auto;
 	margin-right: 0px;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
 #content #admin-column-1 {
-	float: left;
-	width: 670px;
-	margin-right: 10px;
+	float: none;
+	width: auto;
+	margin-right: 0px;
+	padding-left: 40px;
 	padding-right: 40px;
 }
 
 #content #admin-column-2 {
-	float: left;
-	width: 230px;
+	float: none;
+	width: auto;
 	margin-right: 0px;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
 #album_player {
@@ -121,8 +139,8 @@ img.bg
 }
 
 footer {
-	float: left;
-	width: 950px;
+	float: none;
+	width: auto;
 	margin-right: 0px;
 }
 
@@ -146,6 +164,7 @@ input[type=text], input[type=password], input[type=email], select, textarea
 	border-radius: 3px;
 	padding: 4px;
 	background-color: #F2F2F2;
+	width: 230px;
 }
 
 table.track-table

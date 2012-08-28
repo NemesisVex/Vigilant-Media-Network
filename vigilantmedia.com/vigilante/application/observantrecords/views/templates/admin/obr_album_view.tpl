@@ -1,6 +1,6 @@
 {include file=obr_global_header.tpl}
 
-<div id="column-1" class="span-17 append-1">
+<div id="admin-column-1">
 	{if !empty($rsAlbum)}
 	<p>
 		<a href="/index.php/admin/album/edit/{$album_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
@@ -76,7 +76,7 @@
 	{/if}
 </div>
 
-<div id="column-2" class="span-6 last">
+<div id="admin-column-2">
 	{if !empty($rsAlbum)}
 	<p>
 		<img src="/images/_covers/_exm_front_200_{if !empty($rsAlbum->album_image)}{$rsAlbum->album_image}{else}tbd.jpg{/if}" />

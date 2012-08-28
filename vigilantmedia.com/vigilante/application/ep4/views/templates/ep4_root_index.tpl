@@ -20,7 +20,7 @@
 <![endif]-->
 
 {if $rsReleases}
-				<div id="featured" class="span-22 append-1 prepend-1 append-bottom last">
+				<div id="featured">
 
 					<header>
 						<h2>Music</h2>
@@ -45,7 +45,7 @@
 				</div>
 {/if}
 
-				<div id="column-1" class="span-14 prepend-1 append-1">
+				<div id="column-1">
 
 					<header>
 						<h2>Blog</h2>
@@ -83,7 +83,7 @@
 {/if}
 				</div>
 
-				<div id="column-2" class="span-6 prepend-1 append-1 last">
+				<div id="column-2">
 					<header>
 						<h2>Links</h2>
 					</header>
