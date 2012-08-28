@@ -3,9 +3,11 @@ body
 	background-color: #0052A3;
 }
 
-input, select, textarea
+input[type=text], input[type=password], select, textarea
 {
 	border: 1px solid #0088C2;
+	border-radius: 4px;
+	padding: 3px;
 }
 
 input[type=submit], input[type=reset], input[type=button]
