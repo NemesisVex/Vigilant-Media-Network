@@ -22,7 +22,7 @@ a, a:focus
 	text-decoration: none;
 }
 
-input, select, textarea
+input[type=text], input[type=password], input[type=submit], select, textarea
 {
 	background-color: #000;
 	color: #FFF;
