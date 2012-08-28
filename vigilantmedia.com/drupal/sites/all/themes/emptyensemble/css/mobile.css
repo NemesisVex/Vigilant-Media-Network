@@ -1,15 +1,18 @@
 #container {
+	width: auto;
 	margin: 0 auto;
 }
 
 #column-1 {
+	width: auto;
 }
 
 #column-2 {
+	width: auto;
 }
 
 #masthead {
-	width: 320px;
+	width: auto;
 	margin-right: 0;
 	margin-bottom: 1.5em;
 	padding-left: 40px;
@@ -27,3 +30,22 @@
 #nav-social {
 	margin-right: 0;
 }
+
+#nav-social ul, #nav-main ul {
+	margin-top: 1.5em;
+	list-style-type: none;
+}
+
+#nav-social ul li {
+	float: left;
+	margin: 0 6px 0 0;
+	padding: 0;
+}
+
+#nav-main ul li {
+	float: left;
+	margin: 0 24px 0 0;
+	padding: 0;
+}
+
+
