@@ -15,19 +15,20 @@
 	width: auto;
 	margin-right: 0;
 	margin-bottom: 1.5em;
-	padding-left: 40px;
-	padding-right: 40px;
 }
 
 #masthead header {
+	width: auto;
 	margin-right: 10px;
 }
 
 #nav-main {
+	width: auto;
 	margin-right: 10px;
 }
 
 #nav-social {
+	width: auto;
 	margin-right: 0;
 }
 
@@ -37,15 +38,14 @@
 }
 
 #nav-social ul li {
-	float: left;
+	display: inline-block;
 	margin: 0 6px 0 0;
 	padding: 0;
 }
 
 #nav-main ul li {
-	float: left;
+	display: inline-block;
 	margin: 0 24px 0 0;
 	padding: 0;
 }
-
 
