@@ -54,3 +54,21 @@ Third-party libraries
 ~~~~~~~~~~~~~~~~~~~~~
 
 Vigilant Media Network sites use jQuery and Blueprint CSS, both of which are also served from the ``vigilante`` folder.
+
+Vigilant Media Network sites
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* eponymous4.com_
+* emptyensemble.com_
+* gregbueno.com_
+* musicwhore.org_
+* observantrecords.com_
+* vigilantmedia.com_
+
+.. _eponymous4.com: http://eponymous4.com/
+.. _emptyensemble.com: http://emptyensemble.com/
+.. _filmwhore.org: http://filmwhore.org/
+.. _gregbueno.com: http://gregbueno.com/
+.. _musicwhore.org: http://musicwhore.org/
+.. _observantrecords.com: http://observantrecords.com/
+.. _vigilantmedia.com: http://vigilantmedia.com/
