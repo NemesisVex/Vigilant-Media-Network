@@ -6,7 +6,12 @@ if (!defined('BASEPATH'))
 /**
  * VmMailer
  *
+ * 
+ * @package CodeIgniter
+ * @subpackage Vigilant Media Network
+ * @category Libraries
  * @author Greg Bueno
+ * @copyright (c) 2012 Greg Bueno
  */
 class VmMailer {
 
