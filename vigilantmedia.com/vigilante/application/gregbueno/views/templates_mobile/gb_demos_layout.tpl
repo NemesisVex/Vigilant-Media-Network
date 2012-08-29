@@ -5,13 +5,13 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
-		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+		<!--[if lt IE 8]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="/css/demos.css" type="text/css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
 		<script type="text/javascript" src="{$config.to_eponymous4}/js/swfobject_eponymous4.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
-		<!--[if lt IE9]<script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script>[/if]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script><![endif]-->
 {literal}
 		<script type="text/javascript">
 		var base_url = 'http://eponymous4.gregbueno.com';

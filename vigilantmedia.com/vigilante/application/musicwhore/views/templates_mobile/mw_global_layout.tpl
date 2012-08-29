@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/screen.css" />
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/print.css" media="print" />
-		<!--[if IE]><link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/blueprint/ie.css" media="screen, projection" /><![endif]-->
+		<!--[if lt IE 8]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" type="text/css" href="{$config.to_archive}/css/global.css" />
 		<link rel="stylesheet" type="text/css" href="{$config.to_archive}/css/global_mobile.css" />
 		<link rel="stylesheet" type="text/css" href="/css/musicwhore.css" />
@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.ext.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.validate.pack.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
-		<!--[if lt IE9]<script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script>[/if]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script><![endif]-->
 	</head>
 	<body>
 		<div id="masthead">

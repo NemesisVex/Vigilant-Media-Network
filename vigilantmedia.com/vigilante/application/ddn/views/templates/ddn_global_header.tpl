@@ -5,7 +5,7 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="{$config.to_vigilante}/includes/blueprint/screen.css" type="text/css" media="screen, projection" />
 <link rel="stylesheet" href="{$config.to_vigilante}/includes/blueprint/print.css" type="text/css" media="print" />
-<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/includes/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+<!--[if IE 8]><link rel="stylesheet" href="{$config.to_vigilante}/includes/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 <link rel="stylesheet" href="{$config.to_vigilante}/includes/jquery.jcarousel.css" type="text/css" media="screen, projection" />
 <link rel="stylesheet" href="/includes/ddn_blueprint.css" type="text/css" media="screen, projection" />
 <link rel="stylesheet" href="/includes/jScrollPane.css" type="text/css" media="screen, projection" />
