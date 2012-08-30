@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
-		<!--[if IE]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+		<!--[if lt IE 8]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="/css/eponymous4.css" type="text/css" media="screen" />
 		<link rel="stylesheet" href="/css/eponymous4_mobile.css" type="text/css" media="screen" />
 		<!--[if IE]><link rel="stylesheet" href="/css/eponymous4_ie.css" type="text/css" media="screen, projection" /><![endif]-->
@@ -21,7 +21,7 @@
 		<script type="text/javascript" src="/js/eponymous4.js"></script>
 		<script type="text/javascript" src="/js/swfobject_eponymous4.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
-		<!--[if lt IE9]<script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script>[/if]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script><![endif]-->
 	</head>
 
 	<body>
