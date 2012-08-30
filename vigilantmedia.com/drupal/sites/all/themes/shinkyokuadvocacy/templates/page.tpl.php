@@ -1,6 +1,6 @@
 		<div id="container" class="container">
-			<div id="masthead">
-				<header>
+			<div id="masthead" class="prepend-top">
+				<header class="centered">
 					<?php if ($site_name): ?>
 					<h1 id="title">
 						<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">

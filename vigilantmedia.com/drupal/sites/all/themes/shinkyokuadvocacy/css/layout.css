@@ -1,4 +1,4 @@
-/* 
+/*
     Document   : layout
     Created on : Aug 29, 2012, 9:23:54 PM
     Author     : Greg Bueno
@@ -6,7 +6,7 @@
         Layout style rules for Shinkyoku Advocacy
 */
 
-root { 
-    display: block;
+.centered {
+	text-align: center;
 }
 

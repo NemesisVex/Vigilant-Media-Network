@@ -1,5 +1,5 @@
 		<div id="container" class="container">
-			<div id="masthead" class="prepend-top">
+			<div id="masthead" class="prepend-top centered">
 				<header>
 					<?php if ($site_name): ?>
 					<h1 id="title">
@@ -12,7 +12,7 @@
 			</div>
 
 			<div id="content">
-				<div class="span-24 last centered">
+				<div class="span-24 last">
 				<?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 				<a id="main-content"></a>
 				<?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
