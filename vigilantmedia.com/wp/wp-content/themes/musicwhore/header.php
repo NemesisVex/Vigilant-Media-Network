@@ -10,7 +10,7 @@
 		<link rel="shortcut icon" href="<?php bloginfo('stylesheet_directory'); ?>/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="<?php echo get_vigilante_uri(); ?>/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="<?php echo get_vigilante_uri(); ?>/css/blueprint/print.css" type="text/css" media="print" />
-		<!--[if IE]><link rel="stylesheet" href="<?php echo get_vigilante_uri(); ?>/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+		<!--[if lt IE 8]><link rel="stylesheet" href="<?php echo get_vigilante_uri(); ?>/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/typography.css" type="text/css" media="screen, projection" />
 		<?php if (is_mobile()): ?>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/mobile.css" type="text/css" media="screen, projection" />
@@ -19,7 +19,7 @@
 		<?php endif; ?>
 		<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/jquery.js"></script>
 		<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/modernizr-1.6.min.js"></script>
-		<!--[if lt IE9]<script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/html5.js"></script>[/if]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="<?php echo get_vigilante_uri(); ?>/js/html5.js"></script><![endif]-->
 		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
 	<?php
 		if ( is_singular() && get_option( 'thread_comments' ) )

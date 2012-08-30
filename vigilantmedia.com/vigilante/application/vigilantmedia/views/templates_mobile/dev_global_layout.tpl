@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="{$config.to_vigilantmedia}/css/global.css" />
 		<link rel="stylesheet" type="text/css" href="/css/vigilante.css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
-		<!--[if lt IE9]<script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script>[/if]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script><![endif]-->
 	</head>
 
 	<body>

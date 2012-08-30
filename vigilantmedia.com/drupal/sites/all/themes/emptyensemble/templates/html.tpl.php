@@ -54,8 +54,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/print.css" type="text/css" media="print" />
-		<!--[if IE]><link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-		<!--[if lt IE9]<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/html5.js"></script>[/if]-->
+		<!--[if lt IE 8]><link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/html5.js"></script><![endif]-->
 		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/facebox.css" type="text/css" media="screen, projection" />
 		<?php print $styles; ?>
 		<?php print $scripts; ?>
