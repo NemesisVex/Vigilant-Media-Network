@@ -9,7 +9,7 @@
 						<li><a href="{$config.to_eponymous4}/">Eponymous 4</a></li>
 						<li><a href="{$config.to_emptyensemble}/">Empty Ensemble</a></li>
 						<li><a href="{$config.to_observant}/">Observant Records</a></li>
-{if $smarty.const.ENVIRONMENT == 'development'}						<li><a href="{$config.to_shinkyokuadvocacy}/">Shinkyoku Advocacy</a></li>{/if}
+						<li><a href="{$config.to_shinkyokuadvocacy}/">Shinkyoku Advocacy</a></li>
 					</ul>
 				</section>
 
