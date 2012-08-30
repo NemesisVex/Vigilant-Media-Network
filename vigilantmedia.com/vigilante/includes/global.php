@@ -12,7 +12,7 @@ switch (ENVIRONMENT) {
         $config_url_base['to_gregbueno'] = 'http://dev.gregbueno.com';
         $config_url_base['to_eponymous4'] = 'http://dev.eponymous4.com';
         $config_url_base['to_archive'] = 'http://dev.archive.musicwhore.org';
-        $config_url_base['to_musicwhore'] = 'http://dev.musicwhore.org';
+        $config_url_base['to_musicwhore'] = 'http://musicwhore.wp.vigilantmedia.com';
         $config_url_base['to_filmwhore'] = 'http://dev.film.musicwhore.org';
         $config_url_base['to_tvwhore'] = 'http://dev.tv.musicwhore.org';
         $config_url_base['to_journalcon'] = 'http://dev.journalcon.austin-stories.com';
@@ -32,7 +32,7 @@ switch (ENVIRONMENT) {
         $config_url_base['to_gregbueno'] = 'http://test.gregbueno.com';
         $config_url_base['to_eponymous4'] = 'http://test.eponymous4.com';
         $config_url_base['to_archive'] = 'http://test.archive.musicwhore.org';
-        $config_url_base['to_musicwhore'] = 'http://test.musicwhore.org';
+        $config_url_base['to_musicwhore'] = 'http://musicwhore.wp-test.vigilantmedia.com';
         $config_url_base['to_filmwhore'] = 'http://test.film.musicwhore.org';
         $config_url_base['to_tvwhore'] = 'http://test.tv.musicwhore.org';
         $config_url_base['to_journalcon'] = 'http://test.journalcon.austin-stories.com';
