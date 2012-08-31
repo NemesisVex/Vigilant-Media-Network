@@ -1,10 +1,10 @@
-		<div id="container" class="container">
-			<div id="masthead">
-				<header>
+		<div id="container">
+			<div id="masthead" class="prepend-top">
+				<header class="centered">
 					<?php if ($site_name): ?>
 					<h1 id="title">
 						<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
-							<img src="<?php print $logo; ?>" alt="[<?php echo $site_name; ?>]" title="[<?php echo $site_name; ?>]" />
+							<img src="<?php print $logo; ?>" alt="[<?php echo $site_name; ?>]" title="[<?php echo $site_name; ?>]" id="shinkyoku-advocacy-logo" />
 						</a>
 					</h1>
 					<?php endif; ?>
@@ -18,7 +18,7 @@
 			</div>
 
 			<div id="content">
-				<div id="column-1">
+				<div class="full-column">
 				<?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 				<a id="main-content"></a>
 				<?php print render($title_prefix); ?>
@@ -31,6 +31,9 @@
 				<?php //print $feed_icons; ?>
 				</div>
 
+<?php
+/*
+ *
 				<div id="column-2">
 				<?php if ($page['sidebar_first']): ?>
 					<?php print render($page['sidebar_first']); ?>
@@ -40,6 +43,7 @@
 					<?php print render($page['sidebar_second']); ?>
 				<?php endif; ?>
 				</div>
-
+ */
+?>
 			</div>
 		</div>
