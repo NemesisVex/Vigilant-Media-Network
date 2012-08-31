@@ -75,3 +75,11 @@ table.track-table
 .button:hover {
 	color: #FFF;
 }
+
+.submitted {
+	font-style: italic;
+}
+
+.node h3 a {
+	text-decoration: none;
+}
