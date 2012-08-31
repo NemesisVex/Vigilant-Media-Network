@@ -23,6 +23,11 @@
 
 			<div id="content">
 				<div id="column-1">
+				<?php if ($messages): ?>
+					<section id="success">
+					<?php print $messages; ?>
+					</section>
+				<?php endif; ?>
 				<?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 				<a id="main-content"></a>
 				<?php print render($title_prefix); ?>
@@ -45,4 +50,13 @@
 				<?php endif; ?>
 				</div>
 			</div>
+
+			<footer id="footer">
+				<p>
+					&copy <?php echo date('Y'); ?> Observant Records
+				</p>
+			<?php if ($page['footer']): ?>
+			<?php print render($page['footer']); ?>
+			<?php endif; ?>
+			</footer>
 		</div>
