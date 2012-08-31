@@ -88,6 +88,7 @@ img.bg
 	float: left;
 	width: 950px;
 	margin-right: 0px;
+	margin-bottom: 1.5em;
 }
 
 #content #column-1 {
@@ -286,6 +287,20 @@ ol.track-list li div
 .hidden
 {
 	display: none;
+}
+
+.inline-list {
+	list-style-type: none;
+}
+
+.inline-list li {
+	display: inline;
+	margin: 0 12px 0 0;
+	padding: 0;
+}
+
+.inline-list li:before {
+	content: "» ";
 }
 
 .plain-list {
