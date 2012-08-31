@@ -101,10 +101,6 @@
 	content: "» ";
 }
 
-.submitted {
-	font-style: italic;
-}
-
 .bg {
 	position: fixed;
 	top: 0;
