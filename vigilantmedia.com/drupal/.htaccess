@@ -130,16 +130,31 @@ DirectoryIndex index.php index.html index.htm
   </IfModule>
 </IfModule>
 
-SetEnvIf HOST dev.emptyensemble.com dev
-SetEnvIf HOST dev.drupal.vigilantmedia.com dev
-SetEnvIf HOST test.emptyensemble.com test
+SetEnvIf HOST dev.emptyensemble.com dev-empty
+SetEnvIf HOST dev.drupal.observantrecords.com dev-observant
+SetEnvIf HOST dev.drupal.vigilantmedia.com dev-vigilant
+# SetEnvIf HOST dev.observantrecords.com dev-observant
+SetEnvIf HOST dev.shinkyokuadvocacy.com dev-shinkyoku
+# SetEnvIf HOST dev.vigilantmedia.com dev-vigilant
+SetEnvIf HOST test.emptyensemble.com test-empty
+SetEnvIf HOST test.drupal.observantrecords.com test-observant
+SetEnvIf HOST test.drupal.vigilantmedia.com test-vigilant
+# SetEnvIf HOST test.observantrecords.com test-observant
+SetEnvIf HOST test.shinkyokuadvocacy.com test-shinkyoku
+# SetEnvIf HOST test.vigilantmedia.com test-vigilant
 AuthType Basic
 AuthUserFile /home/nemesisv/.htpasswd
-AuthName "Empty Ensemble development site"
+AuthName "Vigilant Media Drupal development site"
 require valid-user
 
 Order allow,deny
 Allow from all
-Deny from env=dev
-Deny from env=test
+Deny from env=dev-empty
+Deny from env=dev-observant
+Deny from env=dev-shinkyoku
+Deny from env=dev-vigilant
+Deny from env=test-empty
+Deny from env=test-observant
+Deny from env=test-shinkyoku
+Deny from env=test-vigilant
 Satisfy any
