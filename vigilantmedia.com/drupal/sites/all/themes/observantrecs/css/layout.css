@@ -288,6 +288,20 @@ ol.track-list li div
 	display: none;
 }
 
+.inline-list {
+	list-style-type: none;
+}
+
+.inline-list li {
+	display: inline;
+	margin: 0 12px 0 0;
+	padding: 0;
+}
+
+.inline-list li:before {
+	content: "» ";
+}
+
 .plain-list {
 	list-style: none;
 }
