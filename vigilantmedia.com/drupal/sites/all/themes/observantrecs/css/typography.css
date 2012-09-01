@@ -31,6 +31,10 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
+#nav-column-1 ul.links li {
+	font-size: 120%;
+}
+
 #title {
 	font-family: 'Lucida Sans Unicode', sans-serif;
 }
@@ -70,4 +74,12 @@ table.track-table
 
 .button:hover {
 	color: #FFF;
+}
+
+.submitted {
+	font-style: italic;
+}
+
+.node h3 a {
+	text-decoration: none;
 }

@@ -71,7 +71,7 @@ img.bg
 	text-align: center;
 }
 
-#nav-main li {
+#nav-main li, #nav-column-1 ul.links li {
 	display: inline-block;
 	margin: 0;
 	padding: 0;
@@ -146,6 +146,11 @@ input[type=text], input[type=password], input[type=email], select, textarea
 	border-radius: 3px;
 	padding: 4px;
 	background-color: #F2F2F2;
+}
+
+.form-textarea-wrapper
+{
+	width: 600px;
 }
 
 table.track-table
