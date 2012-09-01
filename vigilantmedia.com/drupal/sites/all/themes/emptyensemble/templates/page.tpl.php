@@ -28,6 +28,11 @@
 
 			<div id="content">
 				<div id="column-1">
+				<?php if ($messages): ?>
+					<section id="success">
+					<?php print $messages; ?>
+					</section>
+				<?php endif; ?>
 				<?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
 				<a id="main-content"></a>
 				<?php print render($title_prefix); ?>
@@ -51,6 +56,6 @@
 				</div>
 
 			</div>
-			
+
 			<img src="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/' . variable_get('file_public_path', conf_path() . '/files');?>/images/empty_ensemble_empty_set_logo.png" class="bg" alt="[Empty Ensemble Logo]" />
 		</div>

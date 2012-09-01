@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "observant";
+$route['default_controller'] = "admin/index";
 $route['404_override'] = '';
 $route['news/more'] = "news";
 $route['news/more/(:num)'] = "news/news/$1";
