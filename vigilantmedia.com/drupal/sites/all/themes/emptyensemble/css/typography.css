@@ -33,3 +33,8 @@ table.track-table
 {
 	font-size: smaller;
 }
+
+.submitted {
+	font-style: italic;
+}
+
