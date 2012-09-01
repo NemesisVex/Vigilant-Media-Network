@@ -1,0 +1,178 @@
+/* Overwritten elements */
+body
+{
+	background-color: #333;
+}
+
+input, input[type=text], input, input[type=email], input, input[type=password], input, input[type=url], select, textarea
+{
+	color: #FFF;
+	background-color: #000;
+	font-size: 100%;
+	font-family: inherit;
+	border: 1px solid #FFF;
+	border-radius: 4px;
+	padding: 3px;
+}
+
+input[type=radio], input[type=checkbox]
+{
+	background-color: transparent;
+	border: none;
+}
+
+input[type=submit], input[type=reset], input[type=button]
+{
+	background-color: #633;
+}
+
+label
+{
+	float: left;
+	width: 150px;
+	margin-right: 10px;
+}
+
+label.error, span.error
+{
+	display: none;
+}
+
+.hidden
+{
+	display: none;
+}
+
+
+#masthead
+{
+	background-color: #000;
+	border-bottom: 1px dotted #F99;
+}
+
+#title
+{
+	display: inline;
+}
+
+#subtitle
+{
+	display: inline;
+	font-size: 85%;
+}
+
+#masthead-left
+{
+	float: left;
+	width: 470px;
+	margin-right: 10px;
+}
+
+#masthead-right
+{
+	float: left;
+	width: 470px;
+	margin-right: 0;
+	margin-top: 1.5em;
+	text-align: right;
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6
+{
+	background-color: #333;
+}
+
+#frame-1
+{
+	float: left;
+	width: 230px;
+	margin-right: 10px;
+	margin-top: 1.5em;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+#frame-2
+{
+	float: left;
+	width: 550px;
+	margin-right: 0px;
+	margin-top: 1.5em;
+	padding: 1.5em;
+	margin-bottom: 1.5em;
+	border: 1px dotted #F99;
+}
+
+#frame-2, #frame-2 h1, #frame-2 h2, #frame-2 h3, #frame-2 h4, #frame-2 h5, #frame-2 h6
+{
+	background-color: #600;
+}
+
+#facebox table
+{
+	width: 370px;
+}
+
+#facebox .body
+{
+	color: #000;
+}
+
+#facebox a
+{
+	color: #933;
+}
+
+.folio-left
+{
+	float: left;
+	width: 230px;
+	margin-right: 10px;
+	padding-left: 40px;
+}
+
+.folio-right
+{
+	float: left;
+	width: 230px;
+	margin-right: 0;
+	padding-left: 40px;
+}
+
+.folio-info
+{
+	display: none;
+}
+
+.resume-summary-list
+{
+	list-style-type: square;
+}
+
+.form_hidden
+{
+	display: none;
+}
+
+ul.company-info {
+	list-style-type: none;
+	padding: 0;
+	margin-left: 0;
+}
+
+ul.company-info li {
+}
+
+#masthead-right {
+	margin-bottom: 0;
+}
+
+#masthead-right ul.links {
+	list-style-type: none;
+	margin-bottom: 0;
+}
+
+#masthead-right ul.links li {
+	display: inline-block;
+	margin-right: 3px;
+}
