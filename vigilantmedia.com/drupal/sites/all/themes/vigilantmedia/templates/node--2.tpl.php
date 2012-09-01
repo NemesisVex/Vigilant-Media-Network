@@ -36,6 +36,23 @@
 
 <hr />
 
+<h4>Web Computing Specialist</h4>
+
+<ul class="company-info">
+	<li>University of Washington</li>
+	<li>Seattle, WA</li>
+	<li><em>2012 - present</em></li>
+</ul>
+
+<ul class="resume-duty">
+	<li>Develop web applications for Office of Research web sites. Projects include:
+		<ul>
+			<li> Building an administrative interface for limited submission opportunities</li>
+		</ul>
+	</li>
+	<li>Provide support and maintenance for Office of Research web sites.</li>
+</ul>
+
 <h4>Software Engineer</h4>
 
 <ul class="company-info">
@@ -86,20 +103,6 @@
 	<li>Provided bridge between web development and content creation teams.</li>
 	<li>Developed web-based online application for external customers with classic ASP (JScript).</li>
 	<li>Developed and supported web-based interface for internal data entry.</li>
-</ul>
-
-<h4>Producer</h4>
-
-<ul class="company-info">
-	<li>Austin360.com</li>
-	<li>Austin, TX</li>
-	<li><em>1997 - 2000</em></li>
-</ul>
-
-<ul class="resume-duty">
-	<li>Maintained content on Austin-American Statesman web site.</li>
-	<li>Oversaw content flow for news, business and entertainment channels.</li>
-	<li>Maintained style guide and reference documents for staff.</li>
 </ul>
 
 <h3>Side Projects</h3>
