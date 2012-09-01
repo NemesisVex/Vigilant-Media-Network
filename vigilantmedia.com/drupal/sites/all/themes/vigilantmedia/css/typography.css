@@ -1,43 +1,114 @@
-/*
-    Document   : typography
-    Created on : Aug 29, 2012, 9:24:40 PM
-    Author     : Greg Bueno
-    Description:
-        Typography style rules for Shinkyoku Advocacy
-*/
-
-@font-face {
-	font-family: "CartoGothicStd";
-	src: url("fonts/CartoGothicStd-Book-webfont.eot");
-	src: url("fonts/CartoGothicStd-Book-webfont.eot?iefix") format("eot"),
-		url("fonts/CartoGothicStd-Book-webfont.woff") format("woff"),
-		url("fonts/CartoGothicStd-Book-webfont.ttf") format("truetype"),
-		url("fonts/CartoGothicStd-Book-webfont.svg#webfont") format("svg");
-}
-@font-face {
-	font-family: "CartoGothicStd";
-	src: url("fonts/CartoGothicStd-BoldItalic-webfont.eot");
-	src: url("fonts/CartoGothicStd-BoldItalic-webfont.eot?iefix") format("eot"),
-		url("fonts/CartoGothicStd-BoldItalic-webfont.woff") format("woff"),
-		url("fonts/CartoGothicStd-BoldItalic-webfont.ttf") format("truetype"),
-		url("fonts/CartoGothicStd-BoldItalic-webfont.svg#webfont") format("svg");
-	font-weight: bold;
-	font-style: italic, oblique;
-}
-@font-face {
-	font-family: "CartoGothicStd";
-	src: url("fonts/CartoGothicStd-Bold-webfont.eot");
-	src: url("fonts/CartoGothicStd-Bold-webfont.eot?iefix") format("eot"),
-		url("fonts/CartoGothicStd-Bold-webfont.woff") format("woff"),
-		url("fonts/CartoGothicStd-Bold-webfont.ttf") format("truetype"),
-		url("fonts/CartoGothicStd-Bold-webfont.svg#webfont") format("svg");
-	font-weight: bold;
+/* Overwritten elements */
+body
+{
+	font-family: 'trebuchet ms', sans-serif;
+	color: #FFF;
 }
 
-body {
+a, a:focus, a:hover
+{
+	color: #CC9;
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+
+table
+{
 	font-size: 100%;
 }
 
-#content {
-	font-family: 'CartoGothicStd', Helvetica, Arial, sans-serif;
+label
+{
+	font-weight: bold;
 }
+
+label.error, span.error
+{
+	color: #F99;
+}
+
+#masthead
+{
+	color: #FFF;
+}
+
+#title
+{
+	font-family: 'book antiqua', serif;
+	color: #FFF;
+}
+
+#subtitle
+{
+	color: #FFF;
+}
+
+#masthead-right
+{
+	color: #FFF;
+}
+
+#content
+{
+	font-size: 13px;
+	color: #FFF;
+}
+
+#content h1, #content h2, #content h3, #content h4, #content h5, #content h6
+{
+	font-family: 'helvetica', sans-serif;
+	color: #FFF;
+}
+
+#facebox .body
+{
+	color: #000;
+}
+
+#facebox a
+{
+	color: #933;
+}
+
+.folio-info
+{
+	font-size: smaller;
+}
+
+.smaller
+{
+	font-size: smaller;
+}
+
+.resume-duty
+{
+	font-size: 90%;
+}
+
+#masthead-right ul.links li:before
+{
+	content: "• ";
+}
+
+#masthead-right ul.links li.active:before
+{
+	content: "» ";
+}
+
+#masthead-right ul.links li a {
+	text-transform: lowercase;
+}
+
+li a.active {
+	color: #CC9;
+}
+
+#title a {
+	color: #FFF;
+	text-decoration: none;
+}
+
