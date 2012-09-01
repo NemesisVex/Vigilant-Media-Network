@@ -167,6 +167,11 @@ input[type=text], input[type=password], input[type=email], select, textarea
 	width: 230px;
 }
 
+.form-textarea-wrapper textarea
+{
+	width: 300px;
+}
+
 table.track-table
 {
 	border: 1px dotted #402C29;

@@ -1,9 +1,13 @@
-		<div id="container">
+		<div id="container" class="container showgrid">
 			<div id="masthead">
-				<header id="logo">
+				<header>
+					<?php if ($site_name): ?>
+					<h1 id="title">
 						<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
-							<img src="<?php print $logo; ?>" alt="[<?php echo $site_name; ?>]" title="[<?php echo $site_name; ?>]" id="observant-records-logo" />
+							<?php print $site_name; ?>
 						</a>
+					</h1>
+					<?php endif; ?>
 				</header>
 
 				<nav id="nav-column-1">
@@ -14,9 +18,12 @@
 
 				<nav id="nav-column-2">
 					<ul id="nav-social">
-						<li><a href="http://twitter.com/ObservantRecs"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
+						<li><a href="http://twitter.com/eponymous4"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
+						<li><a href="http://facebook.com/Eponymous4"><img src="http://vigilante.vigilantmedia.com/images/icons/facebook.png" alt="[Facebook]" title="[Facebook]" /></a></li>
+						<li><a href="http://soundcloud.com/observantrecords"><img src="http://vigilante.vigilantmedia.com/images/icons/soundcloud.png" alt="[Soundcloud]" title="[Soundcloud]" /></a></li>
 						<li><a href="http://youtube.com/user/observantrecords"><img src="http://vigilante.vigilantmedia.com/images/icons/youtube.png" alt="[YouTube]" title="[YouTube]" /></a></li>
-						<li><a href="http://soundcloud.com/observantrecords"><img src="http://vigilante.vigilantmedia.com/images/icons/soundcloud.png" alt="[SoundCloud]" title="[SoundCloud]" /></a></li>
+						<li><a href="/rss"><img src="http://vigilante.vigilantmedia.com/images/icons/feed.png" alt="[RSS]" title="[RSS]" /></a></li>
+						<li><a href="http://myspace.com/eponymous4"><img src="http://vigilante.vigilantmedia.com/images/icons/myspace.png" alt="[MySpace]" title="[MySpace]" /></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -49,14 +56,8 @@
 					<?php print render($page['sidebar_second']); ?>
 				<?php endif; ?>
 				</div>
+
 			</div>
 
-			<footer id="footer">
-				<p>
-					&copy <?php echo date('Y'); ?> Observant Records
-				</p>
-			<?php if ($page['footer']): ?>
-			<?php print render($page['footer']); ?>
-			<?php endif; ?>
-			</footer>
+			<img src="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/' . variable_get('file_public_path', conf_path() . '/files');?>/images/exm_vol_03_restraint.jpg" class="bg" alt="[Empty Ensemble Logo]" />
 		</div>
