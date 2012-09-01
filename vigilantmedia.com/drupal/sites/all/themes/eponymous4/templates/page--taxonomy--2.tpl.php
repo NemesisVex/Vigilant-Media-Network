@@ -29,7 +29,7 @@
 			</div>
 
 			<div id="content">
-				<div id="column-1">
+				<div id="music-index">
 				<?php if ($messages): ?>
 					<section id="success">
 					<?php print $messages; ?>
@@ -43,21 +43,24 @@
 				<?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
 				<?php print render($page['help']); ?>
 				<?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-				<?php print render($page['content']); ?>
-				<?php //print $feed_icons; ?>
-				</div>
-
-				<div id="column-2">
-				<?php if ($page['sidebar_first']): ?>
-					<?php print render($page['sidebar_first']); ?>
+				<?php if (!empty($page['content']['system_main']['nodes'])): ?>
+				<?php foreach ($page['content']['system_main']['nodes'] as $node_id => $node): ?>
+				<?php if (!empty($node['albums']['#albums'])): ?>
+				<ul class="album-list">
+				<?php foreach ($node['albums']['#albums'] as $album):
+					?>
+					<li>
+						<a href="<?php echo drupal_get_path_alias('node/' . $node_id) ?>"><img src="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/' . variable_get('file_public_path', conf_path() . '/files');?>/images/_covers/_exm_front_200_<?php echo $album['album_image']; ?>" alt="[<?php echo $album['album_title']; ?>]" title="[<?php echo $album['album_title']; ?>]" /></a>
+					</li>
+				<?php endforeach; ?>
+				</ul>
 				<?php endif; ?>
-
-				<?php if ($page['sidebar_second']): ?>
-					<?php print render($page['sidebar_second']); ?>
+				<?php endforeach; ?>
 				<?php endif; ?>
 				</div>
 
 			</div>
-
+			
 			<img src="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/' . variable_get('file_public_path', conf_path() . '/files');?>/images/exm_vol_03_restraint.jpg" class="bg" alt="[Empty Ensemble Logo]" />
 		</div>
+

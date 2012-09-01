@@ -15,7 +15,7 @@ body {
 #container {
 	border: 3px double #402C29;
 	background-color: #F2F2F2;
-	background: url('/images/transparent_white.png') repeat scroll 0 0 transparent;
+	background: url('/sites/eponymous4.com/files/images/transparent_white.png') repeat scroll 0 0 transparent;
 	color: #000;
 }
 
@@ -56,12 +56,11 @@ body {
 	list-style-type: none;
 }
 
-#nav-main li {
+#nav-column-1 ul.links li {
 	float: none;
-	display: block;
 	margin: 0;
 	padding: 0;
-	margin-left: 0;
+	margin-left: 24px;
 }
 #nav-social li {
 	float: none;
