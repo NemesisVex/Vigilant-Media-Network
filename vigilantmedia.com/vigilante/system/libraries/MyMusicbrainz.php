@@ -1,15 +1,5 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/**
- * MyMusicbrainz
- *
- * 
- * @package CodeIgniter
- * @subpackage Vigilant Media Network
- * @category Libraries
- * @author Greg Bueno
- * @copyright (c) 2012 Greg Bueno
- */
 class MyMusicbrainz
 {
 	var $CI;
@@ -52,7 +42,10 @@ class MyMusicbrainz
 	function send_request($request_uri)
 	{
 		$results = $this->CI->mycacherestrequest->get($request_uri);
-		$this->results = simplexml_load_string($results);
+		if (!empty($results))
+		{
+			$this->results = simplexml_load_string($results);
+		}
 	}
 	
 	function send_query($search_type, $params, $limit = '', $offset = '')

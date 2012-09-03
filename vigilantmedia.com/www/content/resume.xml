@@ -10,7 +10,7 @@
 	<experience type="summary">
 		<entry num="1">
 			<items>
-				<item>PHP developer with experience in SugarCRM, CodeIgniter, jQuery and Blueprint CSS.</item>
+				<item>PHP developer with experience in CodeIgniter, SugarCRM, jQuery and Blueprint CSS.</item>
 				<item>Works comfortably in both server- and client-side environments.</item>
 				<item>Background in journalism and writing easily applied to documentation.</item>
 			</items>
@@ -31,7 +31,6 @@
 				<skill>PERL</skill>
 				<skill>XML</skill>
 				<skill>XSLT</skill>
-				<skill>XUL</skill>
 				<skill>C#</skill>
 			</skills>
 		</entry>
@@ -39,20 +38,36 @@
 			<skills>
 				<skill>Netbeans</skill>
 				<skill>Apache</skill>
-				<skill>Perforce</skill>
-				<skill>CVS</skill>
-				<skill>Subversion</skill>
+				<skill>Git</skill>
+				<skill>Mercurial</skill>
 			</skills>
 		</entry>
 		<entry num="3" type="Additional tools">
 			<skills>
 				<skill>Photoshop</skill>
 				<skill>Talend</skill>
+				<skill>Perforce</skill>
+				<skill>CVS</skill>
+				<skill>Subversion</skill>
 			</skills>
 		</entry>
 	</experience>
 	<experience type="professional">
 		<entry num="1">
+			<title>Web Computing Specialist</title>
+			<company>University of Washington</company>
+			<location>Seattle, WA</location>
+			<dates>2012 - present</dates>
+			<duties>
+				<duty><![CDATA[Develop web applications for Office of Research web sites. Projects include:
+				<ul>
+					<li> Building an administrative interface for limited submission opportunities</li>
+				</ul>
+				]]></duty>
+				<duty>Provide support and maintenance for Office of Research web sites.</duty>
+			</duties>
+		</entry>
+		<entry num="2">
 			<title>Software Engineer</title>
 			<company>Epicom Corp.</company>
 			<location>Austin, TX</location>
@@ -68,7 +83,7 @@
 				]]></duty>
 			</duties>
 		</entry>
-		<entry num="2">
+		<entry num="3">
 			<title>Web Developer/Desktop Publisher</title>
 			<company>National Instruments</company>
 			<location>Austin, TX</location>
@@ -84,7 +99,7 @@
 				<duty>Perform administrative tasks necessary for localization of documentation.</duty>
 			</duties>
 		</entry>
-		<entry num="3">
+		<entry num="4">
 			<title>Web Site/Software Engineer</title>
 			<company>Supportkids.com</company>
 			<location>Austin, TX</location>
@@ -95,6 +110,7 @@
 				<duty>Developed and supported web-based interface for internal data entry.</duty>
 			</duties>
 		</entry>
+	<!--
 		<entry num="4">
 			<title>Producer</title>
 			<company>Austin360.com</company>
@@ -106,7 +122,6 @@
 				<duty>Maintained style guide and reference documents for staff.</duty>
 			</duties>
 		</entry>
-	<!--
 		<entry num="4">
 			<title>Managing Editor/Features Editor/Staff Writer</title>
 			<company>Ka Leo O Hawai'i</company>
@@ -122,9 +137,18 @@
 	</experience>
 	<experience type="miscellaneous">
 		<entry num="1">
+			<title>Member</title>
+			<company>Eponymous 4</company>
+			<location>Seattle, WA</location>
+			<dates>2008 - present</dates>
+			<duties>
+				<duty>A home studio music project releasing recordings through online channels..</duty>
+			</duties>
+		</entry>
+		<entry num="1">
 			<title>Owner</title>
 			<company>Observant Records</company>
-			<location>Austin, TX</location>
+			<location>Seattle, WA</location>
 			<dates>2008 - present</dates>
 			<duties>
 				<duty>Runs record label exclusively handling Eponymous 4.</duty>
@@ -133,7 +157,7 @@
 		<entry num="2">
 			<title>Publisher</title>
 			<company>Shinkyoku Advocacy</company>
-			<location>Austin, TX</location>
+			<location>Seattle, WA</location>
 			<dates>2008 - present</dates>
 			<duties>
 				<duty>Handles publishing rights of songs by Eponymous 4.</duty>
@@ -169,7 +193,7 @@
 		<entry num="1">
 			<title>Webmaster/Publisher</title>
 			<company>Musicwhore.org</company>
-			<location>Austin, TX</location>
+			<location>Seattle, WA</location>
 			<dates>2000 - present</dates>
 			<duties>
 				<duty>Publish and maintained interactive music webzine integrating Movable Type, Musicbrainz and Amazon web services with a proprietary database of artists.</duty>
@@ -179,7 +203,7 @@
 		<entry num="2">
 			<title>Webmaster</title>
 			<company>Eponymous 4</company>
-			<location>Austin, TX</location>
+			<location>Seattle, WA</location>
 			<dates>2005 - present</dates>
 			<duties>
 				<duty>Develop and maintain proprietary content management system to deliver news and audio for solo music project.</duty>
