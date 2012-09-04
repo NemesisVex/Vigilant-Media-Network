@@ -3,7 +3,7 @@
     Created on : May 7, 2012, 6:45:32 PM
     Author     : Greg Bueno
     Description:
-        Rules for Vigilant Media layouts.
+        Rules for Vigilant Media mobile layouts.
 */
 
 input[type=text], textarea {
@@ -30,15 +30,15 @@ ul.company-info li {
 	text-align: center;
 }
 
-#container {
+#container, .container {
 	display: block;
-	width: 950px;
+	width: auto;
 	margin: 0 auto;
 }
 
 #introduction, #contact {
-	float: left;
-	width: 870px;
+	float: none;
+	width: auto;
 	margin-right: 0px;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -58,30 +58,30 @@ ul.company-info li {
 }
 
 #masthead-title {
-	float: left;
-	width: 470px;
+	float: none;
+	width: auto;
 	margin-top: 1.5em;
 	margin-right: 10px;
 }
 
 #nav-main {
-	float: right;
-	margin-top: 3em;
+	float: none;
+	margin-top: 0;
 }
 
 #nav-main ul {
-	list-style-type: none;
+	list-style-type: disc;
 }
 
 #nav-main ul li {
-	display: inline-block;
+	display: block;
 	margin-left: 20px;
 	padding: 3px 9px;
 }
 
 #panels {
-	float: left;
-	width: 950px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	margin-bottom: 3em;
 }
@@ -113,24 +113,26 @@ ul.company-info li {
 }
 
 .four-column-single {
-	float: left;
-	width: 190px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
 	padding-right: 40px;
-	border-right: 1px solid #CBCBCB;
+	border-right: none;
 }
 
 .four-column-single-last {
-	float: left;
-	width: 190px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 }
 
 .full-column-last {
-	float: left;
-	width: 950px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	margin-bottom: 1.5em;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
 .img-align-right {
@@ -148,21 +150,24 @@ ul.company-info li {
 }
 
 .resume-column-1 {
-	float: left;
-	width: 310px;
+	float: none;
+	width: auto;
 	padding-top: 1.5em;
+	padding-left: 40px;
+	padding-right: 40px;
 	margin-right: 0;
-	border-top: 1px solid #CCC;
+	border-top: none;
 }
 
 .resume-column-2 {
-	float: left;
-	width: 560px;
+	float: none;
+	width: auto;
 	padding-left: 40px;
+	padding-right: 40px;
 	padding-top: 1.5em;
 	margin-right: 0;
-	border-left: 1px solid #CCC;
-	border-top: 1px solid #CCC;
+	border-left: none;
+	border-top: none;
 }
 
 .resume-skills li {
@@ -171,38 +176,43 @@ ul.company-info li {
 }
 
 .three-column-single {
-	float: left;
-	width: 270px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
+	padding-left: 40px;
 	padding-right: 40px;
-	border-right: 1px solid #CBCBCB;
+	border-right: none;
 }
 
 .three-column-single-last {
-	float: left;
-	width: 270px;
+	float: none;
+	width: auto;
 	margin-right: 0;
+	padding-left: 40px;
+	padding-right: 40px;
 }
 
 .three-columns {
-	float: left;
-	width: 950px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	margin-bottom: 3em;
 }
 
 .two-column-single {
-	float: left;
-	width: 430px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
+	padding-left: 40px;
 	padding-right: 40px;
-	border-right: 1px solid #CBCBCB;
+	border-right: none;
 }
 
 .two-column-single-last {
-	float: left;
-	width: 420px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	padding-left: 40px;
+	padding-right: 40px;
 }
 
