@@ -1,8 +1,8 @@
+				<h1>Contact</h1>
+
 				<div class="full-column-last">
 
 					<form method="post" action="/index.php/vm/email/" id="contact-form" name="contact-form">
-						<h1>Contact</h1>
-
 						<p>
 							<label for="i">Name:</label>
 							<input type="text" name="i" id="i" size="55" class="form-hidden" />

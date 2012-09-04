@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/facebox.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/mobile.css" type="text/css" media="screen and (max-width: 600px)" />
 		<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/jquery.js"></script>
 		<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/modernizr-1.6.min.js"></script>
 		<!--[if lt IE 9]><script type="text/javascript" src="http://vigilante.vigilantmedia.com/vigilante/js/html5.js"></script><![endif]-->
