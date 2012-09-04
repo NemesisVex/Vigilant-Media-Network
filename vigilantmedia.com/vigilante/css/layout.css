@@ -1,4 +1,4 @@
-/* 
+/*
     Document   : layout
     Created on : May 7, 2012, 6:45:32 PM
     Author     : Greg Bueno
@@ -38,11 +38,11 @@ ul.company-info li {
 	padding-bottom: 0;
 	margin-bottom: 1.5em;
 	background-color: #DEDEDE;
-	background-image: linear-gradient(bottom, rgb(222, 222, 222), rgb(255, 255, 255) 80px);
-	background-image: -o-linear-gradient(bottom, rgb(222, 222, 222), rgb(255, 255, 255) 80px);
-	background-image: -moz-linear-gradient(bottom, rgb(222, 222, 222), rgb(255, 255, 255) 80px);
+	background-image: linear-gradient(bottom, rgb(54,86,54), rgb(123,171,123) 80px);
+	background-image: -o-linear-gradient(bottom, rgb(54,86,54), rgb(123,171,123) 80px);
+	background-image: -moz-linear-gradient(bottom, rgb(54,86,54), rgb(123,171,123) 80px);
 	background-image: -webkit-linear-gradient(top, rgb(54,86,54), rgb(123,171,123) 80px);
-	background-image: -ms-linear-gradient(bottom, rgb(222, 222, 222), rgb(255, 255, 255) 80px);
+	background-image: -ms-linear-gradient(bottom, rgb(54,86,54), rgb(123,171,123) 80px);
 	color: #FFF;
 }
 
