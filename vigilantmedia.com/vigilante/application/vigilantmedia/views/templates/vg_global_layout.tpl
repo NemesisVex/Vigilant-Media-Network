@@ -2,39 +2,35 @@
 <html>
 	<head>
 		<title>Vigilante &#8212; Vigilant Media Framework{if $page_title} &#8212; {$page_title}{/if}</title>
-		<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
-		<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection">
-		<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print">
-		<!--[if IE]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
-		<link rel="stylesheet" type="text/css" href="{$config.to_vigilantmedia}/css/global.css">
-		<link rel="stylesheet" type="text/css" href="/css/vigilante_blueprint.css">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/css/blueprint/screen.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/blueprint/print.css" type="text/css" media="print" />
+		<!--[if IE 8]><link rel="stylesheet" href="/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/mobile.css" type="text/css" media="screen and (max-width: 600px)" />
+		<script type="text/javascript" src="/js/jquery.js"></script>
 		<script type="text/javascript" src="/js/modernizr-1.6.min.js"></script>
-		<!--[if lt IE9]<script type="text/javascript" src="/js/html5.js"></script>[/if]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="/js/html5.js"></script><![endif]-->
 	</head>
 
 	<body>
 
 		<div id="masthead">
 			<div class="container">
-
-				<header id="masthead-left" class="span-12">
+				<header id="masthead-title">
 					<hgroup>
-						<h1 id="title"><a href="/" style="color: #FFF; text-decoration: none;">Vigilante</a></h1>
-						<h3 id="subtitle"><a href="/" style="color: #FFF; text-decoration: none;">Vigliant Media Framework</a></h3>
+						<h1 id="title"><a href="index.html">Vigilante</a></h1>
+						<h2 id="subtitle">CodeIgniter libraries for Vigilant Media</h2>
 					</hgroup>
 				</header>
 
-				<nav id="masthead-right" class="span-12 prepend-top last">
-{if $smarty.const.ENVIRONMENT!="production"}
-					<span class="smaller">
-						{if $smarty.const.ENVIRONMENT=="development"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://vigilante{$smarty.server.REQUEST_URI}">DEV</a>
-						{if $smarty.const.ENVIRONMENT=="testing"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://test.vigilante.vigilantmedia.com{$smarty.server.REQUEST_URI}">TEST</a>
-						&#8226; <a href="http://vigilante.vigilantmedia.com{$smarty.server.REQUEST_URI}">PROD</a>
-					</span>
-{/if}
-					{if $smarty.server.REQUEST_URI=="/"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="/">home</a>
-					{if preg_match("/docs/", $smarty.server.REQUEST_URI)}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="/index.php/vg/docs/">documentation</a>
-					&#8226; <a href="{$config.to_vigilantmedia}/">viglantmedia.com</a>
+				<nav id="nav-main">
+					<ul>
+						<li><a href="/">Home</a></li>
+						<li><a href="{$config.to_vigilantmedia}/">Vigilant Media</a></li>
+					</ul>
 				</nav>
 
 			</div>
@@ -43,7 +39,7 @@
 		<div id="content">
 			<div class="container">
 
-				<section id="frame-1" class="span-14 prepend-1 append-1 prepend-top box">
+				<section id="frame-1" class="full-column-last">
 {if $section_head}
 					<header>
 						<h3><em>{$section_head}</em></h3>

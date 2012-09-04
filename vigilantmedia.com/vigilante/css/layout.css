@@ -1,0 +1,191 @@
+/* 
+    Document   : layout
+    Created on : May 7, 2012, 6:45:32 PM
+    Author     : Greg Bueno
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+label {
+	float: left;
+	width: 150px;
+	margin-right: 10px;
+}
+
+ul.company-info {
+	list-style-type: none;
+	padding: 0;
+	margin-left: 0;
+}
+
+ul.company-info li {
+}
+
+#container {
+	display: block;
+	width: 950px;
+	margin: 0 auto;
+}
+
+#title {
+	margin-bottom: 0.1em;
+}
+
+#subtitle {
+}
+
+#masthead {
+	padding-bottom: 0;
+	margin-bottom: 1.5em;
+	background-color: #DEDEDE;
+	background-image: linear-gradient(bottom, rgb(222, 222, 222), rgb(255, 255, 255) 80px);
+	background-image: -o-linear-gradient(bottom, rgb(222, 222, 222), rgb(255, 255, 255) 80px);
+	background-image: -moz-linear-gradient(bottom, rgb(222, 222, 222), rgb(255, 255, 255) 80px);
+	background-image: -webkit-linear-gradient(top, rgb(54,86,54), rgb(123,171,123) 80px);
+	background-image: -ms-linear-gradient(bottom, rgb(222, 222, 222), rgb(255, 255, 255) 80px);
+	color: #FFF;
+}
+
+#masthead-title {
+	float: left;
+	width: 470px;
+	margin-top: 1.5em;
+	margin-right: 10px;
+}
+
+#nav-main {
+	float: right;
+	margin-top: 3em;
+}
+
+#nav-main ul {
+	list-style-type: none;
+}
+
+#nav-main ul li {
+	display: inline-block;
+	margin-left: 20px;
+	padding: 3px 9px;
+}
+
+#introduction, #contact {
+	float: left;
+	width: 870px;
+	margin-right: 0px;
+	padding-left: 40px;
+	padding-right: 40px;
+	margin-bottom: 1.5em;
+}
+
+#contact {
+	text-align: center;
+}
+
+#panels {
+	float: left;
+	width: 950px;
+	margin-right: 0;
+	margin-bottom: 3em;
+}
+
+.img-align-right {
+	float: right;
+	margin-left: 10px;
+}
+
+.form-hidden {
+	display: none;
+}
+
+.four-column-single {
+	float: left;
+	width: 190px;
+	margin-right: 10px;
+	padding-right: 40px;
+	border-right: 1px solid #CBCBCB;
+}
+
+.four-column-single-last {
+	float: left;
+	width: 190px;
+	margin-right: 0;
+}
+
+.full-column-last {
+	float: left;
+	width: 950px;
+	margin-right: 0;
+	margin-bottom: 1.5em;
+}
+
+.three-column-single {
+	float: left;
+	width: 270px;
+	margin-right: 10px;
+	padding-right: 40px;
+	border-right: 1px solid #CBCBCB;
+}
+
+.three-column-single-last {
+	float: left;
+	width: 270px;
+	margin-right: 0;
+}
+
+.three-columns {
+	float: left;
+	width: 950px;
+	margin-right: 0;
+	margin-bottom: 3em;
+}
+
+.two-column-single {
+	float: left;
+	width: 430px;
+	margin-right: 10px;
+	padding-right: 40px;
+	border-right: 1px solid #CBCBCB;
+}
+
+.two-column-single-last {
+	float: left;
+	width: 420px;
+	margin-right: 0;
+	padding-left: 40px;
+}
+
+.resume-column-1 {
+	float: left;
+	width: 310px;
+	margin-right: 10px;
+}
+
+.resume-column-2 {
+	float: left;
+	width: 590px;
+	margin-right: 0;
+	padding-right: 40px;
+}
+
+.resume-skills li {
+	float: left;
+	margin-right: 24px;
+}
+
+.centered {
+	text-align: center;
+}
+
+.nav-social {
+	list-style-type: none;
+}
+
+.nav-social li {
+	display: inline-block;
+	margin-right: 6px;
+}
+
+.folio-image {
+	border: 3px solid #A7A7A7;
+	border-radius: 4px;
+}
