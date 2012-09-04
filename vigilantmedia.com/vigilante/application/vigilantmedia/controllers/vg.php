@@ -10,7 +10,7 @@ class Vg extends CI_Controller
 		parent::__construct();
 		$this->load->library('VigilantMediaView');
 
-		$this->CI->vmview->layout_template = 'vg_global_layout.tpl';
+		$this->vmview->layout_template = 'vg_global_layout.tpl';
 	}
 
 	function index()
