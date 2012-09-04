@@ -1,0 +1,93 @@
+/*
+    Document   : typography
+    Created on : May 7, 2012, 6:45:21 PM
+    Author     : Greg Bueno
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+@font-face {
+	font-family: "Novecentowide";
+	src: url("fonts/Novecentowide-Bold-webfont.eot");
+	src: url("fonts/Novecentowide-Bold-webfont.eot?iefix") format("eot"),
+		url("fonts/Novecentowide-Bold-webfont.woff") format("woff"),
+		url("fonts/Novecentowide-Bold-webfont.ttf") format("truetype"),
+		url("fonts/Novecentowide-Bold-webfont.svg#webfont") format("svg");
+	font-weight: bold;
+}
+@font-face {
+	font-family: "Novecentowide";
+	src: url("fonts/Novecentowide-Book-webfont.eot");
+	src: url("fonts/Novecentowide-Book-webfont.eot?iefix") format("eot"),
+		url("fonts/Novecentowide-Book-webfont.woff") format("woff"),
+		url("fonts/Novecentowide-Book-webfont.ttf") format("truetype"),
+		url("fonts/Novecentowide-Book-webfont.svg#webfont") format("svg");
+}
+
+a {
+	color: #A66D3C;
+}
+
+a:hover {
+	color: #906948;
+}
+
+a:visited {
+	color: #2D4378;
+}
+
+body {
+	color: #555;
+	line-height: 2em;
+}
+
+#masthead, #masthead h2 {
+	color: #FFF;
+}
+
+#title {
+	font-family: Novecentowide, Helvetica, Arial, sans-serif;
+	font-size: 375%;
+}
+
+#title a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+#subtitle {
+	font-size: 85%;
+	color: #FFF;
+}
+
+#nav-main li a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#nav-main li a:hover {
+	text-decoration: underline;
+}
+
+#introduction {
+	font-size: 120%;
+}
+
+h2.archive-title {
+	font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+.three-column-single header h3 a, .three-column-single-last header h3 a {
+	text-decoration: none;
+}
+
+.headline {
+	font-family: 'Palatino Linotype', 'Georgia', 'Times New Roman', 'Times' serif;
+	font-size: 200%;
+}
+
+h3.widget-title {
+	font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+	font-size: 120%;
+	text-transform: uppercase;
+}
