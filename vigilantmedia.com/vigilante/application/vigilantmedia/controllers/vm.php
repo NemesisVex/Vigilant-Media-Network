@@ -2,36 +2,36 @@
 
 class Vm extends CI_Controller
 {
-	var $webmaster_email = 'greg@gregbueno.com';
-	var $error_codes = array('401' => 'Authentication required', '403' => 'Forbidden', '404' => 'Not found', '500' => 'Internal server error');
-	
+	public $webmaster_email = 'greg@gregbueno.com';
+	public $site_name = 'Vigilant Media';
+
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->library('VmLib');
+		$this->load->library('VmMailer');
+		$this->load->library('VigilantMediaView');
+
+		$this->vmmailer->to = $this->webmaster_email;
+		$this->vmmailer->redirect = '/index.php/vm/contact/sent/';
+		$this->vmmailer->subject_prefix = $this->site_name . ': feedback';
 	}
-	
+
 	function index()
 	{
-		$this->vmlib->_format_section_head('The online portfolio of Greg Bueno');
-		$this->vmlib->_smarty_display_vm_page('vm_root_index.tpl');
+		$this->vmview->format_section_head('The online portfolio of Greg Bueno');
+		$this->vmview->display('vm_root_index.tpl');
 	}
-	
-	function portfolio()
+
+	function projects()
 	{
-		if ($this->agent->is_mobile() == true) {
-			$this->vmlib->_format_section_head('Portfolio');
-			$this->vmlib->_smarty_display_vm_page('vm_root_projects.tpl');
-		} else {
-			header('Location: /');
-		}
+		$this->vmview->format_section_head('Projects');
+		$this->vmview->display('vm_root_projects.tpl');
 	}
-	
-	function resume($toggle = '')
+
+	function resume()
 	{
-		$this->vmlib->_format_section_head('R&eacute;sum&eacute;');
-		$wrapper = $toggle == 'print' ? 'vm_global_printer.tpl' : 'vm_global_page.tpl';
-		
+		$this->vmview->format_section_head('R&eacute;sum&eacute;');
+
 		$resume_path = $_SERVER['DOCUMENT_ROOT'] . '/content/resume.xml';
 		if (false !== ($fp = @fopen($resume_path, 'r')))
 		{
@@ -39,7 +39,7 @@ class Vm extends CI_Controller
 			fclose($fp);
 		}
 		$resume_xml = simplexml_load_string($resume_input);
-		
+
 		$contact = $resume_xml->xpath('/resume/contact');
 		$professional = $resume_xml->xpath('/resume/experience[@type="professional"]');
 		$miscellaneous = $resume_xml->xpath('/resume/experience[@type="miscellaneous"]');
@@ -47,45 +47,43 @@ class Vm extends CI_Controller
 		$projects = $resume_xml->xpath('/resume/experience[@type="projects"]');
 		$skills = $resume_xml->xpath('/resume/experience[@type="skills"]');
 		$summary = $resume_xml->xpath('/resume/experience[@type="summary"]');
-		
+
 		$this->mysmarty->assign('contact', $contact);
 		$this->mysmarty->assign('professional', $professional);
 		$this->mysmarty->assign('miscellaneous', $miscellaneous);
 		$this->mysmarty->assign('education', $education);
 		$this->mysmarty->assign('skills', $skills);
 		$this->mysmarty->assign('summary', $summary);
-		$this->mysmarty->assign('toggle', $toggle);
 		$this->mysmarty->assign('projects', $projects);
-		$this->vmlib->_smarty_display_vm_page('vm_root_professional.tpl', null, $wrapper);
+		$this->vmview->display('vm_root_resume.tpl');
 	}
-	
+
 	function contact()
 	{
-		$this->vmlib->_format_section_head('Contact');
-		$this->vmlib->_smarty_display_vm_page('vm_root_contact.tpl');
+		$this->vmview->format_section_head('Contact');
+		$this->vmview->display('vm_root_contact.tpl');
 	}
-	
+
 	function contact_sent()
 	{
-		$this->vmlib->_format_section_head('Portfolio');
-		$this->vmlib->_smarty_display_vm_page('vm_root_contact_sent.tpl');
+		$this->vmview->format_section_head('Contact', 'Thank You');
+		$this->vmview->display('vm_root_contact_sent.tpl');
 	}
-	
+
 	function error($code)
 	{
-		$this->vmlib->_format_section_head('Error', $code, $this->error_codes[$code]);
-		$this->vmlib->_smarty_display_vm_page('vm_error_' . $code . '.tpl');
+		$this->vmview->display_error_page($code, 'vm_error_' . $code . '.tpl');
 	}
-	
-	//Processing methods
+
+	// Processing methods
 	function email()
 	{
 		$hidden_fields = array('i', 's', 'r', 'm');
-		$shown_fields = array('realname' => 'n',
-		'email' => 'a',
+		$shown_fields = array('from_name' => 'n',
+		'from_email' => 'a',
 		'subject' => 't',
 		'message' => 'b');
-		$this->vmlib->email($hidden_fields, $shown_fields);
+		$this->vmmailer->process_email_form($hidden_fields, $shown_fields);
 	}
 }
 ?>

@@ -3,66 +3,38 @@
 	<head>
 		<title>Vigilant Media{if $page_title} &#8212; {$page_title}{/if}</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/screen.css" type="text/css" media="screen, projection" />
-		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print" />
-		<!--[if lt IE 8]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" href="{$config.to_vigilante}/css/facebox.css" type="text/css" media="screen, projection" />
-		<link rel="stylesheet" href="/css/vigilantmedia.css" type="text/css" media="screen, projection" />
-		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
-		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
-		<!--[if lt IE 9]><script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script><![endif]-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/screen.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/print.css" type="text/css" media="print" />
+		<!--[if lt IE 8]><link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
+		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/facebox.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/typography.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/layout.css" type="text/css" media="screen, projection" />
+		<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/jquery.js"></script>
+		<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/modernizr-1.6.min.js"></script>
+		<!--[if lt IE 9]><script type="text/javascript" src="http://vigilante.vigilantmedia.com/vigilante/js/html5.js"></script><![endif]-->
 	</head>
-
 	<body>
-
-		<header id="masthead">
+		<div id="masthead">
 			<div class="container">
+				<header id="masthead-title">
+					<hgroup>
+						<h1 id="title"><a href="/">Vigilant Media</a></h1>
+						<h2 id="subtitle">The online portfolio of Greg Bueno</h2>
+					</hgroup>
+				</header>
 
-				<hgroup id="masthead-left" class="span-12">
-					<h1 id="title">Vigilant Media</h1>
-					<h3 id="subtitle">The online portfolio of Greg Bueno</h3>
-				</hgroup>
-
-				<nav id="masthead-right" class="span-12 prepend-top last">
-{if $smarty.const.ENVIRONMENT!="production"}
-					<span class="smaller">
-{if $smarty.const.ENVIRONMENT=="development"}
-						<strong>&raquo;</strong>
-{else}
-						&#8226;
-{/if}
-						<a href="http://vigilantmedia{$smarty.server.REQUEST_URI}">DEV</a>
-{if $smarty.const.ENVIRONMENT=="testing"}
-						<strong>&raquo;</strong>
-{else}
-						&#8226;
-{/if}
-						<a href="http://test.vigilantmedia.com{$smarty.server.REQUEST_URI}">TEST</a>
-						&#8226; <a href="http://www.vigilantmedia.com{$smarty.server.REQUEST_URI}">PROD</a>
-					</span>
-{/if}
-{if $smarty.server.REQUEST_URI=="/"}
-					<strong>&raquo;</strong>
-{else}
-					&#8226;
-{/if}
-					<a href="/">portfolio</a>
-{if preg_match("/resume/", $smarty.server.REQUEST_URI)}
-					<strong>&raquo;</strong>
-{else}
-					&#8226;
-{/if}
-					<a href="/index.php/vm/resume/">r&eacute;sum&eacute;</a>
-{if preg_match("/contact/", $smarty.server.REQUEST_URI)}
-					<strong>&raquo;</strong>
-{else}
-					&#8226;
-{/if}
-					<a href="/index.php/vm/contact/">contact</a>
+				<nav id="nav-main">
+					<ul>
+						<li class="active"><a href="/">Home</a></li>
+						<li><a href="/index.php/vm/projects/">Projects</a></li>
+						<li><a href="/index.php/vm/resume/">Résumé</a></li>
+						<li><a href="http://blog.vigilantmedia.com/">Blog</a></li>
+						<li><a href="/index.php/vm/contact/">Contact</a></li>
+					</ul>
 				</nav>
-
 			</div>
-		</header>
+		</div>
 
 		<div id="content">
 			<div class="container">
@@ -71,6 +43,13 @@
 				<!--CONTENT END-->
 			</div>
 		</div>
+
+		<footer id="footer">
+			<div class="container centered">
+
+			&copy; 2012 Greg Bueno
+			</div>
+		</footer>
 
 {literal}
 		<script type="text/javascript">
