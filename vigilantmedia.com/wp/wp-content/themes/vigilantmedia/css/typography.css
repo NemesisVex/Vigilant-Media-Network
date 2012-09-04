@@ -73,6 +73,10 @@ body {
 	font-size: 120%;
 }
 
+h2.archive-title {
+	font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
 .three-column-single header h3 a, .three-column-single-last header h3 a {
 	text-decoration: none;
 }

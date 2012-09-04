@@ -25,33 +25,27 @@ ul.company-info li {
 	text-align: center;
 }
 
-#container {
+#container, .container {
 	display: block;
-	width: 950px;
+	width: auto;
 	margin: 0 auto;
 }
 
 #content-column-1 {
-	float: left;
-	width: 670px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
+	padding-left: 40px;
 	padding-right: 40px;
-	border-right: 1px solid #CCC;
+	border-right: none;
 }
 
 #content-column-2 {
-	float: left;
-	width: 190px;
+	float: none;
+	width: auto;
 	margin-right: 0;
-}
-
-#introduction, #contact {
-	float: left;
-	width: 870px;
-	margin-right: 0px;
 	padding-left: 40px;
 	padding-right: 40px;
-	margin-bottom: 1.5em;
 }
 
 #masthead {
@@ -67,14 +61,14 @@ ul.company-info li {
 }
 
 #masthead-title {
-	float: left;
-	width: 510px;
+	float: none;
+	width: auto;
 	margin-top: 1.5em;
 	margin-right: 10px;
 }
 
 #nav-main {
-	float: right;
+	float: none;
 	margin-top: 3em;
 }
 
@@ -83,14 +77,14 @@ ul.company-info li {
 }
 
 #nav-main ul li {
-	display: inline-block;
+	display: block;
 	margin-left: 20px;
 	padding: 3px 9px;
 }
 
 #panels {
-	float: left;
-	width: 950px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	margin-bottom: 3em;
 }
@@ -119,7 +113,7 @@ ul.company-info li {
 }
 
 .entry-text {
-	padding-left: 40px;
+	padding-left: 0;
 }
 
 .img-align-right {
@@ -137,76 +131,58 @@ ul.company-info li {
 }
 
 .four-column-single {
-	float: left;
-	width: 190px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
 	padding-right: 40px;
 	border-right: 1px solid #CBCBCB;
 }
 
 .four-column-single-last {
-	float: left;
-	width: 190px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 }
 
 .full-column-last {
-	float: left;
-	width: 950px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	margin-bottom: 1.5em;
 }
 
-.resume-column-1 {
-	float: left;
-	width: 310px;
-	margin-right: 10px;
-}
-
-.resume-column-2 {
-	float: left;
-	width: 590px;
-	margin-right: 0;
-	padding-right: 40px;
-}
-
-.resume-skills li {
-	float: left;
-	margin-right: 24px;
-}
-
 .three-column-single {
-	float: left;
-	width: 270px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
 	padding-right: 40px;
 	border-right: 1px solid #CBCBCB;
 }
 
 .three-column-single-last {
-	float: left;
-	width: 270px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 }
 
 .three-columns {
-	float: left;
-	width: 950px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	margin-bottom: 3em;
 }
 
 .two-column-single {
-	float: left;
-	width: 430px;
+	float: none;
+	width: auto;
 	margin-right: 10px;
 	padding-right: 40px;
 	border-right: 1px solid #CBCBCB;
 }
 
 .two-column-single-last {
-	float: left;
-	width: 420px;
+	float: none;
+	width: auto;
 	margin-right: 0;
 	padding-left: 40px;
 }
