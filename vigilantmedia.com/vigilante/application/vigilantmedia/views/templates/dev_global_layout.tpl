@@ -2,12 +2,15 @@
 <html lang="en">
 	<head>
 		<title>Vigilant Media Development{if $page_title} &#8212; {$page_title}{/if}</title>
-		<meta charset="uft-8" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/screen.css" type="text/css" media="screen, projection">
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/print.css" type="text/css" media="print">
 		<!--[if lt IE 8]><link rel="stylesheet" href="{$config.to_vigilante}/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" type="text/css" href="{$config.to_vigilantmedia}/css/global.css" />
-		<link rel="stylesheet" type="text/css" href="{$config.to_vigilante}/css/vigilante_blueprint.css" />
+		<link rel="stylesheet" href="{$config.to_vigilante}/css/typography.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="{$config.to_vigilante}/css/layout.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="{$config.to_vigilante}/css/mobile.css" type="text/css" media="screen and (max-width: 600px)" />
+		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
 		<!--[if lt IE 9]><script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script><![endif]-->
 	</head>
@@ -15,44 +18,29 @@
 	<body>
 		<div id="masthead">
 			<div class="container">
-
-				<header id="masthead-left" class="span-12">
+				<header id="masthead-title">
 					<hgroup>
-						<h1 id="title"><a href="/" style="color: #FFF; text-decoration: none;">Vigliant Media</a></h1>
-						<h3 id="subtitle">><a href="/" style="color: #FFF; text-decoration: none;">Development projects</a></h3>
+						<h1 id="title"><a href="/">Vigilante</a></h1>
+						<h2 id="subtitle">Development projects</h2>
 					</hgroup>
 				</header>
 
-				<nav id="masthead-right" class="span-12 prepend-top last">
-{if $smarty.const.ENVIRONMENT!="production"}
-						<span class="smaller">
-{if $smarty.const.ENVIRONMENT=="development"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://vigilante{$smarty.server.REQUEST_URI}">DEV</a>
-{if $smarty.const.ENVIRONMENT=="testing"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="http://dev.vigilantmedia.com{$smarty.server.REQUEST_URI}">TEST</a>
-						</span>
-{/if}
-{if $smarty.server.REQUEST_URI=="/"}<strong>&raquo;</strong>{else}&#8226;{/if} <a href="/">home</a>
-						&#8226; <a href="{$config.to_vigilantmedia}/">viglantmedia.com</a>
+				<nav id="nav-main">
+					<ul>
+						<li class="active"><a href="/">Home</a></li>
+						<li class="active"><a href="{$config.to_vigilantmedia}">Vigilant Media</a></li>
+					</ul>
 				</nav>
-
 			</div>
 		</div>
 
 		<div id="content">
 			<div class="container">
-
-				<section id="frame-1" class="span-14 prepend-1 append-1 prepend-top box">
-{if $section_head}
-				<h3><em>{$section_head}</em></h3>
-{/if}
-
+				<div class="full-column-last">
+				<!--CONTENT START-->
 {if $content_template}{include file=$content_template}{/if}
-
-				</section>
-
-				<aside id="frame-2" class="span-6 prepend-1 prepend-top">
-{if $side_template}{include file=$side_template}{/if}
-				</aside>
-
+				<!--CONTENT END-->
+				</div>
 			</div>
 		</div>
 
