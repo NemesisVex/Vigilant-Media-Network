@@ -4,7 +4,8 @@ if (class_exists('OR_Albums')) {
 	$album_info = new OR_Albums();
 	$albums = $album_info->get_albums('eponymous-4');
 
-	$node_ids = taxonomy_select_nodes(2);
+	$taxonomy = array_keys(taxonomy_get_term_by_name('Music'));
+	$node_ids = taxonomy_select_nodes($taxonomy[0]);
 	$album_aliases = array();
 
 	foreach ($node_ids as $node_id) {
