@@ -114,7 +114,7 @@ label.error, span.error
 	display: none;
 }
 
-input[type=text], input[type=email], select, textarea
+input[type=text], input[type=email], input[type=password], select, textarea
 {
 	font-size: 100%;
 	font-family: inherit;
