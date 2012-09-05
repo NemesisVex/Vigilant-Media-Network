@@ -38,9 +38,9 @@
 
 						<a href="https://bitbucket.org/NemesisVex/movable-type-forcepreview"><img src="/images/movable_type.png" class="img-align-right" alt="[Movable Type]" title="[Movable Type]"  /></a>
 
-						<p>Force Preview for Movable Type prevents comment spam by requiring users to preview a comment before submitting a comment.</p>
+						<p>Force Preview for Movable Type prevents comment spam by requiring users to preview a comment before submitting it.</p>
 
-						<p><a href="http://unicom.com/">Chip Rosenthal</a> created the Movable Type Force Preview plugin for Movable Type 3. I updated this plugin to work with Movable Type 4 and 5.</p>
+						<p><a href="http://unicom.com/">Chip Rosenthal</a> created the Force Preview plugin for Movable Type 3. I updated it to work with Movable Type 4 and 5.</p>
 					</article>
 				</section>
 

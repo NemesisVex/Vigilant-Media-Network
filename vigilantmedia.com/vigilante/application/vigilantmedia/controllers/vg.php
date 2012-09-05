@@ -2,8 +2,7 @@
 
 class Vg extends CI_Controller
 {
-	public $webmaster_email = 'greg@gregbueno.com';
-	public $site_name = 'Vigilant Media';
+	public $site_name = 'Vigilante';
 
 	function __construct()
 	{
@@ -20,7 +19,7 @@ class Vg extends CI_Controller
 
 	function error($code)
 	{
-		$this->vmview->display_error_page($code, 'vm_error_' . $code . '.tpl');
+		$this->vmview->display_error_page($code, 'vg_error_' . $code . '.tpl');
 	}
 
 }

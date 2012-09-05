@@ -1,6 +1,6 @@
-		<header id="masthead">
+		<div id="masthead">
 			<div class="container">
-				<hgroup id="masthead-left">
+				<header id="masthead-title">
 					<?php if ($site_name): ?>
 					<h1 id="title">
 						<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
@@ -13,16 +13,16 @@
 						<?php echo $site_slogan; ?>
 					</h3>
 					<?php endif; ?>
-				</hgroup>
+				</header>
 
-				<nav id="masthead-right">
+				<nav id="nav-main">
 					<?php if ($main_menu): ?>
 					<?php print theme('links__system_main_menu', array('links' => $main_menu)); ?>
 					<?php endif; ?>
 				</nav>
 
 			</div>
-		</header>
+		</div>
 
 		<div id="content">
 			<div class="container">

@@ -46,22 +46,12 @@ a:visited {
 	color: #743A5B;
 }
 
+#introduction {
+	font-size: 120%;
+}
+
 #masthead, #masthead h2 {
 	color: #FFF;
-}
-
-#title {
-	font-family: Novecentowide, Helvetica, Arial, sans-serif;
-	font-size: 375%;
-}
-
-#title a {
-	text-decoration: none;
-	color: #FFF;
-}
-
-#subtitle {
-	font-size: 85%;
 }
 
 #nav-main li a {
@@ -73,8 +63,18 @@ a:visited {
 	text-decoration: underline;
 }
 
-#introduction {
-	font-size: 120%;
+#subtitle {
+	font-size: 85%;
+}
+
+#title {
+	font-family: Novecentowide, Helvetica, Arial, sans-serif;
+	font-size: 375%;
+}
+
+#title a {
+	text-decoration: none;
+	color: #FFF;
 }
 
 .three-column-single header h3 a, .three-column-single-last header h3 a {
