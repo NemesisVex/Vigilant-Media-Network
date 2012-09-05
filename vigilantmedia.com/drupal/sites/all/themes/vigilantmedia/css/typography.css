@@ -1,114 +1,93 @@
-/* Overwritten elements */
-body
-{
-	font-family: 'trebuchet ms', sans-serif;
-	color: #FFF;
-}
+/*
+    Document   : typography
+    Created on : May 7, 2012, 6:45:21 PM
+    Author     : Greg Bueno
+    Description:
+        Purpose of the stylesheet follows.
+*/
 
-a, a:focus, a:hover
-{
-	color: #CC9;
-	text-decoration: none;
-}
-
-a:hover
-{
-	text-decoration: underline;
-}
-
-table
-{
-	font-size: 100%;
-}
-
-label
-{
+@font-face {
+	font-family: "Novecentowide";
+	src: url("fonts/Novecentowide-Bold-webfont.eot");
+	src: url("fonts/Novecentowide-Bold-webfont.eot?iefix") format("eot"),
+		url("fonts/Novecentowide-Bold-webfont.woff") format("woff"),
+		url("fonts/Novecentowide-Bold-webfont.ttf") format("truetype"),
+		url("fonts/Novecentowide-Bold-webfont.svg#webfont") format("svg");
 	font-weight: bold;
 }
-
-label.error, span.error
-{
-	color: #F99;
+@font-face {
+	font-family: "Novecentowide";
+	src: url("fonts/Novecentowide-Book-webfont.eot");
+	src: url("fonts/Novecentowide-Book-webfont.eot?iefix") format("eot"),
+		url("fonts/Novecentowide-Book-webfont.woff") format("woff"),
+		url("fonts/Novecentowide-Book-webfont.ttf") format("truetype"),
+		url("fonts/Novecentowide-Book-webfont.svg#webfont") format("svg");
 }
 
-#masthead
-{
+a {
+	color: #A66D3C;
+}
+
+a:hover {
+	color: #906948;
+}
+
+a:visited {
+	color: #2D4378;
+}
+
+body {
+	color: #555;
+	line-height: 2em;
+}
+
+#masthead, #masthead h2 {
 	color: #FFF;
 }
 
-#title
-{
-	font-family: 'book antiqua', serif;
-	color: #FFF;
-}
-
-#subtitle
-{
-	color: #FFF;
-}
-
-#masthead-right
-{
-	color: #FFF;
-}
-
-#content
-{
-	font-size: 13px;
-	color: #FFF;
-}
-
-#content h1, #content h2, #content h3, #content h4, #content h5, #content h6
-{
-	font-family: 'helvetica', sans-serif;
-	color: #FFF;
-}
-
-#facebox .body
-{
-	color: #000;
-}
-
-#facebox a
-{
-	color: #933;
-}
-
-.folio-info
-{
-	font-size: smaller;
-}
-
-.smaller
-{
-	font-size: smaller;
-}
-
-.resume-duty
-{
-	font-size: 90%;
-}
-
-#masthead-right ul.links li:before
-{
-	content: "• ";
-}
-
-#masthead-right ul.links li.active:before
-{
-	content: "» ";
-}
-
-#masthead-right ul.links li a {
-	text-transform: lowercase;
-}
-
-li a.active {
-	color: #CC9;
+#title {
+	font-family: Novecentowide, Helvetica, Arial, sans-serif;
+	font-size: 375%;
 }
 
 #title a {
+	text-decoration: none;
+	color: #FFF;
+}
+
+#subtitle {
+	font-size: 85%;
+	color: #FFF;
+}
+
+#nav-main li a {
 	color: #FFF;
 	text-decoration: none;
 }
 
+#nav-main li a:hover {
+	text-decoration: underline;
+}
+
+#introduction {
+	font-size: 120%;
+}
+
+h2.archive-title {
+	font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+}
+
+.three-column-single header h3 a, .three-column-single-last header h3 a {
+	text-decoration: none;
+}
+
+.headline {
+	font-family: 'Palatino Linotype', 'Georgia', 'Times New Roman', 'Times' serif;
+	font-size: 200%;
+}
+
+h3.widget-title {
+	font-family: 'Lucida Grande', Helvetica, Arial, sans-serif;
+	font-size: 120%;
+	text-transform: uppercase;
+}
