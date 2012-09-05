@@ -21,7 +21,7 @@
 			<div class="container">
 				<header id="masthead-title">
 					<hgroup>
-						<h1 id="title"><a href="index.html">Vigilante</a></h1>
+						<h1 id="title"><a href="/">Vigilante</a></h1>
 						<h2 id="subtitle">Vigilant Media Network Code Gallery</h2>
 					</hgroup>
 				</header>
@@ -42,7 +42,7 @@
 				<section id="frame-1" class="full-column-last">
 {if $section_head}
 					<header>
-						<h1><em>{$section_head}</em></h1>
+						<h1>{$section_head}</h1>
 					</header>
 {/if}
 
