@@ -270,11 +270,12 @@ class Session extends CI_Controller
 		}
 		else
 		{
+			$this->phpsession->flashsave('error', 'Login failed.');
 			$this->mysmarty->assign('error', 'Login failed.');
 			$this->mysmarty->assign('login', $login);
 			$this->mysmarty->assign('redirect', $redirect);
 			$this->vigilantecorelib->log_action($login . ' failed to log in.');
-			$this->index();
+			header('Location: /');
 		}
 	}
 	
