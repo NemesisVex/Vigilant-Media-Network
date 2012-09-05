@@ -1,0 +1,226 @@
+/*
+    Document   : layout
+    Created on : May 7, 2012, 6:45:32 PM
+    Author     : Greg Bueno
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+label {
+	float: left;
+	width: 150px;
+	margin-right: 10px;
+}
+
+ul.company-info {
+	list-style-type: none;
+	padding: 0;
+	margin-left: 0;
+}
+
+ul.company-info li {
+}
+
+#contact {
+	text-align: center;
+}
+
+#container {
+	display: block;
+	width: 950px;
+	margin: 0 auto;
+}
+
+#content-column-1 {
+	float: left;
+	width: 670px;
+	margin-right: 10px;
+	padding-right: 40px;
+	border-right: 1px solid #CCC;
+}
+
+#content-column-2 {
+	float: left;
+	width: 190px;
+	margin-right: 0;
+}
+
+#introduction, #contact {
+	float: left;
+	width: 870px;
+	margin-right: 0px;
+	padding-left: 40px;
+	padding-right: 40px;
+	margin-bottom: 1.5em;
+}
+
+#masthead {
+	padding-bottom: 0;
+	margin-bottom: 1.5em;
+	background-color: #8B99B9;
+	background-image: linear-gradient(bottom, rgb(102, 127, 128), rgb(139, 153, 185) 80px);
+	background-image: -o-linear-gradient(bottom, rgb(102, 127, 128), rgb(139, 153, 185) 80px);
+	background-image: -moz-linear-gradient(bottom, rgb(102, 127, 128), rgb(139, 153, 185) 80px);
+	background-image: -webkit-linear-gradient(top, rgb(102,127,128), rgb(139, 153, 185) 80px);
+	background-image: -ms-linear-gradient(bottom, rgb(102, 127, 128), rgb(139, 153, 185) 80px);
+	color: #FFF;
+}
+
+#masthead-title {
+	float: left;
+	width: 510px;
+	margin-top: 1.5em;
+	margin-right: 10px;
+}
+
+#nav-main {
+	float: right;
+	margin-top: 3em;
+}
+
+#nav-main ul {
+	list-style-type: none;
+}
+
+#nav-main ul li {
+	display: inline-block;
+	margin-left: 20px;
+	padding: 3px 9px;
+}
+
+#panels {
+	float: left;
+	width: 950px;
+	margin-right: 0;
+	margin-bottom: 3em;
+}
+
+#searchform input[type=text] {
+	border-radius: 4px;
+	border: 1px solid #CCC;
+}
+
+#subtitle {
+}
+
+#title {
+	margin-bottom: 0.1em;
+}
+
+.centered {
+	text-align: center;
+}
+
+.entry-meta {
+	background-color: #EEE;
+	padding: 5px;
+	margin-bottom: 1.5em;
+	border-radius: 4px;
+}
+
+.entry-text {
+	padding-left: 40px;
+}
+
+.img-align-right {
+	float: right;
+	margin-left: 10px;
+}
+
+.folio-image {
+	border: 3px solid #A7A7A7;
+	border-radius: 4px;
+}
+
+.form-hidden {
+	display: none;
+}
+
+.four-column-single {
+	float: left;
+	width: 190px;
+	margin-right: 10px;
+	padding-right: 40px;
+	border-right: 1px solid #CBCBCB;
+}
+
+.four-column-single-last {
+	float: left;
+	width: 190px;
+	margin-right: 0;
+}
+
+.full-column-last {
+	float: left;
+	width: 950px;
+	margin-right: 0;
+	margin-bottom: 1.5em;
+}
+
+.resume-column-1 {
+	float: left;
+	width: 310px;
+	margin-right: 10px;
+}
+
+.resume-column-2 {
+	float: left;
+	width: 590px;
+	margin-right: 0;
+	padding-right: 40px;
+}
+
+.resume-skills li {
+	float: left;
+	margin-right: 24px;
+}
+
+.three-column-single {
+	float: left;
+	width: 270px;
+	margin-right: 10px;
+	padding-right: 40px;
+	border-right: 1px solid #CBCBCB;
+}
+
+.three-column-single-last {
+	float: left;
+	width: 270px;
+	margin-right: 0;
+}
+
+.three-columns {
+	float: left;
+	width: 950px;
+	margin-right: 0;
+	margin-bottom: 3em;
+}
+
+.two-column-single {
+	float: left;
+	width: 430px;
+	margin-right: 10px;
+	padding-right: 40px;
+	border-right: 1px solid #CBCBCB;
+}
+
+.two-column-single-last {
+	float: left;
+	width: 420px;
+	margin-right: 0;
+	padding-left: 40px;
+}
+
+.nav-social {
+	list-style-type: none;
+}
+
+.nav-social li {
+	display: inline-block;
+	margin-right: 6px;
+}
+
+.widget_search {
+	margin-bottom: 1.5em;
+}
+

@@ -9,18 +9,7 @@
  */
 ?>
 <!DOCTYPE html>
-<!--[if IE 6]>
-<html id="ie6" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if IE 7]>
-<html id="ie7" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if IE 8]>
-<html id="ie8" <?php language_attributes(); ?>>
-<![endif]-->
-<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
 <html <?php language_attributes(); ?>>
-<!--<![endif]-->
 	<head>
 		<title><?php
 	/*
@@ -48,11 +37,14 @@
 		<link rel="profile" href="http://gmpg.org/xfn/11" />
 		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/screen.css" type="text/css" media="screen, projection">
 		<link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/print.css" type="text/css" media="print">
-		<!--[if IE]><link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<!--[if lt IE 8]><link rel="stylesheet" href="http://vigilante.vigilantmedia.com/css/blueprint/ie.css" type="text/css" media="screen, projection"><![endif]-->
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/typography.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/layout.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/mobile.css" type="text/css" media="screen and (max-width: 600px)" />
 		<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 		<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 		<script type="text/javascript" src="http://vigilante.vigilantmedia.com/js/modernizr-1.6.min.js"></script>
-		<!--[if lt IE9]<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>[/if]-->
+		<!--[if lt IE 9]><script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script><![endif]-->
 <?php
 	/* We add some JavaScript to pages with the comment form
 	 * to support sites with threaded comments (when in use).
@@ -72,19 +64,20 @@
 	<body>
 
 		<div id="masthead">
-			<div class="container showgrid">
-
-				<header id="masthead-left" class="span-12">
+			<div class="container">
+				<header id="masthead-title">
 					<hgroup>
 						<h1 id="title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 						<h3 id="subtitle"><?php bloginfo( 'description' ); ?></h3>
 					</hgroup>
 				</header>
 
-				<nav id="masthead-right" class="span-12 prepend-top last">
+				<nav id="nav-main">
+					<?php wp_nav_menu(array('theme_location' => 'primary')); ?>
 				</nav>
 
 			</div>
 		</div>
 
-		<div class="container showgrid">
+		<div id="content">
+			<div class="container">
