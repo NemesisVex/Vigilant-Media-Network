@@ -1,7 +1,7 @@
 <?php
 
 function eponymous4_preprocess_node(&$vars) {
-	$vars['submitted'] = '&#8212; Posted by <strong>' . $vars['node']->name . '</strong> on ' . date('F d, Y H:i', $vars['node']->created);
+	$vars['submitted'] = '<em>&#8212; Posted by <strong>' . $vars['node']->name . '</strong> on ' . date('F d, Y H:i', $vars['node']->created) . '</em>';
 }
 
 function eponymous4_preprocess_page(&$vars) {
@@ -37,6 +37,12 @@ function eponymous4_theme() {
 				'release_alias' => NULL,
 			),
 			'template' => 'templates/eponymous4.block.album_info',
+		),
+		'node_track_info' => array(
+			'variables' => array(
+				'tracks' => NULL,
+			),
+			'template' => 'templates/eponymous4.node.track_info',
 		),
 	);
 	
