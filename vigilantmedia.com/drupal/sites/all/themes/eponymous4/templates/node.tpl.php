@@ -115,9 +115,9 @@
 	</article>
 
 	<?php
-	if (!$teaser) {
-		print render($content['field_tags']);
-	}
+//	if (!$teaser) {
+//		print render($content['field_tags']);
+//	}
 	?>
 
 	<?php print render($content['comments']); ?>
