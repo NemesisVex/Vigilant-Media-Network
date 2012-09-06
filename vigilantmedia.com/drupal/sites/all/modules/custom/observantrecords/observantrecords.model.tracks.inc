@@ -89,10 +89,14 @@ class OR_Tracks extends OR_Model {
 		if (!empty($node->type)) {
 			$node_view = node_view($node);
 			
-			$release_alias = $node_view['field_release_alias']['#items'][0]['value'];
-			$album_alias = $node_view['field_album_alias']['#items'][0]['value'];
+			if (!empty($node_view['field_release_alias'])) {
+				$release_alias = $node_view['field_release_alias']['#items'][0]['value'];
+			}
+			if (!empty($node_view['field_album_alias'])) {
+				$album_alias = $node_view['field_album_alias']['#items'][0]['value'];
+			}
 			
-			if (!empty($album_alias)) {
+			if (!empty($album_alias) && !empty($release_alias)) {
 				$content = array($this->get_release_tracks($release_alias));
 			} elseif (!empty($album_alias)) {
 				$content = array($this->get_album_tracks($album_alias));
