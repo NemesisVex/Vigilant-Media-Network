@@ -42,7 +42,10 @@ class MyMusicbrainz
 	function send_request($request_uri)
 	{
 		$results = $this->CI->mycacherestrequest->get($request_uri);
-		$this->results = simplexml_load_string($results);
+		if (!empty($results))
+		{
+			$this->results = simplexml_load_string($results);
+		}
 	}
 	
 	function send_query($search_type, $params, $limit = '', $offset = '')
