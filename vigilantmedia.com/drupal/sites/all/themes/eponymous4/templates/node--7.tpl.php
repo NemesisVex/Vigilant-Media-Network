@@ -10,7 +10,9 @@ if (class_exists('OR_Albums')) {
 
 	foreach ($node_ids as $node_id) {
 		$node = node_load($node_id);
-		$album_aliases[] = $node->field_album_alias[$node->language][0]['value'];
+		if (!empty($node->field_album_alias)) {
+			$album_aliases[] = $node->field_album_alias[$node->language][0]['value'];
+		}
 	}
 
 }
