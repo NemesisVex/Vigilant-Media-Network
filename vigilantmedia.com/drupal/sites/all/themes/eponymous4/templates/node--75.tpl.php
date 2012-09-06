@@ -1,7 +1,3 @@
-					<header>
-						<h2>Video</h2>
-					</header>
-
 <p>Yes, I'm putting the cart before the proverbial horse by filming music videos for songs which haven't been released. But a lot of these songs are demo versions, and the videos themselves were shot with a point-and-shoot digital camera. So we're not talking high-quality production here.</p>
 
 <p>But given the limited means, I think the results come out mighty fine.</p>
@@ -25,15 +21,15 @@
 <h3>enigmatics IV</h3>
 
 <div id="enigmatics_iv" class="append-bottom">[Error: Flash player did not load.]</div>
- 
+
 <h3>What I Deserve</h3>
 
 <div id="what_i_deserve" class="append-bottom">[Error: Flash player did not load.]</div>
- 
+
 <h3>Speechless</h3>
 
 <div id="speechless" class="append-bottom">[Error: Flash player did not load.]</div>
- 
+
 <script type="text/javascript">
 (function ($) {
 	$(function () {
