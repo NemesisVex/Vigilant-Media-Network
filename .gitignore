@@ -20,11 +20,12 @@
 /vigilantmedia.com/drupal/sites/all/environment.php
 /vigilantmedia.com/drupal/sites/all/modules/custom/observantrecords/observantrecords.config.inc
 /vigilantmedia.com/drupal/sites/all/themes/eponymous4/templates/node--1.tpl.php
-/vigilantmedia.com/drupal/sites/dev.drupal.eponymous4.com
 /vigilantmedia.com/drupal/sites/dev.drupal.vigilantmedia.com
+/vigilantmedia.com/drupal/sites/dev.eponymous4.com
 /vigilantmedia.com/drupal/sites/dev.emptyensemble.com
 /vigilantmedia.com/drupal/sites/dev.observantrecords.com
 /vigilantmedia.com/drupal/sites/dev.shinkyokuadvocacy.com
+/vigilantmedia.com/drupal/sites/drupal.vigilantmedia.com
 /vigilantmedia.com/drupal/sites/eponymous4.com
 /vigilantmedia.com/drupal/sites/eponymous4.net
 /vigilantmedia.com/drupal/sites/eponymous4.org
@@ -37,10 +38,10 @@
 /vigilantmedia.com/drupal/sites/shinkyokuadvocacy.com
 /vigilantmedia.com/drupal/sites/shinkyokuadvocacy.net
 /vigilantmedia.com/drupal/sites/shinkyokuadvocacy.org
-/vigilantmedia.com/drupal/sites/shinkyokuadvocacy.com
-/vigilantmedia.com/drupal/sites/test.drupal.eponymous4.com
 /vigilantmedia.com/drupal/sites/test.drupal.vigilantmedia.com
 /vigilantmedia.com/drupal/sites/test.emptyensemble.com
+/vigilantmedia.com/drupal/sites/test.eponymous4.com
+/vigilantmedia.com/drupal/sites/test.observantrecords.com
 /vigilantmedia.com/drupal/sites/test.shinkyokuadvocacy.com
 /vigilantmedia.com/mt/mt/index.xml
 /vigilantmedia.com/mt/cgi-bin/mt/mt-config.cgi
