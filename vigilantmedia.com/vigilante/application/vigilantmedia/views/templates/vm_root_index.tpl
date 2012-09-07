@@ -33,7 +33,7 @@
 							<h3><a href="http://blog.vigilantmedia.com/">Blog</a></h3>
 						</header>
 
-						<p><a href="http://blog.vigilantmedia.com/">Bitwise Dilletante</a> is where I talk about technology and work.</p>
+						<p><a href="http://blog.vigilantmedia.com/">Bit-Wise Dilletante</a> is where I talk about technology and work.</p>
 					</section>
 				</div>
 

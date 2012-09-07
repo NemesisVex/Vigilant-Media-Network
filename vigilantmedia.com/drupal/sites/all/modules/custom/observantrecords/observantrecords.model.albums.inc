@@ -93,9 +93,15 @@ class OR_Albums extends OR_Model {
 		if (!empty($node->type)) {
 			$node_view = node_view($node);
 			
-			$album_alias = $node_view['field_album_alias']['#items'][0]['value'];
-			$release_alias = $node_view['field_release_alias']['#items'][0]['value'];
-			$artist_alias = $node_view['field_artist_alias']['#items'][0]['value'];
+			if (isset($node_view['field_album_alias']) && !empty($node_view['field_album_alias'])) {
+				$album_alias = $node_view['field_album_alias']['#items'][0]['value'];
+			}
+			if (isset($node_view['field_release_alias']) && !empty($node_view['field_release_alias'])) {
+				$release_alias = $node_view['field_release_alias']['#items'][0]['value'];
+			}
+			if (isset($node_view['field_artist_alias']) && !empty($node_view['field_artist_alias'])) {
+				$artist_alias = $node_view['field_artist_alias']['#items'][0]['value'];
+			}
 			
 			if (!empty($album_alias)) {
 				$content = array($this->get_album($album_alias));

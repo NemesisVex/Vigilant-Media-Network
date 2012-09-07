@@ -13,9 +13,13 @@
 /gregbueno.com/www/index.xml
 /musicwhore.org/film/index.xml
 /musicwhore.org/tv/index.xml
+/musicwhore.org/wp/environment.php
+/musicwhore.org/wp/wp-content/blogs.dir/
 /observantrecords.com/www/index.xml
 /observantrecords.com/www/music/
 /vigilantmedia.com/drupal/sites/all/environment.php
+/vigilantmedia.com/drupal/sites/all/modules/custom/observantrecords/observantrecords.config.inc
+/vigilantmedia.com/drupal/sites/all/themes/eponymous4/templates/node--1.tpl.php
 /vigilantmedia.com/drupal/sites/dev.drupal.eponymous4.com
 /vigilantmedia.com/drupal/sites/dev.drupal.vigilantmedia.com
 /vigilantmedia.com/drupal/sites/dev.emptyensemble.com
@@ -33,6 +37,7 @@
 /vigilantmedia.com/drupal/sites/shinkyokuadvocacy.com
 /vigilantmedia.com/drupal/sites/shinkyokuadvocacy.net
 /vigilantmedia.com/drupal/sites/shinkyokuadvocacy.org
+/vigilantmedia.com/drupal/sites/shinkyokuadvocacy.com
 /vigilantmedia.com/drupal/sites/test.drupal.eponymous4.com
 /vigilantmedia.com/drupal/sites/test.drupal.vigilantmedia.com
 /vigilantmedia.com/drupal/sites/test.emptyensemble.com
