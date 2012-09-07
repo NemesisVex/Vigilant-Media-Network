@@ -206,3 +206,7 @@ ul.album-list li
 .inline-list li:before {
 	content: "» ";
 }
+
+.node {
+	margin-bottom: 1.5em;
+}
