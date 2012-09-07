@@ -45,9 +45,9 @@
 	<head lang="en-us">
 		<?php print $head; ?>
 		<title><?php
-			print strtolower($head_title_array['name']);
+			print $head_title_array['name'];
 			if (!empty($head_title_array['title'])):
-				print ' &raquo; ' . strtolower($head_title_array['title']);
+				print ' &raquo; ' . $head_title_array['title'];
 			endif;
 		?></title>
 		<meta charset="utf-8" />

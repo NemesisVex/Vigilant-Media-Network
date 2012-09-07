@@ -4,11 +4,10 @@ if (class_exists('OR_Albums')) {
 	$album_info = new OR_Albums();
 	$albums = $album_info->get_albums('eponymous-4');
 
-	$taxonomy = array_keys(taxonomy_get_term_by_name('Music'));
-	$node_ids = taxonomy_select_nodes($taxonomy[0]);
+	$node_ids = db_query('select * from {node} where type = :type', array(':type' => 'album'))->fetchAllAssoc('nid', PDO::FETCH_ASSOC);
 	$album_aliases = array();
 
-	foreach ($node_ids as $node_id) {
+	foreach ($node_ids as $node_id => $node_info) {
 		$node = node_load($node_id);
 		if (!empty($node->field_album_alias)) {
 			$album_aliases[] = $node->field_album_alias[$node->language][0]['value'];
