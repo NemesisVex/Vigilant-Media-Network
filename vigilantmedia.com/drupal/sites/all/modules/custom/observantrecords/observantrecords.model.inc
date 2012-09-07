@@ -15,11 +15,12 @@ class OR_Model {
 	private $driver;
 
 	public function __construct() {
-		//TODO: Store database configuration in separate file.
-		$this->database_name = (ENVIRONMENT == 'development') ? 'observantrecords_dev' : 'observantrecords';
-		$this->username = 'eponymous4';
-		$this->password = '3825crux';
-		$this->host =  'mysql.eponymous4.com';
+		require_once('observantrecords.config.inc');
+
+		$this->database_name = OR_DB_NAME;
+		$this->username = OR_DB_USER;
+		$this->password = OR_DB_PASSWORD;
+		$this->host =  OR_DB_HOST;
 		$this->driver = 'mysql';
 	}
 

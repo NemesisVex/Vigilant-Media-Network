@@ -5,7 +5,7 @@
 
 /*global $: true, $swf: true, $e4: true, $ep4: true, $mw: true */
 
-(function ()
+(function ($)
 {
 	var window = this;
 	var Jqswf = function (selector)
@@ -39,7 +39,7 @@
 		}
 	};
 	window.Jqswf = window.$swf = Jqswf;
-}) ();
+}) (jQuery);
 
 
 (function ()
@@ -215,6 +215,15 @@
 	window.Musicwhore = window.$mw = Musicwhore;
 })();
 
-$.extend($e4.prototype, $swf.prototype);
-$.extend($ep4.prototype, $e4.prototype);
-$.extend($mw.prototype, $ep4.prototype);
+if (typeof $ == 'undefined') {
+	(function ($) {
+		$.extend($e4.prototype, $swf.prototype);
+		$.extend($ep4.prototype, $e4.prototype);
+		$.extend($mw.prototype, $ep4.prototype);
+	})(jQuery);
+} else {
+	$.extend($e4.prototype, $swf.prototype);
+	$.extend($ep4.prototype, $e4.prototype);
+	$.extend($mw.prototype, $ep4.prototype);
+}
+
