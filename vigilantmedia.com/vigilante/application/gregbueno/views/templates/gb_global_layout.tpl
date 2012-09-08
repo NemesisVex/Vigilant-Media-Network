@@ -33,7 +33,7 @@
 				</header>
 
 				<section id="logo-pic">
-					<img width="100" height="100" title="[Greg Bueno]" alt="[Greg Bueno]" src="http://www.eponymous4.com/images/bio_wrp_vol_03_restraint.jpg" />
+					<img width="100" height="100" title="[Greg Bueno]" alt="[Greg Bueno]" src="/images/bio_wrp_vol_03_restraint.jpg" />
 				</section>
 			</div>
 
