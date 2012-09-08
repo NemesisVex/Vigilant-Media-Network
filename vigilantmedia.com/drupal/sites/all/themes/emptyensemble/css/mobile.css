@@ -22,6 +22,14 @@
 	margin-right: 10px;
 }
 
+#content #music-index {
+	float: none;
+	width: auto;
+	margin-right: 0;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
 #nav-main {
 	float: none;
 	width: auto;
