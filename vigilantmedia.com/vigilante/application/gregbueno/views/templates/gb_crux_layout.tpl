@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Greg Bueno{if $page_title}: {$page_title}{/if}</title>
+		<title>Starting to Remember: A Supernatural Detective Novel by Greg Bueno</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" href="/images/gbueno.ico" type="image/vnd.microsoft.icon" />
