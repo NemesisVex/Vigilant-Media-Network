@@ -33,11 +33,6 @@ class Gb extends CI_Controller
 		$this->vmview->display('gb_root_museum.tpl');
 	}
 	
-	public function crux()
-	{
-		
-	}
-
 	public function profile()
 	{
 		header('Location: /', 301);
