@@ -33,6 +33,7 @@ class Release extends CI_Controller {
 	public function view($release_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$this->Obr_Release->set_config('fetch_tracks', true);
+			$this->Obr_Release->set_config('return_discs', true);
 			$rsRelease = $this->Obr_Release->retrieve_by_id($release_id);
 			
 			$this->mysmarty->assign('rsRelease', $rsRelease);

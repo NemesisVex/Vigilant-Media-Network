@@ -80,15 +80,22 @@
 		</form>
 
 	{if !empty($rsRelease->tracks)}
-		<ol class="track-list">
-		{foreach item=rsTrack from=$rsRelease->tracks}
-			<li>
-				<div>
-					<a href="/index.php/admin/track/edit/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-					{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/track/delete/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
-					<span class="track-num-display">{$rsTrack->track_track_num}</span>. <a href="/index.php/admin/track/view/{$rsTrack->track_id}">{$rsTrack->song_title}</a>
-					<input type="hidden" name="track_id" value="{$rsTrack->track_id}" />
-				</div>
+		<ol class="disc-list">
+		{foreach item=rsDisc key=disc_num from=$rsRelease->tracks}
+			<li> <h4>Disc: <span class="disc-num-display">{$disc_num}</span>:</h4>
+				<ol class="track-list">
+				{foreach item=rsTrack from=$rsDisc}
+					<li>
+						<div>
+							<a href="/index.php/admin/track/edit/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
+							{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/track/delete/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
+							<span class="track-num-display">{$rsTrack->track_track_num}</span>. <a href="/index.php/admin/track/view/{$rsTrack->track_id}">{$rsTrack->song_title}</a>
+							<input type="hidden" name="track_id" value="{$rsTrack->track_id}" />
+							<input type="hidden" name="track_disc_num" value="{$rsTrack->track_disc_num}" />
+						</div>
+					</li>
+				{/foreach}
+				</ol>
 			</li>
 		{/foreach}
 		</ol>
@@ -107,6 +114,20 @@
 				});
 			}
 		});
+		if ($('.disc-list').children().length > 1) {
+			$('.disc-list').sortable({
+				update: function (event, ui) {
+					var new_disc_num = 1;
+					$(this).children().each(function () {
+						$(this).find('.disc-num-display').html(new_disc_num);
+						$(this).find('.track-list li').each(function () {
+							$(this).find('input[name=track_disc_num]').val(new_disc_num);
+						});
+						new_disc_num++;
+					});
+				}
+			});
+		}
 		$('#save-order-dialog').dialog({
 			autoOpen: false,
 			modal: true,
@@ -117,13 +138,15 @@
 			}
 		});
 		$('#save-order').click(function () {
-			var tracks = [], track_num, track_id, track_info;
+			var tracks = [], track_disc, track_num, track_id, track_info;
 			$('.track-list').children().each(function () {
 				track_num = $(this).find('.track-num-display').html();
 				track_id = $(this).find('input[name=track_id]').val();
+				track_disc = $(this).find('input[name=track_disc_num]').val();
 				track_info = {
 					'track_id': track_id,
-					'track_track_num': track_num
+					'track_track_num': track_num,
+					'track_disc_num': track_disc
 				}
 				tracks.push(track_info);
 			});
