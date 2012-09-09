@@ -22,13 +22,13 @@
 	<section id="why-free">
 		<h3>Why free?</h3>
 		
-		<p>Crux isn't done with his adventures, but I don't see myself as a full-time novel writer. I did finish a literary novel back in 2001, which will remain unpublished.</p>
+		<p>Crux isn't done with his adventures, but I don't consider myself as a full-time novelist. I did finish a literary novel back in 2001, which will remain unpublished.</p>
 		
-		<p>So overlapping with the 18 years it took to get this first story to get written, it took 8 years for me to write a second book.</p>
+		<p>It took 8 years before I got around to finishing this story, 18 if you count the first drafts from 1991.</p>
 		
-		<p>Don't make bets on when the next Crux story will surface.</p>
+		<p>In short, don't make any bets on when the next Crux story will surface.</p>
 		
-		<p>But I'd rather have some readers than no readers, and maybe if enough people like this tale, they'll put the heat on to make me finish another.</p>
+		<p>But I'd rather have some readers than no readers, and maybe if enough people like this tale, they'll put on the heat to make me finish another.</p>
 	</section>
 </div>
 
