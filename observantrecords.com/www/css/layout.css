@@ -252,6 +252,29 @@ ul.two-column-bubble-list li div label
 	width: 110px;
 }
 
+ol.disc-list {
+	list-style: none;
+	margin: 1.5em 0;
+	padding: 0;
+}
+
+ol.disc-list li
+{
+	display: block;
+	margin-right: 10px;
+	margin-bottom: 1em;
+	min-height: 2em;
+	min-width: 230px;
+	width: 550px;
+	vertical-align: top;
+	border: 1px solid #CBCBCB;
+	border-radius: 4px;
+}
+
+ol.disc-list li h4 {
+	margin: 10px;
+}
+
 ol.track-list
 {
 	list-style: decimal;
@@ -266,7 +289,9 @@ ol.track-list li
 	margin-bottom: 1em;
 	min-height: 2em;
 	min-width: 230px;
-	width: 550px;
+	width: 470px;
+	margin-left: 40px;
+	margin-right: 40px;
 	vertical-align: top;
 	border: 1px solid #CBCBCB;
 	border-radius: 4px;

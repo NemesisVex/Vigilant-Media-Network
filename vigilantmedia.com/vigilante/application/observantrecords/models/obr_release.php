@@ -19,6 +19,7 @@ class Obr_Release extends VmModel {
 		$this->CI = & get_instance();
 
 		$this->config['fetch_tracks'] = false;
+		$this->config['return_discs'] = false;
 
 		$this->table_name = 'ep4_albums_releases';
 		$this->primary_index_field = 'release_id';
@@ -37,6 +38,7 @@ class Obr_Release extends VmModel {
 			if ($return_recordset === true) {
 				$rs = $rsRelease;
 				if ($this->config['fetch_tracks']) {
+					$this->CI->Obr_Track->set_config('return_discs', $this->config['return_discs']);
 					if (false !== ($rsTrack = $this->CI->Obr_Track->retrieve_by_release_id($id))) {
 						$rs->tracks = $rsTrack;
 					}
