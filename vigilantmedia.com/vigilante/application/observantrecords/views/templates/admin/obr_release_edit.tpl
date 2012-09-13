@@ -13,7 +13,7 @@
 
 			<p>
 				<label for="release_album_id">Album</label>
-				<select name="release_album_id">
+				<select name="release_album_id" id="release_album_id">
 					<option value=""> &nbsp;
 				{foreach item=rsAlbum from=$rsAlbums}
 					<option value="{$rsAlbum->album_id}"{if ($rsRelease->release_album_id==$rsAlbum->album_id) || ($release_album_id==$rsAlbum->album_id)} selected{/if}> {$rsAlbum->album_title}
@@ -28,7 +28,7 @@
 
 			<p>
 				<label for="release_alias">Alias:</label>
-				<input type="text" name="release_alias" value="{$rsRelease->release_alias}" size="40" />
+				<input type="text" name="release_alias" id="release_alias" value="{$rsRelease->release_alias}" size="40" />
 			</p>
 
 			<p>
@@ -79,7 +79,7 @@
 
 			<p>
 				<label for="release_music_description_more">Description (more):</label>
-				<textarea name="release_music_description_more" cols="50" rows="10">{$rsRelease->release_music_description_more|escape:"html"}</textarea>		
+				<textarea name="release_music_description_more" cols="50" rows="10">{$rsRelease->release_music_description_more|escape:"html"}</textarea>
 			</p>
 
 			<p>
@@ -95,6 +95,12 @@
 				$('#release_release_date').datepicker({
 					dateFormat: 'yy-mm-dd'
 				});
+
+				$('#release_album_id').change(function () {
+					var alias = $('#release_album_id>option:selected').text().trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]+/g, '').replace(/(^-|-$)/, '');
+					if (alias != '') {alias += '-digital';}
+					$('#release_alias').val(alias);
+				});
 			});
 		</script>
 		{/literal}
@@ -105,7 +111,7 @@
 	<p>
 		<img src="/images/_covers/_exm_front_200_{if !empty($rsRelease->release_image)}{$rsRelease->release_image}{else}tbd.jpg{/if}" />
 	</p>
-	
+
 	<ul>
 		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
 	</ul>

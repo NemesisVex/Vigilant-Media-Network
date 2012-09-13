@@ -12,12 +12,12 @@
 
 	<p>
 		<label for="song_title">Song title:</label>
-		<input type="text" name="song_title" value="{$rsSong->song_title|escape}" size="50">
+		<input type="text" name="song_title" id="song_title" value="{$rsSong->song_title|escape}" size="50">
 	</p>
 
 	<p>
 		<label for="song_alias">Alias:</label>
-		<input type="text" name="song_alias" value="{$rsSong->song_alias|escape}" size="50">
+		<input type="text" name="song_alias" id="song_alias" value="{$rsSong->song_alias|escape}" size="50">
 	</p>
 
 	<p>
@@ -58,3 +58,14 @@
 	</p>
 
 </form>
+
+{literal}
+<script type="text/javascript">
+	$(function () {
+		$('#song_title').keyup(function () {
+			var alias = this.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]+/g, '').replace(/(^-|-$)/, '');
+			$('#song_alias').val(alias);
+		});
+	});
+</script>
+{/literal}
