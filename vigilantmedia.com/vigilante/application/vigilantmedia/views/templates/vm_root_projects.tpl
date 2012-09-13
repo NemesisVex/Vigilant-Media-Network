@@ -73,7 +73,7 @@
 
 							<p>The first version of the site was maintained with XML and XSL. Manual updates and inconsistent training resulted in invalid XML when checked against a schema.</p>
 
-							<p>So I built a management tool that stored the process documents in a database. After a user adds or updates a document in the database, a single button click rebuilds the XML, transforms it to HTML, then stores the resulting files on Perforce, where a separate automated process updates the website.</p>
+							<p>So I built a management tool that stored the process documents in a database from which static HTML files were generated.</p>
 						</article>
 
 						<article class="three-column-single-last">
@@ -81,11 +81,11 @@
 
 							<h3>NI Tech Comm: Localization Project Manager</h3>
 
-							<p>In April 2006, I was tasked to perform some administrative duties related to the localization of National Instruments documents. It was a tedious, manual process, so I built a web-based tool to automate it.</p>
+							<p>In April 2006, I was tasked to perform some administrative duties related to the localization of National Instruments documents, so I built a web-based tool to automate the process.</p>
 
 							<p>The Localization Project Manager facilitates the creation of part numbers in various systems, while also tracking the progress of a document through the localization process.</p>
 
-							<p>Before the launch of the Localization Project Manager, it would take a minimum of 20 minutes per document to finish all the necessary tasks. After the launch, that process was reduced to a maximum of 5 minutes.</p>
+							<p>Automating this process reduced the administrative overhead for each localized document from 20 minutes to less than five.</p>
 
 						</article>
 					</div>
@@ -98,9 +98,9 @@
 
 							<p>Formerly a site of static HTML pages, the NI Tech Comm Icon Glossary became a web application to address the exponential growth of the library.</p>
 
-							<p>Icons were being made faster than they could be added to the glossary. Even an XML version of the glossary could not address the backlog. A web application dramatically sped up what would be an incredibly tedious manual process.</p>
+							<p>Icons were being made faster than they could be added to the glossary, so I built an administrative interface to allow icons to be added, edited or removed easily.</p>
 
-							<p>The NI Tech Comm Icon Glossary served as a basis for the Process Documents Portal. Both applications build an XML file from the database, which is transformed into HTML and submitted to Perforce.</p>
+							<p>Glossary content could also be exported to CSV or XML.</p>
 
 						</article>
 
