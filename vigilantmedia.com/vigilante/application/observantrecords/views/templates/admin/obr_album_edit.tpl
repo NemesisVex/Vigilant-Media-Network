@@ -15,12 +15,12 @@
 
 			<p>
 				<label for="album_title">Title:</label>
-				<input type="text" name="album_title" value="{$rsAlbum->album_title}" size="50" />
+				<input type="text" name="album_title" id="album_title" value="{$rsAlbum->album_title}" size="50" />
 			</p>
 
 			<p>
 				<label for="album_alias">Alias:</label>
-				<input type="text" name="album_alias" value="{$rsAlbum->album_alias}" size="50" />
+				<input type="text" name="album_alias" id="album_alias" value="{$rsAlbum->album_alias}" size="50" />
 			</p>
 
 			<p>
@@ -77,6 +77,11 @@
 		$('#album_release_date').datepicker({
 			dateFormat: 'yy-mm-dd'
 		});
+
+		$('#album_title').keyup(function () {
+			var alias = this.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]+/g, '').replace(/(^-|-$)/, '');
+			$('#album_alias').val(alias);
+		});
 	});
 </script>
 {/literal}
@@ -87,7 +92,7 @@
 	<p>
 		<img src="/images/_covers/_exm_front_200_{if !empty($rsAlbum->album_image)}{$rsAlbum->album_image}{else}tbd.jpg{/if}" alt="[{$rsAlbum->album_title}]" title="{$rsAlbum->album_title}]" />
 	</p>
-	
+
 	<ul>
 		<li><a href="/index.php/admin/album/view/{$rsAlbum->album_id}/">Back to <em>{$rsAlbum->album_title}</em></a></li>
 		<li><a href="/index.php/admin/artist/view/{$rsAlbum->album_artist_id}/">Back to artist</a></li>

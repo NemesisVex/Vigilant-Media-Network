@@ -8,7 +8,7 @@
 
 		<p>
 			<label for="artist_display_name">Display name</label>
-			<input type="text" name="artist_display_name" value="{$rsArtist->artist_display_name}" size="50" />
+			<input type="text" name="artist_display_name" id="artist_display_name" value="{$rsArtist->artist_display_name}" size="50" />
 		</p>
 
 		<p>
@@ -23,7 +23,7 @@
 
 		<p>
 			<label for="artist_alias">Alias</label>
-			<input type="text" name="artist_alias" value="{$rsArtist->artist_alias}" size="50" />
+			<input type="text" name="artist_alias" id="artist_alias" value="{$rsArtist->artist_alias}" size="50" />
 		</p>
 
 		<p>
@@ -46,3 +46,14 @@
 		</p>
 
 	</form>
+
+{literal}
+<script type="text/javascript">
+	$(function () {
+		$('#artist_display_name').keyup(function () {
+			var alias = this.value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]+/g, '').replace(/(^-|-$)/, '');
+			$('#artist_alias').val(alias);
+		});
+	});
+</script>
+{/literal}

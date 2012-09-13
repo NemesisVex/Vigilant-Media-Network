@@ -111,6 +111,15 @@
 	filter: alpha(opacity=10);
 }
 
+input[type=text], input[type=email], input[type=password], select, textarea
+{
+	font-size: 100%;
+	font-family: inherit;
+	border: 1px solid #BBB;
+	border-radius: 4px;
+	padding: 3px;
+}
+
 table.track-table
 {
 	border: 1px dotted #402C29;

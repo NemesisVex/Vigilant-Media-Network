@@ -23,7 +23,7 @@
 
 		<p>
 			<label for="track_song_id">Song:</label>
-			<select name="track_song_id">
+			<select name="track_song_id" id="track_song_id">
 				<option value="">&nbsp;</option>
 			{foreach item=rsSong from=$rsSongs}
 				<option value="{$rsSong->song_id}"{if $rsSong->song_id == $rsTrack->track_song_id} selected{/if}>{$rsSong->song_title}</option>
@@ -33,7 +33,7 @@
 
 		<p>
 			<label for="track_alias">Alias:</label>
-			<input type="text" name="track_alias" value="{$rsTrack->track_alias}" size="50" />
+			<input type="text" name="track_alias" id="track_alias" value="{$rsTrack->track_alias}" size="50" />
 		</p>
 
 		<p>
@@ -78,12 +78,28 @@
 			<input type="submit" value="Save" class="button" />
 		</p>
 	</form>
+
+		{literal}
+		<script type="text/javascript">
+			$(function () {
+				// Date pickers.
+				$('#release_release_date').datepicker({
+					dateFormat: 'yy-mm-dd'
+				});
+
+				$('#track_song_id').change(function () {
+					var alias = $('#track_song_id>option:selected').text().trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9\-]+/g, '').replace(/(^-|-$)/, '');
+					$('#track_alias').val(alias);
+				});
+			});
+		</script>
+		{/literal}
 </div>
 <div id="admin-column-2">
 	<p>
 		<img src="/images/_covers/_exm_front_200_{if !empty($rsRelease->release_image)}{$rsRelease->release_image}{else}tbd.jpg{/if}" />
 	</p>
-	
+
 	<ul>
 		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
 		{if !empty($rsTrack)}<li><a href="/index.php/admin/track/view/{$rsTrack->track_id}/">Back to &quot;{$rsTrack->song_title}&quot;</a></li>{/if}
