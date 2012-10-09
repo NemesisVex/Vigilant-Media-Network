@@ -18,6 +18,13 @@
 				<label>Alias</label> {$rsSong->song_alias}
 			</div>
 		</li>
+		{if !empty($rsSong->song_author)}
+		<li>
+			<div>
+				<label>Author</label> {$rsSong->song_author}
+			</div>
+		</li>
+		{/if}
 		<li>
 			<div>
 				<label>Influences</label> {$rsSong->song_influences}
@@ -44,6 +51,18 @@
 			</div>
 		</li>
 	</ul>
+	
+	{if !empty($rsSong->song_lyrics)}
+	<h4>Lyrics</h4>
+	
+	{parse_line_breaks txt=$rsSong->song_lyrics}
+	{/if}
+	
+	{if !empty($rsSong->song_abstract)}
+	<h4>Abstract</h4>
+	
+	{parse_line_breaks txt=$rsSong->song_abstract}
+	{/if}
 	{else}
 		<p>This song has no information.</p>
 	{/if}

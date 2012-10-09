@@ -21,6 +21,11 @@
 	</p>
 
 	<p>
+		<label for="song_author">Author:</label>
+		<input type="text" name="song_author" id="song_author" value="{$rsSong->song_author|escape}" size="50">
+	</p>
+
+	<p>
 		<label for="song_influences">Influences:</label>
 		<input type="text" name="song_influences" value="{$rsSong->song_influences}" size="50">
 	</p>
@@ -28,6 +33,11 @@
 	<p>
 		<label for="song_style">Style:</label>
 		<input type="text" name="song_style" value="{$rsSong->song_style}" size="50">
+	</p>
+
+	<p>
+		<label for="song_written_date">Date written:</label>
+		<input type="text" name="song_written_date" value="{$rsSong->song_written_date}" size="50" />
 	</p>
 
 	<p>
