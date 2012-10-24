@@ -323,3 +323,7 @@ ol.track-list li div
 	background-color: #304B75;
 	cursor: pointer;
 }
+
+.cover {
+	background-color: #EFEFEF;
+}

@@ -7,7 +7,7 @@
 {if (!empty($rsSongs))}
 <ul class="two-column-bubble-list">
 	{foreach item=rsSong from=$rsSongs}
-	<li>
+	<li{if !empty($rsSong->song_author)} class="cover"{/if}>
 		<div>
 			<a href="/index.php/admin/song/edit/{$rsSong->song_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
 			{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/song/delete/{$rsSong->song_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
