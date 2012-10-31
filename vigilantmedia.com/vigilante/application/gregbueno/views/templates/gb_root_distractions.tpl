@@ -35,6 +35,5 @@
 		<li><a href="http://www.flickr.com/photos/nemesisvex/">Flickr</a></li>
 		<li><a href="http://www.linkedin.com/pub/3/3a3/a98">LinkedIn</a></li>
 		<li><a href="http://www.myspace.com/eponymous4">Myspace</a></li>
-		<li><a href="http://nemesisvex.tumblr.com/">Tumblr</a></li>
 	</ul>
 </section>
