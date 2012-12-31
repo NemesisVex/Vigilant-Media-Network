@@ -1,12 +1,14 @@
 /*
 Theme Name: Twenty Ten
-Theme URI: http://wordpress.org/
+Theme URI: http://wordpress.org/extend/themes/twentyten
 Description: The 2010 theme for WordPress is stylish, customizable, simple, and readable -- make it yours with a custom menu, header image, and background. Twenty Ten supports six widgetized areas (two in the sidebar, four in the footer) and featured images (thumbnails for gallery posts and custom header images for posts and pages). It includes stylesheets for print and the admin Visual Editor, special styles for posts in the "Asides" and "Gallery" categories, and has an optional one-column page template that removes the sidebar.
 Author: the WordPress team
-Version: 1.4-wpcom
-License: GNU General Public License
-License URI: license.txt
-Tags: black, blue, white, two-columns, fixed-width, custom-header, custom-background, sticky-post, translation-ready, microformats, rtl-language-support, editor-style, custom-menu, full-width-template, featured-image-header, featured-images, post-formats, blog, business, lifestream, bright, clean, elegant, formal, generic, light, minimal, modern
+Author URI: http://wordpress.org/
+Version: 1.5
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: black, blue, white, two-columns, fixed-width, custom-header, custom-background, threaded-comments, sticky-post, translation-ready, microformats, rtl-language-support, editor-style, custom-menu, flexible-header
+Text Domain: twentyten
 */
 
 
@@ -144,7 +146,7 @@ h3#reply-title,
 .wp-caption-text {
 	font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
 }
-input[type=submit] {
+input[type="submit"] {
 	font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
 }
 pre {
@@ -306,7 +308,14 @@ sup {
 sub {
 	top: .5ex;
 }
+small {
+	font-size: smaller;
+}
 input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="url"],
+input[type="number"],
 textarea {
 	background: #f9f9f9;
 	border: 1px solid #ccc;
@@ -352,12 +361,10 @@ a:hover {
 	text-decoration: none;
 }
 #site-description {
-	color: #000; /* Re-setting the text color to match HEADER_TEXTCOLOR ... */
 	clear: right;
 	float: right;
 	font-style: italic;
 	margin: 15px 0 18px 0;
-	opacity: .65; /* ... and making it less opaque to approximate #666.  */
 	width: 220px;
 }
 
@@ -438,14 +445,14 @@ div.menu li {
 	display: block;
 }
 #access ul li.current_page_item > a,
-#access ul li.current_page_parent > a,
+#access ul li.current_page_ancestor > a,
 #access ul li.current-menu-ancestor > a,
 #access ul li.current-menu-item > a,
 #access ul li.current-menu-parent > a {
 	color: #fff;
 }
 * html #access ul li.current_page_item a,
-* html #access ul li.current_page_parent a,
+* html #access ul li.current_page_ancestor a,
 * html #access ul li.current-menu-ancestor a,
 * html #access ul li.current-menu-item a,
 * html #access ul li.current-menu-parent a,
@@ -592,9 +599,6 @@ div.menu li {
 .entry-meta abbr:hover,
 .entry-utility abbr:hover {
 	border-bottom: 1px dotted #666;
-}
-.single-author .by-author {
-	visibility: hidden;
 }
 .entry-content,
 .entry-summary {
@@ -783,13 +787,13 @@ Resize images to fit the main content area.
 - Applies only to images uploaded via WordPress by targeting size-* classes.
 - Other images will be left alone. Use "size-auto" class to apply to other images.
 */
-#content img.size-auto,
-#content img.size-full,
-#content img.size-large,
-#content img.size-medium,
-#content .attachment img {
+img.size-auto,
+img.size-full,
+img.size-large,
+img.size-medium,
+.attachment img,
+.widget-container img {
 	max-width: 100%; /* When images are too wide for containing element, force them to fit. */
-	width: auto; /* Necessary for IE8 to resize images correctly. */
 	height: auto; /* Override height to match resized width for correct aspect ratio. */
 }
 .alignleft,
@@ -1003,12 +1007,6 @@ h3#comments-title {
 }
 .commentlist .bypostauthor {
 }
-.commentlist .bypostauthor > div {
-	background: #f2f7fc;
-	border-top: 4px solid #000;
-	margin-bottom: 10px;
-	padding: 10px 0 0 20px;
-}
 .reply {
 	font-size: 12px;
 	padding: 0 0 24px 0;
@@ -1029,7 +1027,8 @@ a.comment-edit-link:hover {
 	border: none;
 	margin: 0;
 }
-.nopassword {
+.nopassword,
+.nocomments {
 	display: none;
 }
 #comments .pingback {
@@ -1053,7 +1052,7 @@ a.comment-edit-link:hover {
 }
 
 /* Comments form */
-input[type=submit] {
+input[type="submit"] {
 	color: #333;
 }
 #respond {
@@ -1141,11 +1140,17 @@ h3#reply-title {
 	display: none;
 }
 .widget-container {
+	word-wrap: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	hyphens: auto;
 	margin: 0 0 18px 0;
+}
+.widget-container .wp-caption img {
+	margin: auto;
 }
 .widget-title {
 	color: #222;
-	font-size: 14px;
 	font-weight: bold;
 }
 .widget-area a:link,
@@ -1369,90 +1374,4 @@ code {
 	.home .sticky {
 		border: none;
 	}
-}
-
-/* =WordPress.com
--------------------------------------------------------------- */
-.widget_authors li strong {
-	font-weight: normal;
-}
-.widget_authors li .avatar-128 + strong {
-	display: block;
-	margin-left: -16px;
-	padding-bottom: 2px;
-}
-.widget_authors li img {
-	vertical-align: middle;
-	margin-right: 8px;
-	margin-left: -16px;
-	padding-bottom: 2px;
-}
-.widget_authors li img.avatar-1 {
-	margin-right: 0;
-	margin-left: -18px;
-}
-.widget_authors li ul {
-	margin-bottom: 6px;
-}
-.widget_authors a:hover {
-	text-decoration: none;
-}
-.widget_authors a:hover strong {
-	text-decoration: underline;
-}
-td.recentcommentstextend, td.recentcommentstexttop {
-	vertical-align: middle;
-	line-height: 1.4em;
-}
-#tag_cloud div {
-	padding-top: 4px;
-	line-height: 170%;
-}
-.widget_rss_links p {
-	margin-bottom: 0;
-}
-.widget_rss_links img {
-	vertical-align: text-bottom;
-	margin-right: 2px;
-}
-.adcode div, .adcode span, .adcode a {
-	font-size: 16px !important;
-}
-#main .widget-area ul .widget_author_grid ul {
-	margin: 3px 0 0;
-}
-.sharing {
-	clear: both;
-}
-#flickr_badge_uber_wrapper {
-	width: 200px !important;
-}
-.widget_flickr .flickr-size-small img {
-	max-width: 200px;
-	height: auto;
-}
-.widget_authors li {
-	list-style: none;
-}
-
-/* Style our added link to Theme Showcase */
-#site-info {
-	width: 550px;
-}
-#site-generator {
-	text-align: right;
-	width: 370px;
-}
-#site-generator a {
-	background-image: none;
-	padding-left: 0;
-	padding-right: 0;
-}
-#site-generator a + a {
-	background: url(images/wordpress.png) center left no-repeat;
-	padding-left: 20px;
-}
-#site-generator a + a + a {
-	background: none;
-	padding: 0px;
 }
