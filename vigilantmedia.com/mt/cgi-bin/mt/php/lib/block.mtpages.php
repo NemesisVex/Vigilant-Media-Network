@@ -1,5 +1,5 @@
 <?php
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -18,7 +18,7 @@ function smarty_block_mtpages($args, $content, &$ctx, &$repeat) {
     }
 
     if(isset($args['no_folder']) && $args['no_folder']) {
-        $folders =& $ctx->mt->db()->fetch_folders(array("blog_id" => $ctx->stash('blog_id')));
+        $folders = $ctx->mt->db()->fetch_folders(array("blog_id" => $ctx->stash('blog_id')));
         $not_folder = '';
         if (isset($folders)) {
             foreach ($folders as $folder) {

@@ -289,7 +289,9 @@ sub _create_category {
             # skip
         }
         elsif ( 'wp_cat_name' eq $key ) {
-            return if ( MT::Category->load( { label => $value } ) );
+            my $exist = MT::Category->load(
+                { label => $value, blog_id => $self->{blog}->id } );
+            return if $exist;
             $cat->label($value);
         }
         elsif ( 'wp_category_description' eq $key ) {
@@ -410,7 +412,7 @@ sub _create_item {
     elsif ( 'page' eq $post_type ) {
         $self->_create_post( 'page', \@hashes );
     }
-    elsif ('attachment') {
+    elsif ('attachment' eq $post_type ) {
         $self->_create_asset( \@hashes );
     }
     1;
@@ -428,90 +430,90 @@ sub _create_asset {
     my %meta_hash;
     my $asset_values = { 'blog_id' => $blog->id };
     for my $hash (@$hashes) {
-        my @hash_array = %$hash;
-        my $key        = $hash_array[0];
-        my $value      = $hash_array[1];
-        if ( '_title' eq $key ) {
-            $asset_values->{'label'} = $value;
-        }
-        elsif ( '_link' eq $key ) {
+        for my $key ( keys %$hash ) {
+            my $value = $hash->{$key};
+            if ( '_title' eq $key ) {
+                $asset_values->{'label'} = $value;
+            }
+            elsif ( '_link' eq $key ) {
 
-            # skip
-        }
-        elsif ( '_pubDate' eq $key ) {
+                # skip
+            }
+            elsif ( '_pubDate' eq $key ) {
 
-            # skip - we use post_date_gmt;
-        }
-        elsif ( 'dc_creator' eq $key ) {
-            $asset_values->{'created_by'}
-                = $self->_get_author_id( $cb, $value );
-        }
-        elsif ( '_category' eq $key ) {
+                # skip - we use post_date_gmt;
+            }
+            elsif ( 'dc_creator' eq $key ) {
+                $asset_values->{'created_by'}
+                    = $self->_get_author_id( $cb, $value );
+            }
+            elsif ( '_category' eq $key ) {
 
-            # TODO: is it ok to make it tags?
-            push @tags, $value;
-        }
-        elsif ( '_guid' eq $key ) {
-            $asset_values->{'url'} = $value;
-        }
-        elsif ( '_description' eq $key ) {
+                # TODO: is it ok to make it tags?
+                push @tags, $value;
+            }
+            elsif ( '_guid' eq $key ) {
+                $asset_values->{'url'} = $value;
+            }
+            elsif ( '_description' eq $key ) {
 
-            # skip
-        }
-        elsif ( 'content_encoded' eq $key ) {
-            $asset_values->{'description'} = $value;
-        }
-        elsif ( 'wp_post_id' eq $key ) {
+                # skip
+            }
+            elsif ( 'content_encoded' eq $key ) {
+                $asset_values->{'description'} = $value;
+            }
+            elsif ( 'wp_post_id' eq $key ) {
 
-            # skip;
-        }
-        elsif ( 'wp_post_date' eq $key ) {
+                # skip;
+            }
+            elsif ( 'wp_post_date' eq $key ) {
 
-            # skip;
-        }
-        elsif ( 'wp_post_date_gmt' eq $key ) {
-            $asset_values->{'created_on'}
-                = $self->_gmt2blogtime( $value, $blog );
-        }
-        elsif ( 'wp_comment_status' eq $key ) {
+                # skip;
+            }
+            elsif ( 'wp_post_date_gmt' eq $key ) {
+                $asset_values->{'created_on'}
+                    = $self->_gmt2blogtime( $value, $blog );
+            }
+            elsif ( 'wp_comment_status' eq $key ) {
 
-            # skip
-        }
-        elsif ( 'wp_ping_status' eq $key ) {
+                # skip
+            }
+            elsif ( 'wp_ping_status' eq $key ) {
 
-            # skip
-        }
-        elsif ( 'wp_post_name' eq $key ) {
+                # skip
+            }
+            elsif ( 'wp_post_name' eq $key ) {
 
-            # skip - we don't have an equivalent.
-        }
-        elsif ( 'wp_status' eq $key ) {
+                # skip - we don't have an equivalent.
+            }
+            elsif ( 'wp_status' eq $key ) {
 
-            # skip possible values: inherit,
-        }
-        elsif ( 'wp_post_parent' eq $key ) {
+                # skip possible values: inherit,
+            }
+            elsif ( 'wp_post_parent' eq $key ) {
 
-            # skip - entry association?
-        }
-        elsif ( 'wp_postmeta' eq $key ) {
-            for my $meta_key ( keys %$value ) {
-                if ( '_wp_attached_file' eq $meta_key ) {
-                    $asset_values->{'file_path'} = $value->{$meta_key};
-                }
-                elsif ( '_wp_attachment_metadata' eq $meta_key ) {
-
-                    # only parse width and height
-                    my $serialized = $value->{$meta_key};
-                    if ( $serialized
-                        =~ m!s:5:"width";i:(\d+);s:6:"height";i:(\d+);!i )
-                    {
-                        $asset_values->{'image_width'}  = $1;
-                        $asset_values->{'image_height'} = $2;
+                # skip - entry association?
+            }
+            elsif ( 'wp_postmeta' eq $key ) {
+                for my $meta_key ( keys %$value ) {
+                    if ( '_wp_attached_file' eq $meta_key ) {
+                        $asset_values->{'file_path'} = $value->{$meta_key};
                     }
-                    $meta_hash{$meta_key} = $value->{$meta_key};
-                }
-                else {
-                    $meta_hash{$meta_key} = $value->{$meta_key};
+                    elsif ( '_wp_attachment_metadata' eq $meta_key ) {
+
+                        # only parse width and height
+                        my $serialized = $value->{$meta_key};
+                        if ( $serialized
+                            =~ m!s:5:"width";i:(\d+);s:6:"height";i:(\d+);!i )
+                        {
+                            $asset_values->{'image_width'}  = $1;
+                            $asset_values->{'image_height'} = $2;
+                        }
+                        $meta_hash{$meta_key} = $value->{$meta_key};
+                    }
+                    else {
+                        $meta_hash{$meta_key} = $value->{$meta_key};
+                    }
                 }
             }
         }
@@ -519,9 +521,18 @@ sub _create_asset {
 
     my $wp_path = $self->{'wp_path'};
     my $mt_path = $self->{'mt_path'};
-    my $path    = $asset_values->{'file_path'};
+    if (not exists $asset_values->{'file_path'}) {
+        $asset_values->{'file_path'} = $asset_values->{'url'};
+        $asset_values->{'file_path'} =~ s!^https?://[^/]*/!!;
+    }
+    my $path = $asset_values->{'file_path'};
     if ( $wp_path && $mt_path ) {
-        $path =~ s/^.*$wp_path(.+)$/$mt_path$1/i;
+        if ( $path =~ /$wp_path/ ) {
+            $path =~ s/^.*$wp_path(.+)$/$mt_path$1/i;
+        }
+        else {
+            $path = File::Spec->catdir( $mt_path, $path );
+        }
         $path = File::Spec->canonpath($path);
     }
     $asset_values->{'file_path'} = $path;
@@ -637,10 +648,26 @@ sub _create_post {
         }
         elsif ( '_category' eq $key ) {
             if ( $hash->{_a} ) {
-                if ( $hash->{_a}->{domain} eq 'tag' ) {
+                if (   $hash->{_a}->{domain} eq 'tag'
+                    || $hash->{_a}->{domain} eq 'post_tag' )
+                {
                     $value = MT::Util::decode_url( $hash->{_a}->{nicename} )
                         if !$value;
                     push @tags, $value if $value;
+                }
+                elsif ( $hash->{_a}->{domain} eq 'category' ) {
+                    my $cat_class = MT->model('category');
+                    $value = MT::Util::decode_url( $hash->{_a}->{nicename} )
+                        if !$value;
+                    my $cat = $cat_class->load(
+                        {   label   => $value,
+                            blog_id => $self->{blog}->id
+                        }
+                    );
+                    if ( defined $cat ) {
+                        $cat_ids{ $cat->id } = 1;
+                        $primary_cat_id = $cat->id unless $primary_cat_id;
+                    }
                 }
             }
             else {
