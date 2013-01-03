@@ -1,5 +1,5 @@
 <?php
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -30,7 +30,7 @@ function smarty_function_mtsubcatsrecurse($args, &$ctx) {
         $class = $args['class'];
     }
 
-    $cats =& $ctx->mt->db()->fetch_categories(array(
+    $cats = $ctx->mt->db()->fetch_categories(array(
         'blog_id' => $ctx->stash('blog_id'),
         'category_id' => $cat->category_id,
         'children' => 1,

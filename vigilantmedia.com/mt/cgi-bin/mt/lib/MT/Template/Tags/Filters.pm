@@ -1,4 +1,4 @@
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -80,6 +80,9 @@ it's not that bad.
 
 sub _fltr_mteval {
     my ( $str, $arg, $ctx ) = @_;
+
+    return $str unless $arg;
+
     my $builder = $ctx->stash('builder');
     my $tokens = $builder->compile( $ctx, $str );
     return $ctx->error( $builder->errstr ) unless defined $tokens;

@@ -1,4 +1,4 @@
-# Movable Type (r) Open Source (C) 2002-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2002-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -38,7 +38,8 @@ my %Strip = (
     '!--' => '-->',
 );
 my $Strip_RE = join '|', map quotemeta($_), keys %Strip;
-my $InvalidAttribute_RE = qr#@{[join '|', map quotemeta("<$_"), keys %Strip]}#;
+my $InvalidAttribute_RE
+    = qr#@{[join '|', map quotemeta("<$_"), keys %Strip]}#;
 
 sub sanitize {
     my $class = shift;
@@ -46,7 +47,7 @@ sub sanitize {
     $s = '' unless defined $s;
     $s =~ tr/\x00//d;
     $arg = '1' unless defined $arg;
-    return $s if $arg eq '0';
+    return $s if $arg eq '0' || $arg eq '';
     unless ( !$arg || ref($arg) ) {
         $arg = $class->parse_spec($arg);
     }

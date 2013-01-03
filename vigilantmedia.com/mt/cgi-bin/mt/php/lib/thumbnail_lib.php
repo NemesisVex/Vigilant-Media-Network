@@ -1,5 +1,5 @@
 <?php
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -291,7 +291,17 @@ class Thumbnail {
 
         # Generate
         $dest_file = $this->dest_file();
-        if(!file_exists($dest_file)) {
+        if (file_exists($dest_file)) {
+            list ($tmp_w, $tmp_h) = getimagesize($dest_file);
+            $ds = $this->dest_square;
+            $compulsive_resize =
+                (($ds && $tmp_w != $tmp_h) || (!$ds && $tmp_w == $tmp_h))
+                ? 1 : 0 ;
+        }
+        else {
+            $compulsive_resize = 1;
+        }
+        if ($compulsive_resize) {
             $dir_name = dirname($dest_file);
             if (!file_exists($dir_name))
                 mkpath($dir_name, 0777);
@@ -323,10 +333,14 @@ class Thumbnail {
 
             $output = $this->src_type;
             if ($this->dest_type != 'auto') {
-                $output = strtolower($this->dest_type) == 'gif' ? 1
-                  : strtolower($this->dest_type) == 'jpeg' ? 2
-                  : strtolower($this->dest_type) == 'png' ? 3
-                  : $this->src_type;
+                if ( strtolower($this->dest_type) == 'gif' )
+                    $output = 1;
+                elseif ( strtolower($this->dest_type) == 'jpeg' )
+                    $output = 2;
+                elseif ( strtolower($this->dest_type) == 'png' )
+                    $output = 3;
+                else
+                    $output = $this->src_type;
             }
             switch($output) {
             case 1: #GIF
