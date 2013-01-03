@@ -1,5 +1,5 @@
 <?php
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -7,6 +7,7 @@
 
 function smarty_modifier_numify($text, $attr = ',') {
     if ($attr == "1") $attr = ',';
-    return preg_replace('/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/', '\\1' . $attr, $text);
+    $attr = str_replace(array('\\', '$'), array('\\\\', '\$'), $attr);
+    return preg_replace('/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/', '${1}' . $attr, $text);
 }
 ?>

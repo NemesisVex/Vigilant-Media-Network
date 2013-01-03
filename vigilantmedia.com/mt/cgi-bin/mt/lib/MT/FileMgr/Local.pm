@@ -1,4 +1,4 @@
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -158,6 +158,11 @@ sub mkpath {
 sub rename {
     my $fmgr = shift;
     my ( $from, $to ) = @_;
+
+    #First, remove existing file
+    if ( $fmgr->exists( $to ) ) {
+        $fmgr->delete( $to ) or return;
+    }
     rename $from, $to
         or return $fmgr->error(
         MT->translate(

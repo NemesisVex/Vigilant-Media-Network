@@ -1,5 +1,5 @@
 <?php
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -36,7 +36,7 @@ function smarty_function_mtarchivecount($args, &$ctx) {
                 $archiver->setup_args($ctx, $eargs);
             }
             $eargs['lastn'] = -1;
-            $entries =& $ctx->mt->db()->fetch_entries($eargs);
+            $entries = $ctx->mt->db()->fetch_entries($eargs);
             $count = count($entries);
         }
     }

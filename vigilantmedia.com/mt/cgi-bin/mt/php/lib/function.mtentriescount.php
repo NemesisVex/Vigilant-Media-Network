@@ -1,5 +1,5 @@
 <?php
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -21,7 +21,7 @@ function smarty_function_mtentriescount($args, &$ctx) {
         if (empty($entries) || !is_array($entries)){
             $blog = $ctx->stash('blog');
             $args['blog_id'] = $blog->blog_id;
-            $entries =& $ctx->mt->db()->fetch_entries($args);
+            $entries = $ctx->mt->db()->fetch_entries($args);
         }
     
         $lastn = $ctx->stash('_entries_lastn');

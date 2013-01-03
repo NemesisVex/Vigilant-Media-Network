@@ -1,5 +1,5 @@
 <?php
-# Movable Type (r) Open Source (C) 2001-2011 Six Apart, Ltd.
+# Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
 # This program is distributed under the terms of the
 # GNU General Public License, version 2.
 #
@@ -16,10 +16,6 @@ class MTDatabasepostgres extends MTDatabase {
         if (!$this->pdo_enabled)
             $data = pg_unescape_bytea($data);
         return parent::unserialize($data);
-    }
-
-    public function escape($str) {
-        return pg_escape_string(stripslashes($str));
     }
 
     protected function connect($user, $password = '', $dbname = '', $host = '', $port = '', $sock = '') {
