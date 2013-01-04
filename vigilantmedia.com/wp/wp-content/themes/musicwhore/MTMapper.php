@@ -39,6 +39,15 @@ class MtMapper {
 		return false;
 	}
 
+	public function get_category_by_id($id) {
+		$query = 'select * from mt_category where category_id = ' . $id;
+		if (false !== ($result = mysql_query($query, $this->connection))) {
+			$rs = mysql_fetch_object($result);
+			return $rs;
+		}
+		return false;
+	}
+
 	private function connect_to_mt_db() {
 		$this->connection = mysql_connect($this->mt_db_host, $this->mt_db_user, $this->mt_db_password);
 		mysql_select_db($this->mt_db_database);
