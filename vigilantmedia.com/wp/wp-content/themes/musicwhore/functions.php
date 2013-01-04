@@ -22,11 +22,11 @@ function remap_mt() {
 	global $wpdb, $table_prefix;
 	$wpdb->show_errors();
 
+	// Connect to MT database.
+	$mt = new MtMapper();
+
 	if (preg_match("/^\/(mw\/|)entry\/([0-9]+)/", $_SERVER['REQUEST_URI'], $match)) {
 		$mt_entry_id = $match[2];
-
-		// Connect to MT database.
-		$mt = new MtMapper();
 
 		// Query mt_entry for $mt_entry_id.
 		$mt_entry = $mt->get_entry_by_id($mt_entry_id);
@@ -42,6 +42,29 @@ function remap_mt() {
 		if (!empty($wp_entry)) {
 			$entry_date = date("Y/m/d", strtotime($wp_entry->post_date));
 			$url = '/' . $entry_date . '/' . $entry_base . '/';
+			header('Location: ' . $url, 301);
+		} else {
+			// If not, redirect to the main page.
+			header('Location: /', 301);
+		}
+	}
+
+	if (preg_match("/^\/(mw\/|)category\/([0-9]+)/", $_SERVER['REQUEST_URI'], $match)) {
+		$mt_category_id = $match[2];
+
+		// Query mt_entry for $mt_entry_id.
+		$mt_category = $mt->get_category_by_id($mt_category_id);
+
+		// Get the permalink.
+		$category_name = $mt_category->category_label;
+
+		// Query the WordPress database for the permalink.
+		$wp_query = 'Select * From ' . DB_NAME . '.' . $wpdb->terms . ' Where name = \'' . $category_name . '\'';
+		$wp_category = $wpdb->get_row($wp_query);
+
+		// If there's a match, redirect to that entry.
+		if (!empty($wp_category)) {
+			$url = '/category/' . $wp_category->slug . '/';
 			header('Location: ' . $url, 301);
 		} else {
 			// If not, redirect to the main page.
