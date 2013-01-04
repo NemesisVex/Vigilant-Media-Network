@@ -49,8 +49,7 @@ class MtMapper {
 	}
 
 	private function connect_to_mt_db() {
-		$this->connection = mysql_connect($this->mt_db_host, $this->mt_db_user, $this->mt_db_password);
-		mysql_select_db($this->mt_db_database);
+		$this->connection = mysqli_connect($this->mt_db_host, $this->mt_db_user, $this->mt_db_password, $this->mt_db_database);
 	}
 }
 
