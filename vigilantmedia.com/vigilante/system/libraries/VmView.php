@@ -26,7 +26,7 @@ class VmView {
 	public $use_mobile_templates;
 	public $error_codes = array('401' => 'Authentication required', '403' => 'Forbidden', '404' => 'Not found', '500' => 'Internal server error');
 	protected $CI;
-	
+
 
 	public function __construct($params = null) {
 		if (!empty($params)) {
@@ -34,17 +34,17 @@ class VmView {
 				$this->$param = $value;
 			}
 		}
-		
+
 		$this->load_global_config = (isset($params['load_global_config'])) ? $params['load_global_config'] : true;
 		$this->use_mobile_templates = (isset($params['use_mobile_templates'])) ? $params['use_mobile_templates'] : true;
-		
+
 		if ($this->load_global_config === true) {
-			require_once('../../vigilantmedia.com/vigilante/includes/global.php');
+			require_once(dirname(__FILE__) . '/../../includes/global.php');
 			$this->config = array_merge($this->config, $config_url_base);
 		}
 
 		$this->CI = & get_instance();
-		
+
 		if ($this->use_mobile_templates === true) {
 			if ($this->CI->agent->is_mobile() == true) {
 				$this->CI->mysmarty->template_dir = APPPATH . "/views/templates_mobile/";
@@ -85,11 +85,11 @@ class VmView {
 	}
 
 	public function display($content_template = null, $is_protected = false) {
-		
+
 		if (empty($is_protected)) {
 			$is_protected = $this->is_protected;
 		}
-		
+
 		if ($is_protected === true && (empty($this->protected_template) || empty($this->protected_var))) {
 			show_error('VmView::protected_template and VmView::protected_var must be set to enable template protection.');
 		}
@@ -101,7 +101,7 @@ class VmView {
 		$this->CI->mysmarty->content_template = ($is_protected === true) ? $this->protected_template : $content_template;
 		$this->CI->mysmarty->layout_template = $this->layout_template;
 		$this->CI->mysmarty->page_template = $this->page_template;
-		
+
 		$this->CI->mysmarty->assign('page_title', $this->page_title);
 		$this->CI->mysmarty->assign('section_head', $this->section_head);
 		$this->CI->mysmarty->assign('section_label', $this->section_label);
@@ -110,7 +110,7 @@ class VmView {
 
 		($is_protected === true) ? $this->CI->mysmarty->display_protected($this->protected_var, $content_template) : $this->CI->mysmarty->display($content_template);
 	}
-	
+
 	public function display_error_page($code, $error_template) {
 		$this->format_section_head('Error', $code, $this->error_codes[$code]);
 		$this->display($error_template);
