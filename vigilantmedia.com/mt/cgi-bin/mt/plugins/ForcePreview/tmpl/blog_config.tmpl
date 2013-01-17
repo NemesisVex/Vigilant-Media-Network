@@ -1,0 +1,5 @@
+<mtapp:setting id="force_preview" label="Enable to force comment preview" hint="<p>If enabled, comments must be previewed before they can be posted. This will foil most comment spamming 'bots.</p>
+
+<p><strong>IMPORTANT:</strong> You must make a template change before you enable this feature. Otherwise people won't be able to post comments to your blog. See the documentation for further information.<p>" show_hint="1">
+	<input type="checkbox" name="force_preview" id="force_preview" value="1"<mt:If name="force_preview" eq="1"> checked="checked"</mt:If>/>
+</mtapp:setting>

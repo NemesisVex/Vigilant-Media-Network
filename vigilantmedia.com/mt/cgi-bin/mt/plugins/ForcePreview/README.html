@@ -1,0 +1,203 @@
+<html>
+<!-- $Id: README.html,v 1.1 2006/03/01 18:02:01 chip Exp $ -->
+<head>
+<title>Movable Type "Force Preview" Plugin</title>
+</head>
+<body>
+
+<h1>Movable Type "Force Preview" Plugin</h1>
+
+<dl>
+<dt>version 1.0 (1-Mar-2006)</dt>
+<dd>Initial release.</dd>
+</dl>
+
+<h2>Overview</h2>
+
+<p>The <i>Force Preview</i> plugin helps reduce comment spam on a Movable Type blog. When enabled, commenters are required to preview their comment before posting.</p>
+
+<p>The home page for this plugin is <a href="http://www.unicom.com/sw/force-preview/">http://www.unicom.com/sw/force-preview/</a>.  The latest version of this plugin is available for free at that location.</p>
+
+<p>Here is what's good about this plug-in:</p>
+
+<ul>
+
+<li>It is extremely effective against comment spamming 'bots&mdash;the most common method used by comment spammers.</li>
+
+<li>Unlike most anti-spam methods (such as registration or <a href="http://en.wikipedia.org/wiki/Captcha">captcha</a>), forced comment preview doesn't burden your commenters.  Your commenters probably won't even notice: they'll just click the "preview" button automatically.</li>
+
+<li>And who knows, maybe the quality of the comment on your blog will improve now that people will have to preview before posting.</li>
+
+</ul>
+
+<p>Here is what's bad about this plug-in:</p>
+
+<ul>
+
+<li>Installation requires a small change to your Movable Type installation. It's in the form of a <i>patch</i>, which most Unix/Linux administrators know how to handle.</li>
+
+<li>Once installed, you need to enable it individually for each blog that should be protected. It will require a tweak to your comment preview template.  This isn't too bad if your site runs just one blog. This will be a pain in the ass if you run dozens.</li>
+
+<li>Finally, while this plugin is extremely effective against comment spam, it does nothing to reduce trackback spam.</li>
+
+</ul>
+
+<h2>Part One: Install Plugin on the System</h2>
+
+<p>In this part, you will load the <i>Force Preview</i> plugin into the Movable Type installation. When complete, you will be able to activate the plugin for whichever blogs you want.</p>
+
+<p>These instructions assume you have installed Movable Type on a Unix/Linux type server and have access to a shell.</p>
+
+<p>First, unbundle the package tarball into the base of your Movable Type installation. For example:</p>
+
+<pre>
+    # cd /path/to/MT-3.2-en_US
+    # tar -xvz -f force-preview-1.xx.tar.gz
+</pre>
+
+<p>This will create the following files:</p>
+
+<ul>
+<li><tt>plugins/force-preview/README.html</tt> - This document.</li>
+<li><tt>plugins/force-preview/force-preview.pl</tt> - The plugin.</li>
+<li><tt>plugins/force-preview/force-preview.patch</tt> - Patch to MT installation (see below).</li>
+<li><tt>plugins/force-preview/optional-templates.patch</tt> - Optional patch to default templates (see below).</li>
+</ul>
+
+
+<p>Next, apply the included patch, using the Unix <i>patch(1)</i> utility:</p>
+
+<pre>
+    # patch -N -p0 < plugins/force-preview/force-preview.patch
+</pre>
+
+<p>The patch will make a small change to the Movable Type comment posting module (lib/MT/App/Comments.pm) to perform <i>Force Preview</i> checking on blogs that have enabled it.</p>
+
+<p>You should now be able to log into the management interface of the blog and see that the <i>Force Preview</i> plugin is installed. But <em>don't activate it</em> yet, though. That part comes next.</p>
+
+<h2>Part Two: Configure Blog to use Plugin</h2>
+
+<p>In the previous part, you loaded the plugin into the Movable Type installation. Now you need to enable the <i>Force Preview</i> capability.  This part must be repeated for each blog you want to be protected by the <i>Force Preview</i> plugin.</p>
+
+<h3>Step One: Add Preview Token</h3>
+
+<p>You must modify your <i>Comments Preview</i> template to add a new tag. This tag will signal to the plugin that the comment has been previewed.</p>
+
+<ul>
+<li>Go into the management interface of your blog.</li>
+<li>Select: Templates &raquo; System &raquo; Comment Preview Template</li>
+<li>Find the line in the template that says:
+<pre>
+    &lt;form method="post" action="&lt;$MTCGIPath$&gt;&lt;$MTCommentScript$&gt;"&gt;
+</pre></li>
+<li>Add just below it a line that says:
+<pre>
+    &lt;$MTCommentPreviewToken$&gt;
+</pre></li>
+<li>Save the modified template.</li>
+</ul>
+
+<h3>Step Two: Enable Force Preview</h3>
+
+<p>You are now ready to turn on the new forced comment capability for your blog.</p>
+
+<ul>
+<li>Go into the management interface of your blog.</li>
+<li>Select: Settings &raquo; Plugins</li>
+<li>Find the <i>Force Preview</i> section and click on: Show Settings.</li>
+<li>Enable the checkbox and save.</li>
+</ul>
+
+<h3>Step Three: Test that "Force Preview" is Working</h3>
+
+<p>The <i>Force Preview</i> capability should now be working on your blog.</p>
+
+<p>First, try to post a comment to your blog (without previewing it first). You should get an error message that tells you to preview your message before posting.</p>
+
+<p>If you do not get that error message, the likely reasons are:</p>
+
+<ul>
+
+<li>You have not enabled the plugin for your blog.  Re-check step two (Enable Force Preview).</li>
+
+<li>The <i>force-preview.patch</i> patch is not correctly applied. Re-check part one (Install Plugin on the System).</li>
+
+</ul>
+
+<p>Now, this time preview your comment, and then select POST from the comment preview form. The comment should be posted.</p> 
+
+<p>If you continue to get the "preview your message" error, the most likely reason is that the &lt;$MTCommentPreviewToken$&gt; tag was not added correctly to your preview template.  Re-check step one (Add Preview Token).</p>
+
+<h3>Step Four: Remove the Comment "POST" Button</h3>
+
+<p>Finally, you should remove the POST button from the comment entry form, leaving only the PREVIEW button.</p>
+
+<ul>
+<li>Go into the management interface of your blog.</li>
+<li>Select: Templates &raquo; Archives &raquo; Individual Entry Archive</li>
+<li>Find the line in the template that says:
+<pre>
+    &lt;input type="submit" name="post" value="&nbsp;POST&nbsp;" /&gt;
+</pre></li>
+<li>Comment it out, so that it looks like:
+<pre>
+    <b>&lt;!--</b> &lt;input type="submit" name="post" value="&nbsp;POST&nbsp;" /&gt; <b>--&gt;</b>
+</pre></li>
+<li>Save the modified template.</li>
+</ul>
+
+<p>If you use the deprecated "Comment Listing Template" popup, you should remove the post button there, too.</p>
+
+<h2>Optional Installation</h2>
+
+<p>You can apply an additional, optional patch to the default templates. It changes the templates so that any future blogs you create automatically will support the <i>Force Preview</i> plugin.  For these blogs you will just need to enable the plugin through the control panel; no template changes required.</p>
+
+<p>I recommend you <b>do not</b> apply this patch until you are satisfied that you want to keep the plugin installed on your system. That's because there is no easy way to back out the changes if you do. The changes won't necessarily break any blogs, but they will leave some cruft and crud behind in the HTML.</p>
+
+<p>To apply the patch, run:</p>
+
+<pre>
+    # patch -N -p0 < plugins/force-preview/optional-templates.patch
+</pre>
+
+<h2>Tag Documentation</h2>
+
+<p>The <i>Force Preview</i> plugin adds three new template tags to your Movable Type installation.</p>
+
+<h3>&lt;MTCommentPreviewToken&gt;</h3>
+
+<p>This tag places a hidden token inside a comment submittions that tells the <i>Force Preview</i> plugin that the comment should be posted.  This tag should be added to the comment preview template form.</p>
+
+<h3>&lt;MTIfForcePreviewEnabled&gt;</h3>
+
+<p>This tag is a conditional container tag. The text in the container is passed through only if <i>Force Preview</i> has been enabled for this blog.</p>
+
+<h3>&lt;MTIfForcePreviewDisabled&gt;</h3>
+
+<p>This tag is a conditional container tag. The text in the container is passed through only if <i>Force Preview</i> has been disabled for this blog.</p>
+
+<p>This tag is a good way to hide the POST button when <i>Force Preview</i> has been enabled. For instance, you could modify your individual entry archive template to say:</p>
+
+<pre>
+    &lt;MTIfForcePreviewDisabled&gt;
+    &lt;input type="submit" accesskey="s" name="post" id="comment-post" value="Post" /&gt;
+    &lt;/MTIfForcePreviewDisabled&gt;
+</pre>
+
+<p>In this example, the POST button would be hidden when <i>Force Preview</i> is enabled and displayed when the plugin is disabled.</p>
+
+<hr />
+
+<div style="font-size: smaller">
+<p>Copyright &copy; 2006, Chip Rosenthal <chip@unicom.com>.  All rights reserved.</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+</div>
+
+</body>
+</html>
