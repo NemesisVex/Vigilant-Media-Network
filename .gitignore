@@ -47,6 +47,7 @@
 /vigilantmedia.com/mt/cgi-bin/mt/mt-config.cgi
 /vigilantmedia.com/sandbox/
 /vigilantmedia.com/vigilante/includes/env.php
+/vigilantmedia.com/vigilante/includes/configuration.php
 /vigilantmedia.com/vigilante/application/*/third_party/composer.lock
 /vigilantmedia.com/vigilante/application/*/third_party/CIUnit/bootstrap_constants.php
 /vigilantmedia.com/vigilante/system/libraries/magpierss/cache/
