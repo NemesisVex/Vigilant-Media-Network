@@ -14,6 +14,22 @@ class MyAwsS3_test extends CIUnit_TestCase
 		parent::setUp();
 		$this->CI->load->library('MyAwsS3', '', 's3');
 	}
+
+	public function test_bucket_exists()
+	{
+		// Test whether connection was successful.
+		$result = $this->CI->s3->bucket_exists('observant-records');
+		$this->assertTrue($result);
+	}
+
+	public function test_list_objects()
+	{
+		$args = array(
+			'Bucket' => 'observant-records',
+		);
+		$result = $this->CI->s3->list_objects($args);
+		$this->assertFalse($result);
+	}
 }
 
 ?>
