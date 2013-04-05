@@ -4,6 +4,7 @@ require(APPPATH . 'third_party/vendor/autoload.php');
 
 use Aws\S3\S3Client;
 use Aws\S3\Exception;
+use Aws\S3\Iterator;
 
 /**
  * MyAwsS3
@@ -13,6 +14,7 @@ use Aws\S3\Exception;
 class MyAwsS3
 {
 	protected $s3;
+	protected $s3_iterator;
 
 	public function __construct()
 	{
@@ -29,7 +31,7 @@ class MyAwsS3
 
 	public function list_objects($args = array())
 	{
-		return $this->s3->listObjects($args);
+		return $this->s3->getIterator('ListObjects', $args);
 	}
 }
 
