@@ -7,6 +7,8 @@ echo '</pre>';
 exit;
 */
 
+require(dirname(__FILE__) . '/bootstrap_constants.php');
+
 /*
  * ------------------------------------------------------
  *  CIUnit Version
