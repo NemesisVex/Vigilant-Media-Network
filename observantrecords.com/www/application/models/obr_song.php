@@ -1,30 +1,39 @@
 <?php
 
 /**
- * ep4_song
- * 
- * ep4_song is a model for an Observant Records song.
+ * Description of ep4_song
  *
  * @author Greg Bueno
- * @copyright (c) 2013, Greg Bueno
  */
+require_once(BASEPATH . 'libraries/VmModel.php');
 
-class Obr_Song extends MY_Model {
+class Obr_Song extends VmModel {
 	
-	public $_table = 'ep4_songs';
-	public $primary_key = 'song_id';
+	public $song_id;
 	
 	public function __construct() {
 		parent::__construct();
+		
+		$this->table_name = 'ep4_songs';
+		$this->primary_index_field = 'song_id';
 	}
 	
-	public function get_by_artist_id($artist_id) {
-		$this->order_by('song_title');
-		if (false !== ($rsSongs = $this->get_many_by('song_primary_artist_id', $artist_id))) {
-			return $rsSongs;
+	public function retrieve_by_artist_id($artist_id, $return_results = true) {
+		$this->db->order_by('song_title');
+		if (false !== ($rsSongs = parent::retrieve('song_primary_artist_id', $artist_id))) {
+			if ($return_results === true) {
+				return $this->return_smarty_array($rsSongs);
+			} else {
+				return $rsSongs;
+			}
 		}
 		return false;
 	}
+	
+	public function retrieve_all($select = null, $order_by = 'song_title', $return_recordset = true) {
+		return parent::retrieve_all($select, $order_by, $return_recordset);
+	}
+	
 }
 
 ?>

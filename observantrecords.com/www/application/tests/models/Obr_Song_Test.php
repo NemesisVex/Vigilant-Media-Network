@@ -10,10 +10,12 @@
 class Obr_Song_Test extends CIUnit_TestCase
 {
 	protected $Obr_Song;
+	private $token;
 
 	public function __construct($name = NULL, array $data = array(), $dataName = '')
 	{
 		parent::__construct($name, $data, $dataName);
+		$this->token = md5(time());
 	}
 
 	public function setUp()
@@ -142,6 +144,33 @@ class Obr_Song_Test extends CIUnit_TestCase
 		$this->assertObjectHasAttribute('song_written_date', $result);
 		$this->assertObjectHasAttribute('song_revised_date', $result);
 		$this->assertObjectHasAttribute('song_recorded_date', $result);
+	}
+
+	public function test_create()
+	{
+		$input = array(
+			'song_title' => 'Test Song Title ' . $this->token,
+			'song_primary_artist_id' => 1,
+			'song_alias' => 'test_song_title_' . $this->token,
+			'song_author' => 'Vigilant Media',
+		);
+
+		// If no input is available, the query returns false
+		// unless $_POST data is sent.
+		$id = $this->Obr_Song->create();
+		$this->assertFalse($id);
+		$this->assertFalse(is_int($id));
+
+		// If no input is available, the query returns an ID
+		// if $_POST data is sent.
+		$_POST = $input;
+		$id = $this->Obr_Song->create();
+		$this->assertTrue(is_int($id));
+		$_POST = NULL;
+
+		// If input is passed, the query returns an ID.
+		$id = $this->Obr_Song->create($input);
+		$this->assertTrue(is_int($id));
 	}
 
 	public function tearDown()
