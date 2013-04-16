@@ -82,7 +82,7 @@ class VmModel {
 					$this->db->select($field);
 				}
 			} else {
-				$this->db->select($field);
+				$this->db->select($select);
 			}
 		}
 
