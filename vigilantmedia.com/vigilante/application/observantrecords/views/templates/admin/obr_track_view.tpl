@@ -30,13 +30,6 @@
 			</div>
 		</li>
 		{/if}
-		{if $rsTrack->track_isrc_num}
-		<li>
-			<div>
-				<label>ISRC no.</label> {$rsTrack->track_isrc_num}
-			</div>
-		</li>
-		{/if}
 		<li>
 			<div>
 				<label>Visible?</label> <input type="checkbox" disabled="disabled" value="1"{if ($rsTrack->track_is_visible == true)} checked{/if} />

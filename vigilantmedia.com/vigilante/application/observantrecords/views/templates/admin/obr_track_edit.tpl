@@ -37,11 +37,6 @@
 		</p>
 
 		<p>
-			<label for="track_isrc_num">ISRC No.:</label>
-			<input type="text" name="track_isrc_num" value="{$rsTrack->track_isrc_num}" size="20" />
-		</p>
-
-		<p>
 			<label for="track_is_visible">Visibility:</label>
 			<input type="radio" name="track_is_visible" value="1"{if $rsTrack->track_is_visible==true} checked{/if} /> Yes
 			<input type="radio" name="track_is_visible" value="0"{if $rsTrack->track_is_visible==false} checked{/if} /> No
