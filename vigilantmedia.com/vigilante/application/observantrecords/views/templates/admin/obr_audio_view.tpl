@@ -28,6 +28,11 @@
 				<label>File type</label> {$rsFile->audio_file_type}
 			</div>
 		</li>
+		<li>
+			<div>
+				<label>ISRC</label> {$rsFile->audio_isrc_num}
+			</div>
+		</li>
 	</ul>
 
 	{if !empty($id3v2)}
