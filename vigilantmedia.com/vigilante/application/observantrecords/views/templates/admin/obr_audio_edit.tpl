@@ -45,6 +45,11 @@
 			</p>
 			
 			<p>
+				<label for="audio_isrc_num">ISRC No.:</label>
+				<input type="text" name="audio_isrc_num" id="audio_isrc_num" value="{$rsFile->audio_isrc_num}" size="60" />
+			</p>
+			
+			<p>
 				<input type="submit" value="Save" />
 			</p>
 			
