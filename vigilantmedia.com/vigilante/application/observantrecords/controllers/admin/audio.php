@@ -15,6 +15,7 @@ class Audio extends CI_Controller {
 		$this->load->library('VmSession');
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Audio');
+		$this->load->model('Obr_Audio_Isrc');
 
 		$this->production_file_path = '/home/nemesisv/websites/prod/observantrecords.com/www';
 
@@ -66,7 +67,7 @@ class Audio extends CI_Controller {
 
 			$rsArtists = $this->Obr_Artist->retrieve_all();
 			$this->mysmarty->assign('rsArtists', $rsArtists);
-
+			
 			$this->mysmarty->assign('audio_artist_id', $artist_id);
 
 			$rsSongs = $this->Obr_Song->retrieve_all();
@@ -86,6 +87,13 @@ class Audio extends CI_Controller {
 
 		$this->add($rsFile->audio_artist_id);
 	}
+	
+	public function generate_isrc() {
+		if (!empty($_SESSION[$this->vmsession->session_flag])) {
+			$audio_isrc_code = (object) array('isrc_code' => $this->Obr_Audio_Isrc->generate_code());
+			echo json_encode($audio_isrc_code);
+		}
+	}
 
 	public function delete() {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
@@ -96,7 +104,13 @@ class Audio extends CI_Controller {
 
 	public function create() {
 		$redirect = $_SERVER['HTTP_REFERER'];
+		$audio_isrc_code = $this->input->get_post('audio_isrc_num');
+		
 		if (false !== ($audio_id = $this->Obr_Audio->create())) {
+			$this->Obr_Audio_Isrc->create(array(
+				'audio_isrc_audio_id' => $audio_id,
+				'audio_isrc_code' => $audio_isrc_code,
+			));
 			$redirect = '/index.php/admin/audio/view/' . $audio_id . '/';
 			$this->phpsession->flashsave('msg', 'You successfully created an audio file.');
 		} else {
@@ -109,11 +123,20 @@ class Audio extends CI_Controller {
 
 	public function update($audio_id) {
 		$redirect = $_SERVER['HTTP_REFERER'];
+		$audio_isrc_code = $this->input->get_post('audio_isrc_num');
+		
 		if (false !== $this->Obr_Audio->update_by_id($audio_id)) {
+			if (!empty($audio_isrc_code)) {
+				$this->Obr_Audio_Isrc->create(array(
+					'audio_isrc_audio_id' => $audio_id,
+					'audio_isrc_code' => $audio_isrc_code,
+				));
+			}
+			
 			$redirect = '/index.php/admin/audio/view/' . $audio_id . '/';
 			$this->phpsession->flashsave('msg', 'You successfully updated an audio file.');
 		} else {
-			$this->phpsession->flashsave('error', 'You failed to update an audio file.');
+			$this->phpsession->flashsave('error', 'You failed to update an audio file. ' . mysql_error());
 		}
 
 		header('Location: ' . $redirect);
