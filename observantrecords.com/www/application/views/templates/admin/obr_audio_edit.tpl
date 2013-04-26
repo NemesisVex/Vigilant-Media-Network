@@ -44,6 +44,20 @@
 				<input type="text" name="audio_mp3_file_path" id="audio_mp3_file_name" value="{if $rsFile->audio_mp3_file_path}{$rsFile->audio_mp3_file_path}{else}/music/audio/_mp3/_ex_machina{/if}" size="60" />
 			</p>
 			
+			
+			<p>
+				<label for="audio_isrc_num">ISRC No.:</label>
+				{if !empty($rsIsrc->audio_isrc_code)}
+				{$rsIsrc->audio_isrc_code}
+				{else}
+				<input type="text" name="_display_audio_isrc_num" id="_display_audio_isrc_num" value="" size="60" disabled="disabled" />
+				<input type="hidden" name="audio_isrc_num" id="audio_isrc_num" value="" />
+				<input type="hidden" name="audio_isrc_code" id="audio_isrc_code" value="" />
+				<a id="generate_custom_isrc" class="button">Generate</a>
+				<a id="clear_custom_isrc" class="button">Clear</a>
+				{/if}
+			</p>
+			
 			<p>
 				<input type="submit" value="Save" />
 			</p>
@@ -57,32 +71,60 @@
 
 		{literal}
 		<script type="text/javascript">
-			var build_file_name = function ()
-			{
-				if ($('#audio_artist_id').val() > 0 && $('#audio_song_id').val() > 0) {
-					var artist_name = $('#audio_artist_id option:selected').text();
-					var song_title = $('#audio_song_id option:selected').text();
-					var file_ext = $('#audio_file_type option:selected').text();
-					var file_name = artist_name + ' - ' + song_title + '.' + file_ext;
-					file_name = file_name.replace(/ /g, '_');
+			var Audio_Edit = {
+				build_file_name: function ()
+				{
+					if ($('#audio_artist_id').val() > 0 && $('#audio_song_id').val() > 0) {
+						var artist_name = $('#audio_artist_id option:selected').text();
+						var song_title = $('#audio_song_id option:selected').text();
+						var file_ext = $('#audio_file_type option:selected').text();
+						var file_name = artist_name + ' - ' + song_title + '.' + file_ext;
+						file_name = file_name.replace(/ /g, '_');
 
-					$('#audio_mp3_file_name').val(file_name);
-					$('#audio_display_label').val(song_title);
+						$('#audio_mp3_file_name').val(file_name);
+						$('#audio_display_label').val(song_title);
+					}
+					else {
+						$('#audio_mp3_file_name').val('');
+						$('#audio_display_label').val('');
+					}
+				},
+				generate_isrc_code: function () {
+					$.ajax({
+						url: '/index.php/admin/audio/generate_isrc/',
+						cache: false
+					}).done(function (response) {
+						var result = $.parseJSON(response);
+						$('#audio_isrc_code').val(result.isrc_code);
+						$('#audio_isrc_num').val(result.isrc_code);
+						$('#_display_audio_isrc_num').val(result.isrc_code);
+					});
 				}
-				else {
-					$('#audio_mp3_file_name').val('');
-					$('#audio_display_label').val('');
-				}
-			}
-
+			};
+			
 			$('#audio_song_id').change(function ()
 			{
-				build_file_name();
+				Audio_Edit.build_file_name();
 			});
 
 			$('#audio_artist_id').change(function ()
 			{
-				build_file_name();
+				Audio_Edit.build_file_name();
+			});
+				
+			$('#generate_custom_isrc').click(function () {
+				Audio_Edit.generate_isrc_code();
+			});
+				
+			$('#clear_custom_isrc').click(function () {
+				$('#_display_audio_isrc_num').val('');
+				$('#audio_isrc_num').val('');
+				$('#audio_isrc_code').val('');
+			});
+				
+			$('#_display_audio_isrc_num').blur(function () {
+				$('#_display_audio_isrc_num').attr('disabled', 'disabled');
+				$('#audio_isrc_num').val($('#_display_audio_isrc_num').val());
 			});
 		</script>
 		{/literal}
