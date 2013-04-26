@@ -32,6 +32,8 @@ class Obr_Artist extends MY_Model {
 		),
 		
 	);
+	protected $soft_delete = true;
+	protected $soft_delete_key = 'artist_deleted';
 
 	public function __construct() {
 		parent::__construct();

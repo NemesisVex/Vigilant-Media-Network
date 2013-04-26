@@ -1,22 +1,32 @@
 <?php
 
 /**
- * Description of obr_audio
+ * Obr_Audio
+ * 
+ * Obr_Audio is a model for Observant Records audio files.
  *
  * @author Greg Bueno
  */
-require_once(BASEPATH . 'libraries/VmModel.php');
 
-class Obr_Audio extends VmModel {
+class Obr_Audio extends MY_Model {
+	
+	public $_table = 'ep4_audio';
+	public $primary_key = 'audio_id';
+	public $belongs_to = array(
+		'song' => array(
+			'model' => 'Obr_Song',
+			'primary_key' => 'audio_song_id',
+		),
+		'artist' => array(
+			'model' => 'Obr_Artist',
+			'primary_key' => 'audio_artist_id',
+		),
+	);
+	protected $soft_delete = true;
+	protected $soft_delete_key = 'audio_deleted';
 	
 	public function __construct($params = null) {
 		parent::__construct($params);
-		
-		$this->table_name = 'ep4_audio';
-		$this->primary_index_field = 'audio_id';
-		
-		$this->CI->load->model('Obr_Artist');
-		$this->CI->load->model('Obr_Release');
 	}
 	
 	public function retrieve_by_artist_id($artist_id, $return_recordset = true) {

@@ -28,75 +28,16 @@ class Obr_Isrc_Test extends CIUnit_TestCase
 
 	public function test_constructor()
 	{
-		$this->assertEquals('ep4_audio_isrc', $this->Obr_Audio_Isrc->table_name);
-		$this->assertEquals('audio_isrc_id', $this->Obr_Audio_Isrc->primary_index_field);
-	}
-
-	public function test_retrieve()
-	{
-		//If no field and value are passed, the resulting query should return false.
-		$result = $this->Obr_Audio_Isrc->retrieve();
-		$this->assertFalse($result);
-
-		//If an invalid field is passed, the resulting query should return false.
-		$result = $this->Obr_Audio_Isrc->retrieve(NULL, 1);
-		$this->assertFalse($result);
-
-		$result = $this->Obr_Audio_Isrc->retrieve('invalid_field_name', 1);
-		$this->assertFalse($result);
-
-		//If an invalid value is passed, the resulting query should return no results.
-		$result = $this->Obr_Audio_Isrc->retrieve('audio_isrc_id', 'id');
-		$this->assertEquals(0, $result->num_rows);
-
-		$result = $this->Obr_Audio_Isrc->retrieve('audio_isrc_id', 0);
-		$this->assertEquals(0, $result->num_rows);
-
-		// If a valid field and value is passed, the resulting query should return results.
-		$result = $this->Obr_Audio_Isrc->retrieve('audio_isrc_id', '1');
-		$this->assertGreaterThanOrEqual(1, $result->num_rows());
-	}
-
-	public function test_retrieve_all()
-	{
-		// No result is valid value, although there should at least be one.
-		$result = $this->Obr_Audio_Isrc->retrieve_all();
-		$this->assertGreaterThanOrEqual(0, count($result));
-
-		// Limit the selection to one field.
-		$result = $this->Obr_Audio_Isrc->retrieve_all('audio_isrc_code');
-		// Test for the selected field.
-		$this->assertObjectHasAttribute('audio_isrc_code', $result[0]);
-		// Test for non-selected fields that are in the table schema.
-		$this->assertObjectNotHasAttribute('audio_isrc_id', $result[0]);
-		// Test for a non-selected field that's not in the table schema.
-		$this->assertObjectNotHasAttribute('invalid_field', $result[0]);
-	}
-
-	public function test_retrieve_by_id()
-	{
-		// The ID field should never be NULL, so there should be at least one returned result.
-		$result = $this->Obr_Audio_Isrc->retrieve_by_id(NULL, FALSE);
-		$this->assertLessThan(1, $result->num_rows);
-
-		// If an invalid ID is passed, the query result should be false
-		$result = $this->Obr_Audio_Isrc->retrieve_by_id('id');
-		$this->assertFalse($result);
-
-		// Make sure the raw results are returned when the return_recordset flag is set to FALSE.
-		$result = $this->Obr_Audio_Isrc->retrieve_by_id('id', FALSE);
-		$this->assertObjectHasAttribute('conn_id', $result);
-
-		$result = $this->Obr_Audio_Isrc->retrieve_by_id(1, FALSE);
-		$this->assertObjectHasAttribute('conn_id', $result);
-
-		// If a valid ID is passed, the query should contain a single result.
-		$result = $this->Obr_Audio_Isrc->retrieve_by_id(1);
-		$this->assertEquals(1, count($result));
-		$this->assertObjectHasAttribute('audio_isrc_id', $result);
-		$this->assertObjectHasAttribute('audio_isrc_code', $result);
+		$this->assertEquals('ep4_audio_isrc', $this->Obr_Audio_Isrc->_table);
+		$this->assertEquals('audio_isrc_id', $this->Obr_Audio_Isrc->primary_key);
 	}
 	
+	public function test_get_audio()
+	{
+		$result_01 = $this->Obr_Audio_Isrc->with('audio')->get(1);
+		$this->assertObjectHasAttribute('audio', $result_01);
+	}
+
 	public function test_generate_code() {
 		$result = $this->Obr_Audio_Isrc->generate_code();
 		$this->assertStringStartsWith(ISRC_COUNTRY_CODE . '-', $result);
@@ -107,16 +48,17 @@ class Obr_Isrc_Test extends CIUnit_TestCase
 		
 		// Generate random audio ID.
 		$audio_isrc_audio_id = mt_rand();
-		$check = $this->Obr_Audio_Isrc->retrieve('audio_isrc_audio_id', $audio_isrc_audio_id);
-		while ($check->num_rows() > 0) {
+		$check = $this->Obr_Audio_Isrc->get_many_by('audio_isrc_audio_id', $audio_isrc_audio_id);
+		while (count($check) > 0) {
 			$audio_isrc_audio_id = mt_rand();
-			$check = $this->Obr_Audio_Isrc->retrieve('audio_isrc_audio_id', $audio_isrc_audio_id);
+			$check = $this->Obr_Audio_Isrc->get_many_by('audio_isrc_audio_id', $audio_isrc_audio_id);
 		}
+		echo $audio_isrc_audio_id . "\n";
 		
 		$input = array(
 			'audio_isrc_audio_id' => $audio_isrc_audio_id,
 		);
-		$this->Obr_Audio_Isrc->update('audio_isrc_code', $result_02, $input);
+		$this->Obr_Audio_Isrc->update_by('audio_isrc_code', $result_02, $input);
 		
 		$result_03 = $this->Obr_Audio_Isrc->generate_code();
 		$this->assertStringStartsWith(ISRC_COUNTRY_CODE . '-', $result);
