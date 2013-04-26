@@ -41,23 +41,10 @@ class Obr_Audio extends MY_Model {
 	}
 	
 	public function retrieve_by_artist_id($artist_id) {
-		$this->db->from($this->_table);
-		$this->db->join('ep4_songs', 'audio_song_id=song_id', 'left outer');
-		$this->db->order_by('song_title, audio_mp3_file_path, audio_mp3_file_name');
-		$this->db->where('audio_artist_id', $artist_id);
-		if (false !== ($rsFiles = $this->db->get())) {
-			return $rsFiles->result();
-		}
-		return false;
-	}
-	
-	public function retrieve_by_track_id($track_id, $return_recordset = true) {
-		$this->db->join('ep4_songs', 'audio_song_id=song_id', 'left outer');
-		$this->db->join('ep4_audio_map', 'map_audio_id=audio_id', 'left outer');
-		$this->db->where('map_track_id', $track_id);
-		if (false !== ($rsFile = $this->db->get())) {
-			return $rsFile->result();
-		}
-		return false;
+		$this->_database->join('ep4_songs', 'audio_song_id=song_id', 'left outer');
+		$this->_database->order_by('song_title, audio_mp3_file_path, audio_mp3_file_name');
+		$this->_database->where('audio_artist_id', $artist_id);
+		$result = $this->get_all();
+		return $result;
 	}
 }

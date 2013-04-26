@@ -220,6 +220,7 @@ class Audio extends CI_Controller {
 	public function remove($audio_id) {
 		$confirm = $this->input->get_post('confirm');
 		$redirect = $this->input->get_post('redirect');
+		$remove_file = $this->input->get_post('remove_file');
 		
 		if ($confirm == true) {
 			$rsAudio = $this->Obr_Audio->with('maps')->get($audio_id);
@@ -234,9 +235,20 @@ class Audio extends CI_Controller {
 
 			// Remove audio.
 			$this->Obr_Audio->delete($audio_id);
+			
+			$remove_file_message = null;
+			if ($remove_file == true) {
+				$audio_full_path = $this->production_file_path . $rsAudio->audio_mp3_file_path . '/' . $rsAudio->audio_mp3_file_name;
+				if (file_exists($audio_full_path)) {
+					if (ENVIRONMENT === 'production') {
+						unlink($audio_file_path);
+					}
+					$remove_file_message .= ' File was removed from server.';
+				}
+			}
 
-			$this->phpsession->flashsave('msg', 'Audio file was deleted.');
-			$redirect = '/index.php/admin/song/browse/' . $artist_id . '/';
+			$this->phpsession->flashsave('msg', 'Audio file was deleted.' . $remove_file_message);
+			$redirect = '/index.php/admin/audio/browse/' . $artist_id . '/';
 		} else {
 			$this->phpsession->flashsave('msg', 'Deletion was canceled.');
 		}
