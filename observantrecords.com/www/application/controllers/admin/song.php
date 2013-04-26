@@ -26,6 +26,11 @@ class Song extends CI_Controller {
 		$this->load->helper('model');
 	}
 
+	/**
+	 * browse
+	 * 
+	 * browse() displays a list of songs associated with an artist.
+	 */
 	public function browse($artist_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$this->observantview->_set_artist_header($artist_id, 'Songs');
@@ -37,6 +42,13 @@ class Song extends CI_Controller {
 		$this->vmview->display('admin/obr_song_list.tpl');
 	}
 
+	/**
+	 * view
+	 * 
+	 * view() lists the details of an individual song.
+	 * 
+	 * @param int $song_id
+	 */
 	public function view($song_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsSong = $this->Obr_Song->get($song_id);
@@ -48,6 +60,11 @@ class Song extends CI_Controller {
 		$this->vmview->display('admin/obr_song_view.tpl');
 	}
 
+	/**
+	 * add
+	 * 
+	 * add() displays a form with which to create a song.
+	 */
 	public function add($artist_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			if (empty($this->vmview->section_head)) {
@@ -59,6 +76,13 @@ class Song extends CI_Controller {
 		$this->vmview->display('admin/obr_song_edit.tpl');
 	}
 
+	/**
+	 * edit
+	 * 
+	 * edit() displays a form with which to create a song.
+	 * 
+	 * @param int $song_id
+	 */
 	public function edit($song_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsSong = $this->Obr_Song->get($song_id);
@@ -70,6 +94,13 @@ class Song extends CI_Controller {
 		$this->add($rsSong->song_primary_artist_id);
 	}
 
+	/**
+	 * delete
+	 * 
+	 * delete() displays a form to confirm the deletion of a song.
+	 * 
+	 * @param int $song_id
+	 */
 	public function delete($song_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsSong = $this->Obr_Song->with('audio')->with('tracks')->get($song_id);
@@ -81,6 +112,12 @@ class Song extends CI_Controller {
 		$this->vmview->display('admin/obr_song_delete.tpl');
 	}
 
+	/**
+	 * create
+	 * 
+	 * create() saves changes made to a newly-added song.
+	 * 
+	 */
 	public function create() {
 		$redirect = $_SERVER['HTTP_REFERER'];
 		$input = build_update_data($this->Obr_Song->_table);
@@ -95,6 +132,13 @@ class Song extends CI_Controller {
 		die();
 	}
 
+	/**
+	 * update
+	 * 
+	 * update() saves changes made to a song.
+	 * 
+	 * @param int $song_id
+	 */
 	public function update($song_id) {
 		$redirect = $_SERVER['HTTP_REFERER'];
 		$input = build_update_data($this->Obr_Song->_table);
@@ -108,7 +152,15 @@ class Song extends CI_Controller {
 		header('Location: ' . $redirect);
 		die();
 	}
-
+	
+	/**
+	 * remove
+	 * 
+	 * remove() performs a soft delete on a song and records related to a song,
+	 * namely tracks and audio files.
+	 * 
+	 * @param int $song_id
+	 */
 	public function remove($song_id) {
 		$confirm = $this->input->get_post('confirm');
 		$redirect = $this->input->get_post('redirect');
@@ -142,7 +194,14 @@ class Song extends CI_Controller {
 		
 		header('Location: ' . $redirect);
 	}
-
+	
+	/**
+	 * save_lyrics
+	 * 
+	 * save_lyrics() exports a song's lyrics as a text file.
+	 * 
+	 * @param int $song_id
+	 */
 	public function save_lyrics($song_id)
 	{
 		$rsSong = $this->Obr_Song->get($song_id);
@@ -158,5 +217,3 @@ class Song extends CI_Controller {
 		die();
 	}
 }
-
-?>
