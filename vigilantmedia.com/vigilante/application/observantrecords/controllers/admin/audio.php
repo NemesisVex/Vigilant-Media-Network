@@ -36,8 +36,10 @@ class Audio extends CI_Controller {
 	public function view($audio_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsFile = $this->Obr_Audio->retrieve_by_id($audio_id);
+			$rsIsrc = $this->Obr_Audio_Isrc->retrieve_by_audio_id($audio_id);
 			$this->observantview->_set_artist_header($rsFile->audio_artist_id, $rsFile->song_title);
 			$this->mysmarty->assign('rsFile', $rsFile);
+			$this->mysmarty->assign('rsIsrc', $rsIsrc);
 
 			$this->mysmarty->assign('audio_id', $audio_id);
 
@@ -80,8 +82,10 @@ class Audio extends CI_Controller {
 	public function edit($audio_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsFile = $this->Obr_Audio->retrieve_by_id($audio_id);
+			$rsIsrc = $this->Obr_Audio_Isrc->retrieve_by_audio_id($audio_id);
 			$this->observantview->_set_artist_header($rsFile->audio_artist_id, $rsFile->song_title);
 			$this->mysmarty->assign('rsFile', $rsFile);
+			$this->mysmarty->assign('rsIsrc', $rsIsrc);
 			$this->mysmarty->assign('audio_id', $audio_id);
 		}
 
@@ -107,10 +111,11 @@ class Audio extends CI_Controller {
 		$audio_isrc_code = $this->input->get_post('audio_isrc_num');
 		
 		if (false !== ($audio_id = $this->Obr_Audio->create())) {
-			$this->Obr_Audio_Isrc->create(array(
-				'audio_isrc_audio_id' => $audio_id,
-				'audio_isrc_code' => $audio_isrc_code,
-			));
+			if (!empty($audio_isrc_code)) {
+				$this->Obr_Audio_Isrc->update('audio_isrc_code', $audio_isrc_code, array(
+					'audio_isrc_audio_id' => $audio_id,
+					));
+			}
 			$redirect = '/index.php/admin/audio/view/' . $audio_id . '/';
 			$this->phpsession->flashsave('msg', 'You successfully created an audio file.');
 		} else {
@@ -127,10 +132,9 @@ class Audio extends CI_Controller {
 		
 		if (false !== $this->Obr_Audio->update_by_id($audio_id)) {
 			if (!empty($audio_isrc_code)) {
-				$this->Obr_Audio_Isrc->create(array(
+				$this->Obr_Audio_Isrc->update('audio_isrc_code', $audio_isrc_code, array(
 					'audio_isrc_audio_id' => $audio_id,
-					'audio_isrc_code' => $audio_isrc_code,
-				));
+					));
 			}
 			
 			$redirect = '/index.php/admin/audio/view/' . $audio_id . '/';

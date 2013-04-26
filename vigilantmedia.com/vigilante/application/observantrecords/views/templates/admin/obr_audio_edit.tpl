@@ -47,13 +47,13 @@
 			
 			<p>
 				<label for="audio_isrc_num">ISRC No.:</label>
-				{if !empty($rsFile->audio_isrc_num)}
-				{$rsFile->audio_isrc_num}
+				{if !empty($rsIsrc->audio_isrc_code)}
+				{$rsIsrc->audio_isrc_code}
 				{else}
 				<input type="text" name="_display_audio_isrc_num" id="_display_audio_isrc_num" value="" size="60" disabled="disabled" />
-				<input type="hidden" name="audio_isrc_num" id="audio_isrc_num" value="" size="60" />
+				<input type="hidden" name="audio_isrc_num" id="audio_isrc_num" value="" />
+				<input type="hidden" name="audio_isrc_code" id="audio_isrc_code" value="" />
 				<a id="generate_custom_isrc" class="button">Generate</a>
-				<a id="enter_custom_isrc" class="button">Enter a custom ISRC</a>
 				<a id="clear_custom_isrc" class="button">Clear</a>
 				{/if}
 			</p>
@@ -95,6 +95,7 @@
 						cache: false
 					}).done(function (response) {
 						var result = $.parseJSON(response);
+						$('#audio_isrc_code').val(result.isrc_code);
 						$('#audio_isrc_num').val(result.isrc_code);
 						$('#_display_audio_isrc_num').val(result.isrc_code);
 					});
@@ -111,13 +112,6 @@
 				Audio_Edit.build_file_name();
 			});
 				
-			$('#enter_custom_isrc').click(function () {
-				$('#_display_audio_isrc_num').removeAttr('disabled');
-				$('#_display_audio_isrc_num').val('');
-				$('#audio_isrc_num').val('');
-				$('#_display_audio_isrc_num').focus();
-			});
-				
 			$('#generate_custom_isrc').click(function () {
 				Audio_Edit.generate_isrc_code();
 			});
@@ -125,6 +119,7 @@
 			$('#clear_custom_isrc').click(function () {
 				$('#_display_audio_isrc_num').val('');
 				$('#audio_isrc_num').val('');
+				$('#audio_isrc_code').val('');
 			});
 				
 			$('#_display_audio_isrc_num').blur(function () {
