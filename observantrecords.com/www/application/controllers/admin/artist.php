@@ -57,7 +57,6 @@ class Artist extends CI_Controller
 			$this->mysmarty->assign('rsArtist', $rsArtist);
 			$this->vmview->format_section_head($rsArtist->artist_display_name);
 			
-			$this->Obr_Album->set_config('fetch_releases', false);
 			$rsAlbums = $this->Obr_Album->retrieve_by_artist_id($artist_id);
 			$this->mysmarty->assign('rsAlbums', $rsAlbums);
 			
