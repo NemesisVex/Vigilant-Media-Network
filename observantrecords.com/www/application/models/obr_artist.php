@@ -6,7 +6,6 @@
  * Obr_Artist is the model for an Observant Records Artist.
  *
  * @author Greg Bueno
- * @copyright (c) 2013, Greg Bueno
  */
 
 class Obr_Artist extends MY_Model {
