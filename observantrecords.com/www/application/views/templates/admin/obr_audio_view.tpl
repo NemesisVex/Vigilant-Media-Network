@@ -30,7 +30,7 @@
 		</li>
 		<li>
 			<div>
-				<label>ISRC</label> {$rsIsrc->audio_isrc_code}
+				<label>ISRC</label> {$rsFile->isrc[0]->audio_isrc_code}
 			</div>
 		</li>
 	</ul>

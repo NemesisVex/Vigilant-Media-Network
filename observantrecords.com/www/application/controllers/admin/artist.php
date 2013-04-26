@@ -66,7 +66,12 @@ class Artist extends CI_Controller
 
 		$this->vmview->display('admin/obr_artist_view.tpl', true);
 	}
-
+	
+	/**
+	 * add
+	 * 
+	 * add() displays a form with which to create an Observant Records artist.
+	 */
 	public function add() {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			if (empty($this->vmview->section_head)) {
@@ -76,7 +81,14 @@ class Artist extends CI_Controller
 		
 		$this->vmview->display('admin/obr_artist_edit.tpl', true);
 	}
-
+	
+	/**
+	 * edit
+	 * 
+	 * edit() displays a form with which to update an Observant Records artist.
+	 * 
+	 * @param int $artist_id
+	 */
 	public function edit($artist_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsArtist = $this->Obr_Artist->get($artist_id);
@@ -88,6 +100,14 @@ class Artist extends CI_Controller
 		$this->add();
 	}
 	
+	/**
+	 * delete
+	 * 
+	 * delete() displays a form to confirm the deletion of an Observant Records
+	 * artist.
+	 * 
+	 * @param int $artist_id
+	 */
 	public function delete($artist_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsArtist = $this->Obr_Artist->get($artist_id);
@@ -140,6 +160,13 @@ class Artist extends CI_Controller
 		die();
 	}
 
+	/**
+	 * remove
+	 * 
+	 * remove() performs a soft delete on an artist and his/her works.
+	 * 
+	 * @param int $artist_id
+	 */
 	public function remove($artist_id) {
 		// Remove audio.
 		

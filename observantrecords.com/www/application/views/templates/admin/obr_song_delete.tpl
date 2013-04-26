@@ -1,6 +1,6 @@
 {include file=obr_global_header.tpl}
 
-	<form action="/index.php/admin/song/remove/{$song_id}/" method="post" id="artist_form" name="artist_form">
+	<form action="/index.php/admin/song/remove/{$song_id}/" method="post" id="song_form" name="song_form">
 		
 		<p>You are about to delete the song <strong>{$rsSong->song_title}</strong> from the Observant Records database. <span class="caution">CAUTION:</span> Deletions cannot be undone!</p>
 		
@@ -37,19 +37,5 @@
 
 	</form>
 
-{literal}
-<script type="text/javascript">
-	$(function () {
-		$('#confirm_no').click(function () {
-			var redirect = $('#redirect').val();
-			location.href = redirect;
-			$('#confirm').val(false);
-			return false;
-		});
-		$('#confirm_yes').click(function () {
-			$('#confirm').val(true);
-			return true;
-		});
-	});
-</script>
-{/literal}
+
+{include file=admin/obr_global_delete.tpl}

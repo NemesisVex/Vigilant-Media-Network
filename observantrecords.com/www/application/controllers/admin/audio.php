@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Description of audio
+ * Audio
+ * 
+ * Audio is a controller to maintain Observant Records audio files.
  *
  * @author Greg Bueno
  */
@@ -10,18 +12,32 @@ class Audio extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 
-		$this->load->library('MyId3');
+		// Configure the view defaults.
 		$this->load->library('ObservantView');
+		// Load session data.
 		$this->load->library('VmSession');
+		// Load MP3 tag editing library.
+		$this->load->library('MyId3');
+		// Load models.
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Audio');
 		$this->load->model('Obr_Audio_Isrc');
+		$this->load->model('Obr_Audio_Map');
+		// Load helpers.
+		$this->load->helper('model');
 
 		$this->production_file_path = '/home/nemesisv/websites/prod/observantrecords.com/www';
 
 		$this->myid3->setOption(array('encoding' => 'UTF-8'));
 	}
-
+	
+	/**
+	 * browse
+	 * 
+	 * browse() displays a list of audio files by an Observant Records artist.
+	 * 
+	 * @param type $artist_id
+	 */
 	public function browse($artist_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$this->observantview->_set_artist_header($artist_id, 'Audio');
@@ -32,15 +48,20 @@ class Audio extends CI_Controller {
 
 		$this->vmview->display('admin/obr_audio_list.tpl', true);
 	}
-
+	
+	/**
+	 * view
+	 * 
+	 * view() lists the details of an individual audio file.
+	 * 
+	 * @param type $audio_id
+	 */
 	public function view($audio_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsFile = $this->Obr_Audio->retrieve_by_id($audio_id);
-			$rsIsrc = $this->Obr_Audio_Isrc->retrieve_by_audio_id($audio_id);
-			$this->observantview->_set_artist_header($rsFile->audio_artist_id, $rsFile->song_title);
+			$rsFile = $this->Obr_Audio->with('song')->with('isrc')->get($audio_id);
+			$this->observantview->_set_artist_header($rsFile->audio_artist_id, $rsFile->song->song_title);
 			$this->mysmarty->assign('rsFile', $rsFile);
-			$this->mysmarty->assign('rsIsrc', $rsIsrc);
-
+			
 			$this->mysmarty->assign('audio_id', $audio_id);
 
 			if (!empty($rsFile))
@@ -60,52 +81,87 @@ class Audio extends CI_Controller {
 
 		$this->vmview->display('admin/obr_audio_view.tpl', true);
 	}
-
+	
+	/**
+	 * add
+	 * 
+	 * add() displays a form with which to create an audio file.
+	 * 
+	 * @param int $artist_id
+	 */
 	public function add($artist_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			if (empty($this->vmview->section_head)) {
 				$this->observantview->_set_artist_header($artist_id, 'Create audio file');
 			}
 
-			$rsArtists = $this->Obr_Artist->retrieve_all();
+			$rsArtists = $this->Obr_Artist->get_all();
 			$this->mysmarty->assign('rsArtists', $rsArtists);
 			
 			$this->mysmarty->assign('audio_artist_id', $artist_id);
-
-			$rsSongs = $this->Obr_Song->retrieve_all();
+			
+			$this->Obr_Song->order_by('song_title');
+			$rsSongs = $this->Obr_Song->get_all();
 			$this->mysmarty->assign('rsSongs', $rsSongs);
 		}
 
 		$this->vmview->display('admin/obr_audio_edit.tpl', true);
 	}
-
+	
+	/**
+	 * edit
+	 * 
+	 * edit() displays a form with which to update an audio file.
+	 * 
+	 * @param type $audio_id
+	 */
 	public function edit($audio_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsFile = $this->Obr_Audio->retrieve_by_id($audio_id);
-			$rsIsrc = $this->Obr_Audio_Isrc->retrieve_by_audio_id($audio_id);
-			$this->observantview->_set_artist_header($rsFile->audio_artist_id, $rsFile->song_title);
+			$rsFile = $this->Obr_Audio->with('song')->with('isrc')->get($audio_id);
+			$this->observantview->_set_artist_header($rsFile->audio_artist_id, $rsFile->song->song_title);
 			$this->mysmarty->assign('rsFile', $rsFile);
-			$this->mysmarty->assign('rsIsrc', $rsIsrc);
 			$this->mysmarty->assign('audio_id', $audio_id);
 		}
 
 		$this->add($rsFile->audio_artist_id);
 	}
 	
+	/**
+	 * delete
+	 * 
+	 * delete() displays a form to confirm the deletion of an audio file.
+	 * 
+	 */
+	public function delete($audio_id) {
+		if (!empty($_SESSION[$this->vmsession->session_flag])) {
+			$rsAudio = $this->Obr_Audio->with('maps')->with('song')->get($audio_id);
+			$this->observantview->_set_artist_header($rsAudio->audio_artist_id, $rsAudio->song->song_title);
+			$this->mysmarty->assign('rsAudio', $rsAudio);
+			$this->mysmarty->assign('audio_id', $audio_id);
+		}
+
+		$this->vmview->display('admin/obr_audio_delete.tpl');
+	}
+	
+	/**
+	 * generate_isrc
+	 * 
+	 * generate_isrc() is an AJAX callback method to return the next available
+	 * ISRC code in a pool.
+	 */
 	public function generate_isrc() {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$audio_isrc_code = (object) array('isrc_code' => $this->Obr_Audio_Isrc->generate_code());
 			echo json_encode($audio_isrc_code);
 		}
 	}
-
-	public function delete() {
-		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-
-		}
-
-	}
-
+	
+	/**
+	 * create
+	 * 
+	 * create() saves changes made to a newly-added audio_file.
+	 * 
+	 */
 	public function create() {
 		$redirect = $_SERVER['HTTP_REFERER'];
 		$audio_isrc_code = $this->input->get_post('audio_isrc_num');
@@ -125,14 +181,22 @@ class Audio extends CI_Controller {
 		header('Location: ' . $redirect);
 		die();
 	}
-
+	
+	/**
+	 * update
+	 * 
+	 * update() saves changes made to an audio file.
+	 * 
+	 * @param type $audio_id
+	 */
 	public function update($audio_id) {
 		$redirect = $_SERVER['HTTP_REFERER'];
+		$input = build_update_data($this->Obr_Audio->_table);
 		$audio_isrc_code = $this->input->get_post('audio_isrc_num');
 		
-		if (false !== $this->Obr_Audio->update_by_id($audio_id)) {
+		if (false !== $this->Obr_Audio->update($audio_id, $input)) {
 			if (!empty($audio_isrc_code)) {
-				$this->Obr_Audio_Isrc->update('audio_isrc_code', $audio_isrc_code, array(
+				$this->Obr_Audio_Isrc->update_by('audio_isrc_code', $audio_isrc_code, array(
 					'audio_isrc_audio_id' => $audio_id,
 					));
 			}
@@ -146,10 +210,37 @@ class Audio extends CI_Controller {
 		header('Location: ' . $redirect);
 		die();
 	}
+	
+	/**
+	 * remove
+	 * 
+	 * remove() performs a soft delete on an audio file.
+	 * 
+	 */
+	public function remove($audio_id) {
+		$confirm = $this->input->get_post('confirm');
+		$redirect = $this->input->get_post('redirect');
+		
+		if ($confirm == true) {
+			$rsAudio = $this->Obr_Audio->with('maps')->get($audio_id);
+			$artist_id = $rsAudio->audio_artist_id;
+			
+			// Remove maps.
+			if (!empty($rsAudio->maps)) {
+				foreach ($rsAudio->maps as $rsMap) {
+					$this->Obr_Audio_Map->delete($rsMap->map_id);
+				}
+			}
 
-	public function remove() {
+			// Remove audio.
+			$this->Obr_Audio->delete($audio_id);
 
+			$this->phpsession->flashsave('msg', 'Audio file was deleted.');
+			$redirect = '/index.php/admin/song/browse/' . $artist_id . '/';
+		} else {
+			$this->phpsession->flashsave('msg', 'Deletion was canceled.');
+		}
+		
+		header('Location: ' . $redirect);
 	}
 }
-
-?>

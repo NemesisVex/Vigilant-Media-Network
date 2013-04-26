@@ -79,7 +79,7 @@ class Song extends CI_Controller {
 	/**
 	 * edit
 	 * 
-	 * edit() displays a form with which to create a song.
+	 * edit() displays a form with which to update a song.
 	 * 
 	 * @param int $song_id
 	 */

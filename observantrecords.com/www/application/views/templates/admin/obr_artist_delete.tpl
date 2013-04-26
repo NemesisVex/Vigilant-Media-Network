@@ -16,17 +16,5 @@
 
 	</form>
 
-{literal}
-<script type="text/javascript">
-	$(function () {
-		$('#confirm_no').click(function () {
-			var redirect = $('#redirect').val();
-			location.href = redirect;
-			return false;
-		});
-		$('#confirm_yes').click(function () {
-			return true;
-		});
-	});
-</script>
-{/literal}
+
+{include file=admin/obr_global_delete.tpl}

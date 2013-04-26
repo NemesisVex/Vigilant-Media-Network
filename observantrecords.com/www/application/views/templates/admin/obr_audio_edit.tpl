@@ -47,8 +47,8 @@
 			
 			<p>
 				<label for="audio_isrc_num">ISRC No.:</label>
-				{if !empty($rsIsrc->audio_isrc_code)}
-				{$rsIsrc->audio_isrc_code}
+				{if !empty($rsFile->isrc[0]->audio_isrc_code)}
+				{$rsFile->isrc[0]->audio_isrc_code}
 				{else}
 				<input type="text" name="_display_audio_isrc_num" id="_display_audio_isrc_num" value="" size="60" disabled="disabled" />
 				<input type="hidden" name="audio_isrc_num" id="audio_isrc_num" value="" />

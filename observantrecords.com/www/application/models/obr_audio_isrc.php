@@ -81,7 +81,7 @@ class Obr_Audio_Isrc extends MY_Model {
 	}
 	
 	public function retrieve_by_audio_id($audio_isrc_audio_id, $return_rs = true) {
-		if (false !== ($result = $this->retrieve('audio_isrc_audio_id', $audio_isrc_audio_id))) {
+		if (false !== ($result = $this->get_by('audio_isrc_audio_id', $audio_isrc_audio_id))) {
 			return ($return_rs === true) ? $this->return_rs($result) : $result;
 		}
 		return false;
