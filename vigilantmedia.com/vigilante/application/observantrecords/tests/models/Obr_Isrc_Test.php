@@ -10,6 +10,7 @@
 class Obr_Isrc_Test extends CIUnit_TestCase
 {
 	protected $Obr_Song;
+	private $_isrc_stem;
 
 	public function __construct($name = NULL, array $data = array(), $dataName = '')
 	{
@@ -22,6 +23,7 @@ class Obr_Isrc_Test extends CIUnit_TestCase
 
 		$this->CI->load->model('Obr_Audio_Isrc');
 		$this->Obr_Audio_Isrc = $this->CI->Obr_Audio_Isrc;
+		$this->_isrc_stem = ISRC_COUNTRY_CODE . '-' . ISRC_REGISTRANT_CODE . '-' . date('y') . '-';
 	}
 
 	public function test_constructor()
@@ -97,17 +99,28 @@ class Obr_Isrc_Test extends CIUnit_TestCase
 	
 	public function test_generate_code() {
 		$result = $this->Obr_Audio_Isrc->generate_code();
-		echo $result . "\n";
-		$this->assertStringStartsWith('us-', $result);
-		
-		$id = $this->Obr_Audio_Isrc->create(array('audio_isrc_code' => $result));
-		echo $id . "\n";
-		$this->assertNotNull($id);
+		$this->assertStringStartsWith(ISRC_COUNTRY_CODE . '-', $result);
 		
 		$result_02 = $this->Obr_Audio_Isrc->generate_code();
-		echo $result_02 . "\n";
-		$this->assertStringStartsWith('us-', $result);
-		$this->assertNotEquals($result_02, $result);
+		$this->assertStringStartsWith(ISRC_COUNTRY_CODE . '-', $result);
+		$this->assertEquals($result_02, $result);
+		
+		// Generate random audio ID.
+		$audio_isrc_audio_id = mt_rand();
+		$check = $this->Obr_Audio_Isrc->retrieve('audio_isrc_audio_id', $audio_isrc_audio_id);
+		while ($check->num_rows() > 0) {
+			$audio_isrc_audio_id = mt_rand();
+			$check = $this->Obr_Audio_Isrc->retrieve('audio_isrc_audio_id', $audio_isrc_audio_id);
+		}
+		
+		$input = array(
+			'audio_isrc_audio_id' => $audio_isrc_audio_id,
+		);
+		$this->Obr_Audio_Isrc->update('audio_isrc_code', $result_02, $input);
+		
+		$result_03 = $this->Obr_Audio_Isrc->generate_code();
+		$this->assertStringStartsWith(ISRC_COUNTRY_CODE . '-', $result);
+		$this->assertNotEquals($result_03, $result_02);
 	}
 
 	public function tearDown()
