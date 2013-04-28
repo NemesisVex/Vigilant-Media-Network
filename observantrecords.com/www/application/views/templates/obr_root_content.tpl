@@ -1,5 +1,5 @@
-{if $session->flashget('error')}<p>{catch_error error=$session->flashget('error') color='#FCC'}</p>{/if}
-{if $session->flashget('msg')}<p>{catch_message msg=$session->flashget('msg') color='#CCF'}</p>{/if}
+{if $session->flashget('error')!=''}<p>{catch_error error=$session->flashget('error') color='#FCC'}</p>{/if}
+{if $session->flashget('msg')!=''}<p>{catch_message msg=$session->flashget('msg') color='#CCF'}</p>{/if}
 
 {if $smarty.session.is_logged_in==true}
 {if $root_content}{include file=$root_content}{/if}

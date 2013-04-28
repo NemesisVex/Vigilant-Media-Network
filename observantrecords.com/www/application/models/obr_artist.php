@@ -6,7 +6,6 @@
  * Obr_Artist is the model for an Observant Records Artist.
  *
  * @author Greg Bueno
- * @copyright (c) 2013, Greg Bueno
  */
 
 class Obr_Artist extends MY_Model {
@@ -32,6 +31,8 @@ class Obr_Artist extends MY_Model {
 		),
 		
 	);
+	protected $soft_delete = true;
+	protected $soft_delete_key = 'artist_deleted';
 
 	public function __construct() {
 		parent::__construct();
