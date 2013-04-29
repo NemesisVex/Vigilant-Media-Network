@@ -233,6 +233,9 @@ class Audio extends CI_Controller {
 			// Remove log.
 			$this->Obr_Audio_Log->delete_by('log_audio_id', $audio_id);
 			
+			// Remove ISRC.
+			$this->Obr_Audio_Isrc->delete_by('audio_isrc_audio_id', $audio_id);
+			
 			// Remove audio.
 			$this->Obr_Audio->delete($audio_id);
 			
