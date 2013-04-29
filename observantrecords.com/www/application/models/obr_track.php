@@ -21,6 +21,10 @@ class Obr_Track extends MY_Model {
 			'model' => 'Obr_Song',
 			'primary_key' => 'track_song_id',
 		),
+		'audio' => array(
+			'model' => 'Obr_Audio',
+			'primary_key' => 'track_audio_id',
+		),
 	);
 	public $has_many = array(
 		'maps' => array(

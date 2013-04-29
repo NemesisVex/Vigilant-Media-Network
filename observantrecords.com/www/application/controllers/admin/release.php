@@ -1,12 +1,9 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of release
+ * Release
+ * 
+ * Release is a controller for maintaining releases of albums by Observant Records artists.
  *
  * @author Greg Bueno
  */

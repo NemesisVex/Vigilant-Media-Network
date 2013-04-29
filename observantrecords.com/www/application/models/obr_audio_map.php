@@ -1,9 +1,11 @@
 <?php
 
 /**
- * Obr_Audio
+ * Obr_Audio_Map
  * 
- * Obr_Audio is a model for Observant Records audio files.
+ * Obr_Audio_Map is a model for mapping audio files with Observant Records tracks.
+ * This model is deprecated since audio now have a one-to-many relationship
+ * with tracks.
  *
  * @author Greg Bueno
  */
