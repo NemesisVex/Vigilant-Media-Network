@@ -1,12 +1,9 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of album
+ * Album
+ * 
+ * Album is a controller for maintaining albums by Observant Records artists.
  *
  * @author Greg Bueno
  */
