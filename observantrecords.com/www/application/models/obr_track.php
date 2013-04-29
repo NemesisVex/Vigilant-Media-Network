@@ -14,8 +14,18 @@ class Obr_Track extends MY_Model {
 	public $primary_key = 'track_id';
 	public $belongs_to = array(
 		'release' => array(
-			'model' => 'ep4_albums_releases',
-			'primary_key' => 'album_track_id',
+			'model' => 'Obr_Release',
+			'primary_key' => 'track_release_id',
+		),
+		'song' => array(
+			'model' => 'Obr_Song',
+			'primary_key' => 'track_song_id',
+		),
+	);
+	public $has_many = array(
+		'maps' => array(
+			'model' => 'Obr_Audio_Map',
+			'primary_key' => 'map_track_id',
 		),
 	);
 	protected $soft_delete = true;

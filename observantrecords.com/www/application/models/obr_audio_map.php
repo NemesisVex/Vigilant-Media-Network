@@ -12,7 +12,7 @@ class Obr_Audio_Map extends MY_Model {
 	
 	public $_table = 'ep4_audio_map';
 	public $primary_key = 'map_id';
-	public $has_many = array(
+	public $belongs_to = array(
 		'tracks' => array(
 			'model' => 'Obr_Track',
 			'primary_key' => 'map_track_id',
