@@ -22,6 +22,7 @@ class Audio extends CI_Controller {
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Audio');
 		$this->load->model('Obr_Audio_Isrc');
+		$this->load->model('Obr_Audio_Log');
 		$this->load->model('Obr_Audio_Map');
 		// Load helpers.
 		$this->load->helper('model');
@@ -227,12 +228,11 @@ class Audio extends CI_Controller {
 			$artist_id = $rsAudio->audio_artist_id;
 			
 			// Remove maps.
-			if (!empty($rsAudio->maps)) {
-				foreach ($rsAudio->maps as $rsMap) {
-					$this->Obr_Audio_Map->delete($rsMap->map_id);
-				}
-			}
-
+			$this->Obr_Audio_Map->delete_by('map_audio_id', $audio_id);
+			
+			// Remove log.
+			$this->Obr_Audio_Log->delete_by('log_audio_id', $audio_id);
+			
 			// Remove audio.
 			$this->Obr_Audio->delete($audio_id);
 			

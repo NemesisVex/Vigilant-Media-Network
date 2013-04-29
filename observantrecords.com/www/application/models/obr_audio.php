@@ -31,6 +31,10 @@ class Obr_Audio extends MY_Model {
 			'model' => 'Obr_Audio_Map',
 			'primary_key' => 'map_audio_id',
 		),
+		'logs' => array(
+			'model' => 'Obr_Audio_Log',
+			'primary_key' => 'log_audio_id',
+		),
 	);
 	
 	protected $soft_delete = true;
