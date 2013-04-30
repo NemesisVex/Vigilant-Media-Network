@@ -181,7 +181,7 @@
 	</p>
 	
 	<ul>
-		<li><a href="/index.php/admin/album/view/{$rsRelease->release_album_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
+		<li><a href="/index.php/admin/album/view/{$rsRelease->release_album_id}/">Back to <em>{$rsRelease->album->album_title}</em></a></li>
 	</ul>
 	{/if}
 </div>
