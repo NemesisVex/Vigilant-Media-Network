@@ -88,7 +88,7 @@
 					<li>
 						<div>
 							<a href="/index.php/admin/track/edit/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-							{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/track/delete/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
+							<a href="/index.php/admin/track/delete/{$rsTrack->track_id}"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
 							<span class="track-num-display">{$rsTrack->track_track_num}</span>. <a href="/index.php/admin/track/view/{$rsTrack->track_id}">{$rsTrack->song->song_title}</a>
 							<input type="hidden" name="track_id" value="{$rsTrack->track_id}" />
 							<input type="hidden" name="track_disc_num" value="{$rsTrack->track_disc_num}" />

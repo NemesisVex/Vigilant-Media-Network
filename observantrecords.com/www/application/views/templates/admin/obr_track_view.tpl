@@ -61,7 +61,7 @@
 			<li>
 				<div>
 					<a href="/index.php/admin/audio/edit/{$rsTrack->audio->audio_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-					{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/audio/delete/{$rsTrack->audio->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
+					<a href="/index.php/admin/audio/delete/{$rsTrack->audio->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
 					<a href="/index.php/admin/audio/view/{$rsTrack->audio->audio_id}/" title="{$rsMap->audio->audio_mp3_file_path}/{$rsTrack->audio->audio_mp3_file_name}">{$rsTrack->audio->audio_mp3_file_name}</a>
 				</div>
 			</li>
