@@ -171,6 +171,8 @@ class Artist extends CI_Controller
 		$this->load->model('Obr_Release');
 		$this->load->model('Obr_Track');
 		$this->load->model('Obr_Audio');
+		$this->load->model('Obr_Audio_Map');
+		$this->load->model('Obr_Audio_Isrc');
 		$this->load->model('Obr_Content');
 		$this->load->model('Obr_Ecommerce');
 		$confirm = $this->input->get_post('confirm');
@@ -178,14 +180,15 @@ class Artist extends CI_Controller
 		
 		if ($confirm == true) {
 			// Gather albums, releases, tracks, audio, ecommerce and content.
-			$rsAlbums = $this->Obr_Album->with('releases')->get_many_by('album_artist_id', $artist_id);
+			$rsAlbums = $this->Obr_Album->get_many_by('album_artist_id', $artist_id);
 			
-			if (!empty($rsAlbums->releases)) {
+			if (!empty($rsAlbums)) {
 				foreach ($rsAlbums as $rsAlbum) {
-					if (!empty($rsAlbum->releases)) {
-						foreach ($rsAlbum->releases as $rsRelease) {
+					$rsReleases = $this->Obr_Release->with('tracks')->get_many_by('release_album_id', $rsAlbum->album_id);
+					if (!empty($rsReleases)) {
+						foreach ($rsReleases as $rsRelease) {
 							if (!empty($rsRelease->tracks)) {
-								foreach ($rsRelease->tracks as $t => $rsTrack) {
+								foreach ($rsRelease->tracks as $rsTrack) {
 									// Remove audio maps.
 									$this->Obr_Audio_Map->delete_by('map_track_id', $rsTrack->track_id);
 
