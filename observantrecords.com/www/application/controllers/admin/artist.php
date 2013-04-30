@@ -167,16 +167,100 @@ class Artist extends CI_Controller
 	 * @param int $artist_id
 	 */
 	public function remove($artist_id) {
-		// Remove audio.
+		$this->load->model('Obr_Song');
+		$this->load->model('Obr_Release');
+		$this->load->model('Obr_Track');
+		$this->load->model('Obr_Audio');
+		$this->load->model('Obr_Content');
+		$this->load->model('Obr_Ecommerce');
+		$confirm = $this->input->get_post('confirm');
+		$redirect = $this->input->get_post('redirect');
 		
-		// Remove tracks.
-		
-		// Remove releases.
-		
-		// Remove albums.
-		
-		// Remove artist.
+		if ($confirm == true) {
+			// Gather albums, releases, tracks, audio, ecommerce and content.
+			$rsAlbums = $this->Obr_Album->with('releases')->get_many_by('album_artist_id', $artist_id);
+			
+			if (!empty($rsAlbums->releases)) {
+				foreach ($rsAlbums as $rsAlbum) {
+					if (!empty($rsAlbum->releases)) {
+						foreach ($rsAlbum->releases as $rsRelease) {
+							if (!empty($rsRelease->tracks)) {
+								foreach ($rsRelease->tracks as $t => $rsTrack) {
+									// Remove audio maps.
+									$this->Obr_Audio_Map->delete_by('map_track_id', $rsTrack->track_id);
 
+									// Remove audio.
+									$this->_remove_audio($rsTrack->track_audio_id);
+
+									// Remove ecommerce and content by tracks.
+									$this->Obr_Content->delete_by('content_track_id', $rsTrack->track_id);
+									$this->Obr_Ecommerce->delete_by('ecommerce_track_id', $rsTrack->track_id);
+								}
+								// Remove tracks.
+								$this->Obr_Track->delete_by('track_release_id', $rsRelease->release_id);
+
+								// Remove content.
+								$this->Obr_Content->delete_by('content_release_id', $rsRelease->release_id);
+
+								// Remove ecommerce.
+								$this->Obr_Ecommerce->delete_by('ecommerce_release_id', $rsRelease->release_id);
+							}
+						}
+					}
+					// Remove releases.
+					$this->Obr_Release->delete_by('release_album_id', $rsAlbum->album_id);
+				}
+			}
+			// Remove audio maps missed by track deletion.
+			$rsAudio = $this->Obr_Audio->with('maps')->get_by('audio_artist_id', $artist_id);
+			
+			if (!empty($rsAudio)) {
+				if (count($rsAudio) > 0) {
+					foreach ($rsAudio as $rsFile) {
+						$this->_remove_audio($rsAudio->audio_id);
+					}
+				} else {
+					$this->_remove_audio($rsAudio->audio_id);
+				}
+			}
+			
+			// Remove album.
+			$this->Obr_Album->delete_by('album_artist_id', $artist_id);
+			
+			// Remove artist.
+			$this->Obr_Artist->delete($artist_id);
+			
+			// Remove primary artist ID from songs, but do not remove songs.
+			$input = array(
+				'song_primary_artist_id' => 0,
+			);
+			$this->Obr_Song->update_by('song_primary_artist_id', $artist_id, $input);
+			
+			$this->phpsession->flashsave('msg', 'Artist was deleted.');
+			$redirect = '/index.php/admin/';
+		} else {
+			$this->phpsession->flashsave('msg', 'Deletion was canceled.');
+		}
+		
+		header('Location: ' . $redirect);
+	}
+	
+	private function _remove_audio($audio_id) {
+		$this->load->model('Obr_Audio_Map');
+		$this->load->model('Obr_Audio_Log');
+		$this->load->model('Obr_Audio_Isrc');
+		
+		// Remove maps.
+		$this->Obr_Audio_Map->delete_by('map_audio_id', $audio_id);
+
+		// Remove logs.
+		$this->Obr_Audio_Log->delete_by('log_audio_id', $audio_id);
+
+		// Remove ISRC.
+		$this->Obr_Audio_Isrc->delete_by('audio_isrc_audio_id', $audio_id);
+
+		// Remove audio.
+		$this->Obr_Audio->delete($audio_id);
 	}
 }
 

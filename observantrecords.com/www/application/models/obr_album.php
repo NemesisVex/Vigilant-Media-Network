@@ -25,9 +25,11 @@ class Obr_Album extends MY_Model {
 	public $has_many = array(
 		'releases' => array(
 			'model' => 'Obr_Release',
-			'primary_key' => 'album_release_id',
+			'primary_key' => 'release_album_id',
 		), 
 	);
+	protected $soft_delete = true;
+	protected $soft_delete_key = 'album_deleted';
 	
 	public function __construct($params = null) {
 		parent::__construct($params);

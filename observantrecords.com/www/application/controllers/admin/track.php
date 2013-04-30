@@ -1,12 +1,9 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of song
+ * Track
+ * 
+ * Track is a controller for maintaining tracks of releases from albums by Observant Records artists.
  *
  * @author Greg Bueno
  */
@@ -20,28 +17,35 @@ class Track extends CI_Controller {
 		$this->load->library('VmDebug');
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Audio');
+		$this->load->model('Obr_Audio_Map');
 		$this->load->model('Obr_Release');
 		$this->load->model('Obr_Song');
 		$this->load->model('Obr_Track');
+		$this->load->helper('Model');
 	}
 
-	public function browse($artist_id) {
+	public function browse($release_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$this->observantview->_set_artist_header($artist_id, 'Songs');
-			$rsTracks = $this->Obr_Track->retrieve_by_artist_id($artist_id);
-			$this->mysmarty->assign('rsSongs', $rsTracks);
-			$this->mysmarty->assign('artist_id', $artist_id);
+			$rsRelease = $this->Obr_Release->with('album')->get($release_id);
+			$rsTracks = $this->Obr_Track->with('song')->get_many_by('track_release_id', $release_id);
+
+			foreach ($rsTracks as $rsTrack) {
+				$rsRelease->tracks[$rsTrack->track_disc_num][$rsTrack->track_track_num] = $rsTrack;
+			}
+			
+			$this->vmview->format_section_head($rsRelease->album->album_title, 'Tracks');
+			$this->mysmarty->assign('rsRelease', $rsRelease);
+			$this->mysmarty->assign('release_id', $release_id);
 		}
 
-		$this->vmview->display('admin/obr_track_list.tpl');
+		$this->vmview->display('admin/obr_track_list.tpl', true);
 	}
 
 	public function view($track_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$this->Obr_Track->set_config('fetch_audio', true);
-			$rsTrack = $this->Obr_Track->retrieve_by_id($track_id);
-			$rsRelease = $this->Obr_Release->retrieve_by_id($rsTrack->track_release_id);
-			$this->vmview->format_section_head($rsRelease->album_title, $rsTrack->song_title);
+			$rsTrack = $this->Obr_Track->with('song')->with('audio')->get($track_id);
+			$rsRelease = $this->Obr_Release->with('album')->get($rsTrack->track_release_id);
+			$this->vmview->format_section_head($rsRelease->album->album_title, $rsTrack->song->song_title);
 			$this->mysmarty->assign('rsRelease', $rsRelease);
 			$this->mysmarty->assign('rsTrack', $rsTrack);
 			$this->mysmarty->assign('track_id', $track_id);
@@ -52,11 +56,14 @@ class Track extends CI_Controller {
 
 	public function add($release_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsSongs = $this->Obr_Song->retrieve_all();
-			$rsFiles = $this->Obr_Audio->retrieve_all(null, 'audio_mp3_file_path, audio_mp3_file_name');
-			$rsRelease = $this->Obr_Release->retrieve_by_id($release_id);
+			$rsSongs = $this->Obr_Song->get_all();
+			
+			$this->Obr_Audio->order_by('audio_mp3_file_path, audio_mp3_file_name');
+			$rsFiles = $this->Obr_Audio->get_all();
+			
+			$rsRelease = $this->Obr_Release->with('album')->get($release_id);
 			if (empty($this->vmview->section_head)) {
-				$this->vmview->format_section_head($rsRelease->album_title, 'Create a track');
+				$this->vmview->format_section_head($rsRelease->album->album_title, 'Create a track');
 			}
 
 			$this->mysmarty->assign('rsFiles', $rsFiles);
@@ -70,10 +77,9 @@ class Track extends CI_Controller {
 
 	public function edit($track_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$this->Obr_Track->set_config('fetch_audio', true);
-			$rsTrack = $this->Obr_Track->retrieve_by_id($track_id);
-			$rsRelease = $this->Obr_Release->retrieve_by_id($rsTrack->track_release_id);
-			$this->vmview->format_section_head($rsRelease->album_title, $rsTrack->song_title);
+			$rsTrack = $this->Obr_Track->with('song')->get($track_id);
+			$rsRelease = $this->Obr_Release->with('album')->get($rsTrack->track_release_id);
+			$this->vmview->format_section_head($rsRelease->album->album_title, $rsTrack->song->song_title);
 			$this->mysmarty->assign('rsTrack', $rsTrack);
 			$this->mysmarty->assign('track_id', $track_id);
 		}
@@ -83,17 +89,21 @@ class Track extends CI_Controller {
 
 	public function delete($track_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsTrack = $this->Obr_Track->retrieve_by_id($track_id);
-			$this->observantview->_set_artist_header($rsTrack->song_primary_artist_id, $rsTrack->song_title);
+			$rsTrack = $this->Obr_Track->with('song')->get($track_id);
+			$rsRelease = $this->Obr_Release->with('album')->get($rsTrack->track_release_id);
+			$this->vmview->format_section_head($rsRelease->album->album_title, $rsTrack->song->song_title);
 			$this->mysmarty->assign('rsTrack', $rsTrack);
-			$this->mysmarty->assign('song_id', $track_id);
+			$this->mysmarty->assign('track_id', $track_id);
+			$this->mysmarty->assign('track_release_id', $rsTrack->track_release_id);
 		}
 
+		$this->vmview->display('admin/obr_track_delete.tpl');
 	}
 
 	public function create() {
 		$redirect = $_SERVER['HTTP_REFERER'];
-		if (false !== ($track_id = $this->Obr_Track->create())) {
+		$input = build_update_data($this->Obr_Track->_table);
+		if (false !== ($track_id = $this->Obr_Track->insert($input))) {
 			$redirect = '/index.php/admin/track/view/' . $track_id . '/';
 			$this->phpsession->flashsave('msg', 'You successfully created a track.');
 		} else {
@@ -106,7 +116,8 @@ class Track extends CI_Controller {
 
 	public function update($track_id) {
 		$redirect = $_SERVER['HTTP_REFERER'];
-		if (false !== $this->Obr_Track->update_by_id($track_id)) {
+		$input = build_update_data($this->Obr_Track->_table);
+		if (false !== $this->Obr_Track->update($track_id, $input)) {
 			$redirect = '/index.php/admin/track/view/' . $track_id . '/';
 			$this->phpsession->flashsave('msg', 'You successfully updated a track.');
 		} else {
@@ -117,8 +128,32 @@ class Track extends CI_Controller {
 		die();
 	}
 
-	public function remove() {
+	public function remove($track_id) {
+		$this->load->model('Obr_Audio_Map');
+		$this->load->model('Obr_Content');
+		$this->load->model('Obr_Ecommerce');
+		$confirm = $this->input->get_post('confirm');
+		$redirect = $this->input->get_post('redirect');
+		$track_release_id = $this->input->get_post('track_release_id');
+		
+		if ($confirm == true) {
+			// Remove audio maps.
+			$this->Obr_Audio_Map->delete_by('map_track_id', $track_id);
 
+			// Remove ecommerce and content by tracks.
+			$this->Obr_Content->delete_by('content_track_id', $track_id);
+			$this->Obr_Ecommerce->delete_by('ecommerce_track_id', $track_id);
+
+			// Remove track.
+			$this->Obr_Track->delete($track_id);
+
+			$this->phpsession->flashsave('msg', 'Track was deleted.');
+			$redirect = '/index.php/admin/release/view/' . $track_release_id . '/';
+		} else {
+			$this->phpsession->flashsave('msg', 'Deletion was canceled.');
+		}
+		
+		header('Location: ' . $redirect);
 	}
 
 	public function save_order($release_id) {
@@ -139,7 +174,7 @@ class Track extends CI_Controller {
 	}
 
 	private function _update_track($track_id, $input) {
-		if (false !== $this->Obr_Track->update_by_id($track_id, $input)) {
+		if (false !== $this->Obr_Track->update($track_id, $input)) {
 			return true;
 		}
 		return false;

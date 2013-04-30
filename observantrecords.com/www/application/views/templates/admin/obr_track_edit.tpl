@@ -96,7 +96,7 @@
 	</p>
 
 	<ul>
-		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
-		{if !empty($rsTrack)}<li><a href="/index.php/admin/track/view/{$rsTrack->track_id}/">Back to &quot;{$rsTrack->song_title}&quot;</a></li>{/if}
+		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album->album_title}</em></a></li>
+		{if !empty($rsTrack)}<li><a href="/index.php/admin/track/view/{$rsTrack->track_id}/">Back to &quot;{$rsTrack->song->song_title}&quot;</a></li>{/if}
 	</ul>
 </div>
