@@ -21,7 +21,7 @@
 				<td>
 					<div>
 						<a href="/index.php/admin/release/edit/{$rsRelease->release_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-						{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/release/delete/{$rsRelease->release_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
+						<a href="/index.php/admin/release/delete/{$rsRelease->release_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
 					</div>
 				</td>
 				<td>
