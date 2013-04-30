@@ -16,14 +16,14 @@ class OR_Artist extends OR_Model {
 
 	public function get_artists() {
 		$this->activate();
-		$rsArtists = db_select('ep4_artists', 'a')->fields('a')->execute()->fetchAllAssoc('artist_alias', PDO::FETCH_ASSOC);
+		$rsArtists = db_select('ep4_artists', 'a')->fields('a')->condition('artist_deleted', 0)->execute()->fetchAllAssoc('artist_alias', PDO::FETCH_ASSOC);
 		$this->deactivate();
 		return $rsArtists;
 	}
 
 	public function get_artist($alias) {
 		$this->activate();
-		$rsArtist = db_select('ep4_artists', 'a')->fields('a')->condition('artist_alias', $alias)->execute()->fetchAssoc();
+		$rsArtist = db_select('ep4_artists', 'a')->fields('a')->condition('artist_alias', $alias)->condition('artist_deleted', 0)->execute()->fetchAssoc();
 		$this->deactivate();
 		return $rsArtist;
 	}

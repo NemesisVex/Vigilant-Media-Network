@@ -71,3 +71,8 @@ table.track-table
 .button:hover {
 	color: #FFF;
 }
+
+.caution {
+	font-weight: bold;
+	color: #900;
+}
