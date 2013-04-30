@@ -22,6 +22,7 @@ class OR_Tracks extends OR_Model {
 		$query .= 'left outer join {ep4_audio} as au ';
 		$query .= 'on t.track_audio_id = au.audio_id ';
 		$query .= 'where t.track_alias = :track_alias ';
+		$query .= 'and t.track_deleted = 0 ';
 		$query .= 'order by t.track_disc_num, t.track_track_num';
 		
 		$args = array(':track_alias' => $track_alias);
@@ -48,6 +49,7 @@ class OR_Tracks extends OR_Model {
 		$query .= 'left outer join {ep4_audio} as au ';
 		$query .= 'on t.track_audio_id = au.audio_id ';
 		$query .= 'where r.release_alias = :release_alias ';
+		$query .= 'and t.track_deleted = 0 ';
 		$query .= 'order by t.track_disc_num, t.track_track_num';
 		
 		$args = array(':release_alias' => $release_alias);
@@ -72,6 +74,7 @@ class OR_Tracks extends OR_Model {
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id ';
 		$query .= 'where al.album_alias = :release_alias ';
+		$query .= 'and t.track_deleted = 0 ';
 		$query .= 'order by t.track_disc_num, t.track_track_num';
 		
 		$args = array(':album_alias' => $album_alias);

@@ -16,6 +16,7 @@ class OR_Albums extends OR_Model {
 		$query .= 'on al.album_artist_id = ar.artist_id ';
 		$query .= 'where ar.artist_alias = :artist_alias ';
 		$query .= 'and al.album_is_visible = 1 ';
+		$query .= 'and al.album_deleted = 0 ';
 		$query .= 'order by al.album_release_date';
 		
 		$args = array(':artist_alias' => $artist_alias);
@@ -32,6 +33,7 @@ class OR_Albums extends OR_Model {
 		$query = '';
 		$query .= 'select * from {ep4_albums} as al ';
 		$query .= 'where al.album_alias = :album_alias ';
+		$query .= 'and al.album_deleted = 0';
 		
 		$args = array(':album_alias' => $album_alias);
 		
@@ -50,6 +52,7 @@ class OR_Albums extends OR_Model {
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id ';
 		$query .= 'where al.album_alias = :album_alias ';
+		$query .= 'and r.release_deleted = 0 ';
 		$query .= 'order by :order_by';
 		
 		$args = array(':album_alias' => $album_alias, ':order_by' => $order_by);
@@ -68,6 +71,7 @@ class OR_Albums extends OR_Model {
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id ';
 		$query .= 'where r.release_alias = :release_alias ';
+		$query .= 'and al.album_deleted = 0';
 		
 		$args = array(':release_alias' => $release_alias);
 		
@@ -78,6 +82,7 @@ class OR_Albums extends OR_Model {
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id ';
 		$query .= 'where r.release_alias = :release_alias ';
+		$query .= 'and r.release_deleted = 0';
 		
 		$rsRelease = db_query($query, $args)->fetchAssoc();
 		
