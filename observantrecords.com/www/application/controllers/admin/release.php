@@ -1,12 +1,9 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of release
+ * Release
+ * 
+ * Release is a controller for maintaining releases of albums by Observant Records artists.
  *
  * @author Greg Bueno
  */
@@ -16,30 +13,40 @@ class Release extends CI_Controller {
 
 		$this->load->library('ObservantView');
 		$this->load->library('VmSession');
+		$this->load->helper('Model');
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Album');
 		$this->load->model('Obr_Release');
 		$this->load->model('Obr_Release_Format');
+		$this->load->model('Obr_Track');
 	}
 	
 	public function browse($release_album_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			
+			$rsReleases = $this->Obr_Release->with('album')->with('format')->get_many_by('release_album_id', $release_album_id);
+			$this->observantview->_set_artist_header($rsReleases[0]->album->album_artist_id, $rsReleases[0]->album->album_title);
+			$this->mysmarty->assign('rsReleases', $rsReleases);
+			$this->mysmarty->assign('album_id', $release_album_id);
 		}
 		
-		$this->vmview->display('', true);
+		$this->vmview->display('admin/obr_release_list.tpl', true);
 	}
 	
 	public function view($release_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$this->Obr_Release->set_config('fetch_tracks', true);
-			$this->Obr_Release->set_config('return_discs', true);
-			$rsRelease = $this->Obr_Release->retrieve_by_id($release_id);
+			$rsRelease = $this->Obr_Release->with('album')->with('format')->get($release_id);
+			
+			$this->Obr_Track->order_by('track_disc_num, track_track_num');
+			$rsTracks = $this->Obr_Track->with('song')->get_many_by('track_release_id', $release_id);
+			
+			foreach ($rsTracks as $rsTrack) {
+				$rsRelease->tracks[$rsTrack->track_disc_num][$rsTrack->track_track_num] = $rsTrack;
+			}
 			
 			$this->mysmarty->assign('rsRelease', $rsRelease);
 			$this->mysmarty->assign('release_id', $release_id);
 			
-			$this->observantview->_set_artist_header($rsRelease->album_artist_id, $rsRelease->album_title);
+			$this->observantview->_set_artist_header($rsRelease->album->album_artist_id, $rsRelease->album->album_title);
 		}
 		
 		$this->vmview->display('admin/obr_release_view.tpl', true);
@@ -47,7 +54,7 @@ class Release extends CI_Controller {
 	
 	public function add($album_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsAlbum = $this->Obr_Album->retrieve_by_id($album_id);
+			$rsAlbum = $this->Obr_Album->get($album_id);
 			if (empty($this->vmview->section_head)) {
 				$this->observantview->_set_artist_header($rsAlbum->album_artist_id, $rsAlbum->album_title);
 			}
@@ -55,7 +62,7 @@ class Release extends CI_Controller {
 			$rsAlbums = $this->Obr_Album->retrieve_by_artist_id($rsAlbum->album_artist_id);
 			$this->mysmarty->assign('rsAlbums', $rsAlbums);
 			
-			$rsFormats = $this->Obr_Release_Format->retrieve_all();
+			$rsFormats = $this->Obr_Release_Format->get_all();
 			$this->mysmarty->assign('rsFormats', $rsFormats);
 		}
 		
@@ -64,8 +71,8 @@ class Release extends CI_Controller {
 	
 	public function edit($release_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsRelease = $this->Obr_Release->retrieve_by_id($release_id);
-			$this->observantview->_set_artist_header($rsRelease->album_artist_id, $rsRelease->album_title);
+			$rsRelease = $this->Obr_Release->with('album')->with('format')->get($release_id);
+			$this->observantview->_set_artist_header($rsRelease->album->album_artist_id, $rsRelease->album->album_title);
 			$this->mysmarty->assign('rsRelease', $rsRelease);
 			
 			$this->mysmarty->assign('release_id', $release_id);
@@ -74,16 +81,22 @@ class Release extends CI_Controller {
 		$this->add($rsRelease->release_album_id);
 	}
 	
-	public function delete() {
+	public function delete($release_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			
+			$rsRelease = $this->Obr_Release->with('album')->with('format')->get($release_id);
+			$this->observantview->_set_artist_header($rsRelease->album->album_artist_id, $rsRelease->album->album_title);
+			$this->mysmarty->assign('rsRelease', $rsRelease);
+			$this->mysmarty->assign('release_id', $release_id);
+			$this->mysmarty->assign('release_album_id', $rsRelease->release_album_id);
 		}
 		
+		$this->vmview->display('admin/obr_release_delete.tpl', true);
 	}
 	
 	public function create() {
 		$redirect = $_SERVER['HTTP_REFERER'];
-		if (false !== ($release_id = $this->Obr_Release->create())) {
+		$input = build_update_data($this->Obr_Release->_table);
+		if (false !== ($release_id = $this->Obr_Release->insert($input))) {
 			$redirect = '/index.php/admin/release/view/' . $release_id . '/';
 			$this->phpsession->flashsave('msg', 'You successfully created a release.');
 		} else {
@@ -96,7 +109,8 @@ class Release extends CI_Controller {
 	
 	public function update($release_id) {
 		$redirect = $_SERVER['HTTP_REFERER'];
-		if (false !== $this->Obr_Release->update_by_id($release_id)) {
+		$input = build_update_data($this->Obr_Release->_table);
+		if (false !== $this->Obr_Release->update($release_id, $input)) {
 			$redirect = '/index.php/admin/release/view/' . $release_id . '/';
 			$this->phpsession->flashsave('msg', 'You successfully updated a release.');
 		} else {
@@ -107,8 +121,46 @@ class Release extends CI_Controller {
 		die();
 	}
 	
-	public function remove() {
+	public function remove($release_id) {
+		$this->load->model('Obr_Audio_Map');
+		$this->load->model('Obr_Content');
+		$this->load->model('Obr_Ecommerce');
+		$confirm = $this->input->get_post('confirm');
+		$redirect = $this->input->get_post('redirect');
+		$release_album_id = $this->input->get_post('release_album_id');
 		
+		if ($confirm == true) {
+			// Gather tracks.
+			$rsTracks = $this->Obr_Track->get_many_by('track_release_id', $release_id);
+			
+			foreach ($rsTracks as $t => $rsTrack) {
+				// Remove audio maps.
+				$this->Obr_Audio_Map->delete_by('map_track_id', $rsTrack->track_id);
+				
+				// Remove ecommerce and content by tracks.
+				$this->Obr_Content->delete_by('content_track_id', $rsTrack->track_id);
+				$this->Obr_Ecommerce->delete_by('ecommerce_track_id', $rsTrack->track_id);
+			}
+
+			// Remove tracks.
+			$this->Obr_Track->delete_by('track_release_id', $release_id);
+
+			// Remove content.
+			$this->Obr_Content->delete_by('content_release_id', $release_id);
+
+			// Remove ecommerce.
+			$this->Obr_Ecommerce->delete_by('ecommerce_release_id', $release_id);
+
+			// Remove releases.
+			$this->Obr_Release->delete_by('release_album_id', $release_id);
+			
+			$this->phpsession->flashsave('msg', 'Release was deleted.');
+			$redirect = '/index.php/admin/album/view/' . $release_album_id . '/';
+		} else {
+			$this->phpsession->flashsave('msg', 'Deletion was canceled.');
+		}
+		
+		header('Location: ' . $redirect);
 	}
 }
 
