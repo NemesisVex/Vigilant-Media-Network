@@ -13,7 +13,8 @@ class OR_Audio extends OR_Model {
 		$query = '';
 		$query .= 'select au.* ';
 		$query .= 'from {ep4_audio} as au ';
-		$query .= 'where au.audio_id = :audio_id';
+		$query .= 'where au.audio_id = :audio_id ';
+		$query .= 'and au.audio_deleted = 0';
 
 		$args = array(':audio_id' => $audio_id);
 
