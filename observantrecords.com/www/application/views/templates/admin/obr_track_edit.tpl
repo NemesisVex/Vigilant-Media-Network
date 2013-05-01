@@ -37,11 +37,6 @@
 		</p>
 
 		<p>
-			<label for="track_isrc_num">ISRC No.:</label>
-			<input type="text" name="track_isrc_num" value="{$rsTrack->track_isrc_num}" size="20" />
-		</p>
-
-		<p>
 			<label for="track_is_visible">Visibility:</label>
 			<input type="radio" name="track_is_visible" value="1"{if $rsTrack->track_is_visible==true} checked{/if} /> Yes
 			<input type="radio" name="track_is_visible" value="0"{if $rsTrack->track_is_visible==false} checked{/if} /> No
@@ -101,7 +96,7 @@
 	</p>
 
 	<ul>
-		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
-		{if !empty($rsTrack)}<li><a href="/index.php/admin/track/view/{$rsTrack->track_id}/">Back to &quot;{$rsTrack->song_title}&quot;</a></li>{/if}
+		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album->album_title}</em></a></li>
+		{if !empty($rsTrack)}<li><a href="/index.php/admin/track/view/{$rsTrack->track_id}/">Back to &quot;{$rsTrack->song->song_title}&quot;</a></li>{/if}
 	</ul>
 </div>

@@ -16,7 +16,7 @@
 			<li>
 				<div>
 					<a href="/index.php/admin/artist/edit/{$rsArtist->artist_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-					{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/artist/delete/{$rsArtist->artist_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
+					<a href="/index.php/admin/artist/delete/{$rsArtist->artist_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
 					<a href="/index.php/admin/artist/view/{$rsArtist->artist_id}/" title="[View {$rsArtist->artist_display_name}]">{$rsArtist->artist_display_name}</a>
 				</div>
 			</li>

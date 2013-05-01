@@ -4,13 +4,13 @@
 	{if !empty($rsTrack)}
 	<p>
 		<a href="/index.php/admin/track/edit/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
-		{if $smarty.const.ENVIRONMENT == 'development' || $smarty.const.ENVIRONMENT == 'development'}<a href="/index.php/admin/track/delete/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>{/if}
+		<a href="/index.php/admin/track/delete/{$track_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>
 	</p>
 
 	<ul class="two-column-bubble-list">
 		<li>
 			<div>
-				<label>Title</label> {$rsTrack->song_title}
+				<label>Title</label> {$rsTrack->song->song_title}
 			</div>
 		</li>
 		<li>
@@ -27,13 +27,6 @@
 		<li>
 			<div>
 				<label>Alias</label> {$rsTrack->track_alias}
-			</div>
-		</li>
-		{/if}
-		{if $rsTrack->track_isrc_num}
-		<li>
-			<div>
-				<label>ISRC no.</label> {$rsTrack->track_isrc_num}
 			</div>
 		</li>
 		{/if}
@@ -63,13 +56,13 @@
 	
 	<h3>Audio</h3>
 	
-	{if !empty($rsTrack->track_audio_id)}
+	{if !empty($rsTrack->audio)}
 		<ol class="track-list">
 			<li>
 				<div>
-					<a href="/index.php/admin/audio/edit/{$rsTrack->audio_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-					{if ENVIRONMENT=='development' || ENVIRONMENT=='development'}<a href="/index.php/admin/audio/delete/{$rsTrack->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>{/if}
-					<a href="/index.php/admin/audio/view/{$rsTrack->audio_id}/" title="{$rsTrack->audio_mp3_file_path}/{$rsTrack->audio_mp3_file_name}">{$rsTrack->audio_mp3_file_name}</a>
+					<a href="/index.php/admin/audio/edit/{$rsTrack->audio->audio_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
+					<a href="/index.php/admin/audio/delete/{$rsTrack->audio->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
+					<a href="/index.php/admin/audio/view/{$rsTrack->audio->audio_id}/" title="{$rsMap->audio->audio_mp3_file_path}/{$rsTrack->audio->audio_mp3_file_name}">{$rsTrack->audio->audio_mp3_file_name}</a>
 				</div>
 			</li>
 		</ol>
@@ -89,7 +82,7 @@
 	</p>
 	
 	<ul>
-		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album_title}</em></a></li>
+		<li><a href="/index.php/admin/release/view/{$rsRelease->release_id}/">Back to <em>{$rsRelease->album->album_title}</em></a></li>
 	</ul>
 	{/if}
 </div>

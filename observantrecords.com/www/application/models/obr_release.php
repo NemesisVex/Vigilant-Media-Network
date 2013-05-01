@@ -1,32 +1,49 @@
 <?php
 
 /**
- * Description of ep4_release
+ * Obr_Release
+ * 
+ * Obr_Release is a model for Observant Records releases. Releases are individual
+ * products based on albums.
  *
  * @author Greg Bueno
  */
-require_once(BASEPATH . 'libraries/VmModel.php');
 
-class Obr_Release extends VmModel {
-
-	protected $CI;
-	public $release_album_id;
-	public $tracks;
-
+class Obr_Release extends MY_Model {
+	
+	public $_table = 'ep4_albums_releases';
+	public $primary_key = 'release_id';
+	public $belongs_to = array(
+		'album' => array(
+			'model' => 'Obr_Album',
+			'primary_key' => 'release_album_id',
+		),
+		'format' => array(
+			'model' => 'Obr_Release_Format',
+			'primary_key' => 'release_format_id',
+		),
+	);
+	public $has_many = array(
+		'tracks' => array(
+			'model' => 'Obr_Track',
+			'primary_key' => 'track_release_id',
+		),
+		'ecommerce' => array(
+			'model' => 'Obr_Ecommerce',
+			'primary_key' => 'ecommerce_release_id',
+		),
+		'content' => array(
+			'model' => 'Obr_Content',
+			'primary_key' => 'content_release_id',
+		),
+	);
+	protected $soft_delete = true;
+	protected $soft_delete_key = 'release_deleted';
+	
 	public function __construct() {
 		parent::__construct();
-
-		$this->CI = & get_instance();
-
-		$this->config['fetch_tracks'] = false;
-		$this->config['return_discs'] = false;
-
-		$this->table_name = 'ep4_albums_releases';
-		$this->primary_index_field = 'release_id';
-		
-		$this->CI->load->model('Obr_Track');
 	}
-
+	
 	public function retrieve_by_id($id, $return_recordset = true) {
 		if (empty($id)) {
 			$id = $this->release_album_id;

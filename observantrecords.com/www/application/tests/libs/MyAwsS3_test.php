@@ -26,13 +26,13 @@ class MyAwsS3_test extends CIUnit_TestCase
 	{
 		$args = array(
 			'Bucket' => 'observant-records',
-			'Key' => '/releases/music/imprint/mp3'
+			'Prefix' => 'artists',
 		);
 		$result = $this->CI->s3->list_objects($args);
-//		foreach ($result as $object) {
-//			echo $object['Key'] . PHP_EOL;
-//		}
-		$this->assertFalse($result);
+		foreach ($result as $object) {
+			echo $object['Key'] . PHP_EOL;
+		}
+//		$this->assertFalse($result);
 	}
 }
 

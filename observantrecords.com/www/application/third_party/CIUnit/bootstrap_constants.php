@@ -15,3 +15,7 @@ define('VIGILANTMEDIA_DB_DB', 'vigilantmedia_dev');
 // Amazon Product Marketing API
 define('ACCESS_KEY_ID','1GR567CGCNA6HFCRM782'); //AWS authentication
 define('SECRET_ACCESS_KEY','W6JDL087SUbHDMS2uLCaqd19D4DVYSgnGQLdnTYI'); //AWS authentication
+
+// US ISRC registrant code
+define('ISRC_COUNTRY_CODE', 'QM');
+define('ISRC_REGISTRANT_CODE', 'G35');

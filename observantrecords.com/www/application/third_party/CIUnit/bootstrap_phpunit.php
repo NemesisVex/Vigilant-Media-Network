@@ -61,7 +61,7 @@ require(dirname(__FILE__) . '/bootstrap_constants.php');
  * is that the tests folder is in the same directory path as system.  If
  * it is not, update the paths appropriately.
  */
-	$system_path = dirname(__FILE__) . '/../../../../system';
+	$system_path = dirname(__FILE__) . '/../../../../../vigilantmedia.com/vigilante/system';
 
 /*
  *---------------------------------------------------------------
@@ -129,7 +129,7 @@ require(dirname(__FILE__) . '/bootstrap_constants.php');
  * NO TRAILING SLASH!
  *
  */
-	$ciunit_folder = dirname(__FILE__) . '/../../../../system/libraries/CIUnit';
+	$ciunit_folder = dirname(__FILE__) . '/../../../../../vigilantmedia.com/vigilante/system/libraries/CIUnit';
 
 /**
  * --------------------------------------------------------------

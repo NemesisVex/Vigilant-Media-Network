@@ -1,66 +1,48 @@
 <?php
 
 /**
- * Description of ep4_track
+ * Obr_Track
+ * 
+ * Obr_Track is a model for Observant Records album tracks.
  *
  * @author Greg Bueno
  */
-require_once(BASEPATH . 'libraries/VmModel.php');
 
-class Obr_Track extends VmModel {
+class Obr_Track extends MY_Model {
 	
-	public $track_id;
+	public $_table = 'ep4_tracks';
+	public $primary_key = 'track_id';
+	public $belongs_to = array(
+		'release' => array(
+			'model' => 'Obr_Release',
+			'primary_key' => 'track_release_id',
+		),
+		'song' => array(
+			'model' => 'Obr_Song',
+			'primary_key' => 'track_song_id',
+		),
+		'audio' => array(
+			'model' => 'Obr_Audio',
+			'primary_key' => 'track_audio_id',
+		),
+	);
+	public $has_many = array(
+		'maps' => array(
+			'model' => 'Obr_Audio_Map',
+			'primary_key' => 'map_track_id',
+		),
+	);
+	protected $soft_delete = true;
+	protected $soft_delete_key = 'track_deleted';
 	
 	public function __construct() {
 		parent::__construct();
-		
-		$this->table_name = 'ep4_tracks';
-		$this->primary_index_field = 'track_id';
-		
-		$this->config['fetch_audio'] = true;
-		$this->config['return_discs'] = false;
-		
-		$this->CI->load->model('Obr_Song');
 	}
 	
-	public function retrieve_by_id($id, $return_recordset = true) {
-		$this->db->join('ep4_songs', 'track_song_id=song_id', 'left');
-		if ($this->config['fetch_audio'] === true) {
-			$this->db->join('ep4_audio', 'track_audio_id=audio_id', 'left outer');
-		}
-		if (false !== ($rsTrack = parent::retrieve_by_id($id, $return_recordset))) {
-			return $rsTrack;
-		}
-		return false;
-	}
-	
-	public function retrieve_by_release_id($release_id, $return_recordset = true) {
-		$this->db->join('ep4_songs', 'track_song_id=song_id', 'left');
-		$this->db->order_by('track_disc_num, track_track_num');
-		if (false !== ($rsTrack = parent::retrieve('track_release_id', $release_id))) {
-			if ($return_recordset === true) {
-				$rs = $this->return_smarty_array($rsTrack);
-				
-				if ($this->config['return_discs'] === true) {
-					$this->order_by_disc_num($rs);
-				}
-				return $rs;
-			}
-			else {
-				return $rsTrack;
-			}
-		}
-		return false;
-	}
-	
-	protected function order_by_disc_num(&$rs) {
-		$rsTracks = array();
-		
-		foreach ($rs as $rsTrack) {
-			$rsTracks[$rsTrack->track_disc_num][$rsTrack->track_track_num] = $rsTrack;
-		}
-		
-		$rs = $rsTracks;
+	public function retrieve_by_release_id($release_id) {
+		$this->order_by('track_disc_num, track_track_num');
+		$result = $this->get_many_by('track_release_id', $release_id);
+		return $result;
 	}
 }
 
