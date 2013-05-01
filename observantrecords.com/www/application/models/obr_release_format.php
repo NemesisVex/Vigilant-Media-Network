@@ -1,28 +1,21 @@
 <?php
 
 /**
- * Obr_Album_Format
+ * Description of obr_album_format
  *
  * @author Greg Bueno
  */
+require_once(BASEPATH . 'libraries/VmModel.php');
 
-class Obr_Release_Format extends MY_Model {
+class Obr_Release_Format extends VmModel {
 	
-	public $_table = 'ep4_albums_releases_formats';
-	public $primary_key = 'format_id';
-	public $has_many = array(
-		'releases' => array(
-			'model' => 'Obr_Release',
-			'primary_key' => 'release_format_id',
-		),
-	);
-	protected $soft_delete = true;
-	protected $soft_delete_key = 'format_deleted';
-	
-	
-	public function __construct() {
-		parent::__construct();
+	public function __construct($params = null) {
+		parent::__construct($params);
+
+		$this->table_name = 'ep4_albums_releases_formats';
+		$this->primary_index_field = 'format_id';
 	}
+	
 }
 
 ?>
