@@ -1,5 +1,9 @@
 <?php
 
+use Aws\S3\S3Client;
+use Aws\S3\Exception;
+use Aws\S3\Iterator;
+
 /**
  * MyAwsS3_test
  *
@@ -9,16 +13,25 @@
  */
 class MyAwsS3_test extends CIUnit_TestCase
 {
+	private $s3;
+	
 	public function setUp()
 	{
 		parent::setUp();
-		$this->CI->load->library('MyAwsS3', '', 's3');
+		
+		$params = array(
+			'key' => ACCESS_KEY_ID,
+			'secret' => SECRET_ACCESS_KEY,
+		);
+		$this->CI->load->library('MyAws', '', 'aws');
+		
+		$this->s3 = Aws\S3\S3Client::factory($params);
 	}
 
 	public function test_bucket_exists()
 	{
 		// Test whether connection was successful.
-		$result = $this->CI->s3->bucket_exists('observant-records');
+		$result = $this->s3->doesBucketExist('observant-records');
 		$this->assertTrue($result);
 	}
 
@@ -26,13 +39,12 @@ class MyAwsS3_test extends CIUnit_TestCase
 	{
 		$args = array(
 			'Bucket' => 'observant-records',
-			'Prefix' => 'artists',
 		);
-		$result = $this->CI->s3->list_objects($args);
+		$result = $this->s3->getIterator('ListObjects', $args);
 		foreach ($result as $object) {
 			echo $object['Key'] . PHP_EOL;
 		}
-//		$this->assertFalse($result);
+		$this->assertNotNull($result);
 	}
 }
 
