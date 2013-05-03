@@ -39,11 +39,9 @@ class MyAwsS3_test extends CIUnit_TestCase
 	{
 		$args = array(
 			'Bucket' => 'observant-records',
+			'Marker' => 'artists/eponymous-4/albums/enigmatics/obrc-000b/',
 		);
 		$result = $this->s3->getIterator('ListObjects', $args);
-		foreach ($result as $object) {
-			echo $object['Key'] . PHP_EOL;
-		}
 		$this->assertNotNull($result);
 	}
 }
