@@ -48,3 +48,8 @@ function eponymous4_theme() {
 	
 	return $theme;
 }
+
+function eponymous4_get_vigilante_uri($key = 'to_vigilante') {
+	global $config_url_base;
+	return $config_url_base[$key];
+}

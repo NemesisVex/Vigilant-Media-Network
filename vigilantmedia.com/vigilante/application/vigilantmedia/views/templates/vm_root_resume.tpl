@@ -3,7 +3,7 @@
 					<h1>Résumé</h1>
 				</header>
 
-				<p><a href="/content/greg_bueno_resumex.pdf" class="button"><img src="http://vigilante.vigilantmedia.com/images/icons/down-blue.gif" /> Download</a></p>
+				<p><a href="/content/greg_bueno_resumex.pdf" class="button"><img src="{$config.to_vigilante}/images/icons/down-blue.gif" /> Download</a></p>
 
 				{if $summary}
 				<div class="resume-column-1">
