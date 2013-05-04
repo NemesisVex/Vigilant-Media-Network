@@ -17,6 +17,7 @@
 /musicwhore.org/wp/wp-content/blogs.dir/
 /observantrecords.com/www/index.xml
 /observantrecords.com/www/music/
+/observantrecords.com/www/application/views/templates_c/
 /vigilantmedia.com/drupal/sites/all/environment.php
 /vigilantmedia.com/drupal/sites/all/modules/custom/observantrecords/observantrecords.config.inc
 /vigilantmedia.com/drupal/sites/all/themes/eponymous4/templates/node--1.tpl.php
@@ -50,8 +51,11 @@
 /vigilantmedia.com/vigilante/includes/configuration.php
 /vigilantmedia.com/vigilante/application/*/third_party/composer.lock
 /vigilantmedia.com/vigilante/application/*/third_party/CIUnit/bootstrap_constants.php
+/vigilantmedia.com/vigilante/application/*/views/templates_c/
+/vigilantmedia.com/vigilante/application/*/views/templates_mobile_c/
 /vigilantmedia.com/vigilante/system/libraries/magpierss/cache/
 /vigilantmedia.com/wp/environment.php
+/vigilantmedia.com/wp/configuration.php
 /vigilantmedia.com/wp/wp-content/blogs.dir/
 /vigilantmedia.com/wp/wp-content/themes/musicwhore/env.php
 /nbproject/

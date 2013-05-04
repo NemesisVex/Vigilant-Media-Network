@@ -32,7 +32,7 @@
 						<li class="active"><a href="/">Home</a></li>
 						<li><a href="/index.php/vm/projects/">Projects</a></li>
 						<li><a href="/index.php/vm/resume/">Résumé</a></li>
-						<li><a href="http://blog.vigilantmedia.com/">Blog</a></li>
+						<li><a href="{$config.to_wp}/">Blog</a></li>
 						<li><a href="/index.php/vm/contact/">Contact</a></li>
 					</ul>
 				</nav>
