@@ -24,6 +24,7 @@ class Audio extends CI_Controller {
 		$this->load->model('Obr_Audio_Isrc');
 		$this->load->model('Obr_Audio_Log');
 		$this->load->model('Obr_Audio_Map');
+		$this->load->model('Obr_Song');
 		// Load helpers.
 		$this->load->helper('model');
 
