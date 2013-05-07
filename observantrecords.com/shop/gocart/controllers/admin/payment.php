@@ -1,18 +1,17 @@
 <?php
 
-class Payment extends CI_Controller {
+class Payment extends Admin_Controller {
 	
 	function __construct()
 	{
 		parent::__construct();
 		
 		force_ssl();
-		
-		$this->load->library('Auth');
+	
 		$this->auth->check_access('Admin', true);
 		$this->load->model('Settings_model');
-		//this adds the redirect url to our flash data, incase they are not logged in
-		$this->auth->is_logged_in(uri_string());
+
+		$this->lang->load('settings');
 	}
 	
 	function index()
@@ -22,9 +21,11 @@ class Payment extends CI_Controller {
 	
 	function install($module)
 	{
+		$this->load->add_package_path(APPPATH.'packages/payment/'.$module.'/');
+		
 		$enabled_modules	= $this->Settings_model->get_settings('payment_modules');
 		
-		$this->load->library('payment/'.$module.'/'.$module);
+		$this->load->library($module);
 		
 		if(!array_key_exists($module, $enabled_modules))
 		{
@@ -49,7 +50,10 @@ class Payment extends CI_Controller {
 	
 	function settings($module)
 	{
-		$this->load->library('payment/'.$module.'/'.$module);
+		$this->load->add_package_path(APPPATH.'packages/payment/'.$module.'/');
+		$this->load->library($module);
+		$this->load->helper('form');
+		
 		//ok, in order for the most flexibility, and in case someone wants to use javascript or something
 		//the form gets pulled directly from the library.
 	
@@ -58,7 +62,7 @@ class Payment extends CI_Controller {
 			$check	= $this->$module->check();
 			if(!$check)
 			{
-				$this->session->set_flashdata('message', $module.' settings have been updated');
+				$this->session->set_flashdata('message', sprintf(lang('settings_updated'), $module));
 				redirect($this->config->item('admin_folder').'/payment');
 			}
 			else
@@ -78,7 +82,7 @@ class Payment extends CI_Controller {
 			$data['form']		= $this->$module->form();
 		}
 		$data['module']		= $module;
-		$data['page_title']	= '"'.$module.'" Payment Settings';
+		$data['page_title']	= sprintf(lang('payment_settings'), $module);
 		$this->load->view($this->config->item('admin_folder').'/payment_module_settings', $data);
 	}
 }

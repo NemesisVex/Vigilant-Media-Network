@@ -119,26 +119,16 @@ class Gift_card_model extends CI_Model
 		$this->db->where('code', $code);
 		$res = $this->db->get('gift_cards');
 		$row = $res->row();
-		return (bool) $row->activated;
+		if($row)
+		{
+			return (bool) $row->activated;
+		}
+		else
+		{
+			return false;
+		}
+		
 	}
 	
-	// use a run-of-the-mill pw generator as a code generator
-	function generate_password($length=16) {
-		$vowels = '0123';
-		$consonants = '456789ABCDEF';
-	 
-		$password = '';
-		$alt = time() % 2;
-		for ($i = 0; $i < $length; $i++) {
-			if ($alt == 1) {
-				$password .= $consonants[(rand() % strlen($consonants))];
-				$alt = 0;
-			} else {
-				$password .= $vowels[(rand() % strlen($vowels))];
-				$alt = 1;
-			}
-		}
-		return $password;
-	}
 
 }

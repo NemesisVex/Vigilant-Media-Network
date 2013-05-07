@@ -6,6 +6,37 @@ Class order_model extends CI_Model
 		parent::__construct();
 	}
 	
+	function get_gross_monthly_sales($year)
+	{
+		$this->db->select('SUM(coupon_discount) as coupon_discounts');
+		$this->db->select('SUM(gift_card_discount) as gift_card_discounts');
+		$this->db->select('SUM(subtotal) as product_totals');
+		$this->db->select('SUM(shipping) as shipping');
+		$this->db->select('SUM(tax) as tax');
+		$this->db->select('SUM(total) as total');
+		$this->db->select('YEAR(ordered_on) as year');
+		$this->db->select('MONTH(ordered_on) as month');
+		$this->db->group_by(array('MONTH(ordered_on)'));
+		$this->db->order_by("ordered_on", "desc");
+		$this->db->where('YEAR(ordered_on)', $year);
+		
+		return $this->db->get('orders')->result();
+	}
+	
+	function get_sales_years()
+	{
+		$this->db->order_by("ordered_on", "desc");
+		$this->db->select('YEAR(ordered_on) as year');
+		$this->db->group_by('YEAR(ordered_on)');
+		$records	= $this->db->get('orders')->result();
+		$years		= array();
+		foreach($records as $r)
+		{
+			$years[]	= $r->year;
+		}
+		return $years;
+	}
+	
 	function get_orders($search=false, $sort_by='', $sort_order='DESC', $limit=0, $offset=0)
 	{			
 		if ($search)
@@ -172,7 +203,7 @@ Class order_model extends CI_Model
 		$this->db->delete('orders');
 		
 		//now delete the order items
-		$this->db->where('id', $id);
+		$this->db->where('order_id', $id);
 		$this->db->delete('order_items');
 	}
 	
@@ -212,8 +243,10 @@ Class order_model extends CI_Model
 			// update order items
 			foreach($contents as $item)
 			{
-				$save	= array();
+				$save				= array();
 				$save['contents']	= $item;
+				
+				$item				= unserialize($item);
 				$save['product_id'] = $item['id'];
 				$save['quantity'] 	= $item['quantity'];
 				$save['order_id']	= $id;
@@ -223,22 +256,6 @@ Class order_model extends CI_Model
 		
 		return $order_number;
 
-	}
-	
-	function save_item($data)
-	{
-		if (isset($data['id']) && $data['id'] != 0)
-		{
-			$this->db->where('id', $data['id']);
-			$this->db->update('items', $data);
-			
-			return $data['id'];
-		}
-		else
-		{
-			$this->db->insert('items', $data);
-			return $this->db->insert_id();
-		}
 	}
 	
 	function get_best_sellers($start, $end)

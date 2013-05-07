@@ -1,11 +1,13 @@
 <?php  
 
 
-/* Gocart Cart Library
+/* 
+*  Gocart Cart Library
 *  Based on cart.php included with Codeigniter
 */
 
-/*  Coupon Support
+/*  
+*	Coupon Support
 *    This cart accepts coupons, Two main types:
 		- Whole order discount 
 		- Individual product discounts
@@ -37,10 +39,10 @@ class go_cart {
 	
 	var $gift_cards_enabled = false;
 	
-	function __construct() {
+	function __construct() 
+	{
 		$this->CI =& get_instance();
-		$this->CI->load->model('Coupon_model');
-		$this->CI->load->model('Gift_card_model');
+		$this->CI->load->model(array('Coupon_model' , 'Gift_card_model', 'Settings_model', 'Digital_Product_model'));
 		
 		// Load the saved session
 		if ($this->CI->session->userdata('cart_contents') !== FALSE)
@@ -74,6 +76,7 @@ class go_cart {
 		$this->_cart_contents['taxable_coupon_discount']	= 0;
 		$this->_cart_contents['gift_card_balance'] 			= 0;
 		$this->_cart_contents['gift_card_discount'] 		= 0;
+		$this->_cart_contents['downloads']					= array();
 		// totals
 		$this->_cart_contents['cart_subtotal']		 		= 0;
 		$this->_cart_contents['cp_discounted_subtotal'] 	= 0;
@@ -83,11 +86,10 @@ class go_cart {
 		$this->_cart_contents['shipping_total'] 			= 0;
 		// tax
 		$this->_cart_contents['tax'] 						= 0;
-						
-		
 		
 		// We want to preserve the cart items and properties, but reset total values when recalculating
-		if( ! $totals_only) {
+		if( ! $totals_only) 
+		{
 		
 			// product items will live in here
 			$this->_cart_contents['items'] = array();
@@ -102,8 +104,9 @@ class go_cart {
 			$this->_cart_contents['custom_charges']				= array();
 			
 			// shipping details container
-			$this->_cart_contents['shipping']['method']	= "No Shipping";  // defaults
-			$this->_cart_contents['shipping']['price']	= 0.00;
+			$this->_cart_contents['shipping']['method']	= false;  // defaults
+			$this->_cart_contents['shipping']['price']	= false;
+			$this->_cart_contents['shipping']['code']	= false;
 			
 			// This is the list of gift cards that are attached to the cart
 			//   to be applied toward a price reduction
@@ -146,6 +149,10 @@ class go_cart {
 	
 	private function _insert($item)
 	{
+		//on update clear the payments & shipping
+		$this->clear_payment();
+		$this->clear_shipping();
+		
 		// Was any cart data passed? No? Bah...
 		if ( ! is_array($item) OR count($item) == 0)
 		{
@@ -163,7 +170,7 @@ class go_cart {
 		
 		
 		//record the quantity
-		$quantity	= $item['quantity'];
+		$quantity	= ($item['fixed_quantity']==0) ? $item['quantity'] : 1;
 		
 		//remove quantity from the row ID hash this will enable us to add
 		//the same item twice without having it appear twice due to quantity differences
@@ -205,7 +212,11 @@ class go_cart {
 			//this is for non-edited products (except for quantity)
 			if(isset($this->_cart_contents['items'][$newkey]))
 			{
-				$this->_cart_contents['items'][$newkey]['quantity'] = $this->_cart_contents['items'][$newkey]['quantity'] + $item['quantity'];
+				//make sure that fixed quantity items remain fixed quantity
+				if(!(bool)$item['fixed_quantity'])
+				{
+					$this->_cart_contents['items'][$newkey]['quantity'] = $this->_cart_contents['items'][$newkey]['quantity'] + $item['quantity'];
+				}
 			}
 			else
 			{
@@ -246,13 +257,22 @@ class go_cart {
 	
 	private function _update($cartkey, $quantity)
 	{
+		//on update clear the payments & shipping
+		$this->clear_payment();
+		$this->clear_shipping();
+		
 		if(!isset($this->_cart_contents['items'][$cartkey]))
 		{
 			return false;
 		}
 		
-		// update cart quantity
-		$this->_cart_contents['items'][$cartkey]['quantity'] = ceil($quantity);
+		// update cart, fixed quantity items restricted to 1
+		if($this->_cart_contents['items'][$cartkey]['fixed_quantity']==0)
+		{
+			$this->_cart_contents['items'][$cartkey]['quantity'] = ceil($quantity);
+		} else {
+			$this->_cart_contents['items'][$cartkey]['quantity'] = 1;
+		}
 		
 		// Update associated coupon discount data
 		if(isset($this->_cart_contents['items'][$cartkey]['coupon_code']))
@@ -350,7 +370,8 @@ class go_cart {
 			  //    To start, it needs to look like:
 			  //     applied_coupons[ coupon code index ][ product key index] = array list of discounts,repeated to product quantity
 			
-			for($x=0;$x<$this->_cart_contents['items'][$cartkey]['quantity'];$x++) {
+			for($x=0;$x<$this->_cart_contents['items'][$cartkey]['quantity'];$x++) 
+			{
 				$this->_cart_contents['applied_coupons'][$coupon_code][$cartkey][] = $discount_amount;
 			}
 			
@@ -386,8 +407,7 @@ class go_cart {
 					
 					// apply coupon discount for free shipping, whole order discount, or product level
 					if ($coupon['reduction_target'] =="shipping") {
-						//$this->_cart_contents['requires_shipping'] = false;
-						// Remember what code was used for free shipping			
+						// Remember what code was used for free shipping
 						$this->_cart_contents['free_shipping_coupon'] = $coupon_code;
 						
 						$is_applied = true;
@@ -432,54 +452,55 @@ class go_cart {
 					
 					if(!$is_applied) {
 						// message coupon added but not applied
-						return array('message'=>'Your coupon does not apply to any products in your cart');
+						return array('message'=>lang('coupon_not_apply'));
 					} else {
 						// message coupon applied
-						return array('message'=>'Your coupon has been applied to your products.');
+						return array('message'=>lang('coupon_applied'));
 					}
 					
 				} else {
 					// message coupon no longer valid
-					return array('error'=>'Sorry, but the coupon you entered is not valid at this time.');
+					return array('error'=>lang('coupon_invalid'));
 				}
 				
 			} else {
 				// message coupon already applied
-				return array('error'=>'That coupon code has already been applied to your items.');				
+				return array('error'=>lang('coupon_already_applied'));
 			}
 		} else {
 			// invalid code error message
-			return array('error'=>'There was no coupon with that code. Check to make sure you entered it correctly.');
+			return array('error'=>lang('invalid_coupon_code'));
 		}	
 	}
 	
 	
 	// Calculate the best possible discount within the product instance limitations for the whole cart
 	// return the discount amount
-	private function _calculate_coupon_discount() {
-	
+	private function _calculate_coupon_discount()
+	{
 		$total_discount = 0;
 		//keep tabs on how much is taxable
 		$taxable_discount = 0;
 		
 		// Get the sum of the product-level coupons
-		if( ! empty($this->_cart_contents['applied_coupons'])) {
+		if( ! empty($this->_cart_contents['applied_coupons']))
+		{
 			foreach($this->_cart_contents['applied_coupons'] as $code=>$discount_list)
 			{
-			
 				// The discount list is an array of arrays, indexed by cart key
 				//  we need to prep this list for a final discount aggregation
 				//  by collapsing this into a singular array of all product discounts
 				//  from which we will calculate the total discount per coupon
-				$collapsed = array();
-				$product_index = array();
+				$collapsed		= array();
+				$product_index	= array();
 				$x = 0; // we will use this to cross-index what discounts belong to what product
 						// so that we can separate taxable from non-taxable amounts
 				foreach($discount_list as $key=>$item)
 				{
-					foreach($item as $discount) {
-						$collapsed[$x] = $discount;
-						$product_index[$x] = $key;
+					foreach($item as $discount)
+					{
+						$collapsed[$x]		= $discount;
+						$product_index[$x]	= $key;
 						$x++;
 					}
 					// because each product can only have one coupon associated
@@ -494,7 +515,9 @@ class go_cart {
 				if($this->_cart_contents['coupon_list'][$code]['max_product_instances'] == 0 || count($collapsed)<=$this->_cart_contents['coupon_list'][$code]['max_product_instances'])
 				{
 					$maximum = count($collapsed); 
-				} else {
+				}
+				else
+				{
 					$maximum = $this->_cart_contents['coupon_list'][$code]['max_product_instances'];
 				}
 				
@@ -505,12 +528,11 @@ class go_cart {
 					// store the total discount in the item details, for future reference
 					$this->_cart_contents['items'][$product_index[$x]]['total_coupon_discount'] += $collapsed[$x];
 					// taxable?
-					if( $this->_cart_contents['items'][$product_index[$x]]['shippable'] == 1 )
+					if( $this->_cart_contents['items'][$product_index[$x]]['taxable'] == 1 )
 					{
 						$taxable_discount +=  $collapsed[$x];
 					}
 				}
-				
 			}
 		}
 		
@@ -527,18 +549,34 @@ class go_cart {
 				if(is_numeric($disc))
 				{
 					$discount_amount = $disc;
-				} else {
+				}
+				else
+				{
 					eval('$discount_amount=$subtotal'.$disc.';');
 				}
 				
-				if($discount_amount > $temp) {
+				if($discount_amount > $temp)
+				{
 					$temp = $discount_amount;
 					$this->_cart_contents['whole_order_discount_cp'] = $code; // track which code we use
 				}
 			}
-			$total_discount = $temp;
+			// coupon discounts and whole order discounts can be cumulated
+			$total_discount += $temp;
+			$total_whole_order_discount = $temp;
+
+			// iterate products and apply calculated whole order discount % to taxable ones
+			if ($this->_cart_contents['cart_subtotal'] > 0){
+				$whole_order_discount_ratio = $total_whole_order_discount / (float)$this->_cart_contents['cart_subtotal'];
+				foreach ($this->_cart_contents['items'] as $product)
+				{
+					if ($product['taxable'] == 1)
+					{
+						$taxable_discount += $whole_order_discount_ratio * (float)$product['price'] * (int)$product['quantity'];
+					}
+				}
+			}
 		}
-		
 		
 		$this->_cart_contents['cp_discounted_subtotal'] = $this->_cart_contents['cart_subtotal'] - $total_discount;
 		$this->_cart_contents['coupon_discount'] = $total_discount;
@@ -552,6 +590,10 @@ class go_cart {
 	// Attach a Gift Card discount to the order
 	private function _attach_gift_card($gc_code)
 	{
+		//on when attaching a gitcard reset payments and shipping
+		$this->clear_payment();
+		$this->clear_shipping();
+		
 		// enabled?
 		if( ! $this->gift_cards_enabled) return;
 		
@@ -574,18 +616,18 @@ class go_cart {
 						$this->_cart_contents['gift_card_balance'] += $this->_cart_contents['gc_list'][$gc_code]['balance'];
 						
 						// message coupon applied
-						return array('message'=>'You should see your card balance displayed.');
+						return array('message'=>lang('giftcard_balance_displayed'));
 					} else {
 						// invalid card (expired or zero balance)
-						return array('error'=>'Sorry, but the gift card you entered is expired or has a zero balance.');
+						return array('error'=>lang('giftcard_zero_balance'));
 					}
 				} else {
 					 // invalid card code
-					 return array('error'=>'The gift card code you entered does not exist.');
+					 return array('error'=>lang('giftcard_not_exist'));
 				}
 			} else {
 				// already applied
-				return array('message'=>'Your gift card is already applied');
+				return array('message'=>lang('giftcard_already_applied'));
 			}
 		}
 	}
@@ -676,31 +718,34 @@ class go_cart {
 					eval('$this_price=$val["price"]'. $this->_cart_contents['customer']['group_discount_formula'] .';');
 					
 					// add to the total group discount
-					$this->_cart_contents['group_discount'] +=  ($val['price'] - $this_price) * $val['quantity'];
+					$this->_cart_contents['group_discount'] 	+=  ($val['price'] - $this_price) * $val['quantity'];
 				} else {
 					// or use the regular price
 					$this_price = $val['price'];
 				}
 				
-				// Deal with non shippable vs shippable items
-				if ( $val['shippable']==0 )
+				// Deal with shippable (if shipping is disabled in the config then go with that!)
+				if ( $val['shippable']== 1 )
 				{
-					// digital product (non-taxable)
-					$total 											+= $this_price;
-				} else {
-					// shippable items (taxable)
-					$total 											+= ($this_price * $val['quantity']);
-					$taxable 										+= ($this_price * $val['quantity']);
 					// shipping insurable value & weight
 					$this->_cart_contents['order_insurable_value']  += $this_price;
 					$this->_cart_contents['order_weight'] 			+= $val['weight']*$val['quantity'];
 					$this->_cart_contents['requires_shipping'] 		= true;
 				}
 				
+				// charge tax?
+				if($val['taxable'] == 1)
+				{
+					$taxable 		+= ($this_price * $val['quantity']);
+				}
+				
+				$total 			+= ($this_price * $val['quantity']);
+				
 				// set product subtotal (NOT accounting for coupon discount yet)
 				$val['subtotal'] = ($this_price * $val['quantity']);
 			
 			}
+			
 			// total products in the cart
 			$this->_cart_contents['total_items'] = count($this->_cart_contents['items']);	
 			
@@ -735,11 +780,14 @@ class go_cart {
 			// Shipping costs
 			if($this->_cart_contents['requires_shipping']) 
 			{
-				$this->_cart_contents['cart_total'] += $this->_cart_contents['shipping']['price'];
-			} else {
+				$this->_cart_contents['cart_total']		+= $this->_cart_contents['shipping']['price'];
+				$this->_cart_contents['taxable_total']	+= $this->_cart_contents['shipping']['price'];
+			}
+			else
+			{
 				// placeholders
-				$this->_cart_contents['shipping']['method'] = "No Shipping";
-				$this->_cart_contents['shipping']['price']  = 0.00;
+				$this->_cart_contents['shipping']['method']	= false;  // defaults
+				$this->_cart_contents['shipping']['price']	= false;
 			}
 			
 			// Compute taxes AFTER shipping costs are added in ?
@@ -779,6 +827,62 @@ class go_cart {
 	*
 	********************************************************/
 	
+	/**
+	 * Double check that each item has enough in stock from the database
+	 *
+	 * @access	public
+	 * @return	bool
+	 */
+	function check_inventory()
+	{
+		$contents	= $this->contents();
+		
+		//this array merges any products that share the same product id
+		$new_contents	= array();
+		foreach($contents as $c)
+		{
+			// skip gift card products
+			if($c['is_gc']) 
+			{
+				continue;
+			}
+			
+			//combine any product id's and tabulate their quantities
+			if(array_key_exists($c['id'], $new_contents))
+			{
+				$new_contents[$c['id']]	= intval($new_contents[$c['id']])+intval($c['quantity']);
+			}
+			else
+			{
+				$new_contents[$c['id']]	= $c['quantity'];
+			}
+		}
+		
+		$error	= '';
+		$this->CI->load->model('Product_model');
+		foreach($new_contents as $product_id => $quantity)
+		{
+			$product	= $this->CI->Product_model->get_product($product_id);
+			
+			//make sure we're tracking stock for this product
+			if((bool)$product->track_stock)
+			{
+				if(intval($quantity) > intval($product->quantity))
+				{
+					$error .= '<p>'.sprintf(lang('not_enough_stock'), $product->name, $product->quantity).'</p>';
+				}
+			}
+		}
+		
+		if(!empty($error))
+		{
+			return $error;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	
 	/**
@@ -795,7 +899,9 @@ class go_cart {
 		{
 			return FALSE;
 		}
-				
+		
+		//reset payment options so they get reset if someone adds a product at a later time
+		
 		// You can either insert a single product using a one-dimensional array, 
 		// or multiple products using a multi-dimensional one. The way we
 		// determine the array type is by looking for a required array key named "id"
@@ -827,6 +933,11 @@ class go_cart {
 		if ($save_cart == TRUE)
 		{
 			$this->_save_cart();
+			
+			//clear the shipping after the cart is updated.
+			//This will ensure the rates need to be reset if they would differ
+			$this->clear_shipping();
+			
 			return TRUE;
 		}
 
@@ -843,6 +954,10 @@ class go_cart {
 		
 		$error = '';
 		$message = '';
+		
+		//on update clear the payments & shipping
+		$this->clear_payment();
+		$this->clear_shipping();
 		
 		// insert any coupons that might be sent
 		if($coupon_code) 
@@ -904,39 +1019,50 @@ class go_cart {
 		{
 			$this->_save_cart();
 		}
-			
-		
+
 		return $response;
 	}
 	
-	//save additional settings
-	function set_additional_details($data)
+	// save / get order download list
+	function save_order_downloads($list)
 	{
-		$this->_cart_contents['additional_details']	= $data;
+		$this->_cart_contents['downloads'] = $list;
+	}
+	
+	function get_order_downloads()
+	{
+		return $this->_cart_contents['downloads'];
+	}
+	
+	//save additional setting
+	function set_additional_detail($key, $data)
+	{
+		$this->_cart_contents[$key]	= $data;
 		$this->_save_cart(false);
 	}
 	
-	function additional_details()
+	//grab a detail
+	function get_additional_detail($key)
 	{
-		if(isset($this->_cart_contents['additional_details']))
+		if(isset($this->_cart_contents[$key]))
 		{
-			return $this->_cart_contents['additional_details'];
+			return $this->_cart_contents[$key];
 		}
 		else
 		{
-			//return the array blank
-			return array('referral'=>''
-						,'shipping_notes'=>''
-						);
+			return false;
+		}
+	}
+	
+	// set shipping details
+	function set_shipping($method, $price, $code)
+	{
+		if(!is_numeric($price))
+		{
+			return false;
 		}
 		
-	}
-	// set shipping details
-	function set_shipping($method, $price)
-	{
-		if(!is_numeric($price)) return false;
-		
-		$this->_cart_contents['shipping'] = array('method'=>$method, 'price'=> (float) $price);
+		$this->_cart_contents['shipping'] = array('method'=>$method, 'price'=> (float) $price, 'code'=>$code);
 		
 		//update cart - recalculate
 		$this->_save_cart();
@@ -945,10 +1071,19 @@ class go_cart {
 	//remove shipping details
 	function clear_shipping()
 	{
-		$this->_cart_contents['shipping']['method']	= "No Shipping";  // defaults
-		$this->_cart_contents['shipping']['price']	= 0.00;
+		$this->_cart_contents['shipping']['method']	= false;
+		$this->_cart_contents['shipping']['price']	= false;
+		$this->_cart_contents['shipping']['code']	= false;
 		
 		$this->_save_cart();
+	}
+	
+	function clear_payment()
+	{
+		$this->_cart_contents['payment'] = false;
+		
+		// save cart - no recalculation necessary
+		$this->_save_cart(false);
 	}
 	
 	function set_payment($module, $description)
@@ -970,15 +1105,29 @@ class go_cart {
 	
 	// This saves the confirmed order 
 	function save_order() {
-		
-		
+
 		$this->CI->load->model('order_model');
+		$this->CI->load->model('Product_model');
 		
 		//prepare our data for being inserted into the database
 		$save	= array();
 		
+		// Is this a non shippable order? 
+		$none_shippable = true;
+		foreach ($this->_cart_contents['items'] as $item)
+		{
+			if($item['shippable']==1)
+			{
+				$none_shippable = false;
+			}
+		}
 		//default status comes from the config file
-		$save['status']				= $this->CI->config->item('order_status');
+		if($none_shippable)
+		{
+			$save['status']				= $this->CI->config->item('nonship_status');
+		} else {
+			$save['status']				= $this->CI->config->item('order_status');
+		}
 		
 		//if the id exists, then add it to the array $save array and remove it from the customer
 		if(isset($this->_cart_contents['customer']['id']) && $this->_cart_contents['customer']['id'] != '')
@@ -1027,8 +1176,6 @@ class go_cart {
 		//shipping information
 		$save['shipping_method']	= $this->_cart_contents['shipping']['method'];
 		$save['shipping']			= $this->_cart_contents['shipping']['price'];
-		//I will add a shipping notes feature later
-		//$data['shipping_notes']		= $this->_cart_contents['shipping_notes'];
 		
 		//add in the other charges
 		$save['tax']				= $this->_cart_contents['tax'];
@@ -1053,9 +1200,8 @@ class go_cart {
 		}
 		
 		//save additional details
-		$details				= $this->additional_details();
-		$save['referral']		= $details['referral'];
-		$save['shipping_notes']	= $details['shipping_notes'];
+		$save['referral']		= $this->get_additional_detail('referral');
+		$save['shipping_notes']	= $this->get_additional_detail('shipping_notes');
 		
 		//ordered_on datetime stamp
 		$save['ordered_on']			= date('Y-m-d H:i:s');	
@@ -1075,58 +1221,59 @@ class go_cart {
 	
 		// dont do anything else if the order failed to save
 		if(!$order_id) return false;
-		
-		// Observant Records customization begin
-		$this->CI->load->model('Obr_file_product_map_model');
-		$this->CI->load->model('Obr_file_order_map_model');
+
+						
+		// Process any per-item operations
+		$download_package = array(); //create digital package array
 		foreach ($this->_cart_contents['items'] as $item)
 		{
-			// Match items in the cart to files.
-			$file_product_map = $this->CI->Obr_file_product_map_model->retrieve_by_product_id($item['id']);
 			
-			// Generate tokens for each file in the order.
-			$input['file_order_token'] = md5($file_product_map->file_product_file_id . $order_id);
-			$input['file_order_file_id'] = $file_product_map->file_product_file_id;
-			$input['file_order_order_id'] = $order_id;
+			// Process Gift Card purchase				
+			if($this->gift_cards_enabled && isset($item['gc_info'])) 
+			{
+				$gc_data = array();
+				$gc_data['order_number'] = $order_id;
+				$gc_data['beginning_amount'] = $item['price'];
+				$gc_data['code'] = $item['code'];
+				$gc_data= array_merge($gc_data, $item['gc_info']);
+				
+				$this->CI->Gift_card_model->save_card($gc_data);
+				
+				//send the recipient a message
+				$this->CI->Gift_card_model->send_notification($gc_data);	
+			}
 
-			// Save the tokens.
-			$this->CI->Obr_file_order_map_model->create($input);
-		}
-		
-		// Observant Records customization end
-		
-		
-		if($this->gift_cards_enabled) {
 			
-			$this->CI->load->model('Gift_card_model');
-			
-			// save purchased gift cards
-			foreach ($this->_cart_contents['items'] as $item)
+			// Process Downloadable Products
+			if(!empty($item['file_list']))
 			{
-				if(isset($item['gc_info'])) 
-				{
-					$gc_data = array();
-					$gc_data['order_number'] = $order_id;
-					$gc_data['beginning_amount'] = $item['price'];
-					$gc_data['code'] = $item['code'];
-					$gc_data= array_merge($gc_data, $item['gc_info']);
-					
-					$this->CI->Gift_card_model->save_card($gc_data);
-					
-					//send the recipient a message
-					$this->CI->Gift_card_model->send_notification($gc_data);
-					
-				}
+				// compile a list of all the items that can be downloaded for this order
+				$download_package[] = $item['file_list'];
 			}
 			
-			
-			// update the balance of any gift cards used to purchase the order
-			if(isset($this->_cart_contents['gc_list']))
+			//deduct any quantities from the database
+			if(!$item['is_gc'])
 			{
-				$this->CI->Gift_card_model->update_used_card_balances($this->_cart_contents['gc_list']);
+				$product		= $this->CI->Product_model->get_product($item['id']);
+				$new_quantity	= intval($product->quantity) - intval($item['quantity']);
+				$product_quantity	= array('id'=>$product->id, 'quantity'=>$new_quantity);
+				$this->CI->Product_model->save($product_quantity);
 			}
-			
 		}
+		//add the digital packages to the database
+		if(!empty($download_package))
+		{
+			// create the record, send the email
+			$this->CI->Digital_Product_model->add_download_package($download_package, $order_id);
+		}
+			
+			
+
+		// update the balance of any gift cards used to purchase the order
+		if($this->gift_cards_enabled && isset($this->_cart_contents['gc_list']))
+		{
+			$this->CI->Gift_card_model->update_used_card_balances($this->_cart_contents['gc_list']);
+		}			
 		
 		// touch any used product coupons (increment usage)
 		if(isset($this->_cart_contents['applied_coupons']))
@@ -1146,6 +1293,8 @@ class go_cart {
 		{
 			$this->CI->Coupon_model->touch_coupon($this->_cart_contents['whole_order_discount_cp']);
 		}
+		
+		
 		
 		return $order_id;
 	}
@@ -1177,7 +1326,7 @@ class go_cart {
 
 	function total()
 	{
-		return $this->_cart_contents['cart_total'];
+		return round($this->_cart_contents['cart_total'], 2);
 	}
 	
 	function subtotal()
@@ -1234,24 +1383,38 @@ class go_cart {
 	}
 	function is_free_shipping()
 	{
-		if( ! $this->_cart_contents['free_shipping_coupon']) return false;
-		else return true; // if the value isn't false, it must be set
+		if( ! $this->_cart_contents['free_shipping_coupon'])
+		{
+			return false;
+		}
+		else
+		{
+			return true; // if the value isn't false, it must be set
+		}
+	}
+	
+	function shipping_method()
+	{
+		return $this->_cart_contents['shipping'];
+	}
+	
+	function shipping_cost()
+	{
+		return $this->_cart_contents['shipping']['price'];
+	}
+	
+	function shipping_code()
+	{
+		return $this->_cart_contents['shipping']['code'];
 	}
 	
 	// return array
 	function payment_method()
 	{
 		return $this->_cart_contents['payment'];
-	}	
+	}
 	
-	function shipping_method()
-	{
-		return $this->_cart_contents['shipping'];
-	}
-	function shipping_cost()
-	{
-		return $this->_cart_contents['shipping']['price'];
-	}
+	
 
 	function get_custom_charges()
 	{
@@ -1315,10 +1478,10 @@ class go_cart {
 	 * @access	public
 	 * @return	null
 	 */
-	function destroy($keep_login_session=true)
+	function destroy($keep_customer_data=true)
 	{	
 		// reset the cart values
-		$this->_init_properties(false,$keep_login_session);		
+		$this->_init_properties(false,$keep_customer_data);		
 		// save the updated cart to our session
 		$this->_save_cart(false);
 	}

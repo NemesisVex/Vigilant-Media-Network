@@ -1,19 +1,15 @@
 <?php
 
-class Categories extends CI_Controller {	
+class Categories extends Admin_Controller {	
 	
 	function __construct()
 	{		
 		parent::__construct();
 		
 		remove_ssl();
-		
-		$this->load->library('Auth');
 		$this->auth->check_access('Admin', true);
-		
+		$this->lang->load('category');
 		$this->load->model('Category_model');
-		//this adds the redirect url to our flash data, incase they are not logged in
-		$this->auth->is_logged_in(uri_string());
 	}
 	
 	function index()
@@ -21,19 +17,44 @@ class Categories extends CI_Controller {
 		//we're going to use flash data and redirect() after form submissions to stop people from refreshing and duplicating submissions
 		//$this->session->set_flashdata('message', 'this is our message');
 		
-		$data['page_title']	= 'Categories';
+		$data['page_title']	= lang('categories');
 		$data['categories']	= $this->Category_model->get_categories_tierd();
 		
 		$this->load->view($this->config->item('admin_folder').'/categories', $data);
 	}
 	
+	//basic category search
+	function category_autocomplete()
+	{
+		$name	= trim($this->input->post('name'));
+		$limit	= $this->input->post('limit');
+		
+		if(empty($name))
+		{
+			echo json_encode(array());
+		}
+		else
+		{
+			$results	= $this->Category_model->category_autocomplete($name, $limit);
+			
+			$return		= array();
+			foreach($results as $r)
+			{
+				$return[$r->id]	= $r->name;
+			}
+			echo json_encode($return);
+		}
+		
+	}
+	
 	function organize($id = false)
 	{
 		$this->load->helper('form');
+		$this->load->helper('formatting');
 		
 		if (!$id)
 		{
-			$this->session->set_flashdata('message', 'You must select a category to organize.');
+			$this->session->set_flashdata('error', lang('error_must_select'));
 			redirect($this->config->item('admin_folder').'/categories');
 		}
 		
@@ -41,11 +62,11 @@ class Categories extends CI_Controller {
 		//if the category does not exist, redirect them to the category list with an error
 		if (!$data['category'])
 		{
-			$this->session->set_flashdata('message', 'The requested category could not be found.');
+			$this->session->set_flashdata('error', lang('error_not_found'));
 			redirect($this->config->item('admin_folder').'/categories');
 		}
 			
-		$data['page_title']		= 'Oranize "'.$data['category']->name.'" Category';
+		$data['page_title']		= sprintf(lang('organize_category'), $data['category']->name);
 		
 		$data['category_products']	= $this->Category_model->get_category_products_admin($id);
 		
@@ -76,7 +97,7 @@ class Categories extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		
 		$data['categories']		= $this->Category_model->get_categories();
-		$data['page_title']		= 'Add Category';
+		$data['page_title']		= lang('category_form');
 		
 		//default values are empty if the customer is new
 		$data['id']				= '';
@@ -89,6 +110,7 @@ class Categories extends CI_Controller {
 		$data['seo_title']		= '';
 		$data['meta']			= '';
 		$data['parent_id']		= 0;
+		$data['error']			= '';
 		
 		//create the photos array for later use
 		$data['photos']		= array();
@@ -100,15 +122,12 @@ class Categories extends CI_Controller {
 			//if the category does not exist, redirect them to the category list with an error
 			if (!$category)
 			{
-				$this->session->set_flashdata('message', 'The requested category could not be found.');
+				$this->session->set_flashdata('error', lang('error_not_found'));
 				redirect($this->config->item('admin_folder').'/categories');
 			}
 			
 			//helps us with the slug generation
 			$this->category_name	= $this->input->post('slug', $category->slug);
-			
-			//set title to edit if we have an ID
-			$data['page_title']	= 'Edit Category';
 			
 			//set values to db values
 			$data['id']				= $category->id;
@@ -124,15 +143,15 @@ class Categories extends CI_Controller {
 			
 		}
 		
-		$this->form_validation->set_rules('name', 'Name', 'trim|required|max_length[64]');
-		$this->form_validation->set_rules('slug', 'slug', 'trim');
-		$this->form_validation->set_rules('description', 'Description', 'trim');
-		$this->form_validation->set_rules('excerpt', 'Excerpt', 'trim');
-		$this->form_validation->set_rules('sequence', 'Sequence', 'trim|integer');
+		$this->form_validation->set_rules('name', 'lang:name', 'trim|required|max_length[64]');
+		$this->form_validation->set_rules('slug', 'lang:slug', 'trim');
+		$this->form_validation->set_rules('description', 'lang:description', 'trim');
+		$this->form_validation->set_rules('excerpt', 'lang:excerpt', 'trim');
+		$this->form_validation->set_rules('sequence', 'lang:sequence', 'trim|integer');
 		$this->form_validation->set_rules('parent_id', 'parent_id', 'trim');
-		$this->form_validation->set_rules('image', 'image', 'trim');
-		$this->form_validation->set_rules('seo_title', 'SEO Title', 'trim');
-		$this->form_validation->set_rules('meta', 'Meta', 'trim');
+		$this->form_validation->set_rules('image', 'lang:image', 'trim');
+		$this->form_validation->set_rules('seo_title', 'lang:seo_title', 'trim');
+		$this->form_validation->set_rules('meta', 'lang:meta', 'trim');
 		
 		
 		// validate the form
@@ -177,7 +196,7 @@ class Categories extends CI_Controller {
 				if(!$uploaded)
 				{
 					$error	= $this->upload->display_errors();
-					if($error != '<p>You did not select a file to upload.</p>')
+					if($error != lang('error_file_upload'))
 					{
 						$data['error']	.= $this->upload->display_errors();
 						$this->load->view($this->config->item('admin_folder').'/category_form', $data);
@@ -227,6 +246,8 @@ class Categories extends CI_Controller {
 				$this->image_lib->clear();
 			}
 			
+			$this->load->helper('text');
+			
 			//first check the slug field
 			$slug = $this->input->post('slug');
 			
@@ -236,7 +257,7 @@ class Categories extends CI_Controller {
 				$slug = $this->input->post('name');
 			}
 			
-			$slug	= url_title($slug, 'dash', TRUE);
+			$slug	= url_title(convert_accented_characters($slug), 'dash', TRUE);
 			
 			//validate the slug
 			$this->load->model('Routes_model');
@@ -257,12 +278,12 @@ class Categories extends CI_Controller {
 			$save['name']			= $this->input->post('name');
 			$save['description']	= $this->input->post('description');
 			$save['excerpt']		= $this->input->post('excerpt');
-			$save['parent_id']		= $this->input->post('parent_id');
-			$save['sequence']		= $this->input->post('sequence');
+			$save['parent_id']		= intval($this->input->post('parent_id'));
+			$save['sequence']		= intval($this->input->post('sequence'));
 			$save['seo_title']		= $this->input->post('seo_title');
 			$save['meta']			= $this->input->post('meta');
 
-			$save['route_id']		= $route_id;
+			$save['route_id']		= intval($route_id);
 			$save['slug']			= $slug;
 			
 			$category_id	= $this->Category_model->save($save);
@@ -274,7 +295,7 @@ class Categories extends CI_Controller {
 			
 			$this->Routes_model->save($route);
 			
-			$this->session->set_flashdata('message', 'The "'.$this->input->post('name').'" category has been updated.');
+			$this->session->set_flashdata('message', lang('message_category_saved'));
 			
 			//go back to the category list
 			redirect($this->config->item('admin_folder').'/categories');
@@ -293,12 +314,12 @@ class Categories extends CI_Controller {
 			$this->Routes_model->delete($category->route_id);
 			$this->Category_model->delete($id);
 			
-			$this->session->set_flashdata('message', 'The "'.$category->name.'" category has been deleted from the system.');
+			$this->session->set_flashdata('message', lang('message_delete_category'));
 			redirect($this->config->item('admin_folder').'/categories');
 		}
 		else
 		{
-			$this->session->set_flashdata('error', 'The requested category could not be found.');
+			$this->session->set_flashdata('error', lang('error_not_found'));
 		}
 	}
 }
