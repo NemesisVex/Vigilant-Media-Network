@@ -33,6 +33,13 @@
 				<label>ISRC</label> {$rsFile->isrc[0]->audio_isrc_code}
 			</div>
 		</li>
+		{if !empty($rsFile->audio_aws_s3_key)}
+		<li>
+			<div>
+				<label>AWS S3 key</label> {$rsFile->audio_aws_s3_key}
+			</div>
+		</li>
+		{/if}
 	</ul>
 
 	{if !empty($id3v2)}
