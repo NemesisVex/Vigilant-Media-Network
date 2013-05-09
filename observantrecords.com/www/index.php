@@ -33,6 +33,7 @@ if (defined('ENVIRONMENT'))
 {
 	switch (ENVIRONMENT)
 	{
+		case 'localhost':
 		case 'development':
 		case 'dev': //DEPRECATED
 			error_reporting(E_ALL);
@@ -75,7 +76,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = '../../vigilantmedia.com/vigilante/application/observantrecords';
+	$application_folder = './application';
 
 /*
  * --------------------------------------------------------------------

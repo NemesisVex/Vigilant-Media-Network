@@ -36,9 +36,23 @@ function observantrecs_theme() {
 				'albums' => NULL,
 				'release_alias' => NULL,
 			),
-			'template' => 'templates/emptyensemble.block.album_info',
+			'template' => 'templates/observantrecs.block.album_info',
+		),
+		'node_track_info' => array(
+			'variables' => array(
+				'tracks' => NULL,
+			),
+			'template' => 'templates/observantrecs.node.track_info',
+		),
+		'ext_link_top_nav' => array(
+			'template' => 'templates/observantrecs.ext_link_top_nav',
 		),
 	);
 	
 	return $theme;
+}
+
+function observantrecs_get_vigilante_uri($key = 'to_vigilante') {
+	global $config_url_base;
+	return $config_url_base[$key];
 }

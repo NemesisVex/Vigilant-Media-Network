@@ -17,25 +17,10 @@
 // Read environment variable from file and determine connection settings.
 require_once('environment.php');
 
-switch(ENVIRONMENT) {
-	case 'development':
-		$env_db_name = VIGILANTMEDIA_WP_DB_DEVELOPMENT;
-		$env_domain_current_site = 'wp.vigilantmedia.com';
-		break;
-	case 'testing':
-		$env_db_name = VIGILANTMEDIA_WP_DB_TEST;
-		$env_domain_current_site = 'wp-test.vigilantmedia.com';
-		break;
-	case 'production':
-		$env_db_name = VIGILANTMEDIA_WP_DB_PRODUCTION;
-		$env_domain_current_site = 'blog.vigilantmedia.com';
-		break;
-}
-
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 
-define('DB_NAME', $env_db_name);
+define('DB_NAME', VIGILANTMEDIA_WP_DB);
 
 /** MySQL database username */
 define('DB_USER', VIGILANTMEDIA_DB_USER);
@@ -103,7 +88,7 @@ define('WPLANG', '');
  * It is strongly recommended that plugin and theme developers use WP_DEBUG
  * in their development environments.
  */
-define('WP_DEBUG', false);
+define('WP_DEBUG', WP_ENVIRONMENT_DEBUG);
 
 /**
  * Network configuration.
@@ -112,7 +97,7 @@ define('WP_ALLOW_MULTISITE', true);
 define('MULTISITE', true);
 define('SUBDOMAIN_INSTALL', true);
 $base = '/';
-define('DOMAIN_CURRENT_SITE', $env_domain_current_site);
+define('DOMAIN_CURRENT_SITE', WP_CURRENT_SITE);
 define('PATH_CURRENT_SITE', '/');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);

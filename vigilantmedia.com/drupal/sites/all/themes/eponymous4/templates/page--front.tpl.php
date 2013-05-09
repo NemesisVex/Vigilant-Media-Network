@@ -17,14 +17,7 @@
 				</nav>
 
 				<nav id="nav-column-2">
-					<ul id="nav-social">
-						<li><a href="http://twitter.com/eponymous4"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
-						<li><a href="http://facebook.com/Eponymous4"><img src="http://vigilante.vigilantmedia.com/images/icons/facebook.png" alt="[Facebook]" title="[Facebook]" /></a></li>
-						<li><a href="http://soundcloud.com/observantrecords"><img src="http://vigilante.vigilantmedia.com/images/icons/soundcloud.png" alt="[Soundcloud]" title="[Soundcloud]" /></a></li>
-						<li><a href="http://youtube.com/user/observantrecords"><img src="http://vigilante.vigilantmedia.com/images/icons/youtube.png" alt="[YouTube]" title="[YouTube]" /></a></li>
-						<li><a href="/rss"><img src="http://vigilante.vigilantmedia.com/images/icons/feed.png" alt="[RSS]" title="[RSS]" /></a></li>
-						<li><a href="http://myspace.com/eponymous4"><img src="http://vigilante.vigilantmedia.com/images/icons/myspace.png" alt="[MySpace]" title="[MySpace]" /></a></li>
-					</ul>
+					<?php print theme('ext_link_top_nav'); ?>
 				</nav>
 			</div>
 

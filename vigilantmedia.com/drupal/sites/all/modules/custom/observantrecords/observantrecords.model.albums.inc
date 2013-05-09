@@ -7,18 +7,23 @@ class OR_Albums extends OR_Model {
 		$this->connect();
 	}
 	
-	public function get_albums($artist_alias) {
+	public function get_albums($artist_alias = null) {
 		$this->activate();
+		$args = array();
 		
 		$query = '';
 		$query .= 'select al.* from {ep4_albums} as al ';
 		$query .= 'left join {ep4_artists} as ar ';
 		$query .= 'on al.album_artist_id = ar.artist_id ';
-		$query .= 'where ar.artist_alias = :artist_alias ';
-		$query .= 'and al.album_is_visible = 1 ';
+		$query .= 'where ';
+		if (!empty($artist_alias)) {
+			$query .= 'ar.artist_alias = :artist_alias and ';
+			$args = array(':artist_alias' => $artist_alias);
+		}
+		$query .= 'al.album_is_visible = 1 ';
+		$query .= 'and al.album_deleted = 0 ';
 		$query .= 'order by al.album_release_date';
 		
-		$args = array(':artist_alias' => $artist_alias);
 		
 		$rsAlbums = db_query($query, $args)->fetchAllAssoc('album_alias', PDO::FETCH_ASSOC);
 		
@@ -32,6 +37,7 @@ class OR_Albums extends OR_Model {
 		$query = '';
 		$query .= 'select * from {ep4_albums} as al ';
 		$query .= 'where al.album_alias = :album_alias ';
+		$query .= 'and al.album_deleted = 0';
 		
 		$args = array(':album_alias' => $album_alias);
 		
@@ -50,6 +56,7 @@ class OR_Albums extends OR_Model {
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id ';
 		$query .= 'where al.album_alias = :album_alias ';
+		$query .= 'and r.release_deleted = 0 ';
 		$query .= 'order by :order_by';
 		
 		$args = array(':album_alias' => $album_alias, ':order_by' => $order_by);
@@ -68,6 +75,7 @@ class OR_Albums extends OR_Model {
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id ';
 		$query .= 'where r.release_alias = :release_alias ';
+		$query .= 'and al.album_deleted = 0';
 		
 		$args = array(':release_alias' => $release_alias);
 		
@@ -78,6 +86,7 @@ class OR_Albums extends OR_Model {
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id ';
 		$query .= 'where r.release_alias = :release_alias ';
+		$query .= 'and r.release_deleted = 0';
 		
 		$rsRelease = db_query($query, $args)->fetchAssoc();
 		
