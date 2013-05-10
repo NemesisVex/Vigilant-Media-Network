@@ -40,7 +40,7 @@ img.bg
 }
 
 #masthead {
-	margin-top: 1.5em;
+	background-color: #304B75;
 }
 
 #masthead ul {
@@ -49,34 +49,36 @@ img.bg
 
 #masthead #logo {
 	float: left;
-	width: 630px;
-	margin-right: 0px;
-	padding-left: 160px;
-	padding-right: 160px;
-}
-
-#nav-column-1 {
-	float: left;
-	width: 350px;
+	width: 470px;
 	margin-right: 10px;
-	padding-left: 160px;
-	text-align: center;
 }
 
-#nav-column-2 {
+#nav-header {
 	float: left;
-	width: 270px;
+	width: 470px;
 	margin-right: 0px;
-	padding-right: 160px;
+	margin-top: 1em;
 	text-align: center;
 }
 
-#nav-main li, #nav-column-1 ul.links li {
+#nav-footer {
+	float: left;
+	width: 310px;
+	margin-right: 10px;
+	margin-top: 1em;
+}
+
+#nav-header ul.links li {
 	display: inline-block;
 	margin: 0;
 	padding: 0;
 	margin-left: 24px;
 }
+
+ul#nav-social {
+	padding-left: 0px;
+}
+
 #nav-social li {
 	display: inline-block;
 	margin: 0;
@@ -88,7 +90,8 @@ img.bg
 	float: left;
 	width: 950px;
 	margin-right: 0px;
-	margin-bottom: 1.5em;
+	margin-bottom: 1em;
+	margin-top: 1em;
 }
 
 #content #column-1 {
@@ -117,6 +120,22 @@ img.bg
 	margin-right: 0px;
 }
 
+#footer {
+	background-color: #C9C9C9;
+}
+
+#footer-column-1, #footer-column-2 {
+	float: left;
+	width: 310px;
+	margin-right: 10px;
+}
+
+#footer-column-3 {
+	float: left;
+	width: 310px;
+	margin-right: 0px;
+}
+
 #album_player {
 	margin: 0 0 1em;
 }
@@ -125,6 +144,7 @@ footer {
 	float: left;
 	width: 950px;
 	margin-right: 0px;
+	margin-top: 1em;
 }
 
 label
@@ -272,7 +292,9 @@ ol.track-list li
 	margin-bottom: 1em;
 	min-height: 2em;
 	min-width: 230px;
-	width: 550px;
+	width: 470px;
+	margin-left: 40px;
+	margin-right: 40px;
 	vertical-align: top;
 	border: 1px solid #CBCBCB;
 	border-radius: 4px;
@@ -311,10 +333,29 @@ ol.track-list li div
 	text-align: center;
 }
 
+.cover {
+	background-color: #EFEFEF;
+}
+
 .button {
 	padding: 4px 10px 4px;
 	border-radius: 4px;
 	border: 1px solid #000;
 	background-color: #304B75;
 	cursor: pointer;
+}
+
+.nivoSlider {
+	position:relative;
+	background:url(images/loading.gif) no-repeat 50% 50%;
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+.nivoSlider a {
+	border:0;
+	display:block;
 }
