@@ -4,7 +4,7 @@ if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
 /**
- * Description of VmModel_User
+ * VmModel_User
  *
  * @author Greg Bueno
  */

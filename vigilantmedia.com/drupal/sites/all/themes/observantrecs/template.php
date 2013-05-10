@@ -36,7 +36,16 @@ function observantrecs_theme() {
 				'albums' => NULL,
 				'release_alias' => NULL,
 			),
-			'template' => 'templates/emptyensemble.block.album_info',
+			'template' => 'templates/observantrecs.block.album_info',
+		),
+		'node_track_info' => array(
+			'variables' => array(
+				'tracks' => NULL,
+			),
+			'template' => 'templates/observantrecs.node.track_info',
+		),
+		'ext_link_top_nav' => array(
+			'template' => 'templates/observantrecs.ext_link_top_nav',
 		),
 	);
 	
