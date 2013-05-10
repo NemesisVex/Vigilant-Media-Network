@@ -1,32 +1,19 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
-|==========================================================
-| Code Igniter - by pMachine
-|----------------------------------------------------------
-| www.codeignitor.com
-|----------------------------------------------------------
-| Copyright (c) 2006, pMachine, Inc.
-|----------------------------------------------------------
-| This library is licensed under an open source agreement:
-| www.codeignitor.com/docs/license.html
-|----------------------------------------------------------
-| File: libraries/Smarty.php
-|----------------------------------------------------------
-| Purpose: Wrapper for Smarty Templates
-|==========================================================
-*/
+/**
+ * MySmarty
+ *
+ * 
+ * @package CodeIgniter
+ * @subpackage Vigilant Media Network
+ * @category Libraries
+ * @author Greg Bueno
+ * @copyright (c) 2012 Greg Bueno
+ */
 require_once(BASEPATH . "libraries/smarty/Smarty.class.php");
 
 class MySmarty extends Smarty
 {
-/*
-|==========================================================
-| Constructor
-|==========================================================
-|
-|
-*/
 	
 	public $content_template;
 	public $layout_template;

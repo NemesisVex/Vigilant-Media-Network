@@ -44,6 +44,9 @@ function eponymous4_theme() {
 			),
 			'template' => 'templates/eponymous4.node.track_info',
 		),
+		'ext_link_top_nav' => array(
+			'template' => 'templates/eponymous4.ext_link_top_nav',
+		),
 	);
 	
 	return $theme;

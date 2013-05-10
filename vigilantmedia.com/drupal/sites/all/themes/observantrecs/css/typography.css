@@ -6,11 +6,42 @@
         Purpose of the stylesheet follows.
 */
 
-#nav-main
-{
-	font-size: 120%;
+@font-face {
+	font-family: "CartoGothicStd";
+	src: url("fonts/CartoGothicStd-Italic-webfont.eot");
+	src: url("fonts/CartoGothicStd-Italic-webfont.eot?iefix") format("eot"),
+		url("fonts/CartoGothicStd-Italic-webfont.woff") format("woff"),
+		url("fonts/CartoGothicStd-Italic-webfont.ttf") format("truetype"),
+		url("fonts/CartoGothicStd-Italic-webfont.svg#webfont") format("svg");
+	font-style: italic, oblique;
 }
-
+@font-face {
+	font-family: "CartoGothicStd";
+	src: url("fonts/CartoGothicStd-Bold-webfont.eot");
+	src: url("fonts/CartoGothicStd-Bold-webfont.eot?iefix") format("eot"),
+		url("fonts/CartoGothicStd-Bold-webfont.woff") format("woff"),
+		url("fonts/CartoGothicStd-Bold-webfont.ttf") format("truetype"),
+		url("fonts/CartoGothicStd-Bold-webfont.svg#webfont") format("svg");
+	font-weight: bold;
+}
+@font-face {
+	font-family: "CartoGothicStd";
+	src: url("fonts/CartoGothicStd-BoldItalic-webfont.eot");
+	src: url("fonts/CartoGothicStd-BoldItalic-webfont.eot?iefix") format("eot"),
+		url("fonts/CartoGothicStd-BoldItalic-webfont.woff") format("woff"),
+		url("fonts/CartoGothicStd-BoldItalic-webfont.ttf") format("truetype"),
+		url("fonts/CartoGothicStd-BoldItalic-webfont.svg#webfont") format("svg");
+	font-weight: bold;
+	font-style: italic, oblique;
+}
+@font-face {
+	font-family: "CartoGothicStd";
+	src: url("fonts/CartoGothicStd-Book-webfont.eot");
+	src: url("fonts/CartoGothicStd-Book-webfont.eot?iefix") format("eot"),
+		url("fonts/CartoGothicStd-Book-webfont.woff") format("woff"),
+		url("fonts/CartoGothicStd-Book-webfont.ttf") format("truetype"),
+		url("fonts/CartoGothicStd-Book-webfont.svg#webfont") format("svg");
+}
 
 a {
 	color: #304B75;
@@ -31,8 +62,13 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
-#nav-column-1 ul.links li {
+#nav-header ul.links {
+	font-family: 'CartoGothicStd', 'Helvetica', 'Arial', sans-serif;
 	font-size: 120%;
+}
+
+#page-title {
+	font-family: 'CartoGothicStd', 'Helvetica', 'Arial', sans-serif;
 }
 
 #title {
@@ -42,6 +78,15 @@ h1, h2, h3, h4, h5, h6 {
 #title a {
 	text-decoration: none;
 	color: #000;
+}
+
+footer {
+	color: #000;
+	font-size: 95%;
+}
+
+#masthead a, #masthead a:hover {
+	color: #FFF;
 }
 
 input[type=text], input[type=password], input[type=email], select, textarea

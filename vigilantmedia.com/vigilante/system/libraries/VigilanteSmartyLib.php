@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * VigilanteSmartyLib
+ *
+ * 
+ * @package CodeIgniter
+ * @subpackage Vigilant Media Network
+ * @category Libraries
+ * @author Greg Bueno
+ * @copyright (c) 2012 Greg Bueno
+ */
 class VigilanteSmartyLib
 {
 	function __construct()

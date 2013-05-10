@@ -4,9 +4,14 @@ if (!defined('BASEPATH'))
 	exit('No direct script access allowed');
 
 /**
- * Description of VmSession
+ * VmSession
  *
+ * 
+ * @package CodeIgniter
+ * @subpackage Vigilant Media Network
+ * @category Libraries
  * @author Greg Bueno
+ * @copyright (c) 2012 Greg Bueno
  */
 class VmSession {
 
