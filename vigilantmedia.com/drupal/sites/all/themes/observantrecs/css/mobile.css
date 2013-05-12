@@ -48,29 +48,42 @@ img.bg
 }
 
 #observant-records-logo {
-	width: 319px;
+	width: 100%;
 }
 
 #masthead #logo {
 	float: none;
 	width: auto;
-	margin-right: 0px;
+	margin-right: 40px;
 	margin-left: 40px;
+	padding-bottom: 0;
 }
 
 #nav-header {
 	float: none;
 	width: auto;
+	margin-right: 0px;
+	padding-top: 1em;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 1em;
 	margin-left: 40px;
-	margin-right: auto;
-	margin-top: 1em;
 	text-align: left;
 }
 
 #nav-footer {
 	float: none;
 	width: auto;
-	margin-right: 10px;
+	margin-right: 0px;
+	padding-top: 1em;
+	padding-left: 40px;
+	padding-right: 40px;
+	text-align: left;
+}
+
+#nav-header ul.links {
+	padding-left: 0;
+	margin-left: 0;
 }
 
 #nav-header ul.links li {
@@ -86,6 +99,8 @@ ul#nav-social {
 
 #nav-main {
 	list-style-type: disc;
+	padding-left: 0px;
+	margin-left: 0px;
 }
 
 #nav-main li {
@@ -100,7 +115,6 @@ ul#nav-social {
 	margin: 0;
 	padding: 0;
 	margin-left: 6px;
-	margin-top: 1em;
 }
 
 #content {
@@ -148,15 +162,14 @@ ul#nav-social {
 #footer-column-1, #footer-column-2 {
 	float: none;
 	width: auto;
-	padding-left: 40px;
 	margin-right: 10px;
 }
 
 #footer-column-3 {
 	float: none;
 	width: auto;
-	padding-left: 40px;
 	margin-right: 0px;
+	padding-bottom: 1em;
 }
 
 #album_player {
@@ -167,6 +180,8 @@ footer {
 	float: none;
 	width: auto;
 	margin-right: 0px;
+	margin-left: 40px;
+	padding-top: 1em;
 }
 
 label
