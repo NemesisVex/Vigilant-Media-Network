@@ -2,7 +2,7 @@
 			<div class="container">
 				<header id="logo">
 						<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
-							<img src="<?php print $logo; ?>" alt="[<?php echo $site_name; ?>]" title="[<?php echo $site_name; ?>]" id="observant-records-logo" width="470" />
+							<img src="<?php print $logo; ?>" alt="[<?php echo $site_name; ?>]" title="[<?php echo $site_name; ?>]" id="observant-records-logo" />
 						</a>
 				</header>
 
