@@ -33,14 +33,14 @@ img.bg
 
 */
 
-#container {
+#container, .container {
 	display: block;
 	width: auto;
 	margin: 0 auto;
 }
 
 #masthead {
-	margin-top: 1.5em;
+	width: auto;
 }
 
 #masthead ul {
@@ -55,27 +55,33 @@ img.bg
 	float: none;
 	width: auto;
 	margin-right: 0px;
-	margin-bottom: 1.5em;
-	padding-left: 0;
-	padding-right: 0;
+	margin-left: 40px;
 }
 
-#nav-column-1 {
+#nav-header {
 	float: none;
 	width: auto;
-	margin-right: 0px;
-	padding-left: 40px;
-	padding-right: 40px;
+	margin-left: 40px;
+	margin-right: auto;
+	margin-top: 1em;
 	text-align: left;
 }
 
-#nav-column-2 {
+#nav-footer {
 	float: none;
 	width: auto;
-	margin-right: 0px;
-	padding-left: 40px;
-	padding-right: 40px;
-	text-align: left;
+	margin-right: 10px;
+}
+
+#nav-header ul.links li {
+	display: block;
+	margin: 0;
+	padding: 0;
+	margin-left: auto;
+}
+
+ul#nav-social {
+	padding-left: 0px;
 }
 
 #nav-main {
@@ -94,6 +100,7 @@ img.bg
 	margin: 0;
 	padding: 0;
 	margin-left: 6px;
+	margin-top: 1em;
 }
 
 #content {
@@ -132,6 +139,24 @@ img.bg
 	margin-right: 0px;
 	padding-left: 40px;
 	padding-right: 40px;
+}
+
+#footer {
+	background-color: #C9C9C9;
+}
+
+#footer-column-1, #footer-column-2 {
+	float: none;
+	width: auto;
+	padding-left: 40px;
+	margin-right: 10px;
+}
+
+#footer-column-3 {
+	float: none;
+	width: auto;
+	padding-left: 40px;
+	margin-right: 0px;
 }
 
 #album_player {
@@ -321,4 +346,19 @@ ol.track-list li div
 	border: 1px solid #000;
 	background-color: #304B75;
 	cursor: pointer;
+}
+
+.nivoSlider {
+	position:relative;
+	background:url(images/loading.gif) no-repeat 50% 50%;
+}
+.nivoSlider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+	display:none;
+}
+.nivoSlider a {
+	border:0;
+	display:block;
 }
