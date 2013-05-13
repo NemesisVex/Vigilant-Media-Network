@@ -1,22 +1,21 @@
-		<div id="container">
-			<div id="masthead">
+		<div id="masthead">
+			<div class="container">
 				<header id="logo">
 						<a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
 							<img src="<?php print $logo; ?>" alt="[<?php echo $site_name; ?>]" title="[<?php echo $site_name; ?>]" id="observant-records-logo" />
 						</a>
 				</header>
 
-				<nav id="nav-column-1">
+				<nav id="nav-header">
 					<?php if ($main_menu): ?>
 					<?php print theme('links__system_main_menu', array('links' => $main_menu)); ?>
 					<?php endif; ?>
 				</nav>
 
-				<nav id="nav-column-2">
-					<?php print theme('ext_link_top_nav'); ?>
-				</nav>
 			</div>
+		</div>
 
+		<div class="container">
 			<div id="content">
 				<div id="column-1">
 				<?php if ($messages): ?>
@@ -47,12 +46,44 @@
 				</div>
 			</div>
 
-			<footer id="footer">
-				<p>
-					&copy <?php echo date('Y'); ?> Observant Records
-				</p>
-			<?php if ($page['footer']): ?>
-			<?php print render($page['footer']); ?>
-			<?php endif; ?>
-			</footer>
+		</div>
+		<div id="footer">
+			<div class="container">
+				<footer>
+					<nav id="footer-column-1">
+						<?php print theme('ext_link_top_nav'); ?>
+						
+						<p>
+							&copy <?php echo date('Y'); ?> Observant Records
+						</p>
+					</nav>
+					
+					<section id="footer-column-2">
+						<?php if ($page['footer']): ?>
+						<?php print render($page['footer']); ?>
+						<?php endif; ?>
+						<?php
+						print theme('links', array(
+							'links' => menu_navigation_links('menu-footer-menu---artists'),
+							'heading' => array(
+								'text' => 'Artists',
+								'level' => 'h3'
+							),
+							));
+						?>
+					</section>
+					
+					<section id="footer-column-3">
+						<?php
+						print theme('links', array(
+							'links' => menu_navigation_links('menu-footer-menu---information'),
+							'heading' => array(
+								'text' => 'More Information',
+								'level' => 'h3'
+							),
+							));
+						?>
+					</section>
+				</footer>
+			</div>
 		</div>

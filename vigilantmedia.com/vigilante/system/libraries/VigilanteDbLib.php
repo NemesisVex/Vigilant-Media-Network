@@ -1,4 +1,15 @@
 <?php
+
+/**
+ * VigilanteDbLib
+ *
+ * 
+ * @package CodeIgniter
+ * @subpackage Vigilant Media Network
+ * @category Libraries
+ * @author Greg Bueno
+ * @copyright (c) 2012 Greg Bueno
+ */
 class VigilanteDbLib
 {
 	function __construct()
