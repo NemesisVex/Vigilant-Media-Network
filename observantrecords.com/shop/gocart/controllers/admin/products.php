@@ -1,39 +1,133 @@
 <?php
 
-class Products extends CI_Controller {	
+class Products extends Admin_Controller {	
+	
+	private $use_inventory = false;
 	
 	function __construct()
 	{		
 		parent::__construct();
 		remove_ssl();
-		$this->load->library('Auth');
+
 		$this->auth->check_access('Admin', true);
-		//this adds the redirect url to our flash data, incase they are not logged in
-		$this->auth->is_logged_in(uri_string());
 		
 		$this->load->model('Product_model');
 		$this->load->helper('form');
+		$this->lang->load('product');
 	}
 
-	function index()
+	function index($order_by="name", $sort_order="ASC", $code=0, $page=0, $rows=15)
 	{
-		$data['page_title']	= 'Products';
-		$data['products']	= $this->Product_model->get_products();
+		
+		$data['page_title']	= lang('products');
+		
+		$data['code']		= $code;
+		$term				= false;
+		$category_id		= false;
+		
+		//get the category list for the drop menu
+		$data['categories']	= $this->Category_model->get_categories_tierd();
+		
+		$post				= $this->input->post(null, false);
+		$this->load->model('Search_model');
+		if($post)
+		{
+			$term			= json_encode($post);
+			$code			= $this->Search_model->record_term($term);
+			$data['code']	= $code;
+		}
+		elseif ($code)
+		{
+			$term			= $this->Search_model->get_term($code);
+		}
+		
+		//store the search term
+		$data['term']		= $term;
+		$data['order_by']	= $order_by;
+		$data['sort_order']	= $sort_order;
+		
+		$data['products']	= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order, 'rows'=>$rows, 'page'=>$page));
 
+		//total number of products
+		$data['total']		= $this->Product_model->products(array('term'=>$term, 'order_by'=>$order_by, 'sort_order'=>$sort_order), true);
+
+		
+		$this->load->library('pagination');
+		
+		$config['base_url']			= site_url($this->config->item('admin_folder').'/products/index/'.$order_by.'/'.$sort_order.'/'.$code.'/');
+		$config['total_rows']		= $data['total'];
+		$config['per_page']			= $rows;
+		$config['uri_segment']		= 7;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
+		
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		
+		$config['prev_link']		= '&laquo;';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+
+		$config['next_link']		= '&raquo;';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';
+		
+		$this->pagination->initialize($config);
+		
 		$this->load->view($this->config->item('admin_folder').'/products', $data);
+	}
+	
+	//basic category search
+	function product_autocomplete()
+	{
+		$name	= trim($this->input->post('name'));
+		$limit	= $this->input->post('limit');
+		
+		if(empty($name))
+		{
+			echo json_encode(array());
+		}
+		else
+		{
+			$results	= $this->Product_model->product_autocomplete($name, $limit);
+			
+			$return		= array();
+			
+			foreach($results as $r)
+			{
+				$return[$r->id]	= $r->name;
+			}
+			echo json_encode($return);
+		}
+		
 	}
 	
 	function bulk_save()
 	{
 		$products	= $this->input->post('product');
 		
+		if(!$products)
+		{
+			$this->session->set_flashdata('error',  lang('error_bulk_no_products'));
+			redirect($this->config->item('admin_folder').'/products');
+		}
+				
 		foreach($products as $id=>$product)
 		{
 			$product['id']	= $id;
 			$this->Product_model->save($product);
 		}
 		
-		$this->session->set_flashdata('message', 'Your products have been updated');
+		$this->session->set_flashdata('message', lang('message_bulk_update'));
 		redirect($this->config->item('admin_folder').'/products');
 	}
 	
@@ -41,79 +135,89 @@ class Products extends CI_Controller {
 	{
 		$this->product_id	= $id;
 		$this->load->library('form_validation');
-		$this->load->model(array('Option_model', 'Category_model'));
+		$this->load->model(array('Option_model', 'Category_model', 'Digital_Product_model'));
+		$this->lang->load('digital_product');
 		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 		
-		$data['categories']		= $this->Category_model->get_categories_tierd();
-		$data['product_list']	= $this->Product_model->get_products();
+		//$data['categories']		= $this->Category_model->get_categories_tierd();
+		//$data['product_list']	= $this->Product_model->get_products();
+		$data['file_list']		= $this->Digital_Product_model->get_list();
 
-		$data['page_title']		= 'Add Product';
+		$data['page_title']		= lang('product_form');
 
 		//default values are empty if the product is new
-		$data['id']				= '';
+		$data['id']					= '';
 		$data['sku']				= '';
 		$data['name']				= '';
 		$data['slug']				= '';
-		$data['description']			= '';
+		$data['description']		= '';
 		$data['excerpt']			= '';
 		$data['price']				= '';
 		$data['saleprice']			= '';
 		$data['weight']				= '';
-		$data['in_stock'] 			= '';
+		$data['track_stock'] 		= '';
 		$data['seo_title']			= '';
 		$data['meta']				= '';
-		$data['free_shipping']			= '';
 		$data['shippable']			= '';
+		$data['taxable']			= '';
+		$data['fixed_quantity']		= '';
+		$data['quantity']			= '';
+		$data['enabled']			= '';
 		$data['related_products']	= array();
 		$data['product_categories']	= array();
 		$data['images']				= array();
+		$data['product_files']		= array();
 
 		//create the photos array for later use
 		$data['photos']		= array();
 
 		if ($id)
 		{	
+			// get the existing file associations and create a format we can read from the form to set the checkboxes
+			$pr_files 		= $this->Digital_Product_model->get_associations_by_product($id);
+			foreach($pr_files as $f)
+			{
+				$data['product_files'][]  = $f->file_id;
+			}
+			
+			// get product & options data
 			$data['product_options']	= $this->Option_model->get_product_options($id);
 			$product					= $this->Product_model->get_product($id);
-
+			
 			//if the product does not exist, redirect them to the product list with an error
 			if (!$product)
 			{
-				$this->session->set_flashdata('error', 'The requested product could not be found.');
+				$this->session->set_flashdata('error', lang('error_not_found'));
 				redirect($this->config->item('admin_folder').'/products');
 			}
-
+			
 			//helps us with the slug generation
 			$this->product_name	= $this->input->post('slug', $product->slug);
 			
-			
-			//if we're duplicating the product, then this should not be set
-			if(!$duplicate)
-			{
-				$data['page_title']	= 'Edit Product';
-			}
-			
 			//set values to db values
-			$data['id']				= $id;
+			$data['id']					= $id;
 			$data['sku']				= $product->sku;
 			$data['name']				= $product->name;
 			$data['seo_title']			= $product->seo_title;
 			$data['meta']				= $product->meta;
 			$data['slug']				= $product->slug;
-			$data['description']			= $product->description;
+			$data['description']		= $product->description;
 			$data['excerpt']			= $product->excerpt;
 			$data['price']				= $product->price;
 			$data['saleprice']			= $product->saleprice;
 			$data['weight']				= $product->weight;
-			$data['in_stock'] 			= $product->in_stock;
-			$data['free_shipping'] 			= $product->free_shipping;
-			$data['shippable'] 			= $product->shippable;
+			$data['track_stock'] 		= $product->track_stock;
+			$data['shippable']			= $product->shippable;
+			$data['quantity']			= $product->quantity;
+			$data['taxable']			= $product->taxable;
+			$data['fixed_quantity']		= $product->fixed_quantity;
+			$data['enabled']			= $product->enabled;
 			
 			//make sure we haven't submitted the form yet before we pull in the images/related products from the database
 			if(!$this->input->post('submit'))
 			{
 				$data['product_categories']	= $product->categories;
-				$data['related_products']	= json_decode($product->related_products);
+				$data['related_products']	= $product->related_products;
 				$data['images']				= (array)json_decode($product->images);
 			}
 		}
@@ -132,17 +236,22 @@ class Products extends CI_Controller {
 		$this->form_validation->set_rules('caption', 'Caption');
 		$this->form_validation->set_rules('primary_photo', 'Primary');
 
-		$this->form_validation->set_rules('sku', 'SKU', 'trim');
-		$this->form_validation->set_rules('seo_title', 'SEO Title', 'trim');
-		$this->form_validation->set_rules('meta', 'Meta Data', 'trim');
-		$this->form_validation->set_rules('name', 'Name', 'trim|required|max_length[64]');
-		$this->form_validation->set_rules('slug', 'slug', 'trim');
-		$this->form_validation->set_rules('description', 'Description', 'trim');
-		$this->form_validation->set_rules('excerpt', 'Excerpt', 'trim');
-		$this->form_validation->set_rules('price', 'Price', 'trim|numeric');
-		$this->form_validation->set_rules('saleprice', 'Sale Price', 'trim|numeric');
-		$this->form_validation->set_rules('weight', 'Weight', 'trim|numeric');
-		$this->form_validation->set_rules('in_stock', 'In Stock', 'trim|numeric');
+		$this->form_validation->set_rules('sku', 'lang:sku', 'trim');
+		$this->form_validation->set_rules('seo_title', 'lang:seo_title', 'trim');
+		$this->form_validation->set_rules('meta', 'lang:meta_data', 'trim');
+		$this->form_validation->set_rules('name', 'lang:name', 'trim|required|max_length[64]');
+		$this->form_validation->set_rules('slug', 'lang:slug', 'trim');
+		$this->form_validation->set_rules('description', 'lang:description', 'trim');
+		$this->form_validation->set_rules('excerpt', 'lang:excerpt', 'trim');
+		$this->form_validation->set_rules('price', 'lang:price', 'trim|numeric|floatval');
+		$this->form_validation->set_rules('saleprice', 'lang:saleprice', 'trim|numeric|floatval');
+		$this->form_validation->set_rules('weight', 'lang:weight', 'trim|numeric|floatval');
+		$this->form_validation->set_rules('track_stock', 'lang:track_stock', 'trim|numeric');
+		$this->form_validation->set_rules('quantity', 'lang:quantity', 'trim|numeric');
+		$this->form_validation->set_rules('shippable', 'lang:shippable', 'trim|numeric');
+		$this->form_validation->set_rules('taxable', 'lang:taxable', 'trim|numeric');
+		$this->form_validation->set_rules('fixed_quantity', 'lang:fixed_quantity', 'trim|numeric');
+		$this->form_validation->set_rules('enabled', 'lang:enabled', 'trim|numeric');
 
 		/*
 		if we've posted already, get the photo stuff and organize it
@@ -163,6 +272,8 @@ class Products extends CI_Controller {
 			$data['related_products']	= $this->input->post('related_products');
 			$data['product_categories']	= $this->input->post('categories');
 			$data['images']				= $this->input->post('images');
+			$data['product_files']		= $this->input->post('downloads');
+			
 		}
 		
 		if ($this->form_validation->run() == FALSE)
@@ -171,6 +282,8 @@ class Products extends CI_Controller {
 		}
 		else
 		{
+			$this->load->helper('text');
+			
 			//first check the slug field
 			$slug = $this->input->post('slug');
 			
@@ -180,7 +293,7 @@ class Products extends CI_Controller {
 				$slug = $this->input->post('name');
 			}
 			
-			$slug	= url_title($slug, 'dash', TRUE);
+			$slug	= url_title(convert_accented_characters($slug), 'dash', TRUE);
 			
 			//validate the slug
 			$this->load->model('Routes_model');
@@ -198,19 +311,22 @@ class Products extends CI_Controller {
 				$route_id	= $this->Routes_model->save($route);
 			}
 
-			$save['id']				= $id;
+			$save['id']					= $id;
 			$save['sku']				= $this->input->post('sku');
 			$save['name']				= $this->input->post('name');
 			$save['seo_title']			= $this->input->post('seo_title');
 			$save['meta']				= $this->input->post('meta');
-			$save['description']			= $this->input->post('description');
+			$save['description']		= $this->input->post('description');
 			$save['excerpt']			= $this->input->post('excerpt');
 			$save['price']				= $this->input->post('price');
 			$save['saleprice']			= $this->input->post('saleprice');
 			$save['weight']				= $this->input->post('weight');
-			$save['in_stock']			= $this->input->post('in_stock');
-			$save['free_shipping']			= $this->input->post('free_shipping');
+			$save['track_stock']		= $this->input->post('track_stock');
+			$save['fixed_quantity']		= $this->input->post('fixed_quantity');
+			$save['quantity']			= $this->input->post('quantity');
 			$save['shippable']			= $this->input->post('shippable');
+			$save['taxable']			= $this->input->post('taxable');
+			$save['enabled']			= $this->input->post('enabled');
 			$post_images				= $this->input->post('images');
 			
 			$save['slug']				= $slug;
@@ -246,8 +362,12 @@ class Products extends CI_Controller {
 			
 			//save categories
 			$categories			= $this->input->post('categories');
+			if(!$categories)
+			{
+				$categories	= array();
+			}
 			
-			
+			// format options
 			$options	= array();
 			if($this->input->post('option'))
 			{
@@ -257,8 +377,22 @@ class Products extends CI_Controller {
 				}
 
 			}	
-
+			
+			// save product 
 			$product_id	= $this->Product_model->save($save, $options, $categories);
+			
+			// add file associations
+			// clear existsing
+			$this->Digital_Product_model->disassociate(false, $product_id);
+			// save new
+			$downloads = $this->input->post('downloads');
+			if(is_array($downloads))
+			{
+				foreach($downloads as $d)
+				{
+					$this->Digital_Product_model->associate($d, $product_id);
+				}
+			}			
 
 			//save the route
 			$route['id']	= $route_id;
@@ -267,14 +401,7 @@ class Products extends CI_Controller {
 			
 			$this->Routes_model->save($route);
 			
-			if (!$id)
-			{
-				$this->session->set_flashdata('message', 'The "'.$this->input->post('name').'" product has been added.');
-			}
-			else
-			{
-				$this->session->set_flashdata('message', 'Information for the "'.$this->input->post('name').'" product has been updated.');
-			}
+			$this->session->set_flashdata('message', lang('message_saved_product'));
 
 			//go back to the product list
 			redirect($this->config->item('admin_folder').'/products');
@@ -294,7 +421,7 @@ class Products extends CI_Controller {
 		$data['error']	= false;
 		
 		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= $this->config->item('size_limit');
+		//$config['max_size']	= $this->config->item('size_limit');
 		$config['upload_path'] = 'uploads/images/full';
 		$config['encrypt_name'] = true;
 		$config['remove_spaces'] = true;
@@ -309,13 +436,13 @@ class Products extends CI_Controller {
 			/*
 			
 			I find that ImageMagick is more efficient that GD2 but not everyone has it
-			if your server has ImageMagick then change out the line
+			if your server has ImageMagick then you can change out the line
 			
 			$config['image_library'] = 'gd2';
 			
 			with
 			
-			$config['library_path']		= '/usr/bin/convert';
+			$config['library_path']		= '/usr/bin/convert'; //make sure you use the correct path to ImageMagic
 			$config['image_library']	= 'ImageMagick';
 			*/			
 			
@@ -370,7 +497,7 @@ class Products extends CI_Controller {
 			//if the product does not exist, redirect them to the customer list with an error
 			if (!$product)
 			{
-				$this->session->set_flashdata('message', 'The requested product could not be found.');
+				$this->session->set_flashdata('error', lang('error_not_found'));
 				redirect($this->config->item('admin_folder').'/products');
 			}
 			else
@@ -381,16 +508,16 @@ class Products extends CI_Controller {
 				$this->Routes_model->remove('('.$product->slug.')');
 
 				//if the product is legit, delete them
-				$delete	= $this->Product_model->delete_product($id);
+				$this->Product_model->delete_product($id);
 
-				$this->session->set_flashdata('message', 'The "'.$product->name.'" product has been deleted from the system.');
+				$this->session->set_flashdata('message', lang('message_deleted_product'));
 				redirect($this->config->item('admin_folder').'/products');
 			}
 		}
 		else
 		{
 			//if they do not provide an id send them to the product list page with an error
-			$this->session->set_flashdata('message', 'The requested product could not be found.');
+			$this->session->set_flashdata('error', lang('error_not_found'));
 			redirect($this->config->item('admin_folder').'/products');
 		}
 	}

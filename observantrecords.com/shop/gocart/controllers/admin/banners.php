@@ -1,16 +1,14 @@
 <?php
-class Banners extends CI_Controller
+class Banners extends Admin_Controller
 {
 	function __construct()
 	{
 		parent::__construct();
-		
+
 		remove_ssl();
-		
-		$this->load->library('auth');
-		
-		$this->auth->is_logged_in(uri_string());
 		$this->auth->check_access('Admin', true);
+		
+		$this->lang->load('banner');
 		
 		$this->load->model('Banner_model');
 		$this->load->helper('date');
@@ -20,7 +18,7 @@ class Banners extends CI_Controller
 	function index()
 	{
 		$data['banners']		= $this->Banner_model->get_banners();
-		$data['page_title']		= 'Banners';
+		$data['page_title']		= lang('banners');
 		
 		$this->load->view($this->config->item('admin_folder').'/banners', $data);
 	}
@@ -33,7 +31,9 @@ class Banners extends CI_Controller
 	
 	function delete($id)
 	{
-		$this->session->set_flashdata('message', $this->Banner_model->delete($id));
+		$this->Banner_model->delete($id);
+		
+		$this->session->set_flashdata('message', lang('message_delete_banner'));
 		redirect($this->config->item('admin_folder').'/banners');
 	}
 	
@@ -47,8 +47,6 @@ class Banners extends CI_Controller
 		$config['upload_path']		= 'uploads';
 		$config['allowed_types']	= 'gif|jpg|png';
 		$config['max_size']			= $this->config->item('size_limit');
-		$config['max_width']		= '1024';
-		$config['max_height']		= '768';
 		$config['encrypt_name']		= true;
 		$this->load->library('upload', $config);
 		
@@ -66,20 +64,22 @@ class Banners extends CI_Controller
 							,'new_window'=>false	
 						);
 		
-		$data['page_title']	= 'New Ad';
 		if($id)
 		{
 			$data				= (array) $this->Banner_model->get_banner($id);
+			$data['enable_on']	= format_mdy($data['enable_on']);
+			$data['disable_on']	= format_mdy($data['disable_on']);
 			$data['new_window']	= (bool) $data['new_window'];
-			$data['page_title']	= 'Edit Ad';
 		}
 		
-		$this->form_validation->set_rules('title', 'Title', 'trim|required|full_decode');
-		$this->form_validation->set_rules('enable_on', 'Enable On', 'trim');
-		$this->form_validation->set_rules('disable_on', 'Disable On', 'trim|callback_date_check');
-		$this->form_validation->set_rules('image', 'image', 'trim');
-		$this->form_validation->set_rules('link', 'Link', 'trim');
-		$this->form_validation->set_rules('new_window', 'New Window', 'trim');
+		$data['page_title']	= lang('banner_form');
+		
+		$this->form_validation->set_rules('title', 'lang:title', 'trim|required|full_decode');
+		$this->form_validation->set_rules('enable_on', 'lang:enable_on', 'trim');
+		$this->form_validation->set_rules('disable_on', 'lang:disable_on', 'trim|callback_date_check');
+		$this->form_validation->set_rules('image', 'lang:image', 'trim');
+		$this->form_validation->set_rules('link', 'lang:link', 'trim');
+		$this->form_validation->set_rules('new_window', 'lang:new_window', 'trim');
 		
 		if ($this->form_validation->run() == false)
 		{
@@ -92,11 +92,11 @@ class Banners extends CI_Controller
 			$uploaded	= $this->upload->do_upload('image');
 			
 			$save['title']			= $this->input->post('title');
-			$save['enable_on']		= $this->input->post('enable_on');
-			$save['disable_on']		= $this->input->post('disable_on');
+			$save['enable_on']		= format_ymd($this->input->post('enable_on'));
+			$save['disable_on']		= format_ymd($this->input->post('disable_on'));
 			$save['link']			= $this->input->post('link');
 			$save['new_window']		= $this->input->post('new_window');
-
+			
 			if ($id)
 			{
 				$save['id']	= $id;
@@ -134,22 +134,21 @@ class Banners extends CI_Controller
 			}
 			
 			$this->Banner_model->save_banner($save);
-			$message	= 'The "'.$this->input->post('title').'" banner has been saved.';
 			
-			$this->session->set_flashdata('message', $message);
+			$this->session->set_flashdata('message', lang('message_banner_saved'));
 			
 			redirect($this->config->item('admin_folder').'/banners');
 		}	
 	}
 
-	function date_check($str)
+	function date_check()
 	{
 		
-		if ($this->input->post('enable_on') != '')
+		if ($this->input->post('disable_on') != '')
 		{
-			if ($this->input->post('enable_on') >= $str)
+			if (format_ymd($this->input->post('disable_on')) <= format_ymd($this->input->post('enable_on')))
 			{
-				$this->form_validation->set_message('date_check', 'The "Disable On" date cannot come on or before the "Enable On" date.');
+				$this->form_validation->set_message('date_check', lang('date_error'));
 				return FALSE;
 			}
 		}

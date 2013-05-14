@@ -1,52 +1,23 @@
 <?php
 
-class Secure extends CI_Controller {
-
-	//we collect the categories automatically with each load rather than for each function
-	//this just cuts the codebase down a bit
-	var $categories	= '';
-	
-	//this is so there will be a breadcrumb on every page even if it is blank
-	//the breadcrumbs currently suck. on a product page if you refresh, you lose the path
-	//will have to find a better way for these, but it's not a priority
-	var $breadcrumb	= '';	
-	
-	// determine whether to display gift card link on all cart pages
-	var $gift_cards_enabled = false; 
-	
-	//load all the pages into this variable so we can call it from all the methods
-	var $pages;
+class Secure extends Front_Controller {
 	
 	var $customer;
-	
-	var $header_text;
 	
 	function __construct()
 	{
 		parent::__construct();
 		
-		//check to see if they are on a secure URL, this will stop them from typing in the insecure url and
-		//attempting to force an insecure page.... why would someone do this? I dunnno....
 		force_ssl();
 		
-		$this->load->library('Go_cart');
-		$this->load->model(array('Page_model', 'Product_model', 'Option_model','location_model'));
-		$this->load->helper('form_helper');
+		$this->load->model(array('location_model'));
 		
 		$this->customer = $this->go_cart->customer();
-		
-		//fill up our categories variable
-		$this->categories =  $this->Category_model->get_categories_tierd(0);
-		$this->pages		= $this->Page_model->get_pages(0, array(138));
-		$this->header_text	= $this->Page_model->get_page(142);
-		$gc_setting = $this->Settings_model->get_settings('gift_cards');
-		if(!empty($gc_setting['enabled']) && $gc_setting['enabled']==1) $this->gift_cards_enabled = true;
 	}
 	
 	function index()
 	{
-		//we don't have a default landing page for secure
-		redirect('');
+		show_404();
 	}
 	
 	function login($ajax = false)
@@ -103,7 +74,7 @@ class Secure extends CI_Controller {
 				else
 				{
 					$this->session->set_flashdata('redirect', $redirect);
-					$this->session->set_flashdata('error', 'Authentication Failed!');
+					$this->session->set_flashdata('error', lang('login_failed'));
 					
 					redirect('secure/login');
 				}
@@ -149,7 +120,7 @@ class Secure extends CI_Controller {
 		*/
 		$data['redirect']	= $this->session->flashdata('redirect');
 		
-		$data['page_title']	= 'Account Registration';
+		$data['page_title']	= lang('account_registration');
 		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
 		
 		//default values are empty if the customer is new
@@ -198,15 +169,15 @@ class Secure extends CI_Controller {
 			
 			$save['id']		= false;
 			
-			$save['firstname']			= set_value('firstname');
-			$save['lastname']			= set_value('lastname');
-			$save['email']				= set_value('email');
-			$save['phone']				= set_value('phone');
-			$save['company']			= set_value('company');
+			$save['firstname']			= $this->input->post('firstname');
+			$save['lastname']			= $this->input->post('lastname');
+			$save['email']				= $this->input->post('email');
+			$save['phone']				= $this->input->post('phone');
+			$save['company']			= $this->input->post('company');
 			$save['active']				= $this->config->item('new_customer_status');
-			$save['email_subscribe']	= set_value('email_subscribe');
+			$save['email_subscribe']	= intval((bool)$this->input->post('email_subscribe'));
 			
-			$save['password']			= set_value('password');
+			$save['password']			= $this->input->post('password');
 			
 			$redirect					= $this->input->post('redirect');
 			
@@ -227,8 +198,8 @@ class Secure extends CI_Controller {
 			// set replacement values for subject & body
 			
 			// {customer_name}
-			$row['subject'] = str_replace('{customer_name}', set_value('firstname').' '. set_value('lastname'), $row['subject']);
-			$row['content'] = str_replace('{customer_name}', set_value('firstname').' '. set_value('lastname'), $row['content']);
+			$row['subject'] = str_replace('{customer_name}', $this->input->post('firstname').' '. $this->input->post('lastname'), $row['subject']);
+			$row['content'] = str_replace('{customer_name}', $this->input->post('firstname').' '. $this->input->post('lastname'), $row['content']);
 			
 			// {url}
 			$row['subject'] = str_replace('{url}', $this->config->item('base_url'), $row['subject']);
@@ -252,10 +223,10 @@ class Secure extends CI_Controller {
 			
 			$this->email->send();
 			
-			$this->session->set_flashdata('message', 'Thanks for registering '.set_value('firstname').'!');
+			$this->session->set_flashdata('message', sprintf( lang('registration_thanks'), $this->input->post('firstname') ) );
 			
 			//lets automatically log them in
-			$this->Customer_model->login($save['email'], set_value('confirm'));
+			$this->Customer_model->login($save['email'], $this->input->post('confirm'));
 			
 			//we're just going to make this secure regardless, because we don't know if they are
 			//wanting to redirect to an insecure location, if it needs to be secured then we can use the secure redirect in the controller
@@ -277,7 +248,7 @@ class Secure extends CI_Controller {
 		
         if ($email)
        	{
-			$this->form_validation->set_message('check_email', 'The requested email is already in use.');
+			$this->form_validation->set_message('check_email', lang('error_email'));
 			return FALSE;
 		}
 		else
@@ -288,7 +259,7 @@ class Secure extends CI_Controller {
 	
 	function forgot_password()
 	{
-		$data['page_title']	= 'Forgot Password';
+		$data['page_title']	= lang('forgot_password');
 		$data['gift_cards_enabled'] = $this->gift_cards_enabled;
 		$submitted = $this->input->post('submitted');
 		if ($submitted)
@@ -300,11 +271,11 @@ class Secure extends CI_Controller {
 			
 			if ($reset)
 			{						
-				$this->session->set_flashdata('message', 'A new password has been generated and sent to your email.');
+				$this->session->set_flashdata('message', lang('message_new_password'));
 			}
 			else
 			{
-				$this->session->set_flashdata('message', 'There is no record of your account.');
+				$this->session->set_flashdata('error', lang('error_no_account_record'));
 			}
 			redirect('secure/forgot_password');
 		}
@@ -329,7 +300,7 @@ class Secure extends CI_Controller {
 	
 		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
 		
-		$data['customer']			= $this->go_cart->customer();
+		$data['customer']			= (array)$this->Customer_model->get_customer($this->customer['id']);
 			
 		$data['addresses'] 			= $this->Customer_model->get_address_list($this->customer['id']);
 		
@@ -347,19 +318,36 @@ class Secure extends CI_Controller {
 	//	$data['ads']		= $this->banner_model->get_banners(true);
 		$data['categories']	= $this->Category_model->get_categories_tierd(0);
 		
-		// Observant Records customization begin
-		$this->load->model('Obr_file_order_map_model');
-		$data['downloads'] = $this->Obr_file_order_map_model->get_files_by_customer_id($this->customer['id']);
-		
-		// Observant Records customization end
 		
 		// paginate the orders
 		$this->load->library('pagination');
 
-		$config['base_url'] = base_url().'secure/my_account';
+		$config['base_url'] = site_url('secure/my_account');
 		$config['total_rows'] = $this->order_model->count_customer_orders($this->customer['id']);
 		$config['per_page'] = '15'; 
 	
+		$config['first_link'] = 'First';
+		$config['first_tag_open'] = '<li>';
+		$config['first_tag_close'] = '</li>';
+		$config['last_link'] = 'Last';
+		$config['last_tag_open'] = '<li>';
+		$config['last_tag_close'] = '</li>';
+
+		$config['full_tag_open'] = '<div class="pagination"><ul>';
+		$config['full_tag_close'] = '</ul></div>';
+		$config['cur_tag_open'] = '<li class="active"><a href="#">';
+		$config['cur_tag_close'] = '</a></li>';
+
+		$config['num_tag_open'] = '<li>';
+		$config['num_tag_close'] = '</li>';
+
+		$config['prev_link'] = '&laquo;';
+		$config['prev_tag_open'] = '<li>';
+		$config['prev_tag_close'] = '</li>';
+
+		$config['next_link'] = '&raquo;';
+		$config['next_tag_open'] = '<li>';
+		$config['next_tag_close'] = '</li>';
 		
 		$this->pagination->initialize($config); 
 		
@@ -403,34 +391,75 @@ class Secure extends CI_Controller {
 		else
 		{
 			$customer = array();
-			$customer['id']					= $this->customer['id'];
-			$customer['company']			= set_value('company');
-			$customer['firstname']			= set_value('firstname');
-			$customer['lastname']			= set_value('lastname');
-			$customer['email']				= set_value('email');
-			$customer['phone']				= set_value('phone');
-			$customer['email_subscribe']	= set_value('email_subscribe');
+			$customer['id']						= $this->customer['id'];
+			$customer['company']				= $this->input->post('company');
+			$customer['firstname']				= $this->input->post('firstname');
+			$customer['lastname']				= $this->input->post('lastname');
+			$customer['email']					= $this->input->post('email');
+			$customer['phone']					= $this->input->post('phone');
+			$customer['email_subscribe']		= intval((bool)$this->input->post('email_subscribe'));
 			if($this->input->post('password') != '')
 			{
-				$customer['password']		= set_value('password');
+				$customer['password']			= $this->input->post('password');
 			}
-			$this->customer['company']		= set_value('company');
-			$this->customer['firstname']	= set_value('firstname');
-			$this->customer['lastname']		= set_value('lastname');
-			$this->customer['email']		= set_value('email');
-			$this->customer['phone']		= set_value('phone');
-			$this->customer['email_subscribe']	= set_value('email_subscribe');
-			
+						
 			$this->go_cart->save_customer($this->customer);
 			$this->Customer_model->save($customer);
 			
-			$this->session->set_flashdata('message', 'Your account has been updated');
+			$this->session->set_flashdata('message', lang('message_account_updated'));
 			
 			redirect('secure/my_account');
-			//$this->load->view('my_account', $data);
 		}
 	
 	}
+	
+	
+	function my_downloads($code=false)
+	{
+		
+		if($code!==false)
+		{
+			$data['downloads'] = $this->Digital_Product_model->get_downloads_by_code($code);
+		} else {
+			$this->Customer_model->is_logged_in();
+			
+			$customer = $this->go_cart->customer();
+			
+			$data['downloads'] = $this->Digital_Product_model->get_user_downloads($customer['id']);
+		}
+		
+		$data['gift_cards_enabled']	= $this->gift_cards_enabled;
+		
+		$data['page_title'] = lang('my_downloads');
+		
+		$this->load->view('my_downloads', $data);
+	}
+	
+	
+	function download($link)
+	{
+		$filedata = $this->Digital_Product_model->get_file_info_by_link($link);
+		
+		// missing file (bad link)
+		if(!$filedata)
+		{
+			show_404();
+		}
+		
+		// validate download counter
+		if(intval($filedata->downloads) >= intval($filedata->max_downloads))
+		{
+			show_404();
+		}
+		
+		// increment downloads counter
+		$this->Digital_Product_model->touch_download($link);
+		
+		// Deliver file
+		$this->load->helper('download');
+		force_download('uploads/digital_uploads/', $filedata->filename);
+	}
+	
 	
 	function set_default_address()
 	{
@@ -562,15 +591,15 @@ class Secure extends CI_Controller {
 			$a = array();
 			$a['id']						= ($id==0) ? '' : $id;
 			$a['customer_id']				= $this->customer['id'];
-			$a['field_data']['company']		= set_value('company');
-			$a['field_data']['firstname']	= set_value('firstname');
-			$a['field_data']['lastname']	= set_value('lastname');
-			$a['field_data']['email']		= set_value('email');
-			$a['field_data']['phone']		= set_value('phone');
-			$a['field_data']['address1']	= set_value('address1');
-			$a['field_data']['address2']	= set_value('address2');
-			$a['field_data']['city']		= set_value('city');
-			$a['field_data']['zip']			= set_value('zip');
+			$a['field_data']['company']		= $this->input->post('company');
+			$a['field_data']['firstname']	= $this->input->post('firstname');
+			$a['field_data']['lastname']	= $this->input->post('lastname');
+			$a['field_data']['email']		= $this->input->post('email');
+			$a['field_data']['phone']		= $this->input->post('phone');
+			$a['field_data']['address1']	= $this->input->post('address1');
+			$a['field_data']['address2']	= $this->input->post('address2');
+			$a['field_data']['city']		= $this->input->post('city');
+			$a['field_data']['zip']			= $this->input->post('zip');
 			
 			// get zone / country data using the zone id submitted as state
 			$country = $this->location_model->get_country(set_value('country_id'));	
@@ -580,40 +609,15 @@ class Secure extends CI_Controller {
 				$a['field_data']['zone']		= $zone->code;  // save the state for output formatted addresses
 				$a['field_data']['country']		= $country->name; // some shipping libraries require country name
 				$a['field_data']['country_code']   = $country->iso_code_2; // some shipping libraries require the code 
-				$a['field_data']['country_id']  = set_value('country_id');
-				$a['field_data']['zone_id']		= set_value('zone_id');  
+				$a['field_data']['country_id']  = $this->input->post('country_id');
+				$a['field_data']['zone_id']		= $this->input->post('zone_id');  
 			}
 			
 			$this->Customer_model->save_address($a);
-			$this->session->set_flashdata('message', 'Your address has been saved!');
+			$this->session->set_flashdata('message', lang('message_address_saved'));
 			echo 1;
 		}
 	}
-	
-	// address management functions
-	/*
-	function save_address()
-	{
-		$data = $this->input->post('address');
-		if($data)
-		{
-			$customer = $this->go_cart->customer();
-			$data['customer_id'] = $customer['id'];
-			
-			// get zone / country data using the zone id submitted as state
-			$country = $this->location_model->get_country_by_zone_id(set_value('state'));			
-			if(!empty($country))
-			{
-				$data['field_data']['state']		= $country->code;  // save the state for output formatted addresses
-				$data['field_data']['country']		= $country->c_name; // some shipping libraries require country name
-				$data['field_data']['country_code']   = $country->iso_code_2; // some shipping libraries require the code 
-				$data['field_data']['zone_id']		= set_value('state');  // use the zone id to populate address state field value
-			}
-			
-			echo json_encode(array('id'=>$this->Customer_model->save_address($data)));
-		}
-	}
-	*/
 	
 	function delete_address()
 	{
@@ -623,63 +627,4 @@ class Secure extends CI_Controller {
 		$this->Customer_model->delete_address($id, $customer['id']);
 		echo $id;
 	}
-	
-	function send_email_comments()
-	{
-		
-		if(!$this->input->post('submitted'))
-		{
-			$this->load->view('email_comments');
-		
-		} else {	
-			
-			$this->load->library('email');
-			
-			$config['mailtype'] = 'html';
-			
-			$this->email->initialize($config);
-	
-			$this->email->from($this->input->post('email'), $this->input->post('name'));
-			$this->email->to($this->config->item('email'));
-			
-			$this->email->subject('New comments submitted from '.$this->config->item('company_name')); 
-			$this->email->message($this->input->post('comments'));
-			
-			$this->email->send();
-			
-			// load to close the iframe
-			$this->load->view('email_comments', array('finished'=>true));
-		} 
-	}
-	
-	// Observant Records customization begin.
-	public function download($file_order_token) {
-		$this->load->model('Obr_file_order_map_model');
-		$rsFile = $this->Obr_file_order_map_model->get_file_by_order_token($file_order_token);
-		
-		$file_path = $rsFile->file_path . '/' . $rsFile->file_name;
-		if (file_exists($file_path) && !empty($file_order_token)) {
-			if (false !== ($fp = fopen($file_path, 'rb'))) {
-				$mime_type = get_mime_by_extension($file_path);
-				$size = filesize($file_path);
-				
-				header('Content-Type: "' . $mime_type . '"');
-				header('Content-Disposition: attachment; filename="'. $rsFile->file_name . '"');
-				header("Content-Transfer-Encoding: binary");
-				header('Expires: 0');
-				header('Pragma: no-cache');
-				header("Content-Length: ". $size);
-				
-				while (!feof($fp)) {
-					echo fread($fp, 102400);
-				}
-				fclose($fp);
-			}
-			
-		}
-		
-		
-	}
-	
-	// Observant Records customization end.
 }

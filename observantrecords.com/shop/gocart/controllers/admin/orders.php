@@ -1,28 +1,47 @@
 <?php
 
-class Orders extends CI_Controller {	
+class Orders extends Admin_Controller {	
 
 	function __construct()
 	{		
 		parent::__construct();
-		$this->load->library('Auth');
+
 		remove_ssl();
-		//this adds the redirect url to our flash data, incase they are not logged in
-		$this->auth->is_logged_in(uri_string());
-		
 		$this->load->model('Order_model');
 		$this->load->model('Search_model');
 		$this->load->model('location_model');
-		$this->load->model('Obr_file_order_map_model');
-		$this->load->helper(array('formatting', 'utility'));
+		$this->load->helper(array('formatting'));
+		$this->lang->load('order');
 	}
 	
-	function index($sort_by='order_number',$sortorder='desc', $code=0, $page=0, $rows=15)
+	function index($sort_by='order_number',$sort_order='desc', $code=0, $page=0, $rows=15)
 	{
+		
+		//if they submitted an export form do the export
+		if($this->input->post('submit') == 'export')
+		{
+			$this->load->model('customer_model');
+			$this->load->helper('download_helper');
+			$post	= $this->input->post(null, false);
+			$term	= (object)$post;
+
+			$data['orders']	= $this->Order_model->get_orders($term);		
+
+			foreach($data['orders'] as &$o)
+			{
+				$o->items	= $this->Order_model->get_items($o->id);
+			}
+
+			force_download_content('orders.xml', $this->load->view($this->config->item('admin_folder').'/orders_xml', $data, true));
+			
+			//kill the script from here
+			die;
+		}
+		
 		$this->load->helper('form');
 		$this->load->helper('date');
 		$data['message']	= $this->session->flashdata('message');
-		$data['page_title']	= 'Orders';
+		$data['page_title']	= lang('orders');
 		$data['code']		= $code;
 		$term				= false;
 		
@@ -30,9 +49,9 @@ class Orders extends CI_Controller {
 		if($post)
 		{
 			//if the term is in post, save it to the db and give me a reference
-			$term	= json_encode($post);
-			$data['code']	= $this->Search_model->record_term($term);
-			
+			$term			= json_encode($post);
+			$code			= $this->Search_model->record_term($term);
+			$data['code']	= $code;
 			//reset the term to an object for use
 			$term	= (object)$post;
 		}
@@ -43,20 +62,42 @@ class Orders extends CI_Controller {
 		} 
  		
  		$data['term']	= $term;
- 		$data['orders']	= $this->Order_model->get_orders($term, $sort_by, $sortorder, $rows, $page);
+ 		$data['orders']	= $this->Order_model->get_orders($term, $sort_by, $sort_order, $rows, $page);
 		$data['total']	= $this->Order_model->get_orders_count($term);
 		
 		$this->load->library('pagination');
 		
-		$config['base_url'] = $this->config->item('admin_folder').'/orders/index/'.$sort_by.'/'.$sortorder.'/'.$code.'/';
-		$config['total_rows'] = $data['total'];
-		$config['per_page'] = $rows;
+		$config['base_url']			= site_url($this->config->item('admin_folder').'/orders/index/'.$sort_by.'/'.$sort_order.'/'.$code.'/');
+		$config['total_rows']		= $data['total'];
+		$config['per_page']			= $rows;
+		$config['uri_segment']		= 7;
+		$config['first_link']		= 'First';
+		$config['first_tag_open']	= '<li>';
+		$config['first_tag_close']	= '</li>';
+		$config['last_link']		= 'Last';
+		$config['last_tag_open']	= '<li>';
+		$config['last_tag_close']	= '</li>';
+
+		$config['full_tag_open']	= '<div class="pagination"><ul>';
+		$config['full_tag_close']	= '</ul></div>';
+		$config['cur_tag_open']		= '<li class="active"><a href="#">';
+		$config['cur_tag_close']	= '</a></li>';
+		
+		$config['num_tag_open']		= '<li>';
+		$config['num_tag_close']	= '</li>';
+		
+		$config['prev_link']		= '&laquo;';
+		$config['prev_tag_open']	= '<li>';
+		$config['prev_tag_close']	= '</li>';
+
+		$config['next_link']		= '&raquo;';
+		$config['next_tag_open']	= '<li>';
+		$config['next_tag_close']	= '</li>';
 		
 		$this->pagination->initialize($config);
 	
 		$data['sort_by']	= $sort_by;
-		$data['sortorder']	= $sortorder;
-		$data['pages']		= $this->pagination->create_links();
+		$data['sort_order']	= $sort_order;
 				
 		$this->load->view($this->config->item('admin_folder').'/orders', $data);
 	}
@@ -75,7 +116,7 @@ class Orders extends CI_Controller {
 			$o->items	= $this->Order_model->get_items($o->id);
 		}
 
-		force_download('orders.xml', $this->load->view($this->config->item('admin_folder').'/orders_xml', $data, true));
+		force_download_content('orders.xml', $this->load->view($this->config->item('admin_folder').'/orders_xml', $data, true));
 		
 	}
 	
@@ -85,8 +126,12 @@ class Orders extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model('Gift_card_model');
 			
-		$this->form_validation->set_rules('notes', 'Notes');
-		$this->form_validation->set_rules('status', 'Status', 'required');
+		$this->form_validation->set_rules('notes', 'lang:notes');
+		$this->form_validation->set_rules('status', 'lang:status', 'required');
+	
+		$message	= $this->session->flashdata('message');
+		
+	
 		if ($this->form_validation->run() == TRUE)
 		{
 			$save			= array();
@@ -94,28 +139,52 @@ class Orders extends CI_Controller {
 			$save['notes']	= $this->input->post('notes');
 			$save['status']	= $this->input->post('status');
 			
-			$data['message']	='The order has been updated!';
+			$data['message']	= lang('message_order_updated');
 			
 			$this->Order_model->save_order($save);
 		}
 		//get the order information, this way if something was posted before the new one gets queried here
-		$data['page_title']	= 'View Order';
+		$data['page_title']	= lang('view_order');
 		$data['order']		= $this->Order_model->get_order($id);
-		//echo '<pre>';
-		//print_r($data['order']);
-		//echo '</pre>';
-		$data['files']		= $this->Obr_file_order_map_model->get_files_by_order_id($data['order']->order_number);
 		
+		/*****************************
+		* Order Notification details *
+		******************************/
+		// get the list of canned messages (order)
+		$this->load->model('Messages_model');
+    	$msg_templates = $this->Messages_model->get_list('order');
+		
+		// replace template variables
+    	foreach($msg_templates as $msg)
+    	{
+ 			// fix html
+ 			$msg['content'] = str_replace("\n", '', html_entity_decode($msg['content']));
+ 			
+ 			// {order_number}
+ 			$msg['subject'] = str_replace('{order_number}', $data['order']->order_number, $msg['subject']);
+			$msg['content'] = str_replace('{order_number}', $data['order']->order_number, $msg['content']);
+    		
+    		// {url}
+			$msg['subject'] = str_replace('{url}', $this->config->item('base_url'), $msg['subject']);
+			$msg['content'] = str_replace('{url}', $this->config->item('base_url'), $msg['content']);
+			
+			// {site_name}
+			$msg['subject'] = str_replace('{site_name}', $this->config->item('company_name'), $msg['subject']);
+			$msg['content'] = str_replace('{site_name}', $this->config->item('company_name'), $msg['content']);
+			
+			$data['msg_templates'][]	= $msg;
+    	}
+
 		// we need to see if any items are gift cards, so we can generate an activation link
 		foreach($data['order']->contents as $orderkey=>$product)
 		{
-			if(isset($product['is_gc']))
+			if(isset($product['is_gc']) && (bool)$product['is_gc'])
 			{
-				if($this->Gift_card_model->is_active($product['code']))
+				if($this->Gift_card_model->is_active($product['sku']))
 				{
-					$data['order']->contents[$orderkey]['gc_status'] = '[ Gift Card is Active ]';
+					$data['order']->contents[$orderkey]['gc_status'] = '[ '.lang('giftcard_is_active').' ]';
 				} else {
-					$data['order']->contents[$orderkey]['gc_status'] = ' [ <a href="'. base_url() . $this->config->item('admin_folder').'/giftcards/activate/'. $product['code'].'">Activate</a> ]';
+					$data['order']->contents[$orderkey]['gc_status'] = ' [ <a href="'. base_url() . $this->config->item('admin_folder').'/giftcards/activate/'. $product['code'].'">'.lang('activate').'</a> ]';
 				}
 			}
 		}
@@ -145,62 +214,24 @@ class Orders extends CI_Controller {
     
     function send_notification($order_id='')
     {
-    	
-    	$send = $this->input->post('send');
-    	if(!empty($send))
-    	{
-    		// send the message
-    		$this->load->library('email');
-			
-			$config['mailtype'] = 'html';
-			
-			$this->email->initialize($config);
-	
-			$this->email->from($this->config->item('email'), $this->config->item('company_name'));
-			$this->email->to($this->input->post('recipient'));
-			
-			$this->email->subject($this->input->post('subject'));
-			$this->email->message(html_entity_decode($this->input->post('content')));
-			
-			$this->email->send();
-			
-			$this->load->view($this->config->item('admin_folder').'/iframe/order_notification.php', array('finished'=>1));
-			
-			return;
-    	}
-    	
-    	
-    	$this->load->model('Messages_model');
-    	
-    	// get the order details
-    	$data['order'] = $this->Order_model->get_order($order_id);
-    	
-    	// get the list of canned messages (order)
-    	$data['msg_templates'] = $this->Messages_model->get_list('order');
-    	
-    	// replace template variables
-    	foreach($data['msg_templates'] as &$msg)
-    	{
- 			// fix html
- 			$msg['content'] = str_replace("\n", '', html_entity_decode($msg['content']));
- 			
- 			// {order_number}
- 			$msg['subject'] = str_replace('{order_number}', $data['order']->order_number, $msg['subject']);
-			$msg['content'] = str_replace('{order_number}', $data['order']->order_number, $msg['content']);
-    		
-    		// {url}
-			$msg['subject'] = str_replace('{url}', $this->config->item('base_url'), $msg['subject']);
-			$msg['content'] = str_replace('{url}', $this->config->item('base_url'), $msg['content']);
-			
-			// {site_name}
-			$msg['subject'] = str_replace('{site_name}', $this->config->item('company_name'), $msg['subject']);
-			$msg['content'] = str_replace('{site_name}', $this->config->item('company_name'), $msg['content']);
-			
-    	}
-    	
-    	$this->load->view($this->config->item('admin_folder').'/iframe/order_notification.php', $data);
- 
-    }
+			// send the message
+   		$this->load->library('email');
+		
+		$config['mailtype'] = 'html';
+		
+		$this->email->initialize($config);
+
+		$this->email->from($this->config->item('email'), $this->config->item('company_name'));
+		$this->email->to($this->input->post('recipient'));
+		
+		$this->email->subject($this->input->post('subject'));
+		$this->email->message(html_entity_decode($this->input->post('content')));
+		
+		$this->email->send();
+		
+		$this->session->set_flashdata('message', lang('sent_notification_message'));
+		redirect($this->config->item('admin_folder').'/orders/view/'.$order_id);
+	}
 	
 	function bulk_delete()
     {
@@ -212,11 +243,11 @@ class Orders extends CI_Controller {
 	   		{
 	   			$this->Order_model->delete($order);
 	   		}
-			$this->session->set_flashdata('message', 'The selected orders have been deleted.');
+			$this->session->set_flashdata('message', lang('message_orders_deleted'));
 		}
 		else
 		{
-			$this->session->set_flashdata('error', 'You did not select any orders to delete.');
+			$this->session->set_flashdata('error', lang('error_no_orders_selected'));
 		}
    		//redirect as to change the url
 		redirect($this->config->item('admin_folder').'/orders');	

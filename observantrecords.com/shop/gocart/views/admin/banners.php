@@ -17,6 +17,7 @@ function create_sortable()
 		scroll: true,
 		helper: fixHelper,
 		axis: 'y',
+		handle:'.handle',
 		update: function(){
 			save_sortable();
 		}
@@ -36,28 +37,29 @@ function save_sortable()
 }
 function areyousure()
 {
-	return confirm('Are you sure you want to delete this banner?');
+	return confirm('<?php echo lang('confirm_delete_banner');?>');
 }
 //]]>
 </script>
 
 
 
-<div class="button_set">
-	<a href="<?php echo site_url($this->config->item('admin_folder').'/banners/form'); ?>" >Add New Banner</a>
-</div>
 
+<a style="float:right;" class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/banners/form'); ?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_banner');?></a>
 
-<table class="gc_table" cellspacing="0" cellpadding="0">
+<strong style="float:left;"><?php echo lang('sort_banners')?></strong>
+
+<table class="table table-striped">
 	<thead>
 		<tr>
-			<th class="gc_cell_left">Title</th>
-			<th>Enable On</th>
-			<th>Disable On</th>
-			<th class="gc_cell_right"></th>
+			<th><?php echo lang('sort');?></th>
+			<th><?php echo lang('title');?></th>
+			<th><?php echo lang('enable_on');?></th>
+			<th><?php echo lang('disable_on');?></th>
+			<th></th>
 		</tr>
 	</thead>
-	<?php echo (count($banners) < 1)?'<tr><td style="text-align:center;" colspan="3">There are currently no banners.</td></tr>':''?>
+	<?php echo (count($banners) < 1)?'<tr><td style="text-align:center;" colspan="5">'.lang('no_banners').'</td></tr>':''?>
 	<?php if ($banners): ?>
 	<tbody id="banners_sortable">
 	<?php
@@ -99,12 +101,15 @@ function areyousure()
 		}
 		?>
 		<tr id="banners-<?php echo $banner->id;?>">
+			<td class="handle"><a class="btn" style="cursor:move"><span class="icon-align-justify"></span></a></td>
 			<td><?php echo $disabled_icon.$banner->title;?></td>
 			<td><?php echo $enable;?></td>
 			<td><?php echo $disable;?></td>
-			<td class="gc_cell_right list_buttons">
-				<a href="<?php echo  site_url($this->config->item('admin_folder').'/banners/delete/'.$banner->id);?>" onclick="return areyousure();" >Delete</a>
-				<a href="<?php echo  site_url($this->config->item('admin_folder').'/banners/form/'.$banner->id);?>">Edit</a>
+			<td>
+				<div class="btn-group" style="float:right">
+					<a class="btn" href="<?php echo  site_url($this->config->item('admin_folder').'/banners/form/'.$banner->id);?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>
+					<a class="btn btn-danger" href="<?php echo  site_url($this->config->item('admin_folder').'/banners/delete/'.$banner->id);?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
+				</div>
 			</td>
 		</tr>
 	<?php endforeach; ?>
