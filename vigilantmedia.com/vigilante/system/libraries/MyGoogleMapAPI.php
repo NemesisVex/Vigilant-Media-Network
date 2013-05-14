@@ -2,6 +2,16 @@
 
 require_once(BASEPATH . 'libraries/google/GoogleMapAPI.class.php');
 
+/**
+ * MyGoogleMapAPI
+ *
+ * 
+ * @package CodeIgniter
+ * @subpackage Vigilant Media Network
+ * @category Libraries
+ * @author Greg Bueno
+ * @copyright (c) 2012 Greg Bueno
+ */
 class MyGoogleMapAPI extends GoogleMapAPI
 {
 	function __construct()

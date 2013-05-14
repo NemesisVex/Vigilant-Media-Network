@@ -1,5 +1,15 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * MyAmazon
+ *
+ * 
+ * @package CodeIgniter
+ * @subpackage Vigilant Media Network
+ * @category Libraries
+ * @author Greg Bueno
+ * @copyright (c) 2012 Greg Bueno
+ */
 class MyAmazon
 {
 	var $CI;

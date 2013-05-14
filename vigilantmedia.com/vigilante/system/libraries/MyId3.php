@@ -1,32 +1,19 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/*
-|==========================================================
-| Code Igniter - by pMachine
-|----------------------------------------------------------
-| www.codeignitor.com
-|----------------------------------------------------------
-| Copyright (c) 2006, pMachine, Inc.
-|----------------------------------------------------------
-| This library is licensed under an open source agreement:
-| www.codeignitor.com/docs/license.html
-|----------------------------------------------------------
-| File: libraries/Smarty.php
-|----------------------------------------------------------
-| Purpose: Wrapper for Smarty Templates
-|==========================================================
-*/
 require_once(BASEPATH . "libraries/getid3/getid3.php");
 
+/**
+ * MyId3
+ *
+ * 
+ * @package CodeIgniter
+ * @subpackage Vigilant Media Network
+ * @category Libraries
+ * @author Greg Bueno
+ * @copyright (c) 2012 Greg Bueno
+ */
 class MyId3 extends getid3
 {
-/*
-|==========================================================
-| Constructor
-|==========================================================
-|
-|
-*/
 	var $id3;
 	
 	function MyId3()
