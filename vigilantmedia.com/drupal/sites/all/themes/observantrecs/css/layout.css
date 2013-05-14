@@ -371,3 +371,28 @@ ol.track-list li div
 	border:0;
 	display:block;
 }
+
+.release-row {
+	width: 950px;
+	margin-right: 0px;
+}
+
+.release {
+	float: left;
+	width: 190px;
+	padding-right: 40px;
+	margin-right: 10px;
+}
+
+.release-last {
+	float: left;
+	width: 190px;
+	padding-right: 40px;
+	margin-right: 0px;
+}
+
+.release-list-info {
+	list-style-type: none;
+	padding-left: 0;
+	margin-left: 0;
+}

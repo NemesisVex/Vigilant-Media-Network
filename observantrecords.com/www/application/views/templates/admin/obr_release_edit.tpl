@@ -73,6 +73,16 @@
 			</p>
 
 			<p>
+				<label for="release_credits">Credits:</label>
+				<textarea name="release_credits" cols="50" rows="10">{$rsRelease->release_credits|escape:"html"}</textarea>
+			</p>
+
+			<p>
+				<label for="release_store_description">Ecommerce Description:</label>
+				<textarea name="release_store_description" cols="50" rows="10">{$rsRelease->release_store_description|escape:"html"}</textarea>
+			</p>
+
+			<p>
 				<label for="release_music_description">Description:</label>
 				<textarea name="release_music_description" cols="50" rows="10">{$rsRelease->release_music_description|escape:"html"}</textarea>
 			</p>
