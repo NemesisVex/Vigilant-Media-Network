@@ -396,3 +396,13 @@ ol.track-list li div
 	padding-left: 0;
 	margin-left: 0;
 }
+
+.release-credits {
+	list-style-type: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+.release-credits li {
+	margin-bottom: 1em;
+}
