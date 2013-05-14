@@ -1,8 +1,14 @@
 <?php
+$artists = array();
+if (class_exists('OR_Artist')) {
+	$artist_info = new OR_Artist();
+	$artists = $artist_info->get_artists();
+}
+
 $albums = array();
 if (class_exists('OR_Albums')) {
 	$album_info = new OR_Albums();
-	$albums = $album_info->get_albums('eponymous-4');
+	$albums = $album_info->get_albums(NULL, 'al.album_release_date desc');
 
 	$node_ids = db_query('select * from {node} where type = :type', array(':type' => 'album'))->fetchAllAssoc('nid', PDO::FETCH_ASSOC);
 	$album_aliases = array();
@@ -17,16 +23,23 @@ if (class_exists('OR_Albums')) {
 }
 ?>
 
+<pre>
+<?php print_r($album_aliases); ?>
+<?php print_r($albums); ?>
+</pre>
+
 <?php if (!empty($albums)):?>
-<ul class="album-list">
+<?php $r = 1; ?>
+<div class="release-row">
 	<?php foreach ($albums as $album): ?>
 		<?php if (false !== array_search($album['album_alias'], $album_aliases)): ?>
-	<li>
+	<div class="release<?php if ($r % 4 == 0):?>-last<?php endif; ?>">
 		<a href="/music/<?php echo $album['album_alias'];?>"><img src="sites/eponymous4.com/files/images/_covers/_exm_front_200_<?php echo $album['album_image'];?>" alt="<?php echo $album['album_title'] ?>" title="<?php echo $album['album_title']; ?>" /></a>
-	</li>
+	</div>
+		<?php $r++; ?>
 		<?php endif; ?>
 	<?php endforeach; ?>
-</ul>
+</div>
 <?php else: ?>
 <p>Albums for this artist are not yet available.</p>
 <?php endif; ?>

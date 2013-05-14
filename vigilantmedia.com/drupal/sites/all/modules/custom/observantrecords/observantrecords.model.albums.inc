@@ -7,7 +7,7 @@ class OR_Albums extends OR_Model {
 		$this->connect();
 	}
 	
-	public function get_albums($artist_alias = null) {
+	public function get_albums($artist_alias = null, $options = null) {
 		$this->activate();
 		$args = array();
 		
@@ -18,11 +18,13 @@ class OR_Albums extends OR_Model {
 		$query .= 'where ';
 		if (!empty($artist_alias)) {
 			$query .= 'ar.artist_alias = :artist_alias and ';
-			$args = array(':artist_alias' => $artist_alias);
+			$args[':artist_alias'] = $artist_alias;
 		}
 		$query .= 'al.album_is_visible = 1 ';
 		$query .= 'and al.album_deleted = 0 ';
-		$query .= 'order by al.album_release_date';
+		$query .= 'order by :order_by';
+		$order_by = (!empty($options['order_by'])) ? $options['order_by'] : 'al.album_release_date';
+		$args[':order_by'] = 'al.album_release_date desc';
 		
 		
 		$rsAlbums = db_query($query, $args)->fetchAllAssoc('album_alias', PDO::FETCH_ASSOC);
