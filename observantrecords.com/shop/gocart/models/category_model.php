@@ -6,7 +6,7 @@ Class Category_model extends CI_Model
 	{
 		if ($parent !== false)
 		{
-			$this->db->where("parent_id = $parent");
+			$this->db->where('parent_id', $parent);
 		}
 		$this->db->select('id');
 		$this->db->order_by('categories.sequence', 'ASC');
@@ -35,6 +35,11 @@ Class Category_model extends CI_Model
 			$categories[$category->id]['children']	= $this->get_categories_tierd($category->id);
 		}
 		return $categories;
+	}
+	
+	function category_autocomplete($name, $limit)
+	{
+		return	$this->db->like('name', $name)->get('categories', $limit)->result();
 	}
 	
 	function get_category($id)

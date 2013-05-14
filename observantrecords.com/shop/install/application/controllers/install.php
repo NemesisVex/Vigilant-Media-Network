@@ -23,7 +23,7 @@ class Install extends CI_Controller {
 		are we installing into a subfolder?
 		if not, then the subfolder variabel below will be empty. If we are it will contain a value.
 		*/
-		$subfolder			= rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/').'/';
+		$subfolder			= rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/\\').'/';
 		$data['subfolder']	= $subfolder;
 		
 		//make sure the config folder is writable
@@ -38,8 +38,8 @@ class Install extends CI_Controller {
 		$this->form_validation->set_rules('hostname', 'Hostname', 'required');
 		$this->form_validation->set_rules('database', 'Database Name', 'required');
 		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
-		$this->form_validation->set_rules('prefix', 'Database Prefix', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'trim');
+		$this->form_validation->set_rules('prefix', 'Database Prefix', 'trim');
 		
 		$this->form_validation->set_rules('admin_email', 'Admin Email', 'required|valid_email');
 		$this->form_validation->set_rules('admin_password', 'Admin Password', 'required|min_length[5]');
@@ -71,29 +71,31 @@ class Install extends CI_Controller {
 			$config['dbdriver'] = "mysql";
 			$config['dbprefix'] = "";
 			$config['pconnect'] = FALSE;
-			$config['db_debug'] = TRUE;
+			$config['db_debug'] = FALSE;
 			$config['cache_on'] = FALSE;
 			$config['cachedir'] = "";
 			$config['char_set'] = "utf8";
 			$config['dbcollat'] = "utf8_general_ci";
 			$config['active_r'] = TRUE; 
 			
-			$db = $this->load->database($config, true);
+			// Unset any existing DB information
+			unset($this->db);		
+			$this->load->database($config);
 			
-			if($db)
+			if (is_resource($this->db->conn_id) OR is_object($this->db->conn_id))
 			{	
-				$this->load->model('Install_model');
+
+				$queries	= $this->load->view('templates/sql', '', true);
+				$queries	= explode('-- new query', $queries);
 				
-				//open the database and run the install sql script.
-				$query = $this->Install_model->get_query($this->input->post('prefix'));
-				
-				foreach($query as $q)
+				foreach($queries as $q)
 				{
-					$db->query($q);
+					$query	= str_replace('prefix_', $this->input->post('prefix'), $q);
+					$this->db->query($query);
 				}
 
 				//set up the admin user
-				$db->insert($this->input->post('prefix').'admin', array('access'=>'Admin', 'email'=>$this->input->post('admin_email'), 'password'=>sha1($this->input->post('admin_password') ) ) );
+				$this->db->insert($this->input->post('prefix').'admin', array('access'=>'Admin', 'email'=>$this->input->post('admin_email'), 'password'=>sha1($this->input->post('admin_password') ) ) );
 
 				//setup the database config file
 				$settings					= array();
