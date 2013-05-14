@@ -6,6 +6,7 @@
 	<li><a href="/projects/redesign/blog.vigilantmedia.com/">Bit-Wise Dilletante redesign</a></li>
 	<li><a href="/projects/redesign/gregbueno.com/">Gregbueno.com redesign</a></li>
 	<li><a href="/projects/redesign/musicwhore.org/">Musicwhore.org redesign</a></li>
+	<li><a href="/projects/redesign/observantrecords.com/">Observantrecords.com redesign</a></li>
 	<li><a href="/projects/redesign/vigilantmedia.com/">Vigilant Media redesign</a></li>
 	<li><a href="/projects/redesign/vigilante.vigilantmedia.com/">Vigilante Redesign</a></li>
 </ul>
