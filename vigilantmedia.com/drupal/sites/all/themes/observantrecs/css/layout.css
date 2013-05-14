@@ -40,7 +40,8 @@ img.bg
 }
 
 #masthead {
-	background-color: #304B75;
+	background-color: #252525;
+	background-image: url('debut_dark.png');
 }
 
 #masthead ul {
@@ -55,13 +56,15 @@ img.bg
 	float: left;
 	width: 470px;
 	margin-right: 10px;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 #nav-header {
 	float: left;
 	width: 470px;
 	margin-right: 0px;
-	margin-top: 1em;
+	padding-top: 2em;
 	text-align: center;
 }
 
@@ -81,6 +84,7 @@ img.bg
 
 ul#nav-social {
 	padding-left: 0px;
+	margin-left: 0px;
 }
 
 #nav-social li {
@@ -88,6 +92,10 @@ ul#nav-social {
 	margin: 0;
 	padding: 0;
 	margin-left: 6px;
+}
+
+#home-slider {
+	margin-top: 1em;
 }
 
 #content {
@@ -126,6 +134,7 @@ ul#nav-social {
 
 #footer {
 	background-color: #C9C9C9;
+	background-image: url('white_carbonfiber.png');
 }
 
 #footer-column-1, #footer-column-2 {
@@ -351,7 +360,6 @@ ol.track-list li div
 
 .nivoSlider {
 	position:relative;
-	background:url(images/loading.gif) no-repeat 50% 50%;
 }
 .nivoSlider img {
 	position:absolute;

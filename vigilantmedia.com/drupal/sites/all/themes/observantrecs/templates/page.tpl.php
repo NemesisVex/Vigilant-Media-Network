@@ -49,7 +49,7 @@
 		</div>
 		<div id="footer">
 			<div class="container">
-				<footer id="footer">
+				<footer>
 					<nav id="footer-column-1">
 						<?php print theme('ext_link_top_nav'); ?>
 						
