@@ -8,7 +8,7 @@ if (class_exists('OR_Artist')) {
 $albums = array();
 if (class_exists('OR_Albums')) {
 	$album_info = new OR_Albums();
-	$albums = $album_info->get_albums(NULL, 'al.album_release_date desc');
+	$albums = $album_info->get_albums(null, array('order_by' => 'al.album_release_date desc'));
 
 	$node_ids = db_query('select * from {node} where type = :type', array(':type' => 'album'))->fetchAllAssoc('nid', PDO::FETCH_ASSOC);
 	$album_aliases = array();
@@ -23,18 +23,17 @@ if (class_exists('OR_Albums')) {
 }
 ?>
 
-<pre>
-<?php print_r($album_aliases); ?>
-<?php print_r($albums); ?>
-</pre>
-
 <?php if (!empty($albums)):?>
 <?php $r = 1; ?>
 <div class="release-row">
 	<?php foreach ($albums as $album): ?>
 		<?php if (false !== array_search($album['album_alias'], $album_aliases)): ?>
 	<div class="release<?php if ($r % 4 == 0):?>-last<?php endif; ?>">
-		<a href="/music/<?php echo $album['album_alias'];?>"><img src="sites/eponymous4.com/files/images/_covers/_exm_front_200_<?php echo $album['album_image'];?>" alt="<?php echo $album['album_title'] ?>" title="<?php echo $album['album_title']; ?>" /></a>
+		<a href="/music/<?php echo $album['album_alias'];?>"><img src="sites/observantrecords.com/files/images/_covers/_exm_front_200_<?php echo $album['album_image'];?>" alt="<?php echo $album['album_title'] ?>" title="<?php echo $album['album_title']; ?>" /></a>
+		<ul class="release-list-info">
+			<li><strong><a href="releases/<?php echo $album['album_alias']; ?>"><?php echo $album['album_title']; ?></a></strong></li>
+			<li><?php echo $album['artist_display_name']; ?></li>
+		</ul>
 	</div>
 		<?php $r++; ?>
 		<?php endif; ?>

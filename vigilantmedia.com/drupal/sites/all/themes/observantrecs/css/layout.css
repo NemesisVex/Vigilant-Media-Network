@@ -390,3 +390,9 @@ ol.track-list li div
 	padding-right: 40px;
 	margin-right: 0px;
 }
+
+.release-list-info {
+	list-style-type: none;
+	padding-left: 0;
+	margin-left: 0;
+}
