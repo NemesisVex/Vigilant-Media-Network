@@ -233,7 +233,7 @@ function remove_option(id)
 
 											$.each(data, function(index, value){
 
-												if($('#category_'+index).length == 0)
+												if($('#category_item_'+index).length == 0)
 												{
 													$('#category_list').append('<option id="category_item_'+index+'" value="'+index+'">'+value+'</option>');
 												}
