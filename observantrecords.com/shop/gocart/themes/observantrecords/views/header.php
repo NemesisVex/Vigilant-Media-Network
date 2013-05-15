@@ -54,7 +54,7 @@ if(isset($additional_header_info))
 								<?php endforeach;?>
 							</ul>
 							
-							<?php foreach($this->pages as $menu_page):?>
+							<?php /* foreach($this->pages as $menu_page):?>
 
 								<li>
 								<?php if(empty($menu_page->content)):?>
@@ -64,7 +64,7 @@ if(isset($additional_header_info))
 								<?php endif;?>
 								</li>
 								
-							<?php endforeach;?>
+							<?php endforeach; */ ?>
 					</ul>
 					
 					<ul class="nav pull-right">

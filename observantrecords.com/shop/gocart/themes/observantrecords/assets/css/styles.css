@@ -110,3 +110,21 @@ img.responsiveImage
 .hide {
 	display:none;
 }
+
+/* Observant Records custom styles */
+
+.navbar-inner {
+	background-image: url('../img/debut_dark.png');
+}
+
+ul#nav-social {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#nav-social li {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	margin-left: 6px;
+}
