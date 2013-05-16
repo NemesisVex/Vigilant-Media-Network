@@ -10,7 +10,7 @@ if (class_exists('OR_Albums')) {
 	$album_info = new OR_Albums();
 	$albums = $album_info->get_albums(null, array('order_by' => 'al.album_release_date desc'));
 
-	$node_ids = db_query('select * from {node} where type = :type', array(':type' => 'album'))->fetchAllAssoc('nid', PDO::FETCH_ASSOC);
+	$node_ids = db_query('select * from {node} where status = :status and type = :type', array(':type' => 'album', ':status' => 1))->fetchAllAssoc('nid', PDO::FETCH_ASSOC);
 	$album_aliases = array();
 
 	foreach ($node_ids as $node_id => $node_info) {
