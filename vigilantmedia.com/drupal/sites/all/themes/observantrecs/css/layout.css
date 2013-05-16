@@ -106,6 +106,12 @@ ul#nav-social {
 	margin-top: 1em;
 }
 
+#content-header {
+	float: left;
+	width: 950px;
+	margin-right: 0px;
+}
+
 #content #column-1 {
 	float: left;
 	width: 590px;

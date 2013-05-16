@@ -17,6 +17,8 @@
 
 		<div class="container">
 			<div id="content">
+				<div id="content-header">
+					
 				<?php if ($messages): ?>
 					<section id="success">
 					<?php print $messages; ?>
@@ -27,6 +29,7 @@
 				<?php print render($title_prefix); ?>
 				<?php if ($title): ?><h2 class="title" id="page-title"><?php print $title; ?></h2><?php endif; ?>
 				<?php print render($title_suffix); ?>
+				</div>
 				<div id="column-1">
 				<?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
 				<?php print render($page['help']); ?>
