@@ -23,16 +23,18 @@
 				<h4>More information</h4>
 
 				<ul>
-					<?php foreach($this->pages as $menu_page):?>
-
+					<?php foreach($this->pages as $page):?>
+						<?php if ($page->slug == 'shop-information'): ?>
+							<?php foreach ($page->children as $menu_page): ?>
 					<li>
-					<?php if(empty($menu_page->content)):?>
+							<?php if(empty($menu_page->content)):?>
 						<a href="<?php echo $menu_page->url;?>" <?php if($menu_page->new_window ==1){echo 'target="_blank"';} ?>><?php echo $menu_page->menu_title;?></a>
-					<?php else:?>
+							<?php else:?>
 						<a href="<?php echo site_url($menu_page->slug);?>"><?php echo $menu_page->menu_title;?></a>
-					<?php endif;?>
+							<?php endif;?>
 					</li>
-
+							<?php endforeach; ?>
+						<?php endif;?>
 					<?php endforeach; ?>
 				</ul>
 			</div>
