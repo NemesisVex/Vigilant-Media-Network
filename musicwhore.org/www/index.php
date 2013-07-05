@@ -33,6 +33,7 @@ if (defined('ENVIRONMENT'))
 {
 	switch (ENVIRONMENT)
 	{
+		case 'localhost':
 		case 'development':
 		case 'dev': //DEPRECATED
 			error_reporting(E_ALL);

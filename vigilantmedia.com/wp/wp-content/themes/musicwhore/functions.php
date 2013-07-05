@@ -1,11 +1,11 @@
 <?php
 
-define('VIGILANTE_URI', 'http://vigilante.vigilantmedia.com');
 require_once("MTMapper.php");
 global $wpdb;
 
-function get_vigilante_uri() {
-	return VIGILANTE_URI;
+function get_vigilante_uri($key = 'to_vigilante') {
+	global $config_url_base;
+	return $config_url_base[$key];
 }
 
 register_nav_menus( array(

@@ -43,7 +43,7 @@
 
 					<ul class="nav-social">
 						<li><a href="http://bitbucket.org/NemesisVex"><img src="/images/bitbucket-16x16.png" alt="[Bitbucket]" title="[Bitbucket]" /></a></li>
-						<li><a href="http://www.linkedin.com/pub/greg-bueno/3/3a3/a98"><img src="http://vigilante.vigilantmedia.com/images/icons/linkedin.png" alt="[LinkedIn]" title="[LinkedIn]" /></a></li>
-						<li><a href="http://www.twitter.com/NemesisVex"><img src="http://vigilante.vigilantmedia.com/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
+						<li><a href="http://www.linkedin.com/pub/greg-bueno/3/3a3/a98"><img src="{$config.to_vigilante}/images/icons/linkedin.png" alt="[LinkedIn]" title="[LinkedIn]" /></a></li>
+						<li><a href="http://www.twitter.com/NemesisVex"><img src="{$config.to_vigilante}/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
 					</ul>
 				</section>

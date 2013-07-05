@@ -2,39 +2,41 @@
 <script type="text/javascript">
 function areyousure()
 {
-	return confirm('Are you sure you want to delete this zone area?');
+	return confirm('<?php echo lang('confirm_delete_zone_area');?>');
 }
 </script>
 
-<div class="button_set" style="text-align:right;">
-	<a href="<?php echo site_url($this->config->item('admin_folder').'/locations/country_form');?>" >Add New Country</a>
-	<a href="<?php echo site_url($this->config->item('admin_folder').'/locations/zone_form');?>" >Add New Zone</a>
-	<a href="<?php echo site_url($this->config->item('admin_folder').'/locations/zone_area_form/'.$zone->id);?>" >Add New Zone Area</a>
+<div class="btn-group" style="float:right;">
+	<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/locations/country_form'); ?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_country');?></a>
+	<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/locations/zone_form'); ?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_zone');?></a>
+	<a class="btn" href="<?php echo site_url($this->config->item('admin_folder').'/locations/zone_area_form/'.$zone->id);?>"><i class="icon-plus-sign"></i> <?php echo lang('add_new_zone_area');?></a>
 </div>
-<br/>
-<table class="gc_table" cellspacing="0" cellpadding="0">
+
+<table class="table table-striped" cellspacing="0" cellpadding="0">
 	<thead>
 		<tr>
-			<th class="gc_cell_left">Code</th>
-			<th>Tax Rate</th>
-			<th class="gc_cell_right"></th>
+			<th><?php echo lang('code');?></th>
+			<th><?php echo lang('tax');?></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 <?php foreach ($areas as $location):?>
-		<tr class="gc_row">
-			<td class="gc_cell_left"><?php echo  $location->code; ?></td>
+		<tr>
+			<td><?php echo  $location->code; ?></td>
 			<td><?php echo $location->tax+0;?>%</td>
-			<td class="gc_cell_right list_buttons" >
-				<a href="<?php echo  site_url($this->config->item('admin_folder').'/locations/delete_zone_area/'.$location->id); ?>" onclick="return areyousure();">Delete</a>
-				<a href="<?php echo  site_url($this->config->item('admin_folder').'/locations/zone_area_form/'.$zone->id.'/'.$location->id); ?>">Edit</a>
+			<td>
+				<div class="btn-group" style="float:right;">
+					<a class="btn" href="<?php echo  site_url($this->config->item('admin_folder').'/locations/zone_area_form/'.$zone->id.'/'.$location->id); ?>"><i class="icon-pencil"></i> <?php echo lang('edit');?></a>
+					<a class="btn btn-danger" href="<?php echo  site_url($this->config->item('admin_folder').'/locations/delete_zone_area/'.$location->id); ?>" onclick="return areyousure();"><i class="icon-trash icon-white"></i> <?php echo lang('delete');?></a>
+				</div>
 			</td>
 	  </tr>
 <?php endforeach; ?>
 <?php if(count($areas) == 0):?>
 		<tr>
 			<td colspan="2">
-				There are no Zone Areas for the requested Zone. Would you like to <a href="<?php echo site_url($this->config->item('admin_folder').'/locations/zone_area_form/'.$zone->id);?>" >add  a new Zone Area</a>?
+				<?php echo lang('no_zone_areas');?>
 			<td>
 		</tr>
 <?php endif;?>

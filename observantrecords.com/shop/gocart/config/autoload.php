@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database', 'session', 'auth');
+$autoload['libraries'] = array('database', 'session', 'auth', 'go_cart');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database', 'session', 'auth');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'file', 'string', 'utility', 'html');
+$autoload['helper'] = array('url', 'file', 'string', 'html', 'language');
 
 
 /*
@@ -96,7 +96,7 @@ $autoload['config'] = array('gocart');
 |
 */
 
-$autoload['language'] = array();
+$autoload['language'] = array('common');
 
 
 /*
@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('Customer_model', 'Category_model', 'Cart_model', 'Settings_model');
+$autoload['model'] = array('Customer_model', 'Category_model', 'Settings_model', 'Location_model');
 
 
 /* End of file autoload.php */

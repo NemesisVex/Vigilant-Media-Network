@@ -85,17 +85,15 @@
 	<?php endif; ?>
 	<?php print render($title_suffix); ?>
 	
-	<?php if (!empty($content['tracks'])): ?>
+	<?php /*if (!empty($content['tracks'])): ?>
 	<section class="tracks">
 	<?php
 		print render($content['tracks']);
 	?>
 	</section>
-	<?php endif; ?>
+	<?php endif;*/ ?>
 		
 	<article class="content"<?php print $content_attributes; ?>>
-		<h3>About this album</h3>
-		
 		<?php
 		print render($content['body']);
 		?>

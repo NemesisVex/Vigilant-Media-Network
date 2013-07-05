@@ -42,3 +42,8 @@ function emptyensemble_theme() {
 	
 	return $theme;
 }
+
+function emptyensemble_get_vigilante_uri($key = 'to_vigilante') {
+	global $config_url_base;
+	return $config_url_base[$key];
+}

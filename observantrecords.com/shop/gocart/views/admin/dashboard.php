@@ -1,15 +1,32 @@
 <?php include('header.php'); ?>
 
-<h3>Most Recent Orders</h3>
-<table class="gc_table" cellspacing="0" cellpadding="0">
+<?php if(!$payment_module_installed):?>
+	
+	<div class="alert">
+		<a class="close" data-dismiss="alert">×</a>
+		<strong><?php echo lang('common_note') ?>:</strong> <?php echo lang('no_payment_module_installed'); ?>
+	</div>
+
+<?php endif;?>
+
+<?php if(!$shipping_module_installed):?>
+	<div class="alert">
+		<a class="close" data-dismiss="alert">×</a>
+		<strong><?php echo lang('common_note') ?>:</strong> <?php echo lang('no_shipping_module_installed'); ?>
+	</div>
+
+<?php endif;?>
+
+<h2><?php echo lang('recent_orders') ?></h2>
+<table class="table table-striped">
     <thead>
 		<tr>
-			<th class="gc_cell_left">Order</th>
-			<th>Bill To</th>
-			<th>Ship To</th>
-			<th>Ordered On</th>
-			<th>Status</th>
-			<th class="gc_cell_right">Notes</th>
+			<th class="gc_cell_left"><?php echo lang('order_number') ?></th>
+			<th><?php echo lang('bill_to') ?></th>
+			<th><?php echo lang('ship_to') ?></th>
+			<th><?php echo lang('ordered_on') ?></th>
+			<th><?php echo lang('status') ?></th>
+			<th class="gc_cell_right"><?php echo lang('notes') ?></th>
 	    </tr>
 	</thead>
 
@@ -29,18 +46,23 @@
     <?php endforeach; ?>
     </tbody>
 </table>
-<br /><br />
+
+<div class="row">
+	<div class="span12" style="text-align:center;">
+		<a class="btn btn-large" href="<?php echo $admin_url;?>orders"><?php echo lang('view_all_orders');?></a>
+	</div>
+</div>
 
 
-<h3>Most Recent Registered Customers</h3>
-<table class="gc_table" cellspacing="0" cellpadding="0">
+<h2><?php echo lang('recent_customers') ?></h2>
+<table class="table table-striped">
 	<thead>
 		<tr>
 			<?php /*<th>ID</th> uncomment this if you want it*/ ?>
-			<th class="gc_cell_left">First Name</th>
-			<th>Last Name</th>
-			<th>Email</th>
-			<th class="gc_cell_right">Active</th>
+			<th class="gc_cell_left"><?php echo lang('firstname') ?></th>
+			<th><?php echo lang('lastname') ?></th>
+			<th><?php echo lang('email') ?></th>
+			<th class="gc_cell_right"><?php echo lang('active') ?></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -53,11 +75,11 @@
 			<td>
 				<?php if($customer->active == 1)
 				{
-					echo 'Yes';
+					echo lang('yes');
 				}
 				else
 				{
-					echo 'No';
+					echo lang('no');
 				}
 				?>
 			</td>
@@ -67,4 +89,10 @@
 	</tbody>
 </table>
 
-<?php include('footer.php'); ?>
+
+<div class="row">
+	<div class="span12" style="text-align:center;">
+		<a class="btn btn-large" href="<?php echo $admin_url;?>customers"><?php echo lang('view_all_customers');?></a>
+	</div>
+</div>
+<?php include('footer.php');
