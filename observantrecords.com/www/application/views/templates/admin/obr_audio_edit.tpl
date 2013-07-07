@@ -44,7 +44,7 @@
 			</p>
 			
 			<p>
-				<input type="submit" value="Save" />
+				<input type="submit" value="Save" class="button" />
 			</p>
 			
 		{if !empty($rsFile->audio_file_server) && !empty($rsFile->audio_file_name) && !empty($rsFile->audio_file_path)}
