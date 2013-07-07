@@ -6,7 +6,7 @@ switch (ENVIRONMENT) {
 	case 'localhost':
         $config_url_base['to_vigilantmedia'] = 'http://localhost.vigilantmedia.com';
         $config_url_base['to_vigilante'] = 'http://localhost.vigilante.vigilantmedia.com';
-		$config_url_base['to_sandbox'] = 'http://localhost.sandbox.vigilantmedia.com';
+	$config_url_base['to_sandbox'] = 'http://localhost.sandbox.vigilantmedia.com';
         $config_url_base['to_mt'] = 'http://localhost.mt.vigilantmedia.com';
         $config_url_base['to_wp'] = 'http://wp-localhost.vigilantmedia.com';
         $config_url_base['to_gregbueno'] = 'http://localhost.gregbueno.com';
@@ -28,7 +28,7 @@ switch (ENVIRONMENT) {
     case 'development':
         $config_url_base['to_vigilantmedia'] = 'http://dev.vigilantmedia.com';
         $config_url_base['to_vigilante'] = 'http://dev.vigilante.vigilantmedia.com';
-		$config_url_base['to_sandbox'] = 'http://sandbox.vigilantmedia.com';
+	$config_url_base['to_sandbox'] = 'http://sandbox.vigilantmedia.com';
         $config_url_base['to_mt'] = 'http://dev.mt.vigilantmedia.com';
         $config_url_base['to_wp'] = 'http://wp.vigilantmedia.com';
         $config_url_base['to_gregbueno'] = 'http://dev.gregbueno.com';
@@ -50,7 +50,7 @@ switch (ENVIRONMENT) {
     case 'testing':
         $config_url_base['to_vigilantmedia'] = 'http://test.vigilantmedia.com';
         $config_url_base['to_vigilante'] = 'http://test.vigilante.vigilantmedia.com';
-		$config_url_base['to_sandbox'] = 'http://sandbox.vigilantmedia.com';
+	$config_url_base['to_sandbox'] = 'http://sandbox.vigilantmedia.com';
         $config_url_base['to_mt'] = 'http://test.mt.vigilantmedia.com';
         $config_url_base['to_wp'] = 'http://wp-test.vigilantmedia.com';
         $config_url_base['to_gregbueno'] = 'http://test.gregbueno.com';
@@ -72,7 +72,7 @@ switch (ENVIRONMENT) {
     case 'production':
         $config_url_base['to_vigilantmedia'] = 'http://www.vigilantmedia.com';
         $config_url_base['to_vigilante'] = 'http://vigilante.vigilantmedia.com';
-		$config_url_base['to_sandbox'] = 'http://sandbox.vigilantmedia.com';
+	$config_url_base['to_sandbox'] = 'http://sandbox.vigilantmedia.com';
         $config_url_base['to_mt'] = 'http://mt.vigilantmedia.com';
         $config_url_base['to_wp'] = 'http://blog.vigilantmedia.com';
         $config_url_base['to_gregbueno'] = 'http://www.gregbueno.com';

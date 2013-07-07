@@ -21,6 +21,7 @@ class Song extends CI_Controller {
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Audio');
 		$this->load->model('Obr_Song');
+		$this->load->model('Obr_Recording');
 		$this->load->model('Obr_Track');
 		// Load helpers.
 		$this->load->helper('model');
@@ -34,7 +35,7 @@ class Song extends CI_Controller {
 	public function browse($artist_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$this->observantview->_set_artist_header($artist_id, 'Songs');
-			$rsSongs = $this->Obr_Song->get_by_artist_id($artist_id);
+			$rsSongs = $this->Obr_Song->get_many_by('song_primary_artist_id', $artist_id);
 			$this->mysmarty->assign('rsSongs', $rsSongs);
 			$this->mysmarty->assign('artist_id', $artist_id);
 		}
@@ -52,6 +53,10 @@ class Song extends CI_Controller {
 	public function view($song_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsSong = $this->Obr_Song->get($song_id);
+			if (!empty($rsSong)) {
+				$rsSong->tracks = $this->Obr_Track->with('release')->get_many_by('track_song_id', $song_id);
+				$rsSong->recordings = $this->Obr_Recording->get_many_by('recording_song_id', $song_id);
+			}
 			$this->observantview->_set_artist_header($rsSong->song_primary_artist_id, $rsSong->song_title);
 			$this->mysmarty->assign('rsSong', $rsSong);
 			$this->mysmarty->assign('song_id', $song_id);

@@ -80,15 +80,23 @@
 <section id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
 
 	<?php print render($title_prefix); ?>
-	<?php if (!$page): ?>
+	<?php if (!$page): ?>	
 	    <h3<?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
 	<?php endif; ?>
 	<?php print render($title_suffix); ?>
 	
 	<article class="content"<?php print $content_attributes; ?>>
-		<?php if (!empty($content['tracks']['#tracks'][0]['audio_mp3_file_name']) && (boolean) $content['tracks']['#tracks'][0]['track_audio_is_linked'] === true ): ?>
+		<?php if (!empty($content['tracks']['#tracks'][0]['audio']) && (boolean) $content['tracks']['#tracks'][0]['track_audio_is_linked'] === true ): ?>
 		
-		<h3><a href="/audio/<?php echo $content['tracks']['#tracks'][0]['audio_id']; ?>/" class="htrack" type="audio/mpeg" title="<?php echo $content['tracks']['#tracks'][0]['song_title']; ?>"></a>Listen</h3>
+		<h3>Listen</h3>
+		
+		<p>
+			<audio controls="controls">
+			<?php foreach ($content['tracks']['#tracks'][0]['audio'] as $audio_id => $audio): ?>
+				<source src="/audio/<?php echo $audio_id; ?>/" type="<?php echo $audio['audio_file_type']; ?>" title="<?php echo $content['tracks']['#tracks'][0]['song_title']; ?>" />
+			<?php endforeach; ?>
+			</audio>
+		</p>
 		
 		<?php endif; ?>
 		

@@ -45,6 +45,16 @@
 				<label>Downloadable?</label> <input type="checkbox" disabled="disabled" value="1"{if ($rsTrack->track_audio_is_downloadable == true)} checked{/if} />
 			</div>
 		</li>
+		<li>
+			<div>
+				<label>Recording</label> 
+				{if $rsTrack->recording}
+				<a href="/index.php/admin/recording/view/{$rsTrack->recording->recording_id}/">{if empty($rsTrack->recording->recording_isrc_num)}(No ISRC number set) {$rsTrack->song->song_title}{else}{$rsTrack->recording->recording_isrc_num}{/if}</a>
+				{else}
+				Not set.
+				{/if}
+			</div>
+		</li>
 		{if $rsTrack->track_uplaya_score}
 		<li>
 			<div>
@@ -54,24 +64,8 @@
 		{/if}
 	</ul>
 	
-	<h3>Audio</h3>
-	
-	{if !empty($rsTrack->audio)}
-		<ol class="track-list">
-			<li>
-				<div>
-					<a href="/index.php/admin/audio/edit/{$rsTrack->audio->audio_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-purple.gif" alt="[Edit]" title="[Edit]" /></a>
-					<a href="/index.php/admin/audio/delete/{$rsTrack->audio->audio_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-purple.gif" alt="[Delete]" title="[Delete]" /></a>
-					<a href="/index.php/admin/audio/view/{$rsTrack->audio->audio_id}/" title="{$rsMap->audio->audio_mp3_file_path}/{$rsTrack->audio->audio_mp3_file_name}">{$rsTrack->audio->audio_mp3_file_name}</a>
-				</div>
-			</li>
-		</ol>
 	{else}
-		<p>This track has no audio information.</p>
-	{/if}
-	
-	{else}
-		<p>This song has no information.</p>
+	<p>This song has no information.</p>
 	{/if}
 </div>
 

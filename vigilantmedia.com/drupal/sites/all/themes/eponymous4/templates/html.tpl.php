@@ -65,7 +65,6 @@
 		<script type="text/javascript" src="<?php echo eponymous4_get_vigilante_uri(); ?>/js/jquery.jcarousel.pack.js"></script>
 		<script type="text/javascript" src="<?php echo eponymous4_get_vigilante_uri(); ?>/js/modernizr-1.6.min.js"></script>
 		<script type="text/javascript" src="<?php echo eponymous4_get_vigilante_uri(); ?>/js/facebox.js"></script>
-		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
 		<script type="text/javascript">
 		var facebox_options = {
 			closeImage: '<?php echo eponymous4_get_vigilante_uri(); ?>/images/closelabel.gif',

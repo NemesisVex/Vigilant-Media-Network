@@ -11,7 +11,7 @@ class OR_Tracks extends OR_Model {
 		$this->activate();
 		
 		$query = '';
-		$query .= 'select t.*, s.*, au.* from ';
+		$query .= 'select t.*, s.*, rc.* from ';
 		$query .= '((({ep4_tracks} as t ';
 		$query .= 'left join {ep4_songs} as s ';
 		$query .= 'on t.track_song_id = s.song_id) ';
@@ -19,8 +19,8 @@ class OR_Tracks extends OR_Model {
 		$query .= 'on t.track_release_id = r.release_id) ';
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id) ';
-		$query .= 'left outer join {ep4_audio} as au ';
-		$query .= 'on t.track_audio_id = au.audio_id ';
+		$query .= 'left outer join {ep4_recordings} as rc ';
+		$query .= 'on t.track_recording_id = rc.recording_id ';
 		$query .= 'where t.track_alias = :track_alias ';
 		$query .= 'and t.track_deleted = 0 ';
 		$query .= 'order by t.track_disc_num, t.track_track_num';
@@ -28,6 +28,8 @@ class OR_Tracks extends OR_Model {
 		$args = array(':track_alias' => $track_alias);
 		
 		$rsTrack = db_query($query, $args)->fetchAssoc();
+		
+		$rsTrack['audio'] = $this->_get_track_audio($rsTrack['track_recording_id']);
 		
 		$this->deactivate();
 		
@@ -38,7 +40,7 @@ class OR_Tracks extends OR_Model {
 		$this->activate();
 		
 		$query = '';
-		$query .= 'select t.*, s.*, au.* from ';
+		$query .= 'select t.*, s.*, rc.* from ';
 		$query .= '((({ep4_tracks} as t ';
 		$query .= 'left join {ep4_songs} as s ';
 		$query .= 'on t.track_song_id = s.song_id) ';
@@ -46,19 +48,25 @@ class OR_Tracks extends OR_Model {
 		$query .= 'on t.track_release_id = r.release_id) ';
 		$query .= 'left join {ep4_albums} as al ';
 		$query .= 'on r.release_album_id = al.album_id) ';
-		$query .= 'left outer join {ep4_audio} as au ';
-		$query .= 'on t.track_audio_id = au.audio_id ';
+		$query .= 'left outer join {ep4_recordings} as rc ';
+		$query .= 'on t.track_recording_id = rc.recording_id ';
 		$query .= 'where r.release_alias = :release_alias ';
 		$query .= 'and t.track_deleted = 0 ';
 		$query .= 'order by t.track_disc_num, t.track_track_num';
 		
 		$args = array(':release_alias' => $release_alias);
 		
-		$rsTrack = db_query($query, $args)->fetchAllAssoc('track_id', PDO::FETCH_ASSOC);
+		$rsTracks = db_query($query, $args)->fetchAllAssoc('track_id', PDO::FETCH_ASSOC);
+		
+		if (!empty($rsTracks)) {
+			foreach ($rsTracks as $t => $rsTrack) {
+				$rsTracks[$t]['audio'] = $this->_get_track_audio($rsTrack['track_recording_id']);
+			}
+		}
 		
 		$this->deactivate();
 		
-		return $rsTrack;
+		return $rsTracks;
 	}
 	
 	public function get_album_tracks($album_alias) {
@@ -124,6 +132,20 @@ class OR_Tracks extends OR_Model {
 		}
 
 		return $content;
+	}
+	
+	private function _get_track_audio($recording_id) {
+		
+		$query = '';
+		$query .= 'select * from ep4_audio ';
+		$query .= 'where audio_recording_id = :recording_id ';
+		$query .= 'and audio_deleted = 0';
+		
+		$args = array(':recording_id' => $recording_id);
+		
+		$rsAudio = db_query($query, $args)->fetchAllAssoc('audio_id', PDO::FETCH_ASSOC);
+		
+		return $rsAudio;
 	}
 	
 	public function __destruct() {

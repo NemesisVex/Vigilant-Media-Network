@@ -2,25 +2,30 @@
 
 /**
  * ep4_song
- * 
- * ep4_song is a model for an Observant Records song.
  *
+ * ep4_song is a model of an Observant Records artist song.
+ * 
  * @author Greg Bueno
- * @copyright (c) 2013, Greg Bueno
  */
 
 class Obr_Song extends MY_Model {
 	
 	public $_table = 'ep4_songs';
 	public $primary_key = 'song_id';
+	public $belongs_to = array(
+		'artist' => array(
+			'model' => 'Obr_Artist',
+			'primary_key' => 'song_primary_artist_id',
+		),
+	);
 	public $has_many = array(
+		'recordings' => array(
+			'model' => 'Obr_Recording',
+			'primary_key' => 'recording_song_id',
+		),
 		'tracks' => array(
 			'model' => 'Obr_Track',
 			'primary_key' => 'track_song_id',
-		),
-		'audio' => array(
-			'model' => 'Obr_Audio',
-			'primary_key' => 'audio_song_id',
 		),
 	);
 	protected $soft_delete = true;
@@ -28,14 +33,6 @@ class Obr_Song extends MY_Model {
 	
 	public function __construct() {
 		parent::__construct();
-	}
-	
-	public function get_by_artist_id($artist_id) {
-		$this->order_by('song_title');
-		if (false !== ($rsSongs = $this->get_many_by('song_primary_artist_id', $artist_id))) {
-			return $rsSongs;
-		}
-		return false;
 	}
 }
 

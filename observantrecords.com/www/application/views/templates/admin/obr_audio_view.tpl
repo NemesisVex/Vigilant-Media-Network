@@ -10,12 +10,17 @@
 	<ul class="two-column-bubble-list">
 		<li>
 			<div>
-				<label>File name</label> <span title="{$rsFile->audio_mp3_file_name}">{$rsFile->audio_mp3_file_name|truncate:'50'}</span>
+				<label>File server</label> <span title="{$rsFile->audio_file_server}">{$rsFile->audio_file_server|truncate:'50'}</span>
 			</div>
 		</li>
 		<li>
 			<div>
-				<label>File path</label> {$rsFile->audio_mp3_file_path}
+				<label>File path</label> {$rsFile->audio_file_path}
+			</div>
+		</li>
+		<li>
+			<div>
+				<label>File name</label> <span title="{$rsFile->audio_file_name}">{$rsFile->audio_file_name|truncate:'50'}</span>
 			</div>
 		</li>
 		<li>
@@ -30,16 +35,9 @@
 		</li>
 		<li>
 			<div>
-				<label>ISRC</label> {$rsFile->isrc[0]->audio_isrc_code}
+				<label>Recording</label> <a href="/index.php/admin/recording/view/{$rsFile->recording->recording_id}/">{if empty($rsFile->recording->recording_isrc_num)}ISRC TBD{else}{$rsFile->recording->recording_isrc_num}{/if}</a>
 			</div>
 		</li>
-		{if !empty($rsFile->audio_aws_s3_key)}
-		<li>
-			<div>
-				<label>AWS S3 key</label> {$rsFile->audio_aws_s3_key}
-			</div>
-		</li>
-		{/if}
 	</ul>
 
 	{if !empty($id3v2)}
@@ -117,11 +115,13 @@
 </div>
 
 <div id="admin-column-2">
-	{if !empty($rsFile)}
+{if !empty($rsFile->audio_file_name) && !empty($rsFile->audio_file_path) && !empty($rsFile->audio_file_server)}	
 	<h3>Listen</h3>
-
+	
 	<p>
-		<a href="{$rsFile->audio_mp3_file_path}/{$rsFile->audio_mp3_file_name}" type="audio/mpeg" class="htrack" title="{$rsFile->song_title}">{$rsFile->song_title}</a>
+		<audio controls>
+			<source src="http://{$rsFile->audio_file_server}{$rsFile->audio_file_path}/{$rsFile->audio_file_name}" type="{$rsFile->audio_file_type}" />
+		</audio>
 	</p>
-	{/if}
+{/if}
 </div>

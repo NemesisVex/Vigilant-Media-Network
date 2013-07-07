@@ -17,7 +17,7 @@ class Track extends CI_Controller {
 		$this->load->library('VmDebug');
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Audio');
-		$this->load->model('Obr_Audio_Map');
+		$this->load->model('Obr_Recording');
 		$this->load->model('Obr_Release');
 		$this->load->model('Obr_Song');
 		$this->load->model('Obr_Track');
@@ -43,7 +43,7 @@ class Track extends CI_Controller {
 
 	public function view($track_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsTrack = $this->Obr_Track->with('song')->with('audio')->get($track_id);
+			$rsTrack = $this->Obr_Track->with('song')->with('recording')->get($track_id);
 			$rsRelease = $this->Obr_Release->with('album')->get($rsTrack->track_release_id);
 			$this->vmview->format_section_head($rsRelease->album->album_title, $rsTrack->song->song_title);
 			$this->mysmarty->assign('rsRelease', $rsRelease);
@@ -58,15 +58,15 @@ class Track extends CI_Controller {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsSongs = $this->Obr_Song->get_all();
 			
-			$this->Obr_Audio->order_by('audio_mp3_file_path, audio_mp3_file_name');
-			$rsFiles = $this->Obr_Audio->get_all();
-			
 			$rsRelease = $this->Obr_Release->with('album')->get($release_id);
 			if (empty($this->vmview->section_head)) {
 				$this->vmview->format_section_head($rsRelease->album->album_title, 'Create a track');
 			}
 
-			$this->mysmarty->assign('rsFiles', $rsFiles);
+			$this->Obr_Recording->order_by('recording_isrc_num');
+			$rsRecordings = $this->Obr_Recording->with('song')->get_many_by('recording_artist_id', $rsRelease->album->album_artist_id);
+			
+			$this->mysmarty->assign('rsRecordings', $rsRecordings);
 			$this->mysmarty->assign('rsSongs', $rsSongs);
 			$this->mysmarty->assign('rsRelease', $rsRelease);
 			$this->mysmarty->assign('release_id', $release_id);
