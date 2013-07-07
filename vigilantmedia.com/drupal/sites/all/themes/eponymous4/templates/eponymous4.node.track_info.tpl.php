@@ -43,25 +43,37 @@
 <script type="text/javascript">
 	(function ($) {
 		$('.play-button').click(function () {
+			// Get the visible control on the page.
 			var page_playback = document.getElementById('page-playback');
+			
+			// Remove anything that's currently loaded or playing.
 			page_playback.pause();
+			$(page_playback).removeAttr('src');
 			$(page_playback).find('source').remove();
 			
+			// Get the source from the speaker icon that was clicked.
 			var recording_id = String(this.id).split('-')[1];
+			
+			// Replace the visible control with the clicked source.
 			$('#track-' + recording_id).children('source').each(function () {
 				var source = $(this).clone();
+				// Only load the source that can be played by the browser.
 				if (page_playback.canPlayType($(this).attr('type')) != '') {
 					source.appendTo(page_playback);
 					return false;
 				}
 			});
 			
+			// Warn the user if no files could be found supported by the browser.
 			if ($(page_playback).children('source').length < 1) {
-				alert('A file supported by this browser is not yet available to play.');
+				alert('A file supported by this browser is not yet available to play. We\'re working on providing one soon!');
 				return false;
 			}
 			
+			// Play the file.
 			page_playback.play();
+			
+			// Don't let the anchor go anywhere.
 			return false;
 		});
 	})(jQuery);
