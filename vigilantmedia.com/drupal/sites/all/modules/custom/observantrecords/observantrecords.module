@@ -195,8 +195,8 @@ function observantrecords_audio($id) {
 	$rsAudio = $audio_info->get_audio($id);
 
 	if (!empty($rsAudio)) {
-		if ($rsAudio->audio_file_server == 'cdn.observantrecords.com') {
-			header('Location: ' . $rsAudio->audio_file_server . $rsAudio->audio_file_path . '/' . $rsAudio->audio_file_name);
+		if ($rsAudio['audio_file_server'] == 'cdn.observantrecords.com') {
+			header('Location: http://' . $rsAudio['audio_file_server'] . $rsAudio['audio_file_path'] . '/' . $rsAudio['audio_file_name']);
 			die();
 		} else {
 			$config_path = variable_get('observantrecords_file_path_override', $rsAudio['audio_file_path']);
