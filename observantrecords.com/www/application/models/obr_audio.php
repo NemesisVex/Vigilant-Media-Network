@@ -13,24 +13,12 @@ class Obr_Audio extends MY_Model {
 	public $_table = 'ep4_audio';
 	public $primary_key = 'audio_id';
 	public $belongs_to = array(
-		'song' => array(
-			'model' => 'Obr_Song',
-			'primary_key' => 'audio_song_id',
-		),
-		'artist' => array(
-			'model' => 'Obr_Artist',
-			'primary_key' => 'audio_artist_id',
+		'recording' => array(
+			'model' => 'Obr_Recording',
+			'primary_key' => 'audio_recording_id',
 		),
 	);
 	public $has_many = array(
-		'isrc' => array(
-			'model' => 'Obr_Audio_Isrc',
-			'primary_key' => 'audio_isrc_audio_id',
-		),
-		'maps' => array(
-			'model' => 'Obr_Audio_Map',
-			'primary_key' => 'map_audio_id',
-		),
 		'logs' => array(
 			'model' => 'Obr_Audio_Log',
 			'primary_key' => 'log_audio_id',

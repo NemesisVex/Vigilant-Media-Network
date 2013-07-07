@@ -15,14 +15,15 @@
 		<link rel="stylesheet" href="{$config.to_vigilante}/css/jquery.autocomplete.css" type="text/css" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/js/lib/thickbox.css" type="text/css" />
 		<link rel="stylesheet" href="{$config.to_vigilante}/js/ui/css/smoothness/jquery-ui-1.8.23.custom.css" type="text/css" />
+		<link rel="stylesheet" href="{$config.to_vigilante}/css/chosen.min.css" type="text/css" />
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.swfobject.ext.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.validate.pack.js"></script>
+		<script type="text/javascript" src="{$config.to_vigilante}/js/chosen.jquery.min.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/ui/js/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="{$config.to_vigilante}/js/modernizr-1.6.min.js"></script>
 		<!--[if lt IE 9]><script type="text/javascript" src="{$config.to_vigilante}/js/html5.js"></script><![endif]-->
-		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
 	</head>
 
 	<body>

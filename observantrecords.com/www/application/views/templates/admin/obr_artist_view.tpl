@@ -69,7 +69,7 @@
 
 	<ul>
 		<li><a href="/index.php/admin/song/browse/{$artist_id}/">Songs</a></li>
-		<li><a href="/index.php/admin/audio/browse/{$artist_id}/">Audio</a></li>
+		<li><a href="/index.php/admin/recording/browse/{$artist_id}/">Recordings</a></li>
 	</ul>
 
 	{else}

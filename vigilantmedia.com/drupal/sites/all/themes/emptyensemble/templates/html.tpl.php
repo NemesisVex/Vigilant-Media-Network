@@ -59,7 +59,6 @@
 		<link rel="stylesheet" href="<?php echo emptyensemble_get_vigilante_uri(); ?>/css/facebox.css" type="text/css" media="screen, projection" />
 		<?php print $styles; ?>
 		<?php print $scripts; ?>
-		<script type="text/javascript" src="http://webplayer.yahooapis.com/player-beta.js"></script>
 		<script type="text/javascript" src="<?php echo emptyensemble_get_vigilante_uri(); ?>/js/facebox.js"></script>
 		<script type="text/javascript">
 		var facebox_options = {

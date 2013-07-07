@@ -21,15 +21,9 @@ class Obr_Track extends MY_Model {
 			'model' => 'Obr_Song',
 			'primary_key' => 'track_song_id',
 		),
-		'audio' => array(
-			'model' => 'Obr_Audio',
-			'primary_key' => 'track_audio_id',
-		),
-	);
-	public $has_many = array(
-		'maps' => array(
-			'model' => 'Obr_Audio_Map',
-			'primary_key' => 'map_track_id',
+		'recording' => array(
+			'model' => 'Obr_Recording',
+			'primary_key' => 'track_recording_id',
 		),
 	);
 	protected $soft_delete = true;
