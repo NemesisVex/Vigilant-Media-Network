@@ -169,6 +169,14 @@ function observantrecords_menu() {
 		'page arguments' => array(1),
 		'access callback' => TRUE,
 	);
+	
+	$items['music/audio/_mp3'] = array(
+		'title' => 'Observant Records Audio File Access',
+		'type' => MENU_CALLBACK,
+		'page callback' => 'observantrecords_audio_file',
+		'page arguments' => array(3, 4),	
+		'access callback' => TRUE,
+	);
 
 	$items['admin/config/media/observantrecords'] = array(
 		'title' => 'Observant Records Audio Configuration',
@@ -187,24 +195,54 @@ function observantrecords_audio($id) {
 	$rsAudio = $audio_info->get_audio($id);
 
 	if (!empty($rsAudio)) {
-		$config_path = variable_get('observantrecords_file_path_override', $rsAudio['audio_mp3_file_path']);
-		$config_root = variable_get('observantrecords_file_root', conf_path() . '/files');
-		$config_url_path = variable_get('observantrecords_url_root', conf_path() . '/files');
-
-		$file_path = (!empty($config_path)) ? $config_path : $rsAudio['audio_mp3_file_path'];
-		$root_path = (!empty($config_root)) ? $config_root : $_SERVER['DOCUMENT_ROOT'] . conf_path() . '/files';
-		$url_path = (!empty($config_url_path)) ? $config_url_path : conf_path() . '/files';
-
-		$complete_path = $root_path . '/' . $file_path . '/' . $rsAudio['audio_mp3_file_name'];
-		$complete_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $url_path . '/' . $file_path . '/' . $rsAudio['audio_mp3_file_name'];
-
-		if (file_exists($complete_path)) {
-			header('Location:' . $complete_url);
+		if ($rsAudio->audio_file_server == 'cdn.observantrecords.com') {
+			header('Location: ' . $rsAudio->audio_file_server . $rsAudio->audio_file_path . '/' . $rsAudio->audio_file_name);
 			die();
+		} else {
+			$config_path = variable_get('observantrecords_file_path_override', $rsAudio['audio_file_path']);
+			$config_root = variable_get('observantrecords_file_root', conf_path() . '/files');
+			$config_url_path = variable_get('observantrecords_url_root', conf_path() . '/files');
+
+			$file_path = (!empty($config_path)) ? $config_path : $rsAudio['audio_file_path'];
+			$root_path = (!empty($config_root)) ? $config_root : $_SERVER['DOCUMENT_ROOT'] . conf_path() . '/files';
+			$url_path = (!empty($config_url_path)) ? $config_url_path : conf_path() . '/files';
+
+			$complete_path = $root_path . '/' . $file_path . '/' . $rsAudio['audio_file_name'];
+			$complete_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $url_path . '/' . $file_path . '/' . $rsAudio['audio_file_name'];
+
+			if (file_exists($complete_path)) {
+				header('Location:' . $complete_url);
+				die();
+			}
 		}
+		
 	}
 	$error = <<< ERROR
 <p>Sorry, the file you attempted to play is not available.</p>
+ERROR;
+	return $error;
+}
+
+function observantrecords_audio_file($dir, $file) {
+	$legacy_dir = 'music/audio/_mp3/' . $dir;
+	$config_path = variable_get('observantrecords_file_path_override', $legacy_dir);
+	$config_root = variable_get('observantrecords_file_root', conf_path() . '/files');
+	$config_url_path = variable_get('observantrecords_url_root', conf_path() . '/files');
+
+	$file_path = (!empty($config_path)) ? $config_path : $legacy_dir;
+	$root_path = (!empty($config_root)) ? $config_root : $_SERVER['DOCUMENT_ROOT'] . conf_path() . '/files';
+	$url_path = (!empty($config_url_path)) ? $config_url_path : conf_path() . '/files';
+
+	$complete_path = $root_path . '/' . $file_path . '/' . $file;
+	$complete_url = 'http://' . $_SERVER['HTTP_HOST'] . '/' . $url_path . '/' . $file_path . '/' . $file;
+	
+	if (file_exists($complete_path)) {
+		header('Location:' . $complete_url);
+		die();
+	}
+	$error = <<< ERROR
+<p>Sorry, the file you attempted to play is not available.</p>
+
 ERROR;
 	return $error;
 }

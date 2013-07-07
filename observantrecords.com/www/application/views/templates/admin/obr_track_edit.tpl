@@ -60,11 +60,11 @@
 		</p>
 
 		<p>
-			<label for="track_audio_id">Audio:</label>
-			<select name="track_audio_id">
+			<label for="track_recording_id">Recording:</label>
+			<select name="track_recording_id">
 				<option value="">&nbsp;</option>
-				{foreach item=rsFile from=$rsFiles}
-					<option value="{$rsFile->audio_id}" title="{$rsFile->audio_mp3_file_path}/{$rsFile->audio_mp3_file_name}"{if $rsTrack->track_audio_id==$rsFile->audio_id} selected{/if}>{$rsFile->audio_mp3_file_name|truncate:'48'}</option>
+				{foreach item=rsRecording from=$rsRecordings}
+					<option value="{$rsRecording->recording_id}" {if $rsTrack->track_recording_id==$rsRecording->recording_id} selected{/if}>{if empty($rsRecording->recording_isrc_num)}(No ISRC set){else}{$rsRecording->recording_isrc_num}{/if}: {$rsRecording->song->song_title}</option>
 				{/foreach}
 			</select>
 		</p>

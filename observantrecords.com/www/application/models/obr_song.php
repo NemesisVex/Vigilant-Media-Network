@@ -1,39 +1,39 @@
 <?php
 
 /**
- * Description of ep4_song
+ * ep4_song
  *
+ * ep4_song is a model of an Observant Records artist song.
+ * 
  * @author Greg Bueno
  */
-require_once(BASEPATH . 'libraries/VmModel.php');
 
-class Obr_Song extends VmModel {
+class Obr_Song extends MY_Model {
 	
-	public $song_id;
+	public $_table = 'ep4_songs';
+	public $primary_key = 'song_id';
+	public $belongs_to = array(
+		'artist' => array(
+			'model' => 'Obr_Artist',
+			'primary_key' => 'song_primary_artist_id',
+		),
+	);
+	public $has_many = array(
+		'recordings' => array(
+			'model' => 'Obr_Recording',
+			'primary_key' => 'recording_song_id',
+		),
+		'tracks' => array(
+			'model' => 'Obr_Track',
+			'primary_key' => 'track_song_id',
+		),
+	);
+	protected $soft_delete = true;
+	protected $soft_delete_key = 'song_deleted';
 	
 	public function __construct() {
 		parent::__construct();
-		
-		$this->table_name = 'ep4_songs';
-		$this->primary_index_field = 'song_id';
 	}
-	
-	public function retrieve_by_artist_id($artist_id, $return_results = true) {
-		$this->db->order_by('song_title');
-		if (false !== ($rsSongs = parent::retrieve('song_primary_artist_id', $artist_id))) {
-			if ($return_results === true) {
-				return $this->return_smarty_array($rsSongs);
-			} else {
-				return $rsSongs;
-			}
-		}
-		return false;
-	}
-	
-	public function retrieve_all($select = null, $order_by = 'song_title', $return_recordset = true) {
-		return parent::retrieve_all($select, $order_by, $return_recordset);
-	}
-	
 }
 
 ?>
