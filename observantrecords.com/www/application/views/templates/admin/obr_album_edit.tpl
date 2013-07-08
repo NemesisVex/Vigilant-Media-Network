@@ -28,6 +28,16 @@
 				<input type="text" id="album_release_date" name="album_release_date" value="{$rsAlbum->album_release_date|date_format:"%Y-%m-%d"}" size="20" />
 			</p>
 
+			{if $album_id}<p>
+				<label for="album_primary_release_id">Primary release:</label>
+				<select name="album_primary_release_id">
+					<option value="">&nbsp;</option>
+				{foreach item=rsRelease from=$rsAlbum->releases}
+					<option value="{$rsRelease->release_id}">{$rsRelease->release_catalog_num}</option>
+				{/foreach}
+				</select>
+			</p>{/if}
+
 			<p>
 				<label for="album_alias">Title locale:</label>
 				<select name="album_ctype_locale">

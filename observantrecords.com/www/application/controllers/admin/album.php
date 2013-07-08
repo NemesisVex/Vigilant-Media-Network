@@ -35,7 +35,7 @@ class Album extends CI_Controller {
 	
 	public function view($album_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsAlbum = $this->Obr_Album->get($album_id);
+			$rsAlbum = $this->Obr_Album->with('primary_release')->get($album_id);
 			$rsReleases = $this->Obr_Release->with('format')->get_many_by('release_album_id', $album_id);
 			$rsArtist = $this->observantview->_set_artist_header($rsAlbum->album_artist_id, $rsAlbum->album_title);
 			
@@ -65,7 +65,7 @@ class Album extends CI_Controller {
 	
 	public function edit($album_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$rsAlbum = $this->Obr_Album->get($album_id);
+			$rsAlbum = $this->Obr_Album->with('releases')->get($album_id);
 			$this->observantview->_set_artist_header($rsAlbum->album_artist_id, $rsAlbum->album_title);
 			$this->mysmarty->assign('rsAlbum', $rsAlbum);
 			$this->mysmarty->assign('album_id', $album_id);
@@ -85,6 +85,23 @@ class Album extends CI_Controller {
 		$this->vmview->display('admin/obr_album_delete.tpl', true);
 	}
 	
+	public function save_order() {
+		$albums = $this->input->get_post('albums');
+
+		$is_success = true;
+		if (count($albums) > 0) {
+			foreach ($albums as $album) {
+				if (false === $this->_update_album($album['album_id'], $album)) {
+					$is_success = false;
+					$error = 'Album order was not saved.';
+					break;
+				}
+			}
+		}
+
+		echo ($is_success == true) ? 'Album order has been saved.' : $error;
+	}
+
 	public function create() {
 		$redirect = $_SERVER['HTTP_REFERER'];
 		$input = build_update_data($this->Obr_Album->_table);
@@ -160,6 +177,13 @@ class Album extends CI_Controller {
 		}
 		
 		header('Location: ' . $redirect);
+	}
+	
+	private function _update_album($album_id, $input) {
+		if (false !== $this->Obr_Album->update($album_id, $input)) {
+			return true;
+		}
+		return false;
 	}
 }
 

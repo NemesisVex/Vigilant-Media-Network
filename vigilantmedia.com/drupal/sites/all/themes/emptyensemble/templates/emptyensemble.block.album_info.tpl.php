@@ -2,10 +2,12 @@
 	<?php foreach ($albums as $album): ?>
 
 		<?php if (!empty($album['releases'])): ?>
-			<?php if (!empty($release_alias)): ?>
+			<?php if (!empty($release_alias)):
+				$cover_url_base = OBSERVANTRECORDS_CDN_BASE_URI . '/artists/' . (!empty($artist_alias) ? $artist_alias : 'empty-ensemble') . '/albums/' . $album['album_alias'] . '/' . strtolower($album['releases'][$release_alias]['release_catalog_num']) . '/images';
+			?>
 <p>
-	<img src="<?php echo OBSERVANTRECORDS_CDN_BASE_URI . '/artists/empty-ensemble/albums/' . $album['album_alias'] . '/' . strtolower($album['releases'][$release_alias]['release_catalog_num']) . '/images/cover_front_medium.jpg'; ?>" width="230"  title="[<?php echo $album['album_title']; ?>]" alt="[<?php echo $album['album_title']; ?>]" />
-	<a href="<?php echo OBSERVANTRECORDS_CDN_BASE_URI . '/artists/empty-ensemble/albums/' . $album['album_alias'] . '/' . strtolower($album['releases'][$release_alias]['release_catalog_num']) . '/images/cover_front_large.jpg'; ?>" rel="facebox" class="smaller">View larger image</a>
+	<a href="<?php echo $cover_url_base . '/cover_front_large.jpg'; ?>" rel="facebox" class="smaller"><img src="<?php echo $cover_url_base . '/cover_front_medium.jpg'; ?>" width="230"  title="[<?php echo $album['album_title']; ?>]" alt="[<?php echo $album['album_title']; ?>]" /></a>
+	<a href="<?php echo $cover_url_base . '/cover_front_large.jpg'; ?>" rel="facebox" class="smaller">View larger image</a>
 </p>
 
 <?php

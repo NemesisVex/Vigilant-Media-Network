@@ -41,9 +41,16 @@
 			</div>
 		</li>
 	{/if}
+	{if !empty($rsAlbum->album_primary_release_id)}
 		<li>
 			<div>
-				<label>Visibile?</label> <input type="checkbox" disabled="disabled" value="1" {if ($rsAlbum->album_is_visible==true)}checked{/if} />
+				<label>Primary release</label> {$rsAlbum->primary_release->release_catalog_num}
+			</div>
+		</li>
+	{/if}
+		<li>
+			<div>
+				<label>Visible?</label> <input type="checkbox" disabled="disabled" value="1" {if ($rsAlbum->album_is_visible==true)}checked{/if} />
 			</div>
 		</li>
 	</ul>

@@ -21,6 +21,10 @@ class Obr_Album extends MY_Model {
 			'model' => 'Obr_Album_Format',
 			'primary_key' => 'album_format_id',
 		),
+		'primary_release' => array(
+			'model' => 'Obr_Release',
+			'primary_key' => 'album_primary_release_id',
+		),
 	);
 	public $has_many = array(
 		'releases' => array(
@@ -36,7 +40,7 @@ class Obr_Album extends MY_Model {
 	}
 
 	public function retrieve_by_artist_id($artist_id) {
-		$this->_database->order_by('album_release_date');
+		$this->_database->order_by('album_order, album_release_date');
 		$this->_database->where('album_artist_id', $artist_id);
 		$rsAlbums = $this->get_all();
 		return $rsAlbums;
