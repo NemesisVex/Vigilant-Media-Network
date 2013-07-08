@@ -91,6 +91,11 @@
 					}
 				}
 			};
+				
+			$('#audio_file_type').chosen();
+			$('#audio_file_server').chosen();
+			$('#audio_recording_id').chosen();
+				
 			$('#audio_file_server').change(function () {
 				if ($('#audio_file_path').val() == '') {
 					if (this.value == 'cdn.observantrecords.com' || this.value == 'observant-records.s3.amazonaws.com') {

@@ -77,6 +77,9 @@
 		{literal}
 		<script type="text/javascript">
 			$(function () {
+				$('#track_song_id').chosen();
+				$('#track_recording_id').chosen();
+				
 				// Date pickers.
 				$('#release_release_date').datepicker({
 					dateFormat: 'yy-mm-dd'

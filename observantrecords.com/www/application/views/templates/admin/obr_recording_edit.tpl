@@ -59,7 +59,9 @@
 			$('#generate_custom_isrc').click(function () {
 				Recording_Edit.generate_isrc_code();
 			});
-				
+			$('#recording_artist_id').chosen();
+			$('#recording_song_id').chosen();
+			
 			$('#clear_custom_isrc').click(function () {
 				$('#_display_recording_isrc_num').val('');
 				$('#recording_isrc_num').val('');
