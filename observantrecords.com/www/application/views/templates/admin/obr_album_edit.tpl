@@ -28,6 +28,16 @@
 				<input type="text" id="album_release_date" name="album_release_date" value="{$rsAlbum->album_release_date|date_format:"%Y-%m-%d"}" size="20" />
 			</p>
 
+			{if $album_id}<p>
+				<label for="album_primary_release_id">Primary release:</label>
+				<select name="album_primary_release_id">
+					<option value="">&nbsp;</option>
+				{foreach item=rsRelease from=$rsAlbum->releases}
+					<option value="{$rsRelease->release_id}">{$rsRelease->release_catalog_num}</option>
+				{/foreach}
+				</select>
+			</p>{/if}
+
 			<p>
 				<label for="album_alias">Title locale:</label>
 				<select name="album_ctype_locale">
@@ -89,10 +99,6 @@
 
 <div id="admin-column-2">
 	{if !empty($rsAlbum)}
-	<p>
-		<img src="/images/_covers/_exm_front_200_{if !empty($rsAlbum->album_image)}{$rsAlbum->album_image}{else}tbd.jpg{/if}" alt="[{$rsAlbum->album_title}]" title="{$rsAlbum->album_title}]" />
-	</p>
-
 	<ul>
 		<li><a href="/index.php/admin/album/view/{$rsAlbum->album_id}/">Back to <em>{$rsAlbum->album_title}</em></a></li>
 		<li><a href="/index.php/admin/artist/view/{$rsAlbum->album_artist_id}/">Back to artist</a></li>
