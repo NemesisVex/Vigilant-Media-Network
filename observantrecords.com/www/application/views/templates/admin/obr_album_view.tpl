@@ -60,7 +60,7 @@
 		<thead>
 			<tr>
 				<th>&nbsp;</th>
-				<th>Format</th>
+				<th>Cover</th>
 				<th>Catalog No.</th>
 				<th>UPC</th>
 			</tr>
@@ -76,7 +76,7 @@
 					</div>
 				</td>
 				<td>
-					<a href="/index.php/admin/release/view/{$rsRelease->release_id}/">{$rsRelease->format->format_name}</a>
+					<a href="/index.php/admin/release/view/{$rsRelease->release_id}/"><img src="{$smarty.const.OBSERVANTRECORDS_CDN_BASE_URI}/artists/{$rsArtist->artist_alias}/albums/{$rsAlbum->album_alias}/{$rsRelease->release_catalog_num|lower}/images/cover_front_small.jpg" width="50" height="50" /></a>
 				</td>
 				<td>
 					{if !empty($rsRelease->release_catalog_num)}{$rsRelease->release_catalog_num}{else}Unassigned{/if}
@@ -104,10 +104,6 @@
 
 <div id="admin-column-2">
 	{if !empty($rsAlbum)}
-	<p>
-		<img src="/images/_covers/_exm_front_200_{if !empty($rsAlbum->album_image)}{$rsAlbum->album_image}{else}tbd.jpg{/if}" />
-	</p>
-	
 	<ul>
 		<li><a href="/index.php/admin/artist/view/{$rsAlbum->album_artist_id}/">Back to artist</a></li>
 	</ul>

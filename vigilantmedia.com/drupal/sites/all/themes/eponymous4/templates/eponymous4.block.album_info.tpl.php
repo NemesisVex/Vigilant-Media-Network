@@ -4,8 +4,8 @@
 		<?php if (!empty($album['releases'])): ?>
 			<?php if (!empty($release_alias)): ?>
 <p>
-	<img src="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/' . variable_get('file_public_path', conf_path() . '/files');?>/images/_covers/_exm_front_200_<?php echo $album['album_image']; ?>" title="<?php echo $album['album_title']; ?>" /><br/>
-	<a href="<?php echo 'http://' . $_SERVER['HTTP_HOST'] . '/' . variable_get('file_public_path', conf_path() . '/files');?>/images/_covers/_exm_front_342_<?php echo $album['album_image']; ?>" rel="facebox" class="smaller">View larger image</a>
+	<img src="<?php echo OBSERVANTRECORDS_CDN_BASE_URI . '/artists/eponymous-4/albums/' . $album['album_alias'] . '/' . strtolower($album['releases'][$release_alias]['release_catalog_num']) . '/images/cover_front_medium.jpg'; ?>" width="230"  title="[<?php echo $album['album_title']; ?>]" alt="[<?php echo $album['album_title']; ?>]" />
+	<a href="<?php echo OBSERVANTRECORDS_CDN_BASE_URI . '/artists/eponymous-4/albums/' . $album['album_alias'] . '/' . strtolower($album['releases'][$release_alias]['release_catalog_num']) . '/images/cover_front_large.jpg'; ?>" rel="facebox" class="smaller">View larger image</a>
 </p>
 
 <?php

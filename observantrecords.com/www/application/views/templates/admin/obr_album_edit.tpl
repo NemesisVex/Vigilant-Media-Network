@@ -89,10 +89,6 @@
 
 <div id="admin-column-2">
 	{if !empty($rsAlbum)}
-	<p>
-		<img src="/images/_covers/_exm_front_200_{if !empty($rsAlbum->album_image)}{$rsAlbum->album_image}{else}tbd.jpg{/if}" alt="[{$rsAlbum->album_title}]" title="{$rsAlbum->album_title}]" />
-	</p>
-
 	<ul>
 		<li><a href="/index.php/admin/album/view/{$rsAlbum->album_id}/">Back to <em>{$rsAlbum->album_title}</em></a></li>
 		<li><a href="/index.php/admin/artist/view/{$rsAlbum->album_artist_id}/">Back to artist</a></li>

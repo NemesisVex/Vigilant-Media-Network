@@ -46,7 +46,8 @@ class Release extends CI_Controller {
 			$this->mysmarty->assign('rsRelease', $rsRelease);
 			$this->mysmarty->assign('release_id', $release_id);
 			
-			$this->observantview->_set_artist_header($rsRelease->album->album_artist_id, $rsRelease->album->album_title);
+			$rsArtist = $this->observantview->_set_artist_header($rsRelease->album->album_artist_id, $rsRelease->album->album_title);
+			$this->mysmarty->assign('rsArtist', $rsArtist);
 		}
 		
 		$this->vmview->display('admin/obr_release_view.tpl', true);
@@ -56,7 +57,8 @@ class Release extends CI_Controller {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsAlbum = $this->Obr_Album->get($album_id);
 			if (empty($this->vmview->section_head)) {
-				$this->observantview->_set_artist_header($rsAlbum->album_artist_id, $rsAlbum->album_title);
+				$rsArtist = $this->observantview->_set_artist_header($rsAlbum->album_artist_id, $rsAlbum->album_title);
+				$this->mysmarty->assign('rsArtist', $rsArtist);
 			}
 			
 			$rsAlbums = $this->Obr_Album->retrieve_by_artist_id($rsAlbum->album_artist_id);
@@ -72,8 +74,9 @@ class Release extends CI_Controller {
 	public function edit($release_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsRelease = $this->Obr_Release->with('album')->with('format')->get($release_id);
-			$this->observantview->_set_artist_header($rsRelease->album->album_artist_id, $rsRelease->album->album_title);
+			$rsArtist = $this->observantview->_set_artist_header($rsRelease->album->album_artist_id, $rsRelease->album->album_title);
 			$this->mysmarty->assign('rsRelease', $rsRelease);
+			$this->mysmarty->assign('rsArtist', $rsArtist);
 			
 			$this->mysmarty->assign('release_id', $release_id);
 		}

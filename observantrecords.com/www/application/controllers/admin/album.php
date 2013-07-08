@@ -37,8 +37,9 @@ class Album extends CI_Controller {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsAlbum = $this->Obr_Album->get($album_id);
 			$rsReleases = $this->Obr_Release->with('format')->get_many_by('release_album_id', $album_id);
-			$this->observantview->_set_artist_header($rsAlbum->album_artist_id, $rsAlbum->album_title);
+			$rsArtist = $this->observantview->_set_artist_header($rsAlbum->album_artist_id, $rsAlbum->album_title);
 			
+			$this->mysmarty->assign('rsArtist', $rsArtist);
 			$this->mysmarty->assign('rsAlbum', $rsAlbum);
 			$this->mysmarty->assign('rsReleases', $rsReleases);
 			$this->mysmarty->assign('album_id', $album_id);

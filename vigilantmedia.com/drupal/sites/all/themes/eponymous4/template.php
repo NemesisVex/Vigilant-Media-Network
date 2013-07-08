@@ -21,6 +21,7 @@ function eponymous4_block_view($delta = '') {
 			$block['content'] = array(
 				'#albums' => $album_info->get_album_block_content($node),
 				'#release_alias' => $release_alias,
+				'#artist' => 'hello world',
 				'#theme' => 'block_album_info',
 			);
 			break;
@@ -35,6 +36,7 @@ function eponymous4_theme() {
 			'variables' => array(
 				'albums' => NULL,
 				'release_alias' => NULL,
+				'artist' => NULL,
 			),
 			'template' => 'templates/eponymous4.block.album_info',
 		),

@@ -52,10 +52,14 @@
 	</p>
 
 	{if $rsAlbums}
-		<ul class="album-list">
+		<ul class="two-column-bubble-list">
 		{foreach item=rsAlbum from=$rsAlbums}
 			<li>
-				<a href="/index.php/admin/album/view/{$rsAlbum->album_id}/" alt="[{$rsAlbum->album_title}]" title="{$rsAlbum->album_title}"><img src="/images/_covers/_exm_front_120_{$rsAlbum->album_image}" /></a>
+				<div>
+					<a href="/index.php/admin/album/edit/{$rsAlbum->album_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /></a>
+					<a href="/index.php/admin/album/delete/{$rsAlbum->album_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /></a>
+					<a href="/index.php/admin/album/view/{$rsAlbum->album_id}/">{$rsAlbum->album_title}</a>
+				</div>
 			</li>
 		{/foreach}
 		</ul>
