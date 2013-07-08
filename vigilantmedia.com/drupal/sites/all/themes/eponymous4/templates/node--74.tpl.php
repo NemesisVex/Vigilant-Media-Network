@@ -24,7 +24,7 @@ if (class_exists('OR_Albums')) {
 	?>
 		<?php if (false !== array_search($album['album_alias'], $album_aliases)): ?>
 	<li>
-		<a href="/music/<?php echo $album['album_alias'];?>"><img src="<?php echo $cover_url_base . '/cover_front_medium.jpg' ;?>" alt="<?php echo $album['album_title'] ?>" title="<?php echo $album['album_title']; ?>" width="200" /></a>
+		<a href="/music/<?php echo $album['album_alias'];?>"><img src="<?php echo $cover_url_base . '/cover_front_medium.jpg' ;?>" alt="[<?php echo $album['album_title'] ?>]" title="[<?php echo $album['album_title']; ?>]" width="200" /></a>
 	</li>
 		<?php endif; ?>
 	<?php endforeach; ?>

@@ -26,10 +26,12 @@ if (class_exists('OR_Albums')) {
 <?php if (!empty($albums)):?>
 <?php $r = 1; ?>
 <div class="release-row">
-	<?php foreach ($albums as $album): ?>
+	<?php foreach ($albums as $album):
+		$cover_url_base = OBSERVANTRECORDS_CDN_BASE_URI . '/artists/' . $album['artist_alias'] . '/albums/' . $album['album_alias'] . '/' . strtolower($album['release_catalog_num']) . '/images';
+	?>
 		<?php if (false !== array_search($album['album_alias'], $album_aliases)): ?>
 	<div class="release<?php if ($r % 4 == 0):?>-last<?php endif; ?>">
-		<a href="releases/<?php echo $album['album_alias'];?>"><img src="sites/observantrecords.com/files/images/_covers/_exm_front_200_<?php echo $album['album_image'];?>" alt="<?php echo $album['album_title'] ?>" title="<?php echo $album['album_title']; ?>" /></a>
+		<a href="releases/<?php echo $album['album_alias'];?>"><img src="<?php echo $cover_url_base . '/cover_front_medium.jpg' ?>" alt="<?php echo $album['album_title'] ?>" title="<?php echo $album['album_title']; ?>" width="200" /></a>
 		<ul class="release-list-info">
 			<li><strong><a href="releases/<?php echo $album['album_alias']; ?>"><?php echo $album['album_title']; ?></a></strong></li>
 			<li><?php echo $album['artist_display_name']; ?></li>
