@@ -29,6 +29,7 @@
 				<select id="audio_file_server" name="audio_file_server">
 					<option value="">&nbsp;</option>
 					<option value="cdn.observantrecords.com"{if $rsFile->audio_file_server=="cdn.observantrecords.com"} selected="selected"{/if}>cdn.observantrecords.com</option>
+					<option value="observant-records.s3.amazonaws.com"{if $rsFile->audio_file_server=="observant-records.s3.amazonaws.com"} selected="selected"{/if}>observant-records.s3.amazonaws.com</option>
 					<option value="www.observantrecords.com"{if $rsFile->audio_file_server=="www.observantrecords.com"} selected="selected"{/if}>www.observantrecords.com</option>
 				</select>
 			</p>
