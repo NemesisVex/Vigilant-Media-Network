@@ -58,7 +58,7 @@ class Track extends CI_Controller {
 
 	public function add($release_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
-			$this->Obr_Songs->order_by('song_title');
+			$this->Obr_Song->order_by('song_title');
 			$rsSongs = $this->Obr_Song->get_all();
 			
 			$rsRelease = $this->Obr_Release->with('album')->get($release_id);
