@@ -61,7 +61,7 @@
 
 		<p>
 			<label for="track_recording_id">Recording:</label>
-			<select name="track_recording_id">
+			<select name="track_recording_id" id="track_recording_id">
 				<option value="">&nbsp;</option>
 				{foreach item=rsRecording from=$rsRecordings}
 					<option value="{$rsRecording->recording_id}" {if $rsTrack->track_recording_id==$rsRecording->recording_id} selected{/if}>{if empty($rsRecording->recording_isrc_num)}(No ISRC set){else}{$rsRecording->recording_isrc_num}{/if}: {$rsRecording->song->song_title}</option>
