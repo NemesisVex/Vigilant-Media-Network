@@ -47,18 +47,28 @@
 
 	<h3>Albums</h3>
 
-	<p>
-		<a href="/index.php/admin/album/add/{$artist_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" /> Add album</a>
-	</p>
+	<form action="/index.php/admin/album/save_order/" method="post" id="save-order-form">
+		<p>
+			<a href="/index.php/admin/album/add/{$artist_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" /> Add album</a>
+			<input type="button" value="Save album order" id="save-order" class="button" />
+			<input type="hidden" name="album_id" value="" />
+		</p>
+	</form>
 
 	{if $rsAlbums}
-		<ul class="album-list">
+		<ol class="track-list">
 		{foreach item=rsAlbum from=$rsAlbums}
 			<li>
-				<a href="/index.php/admin/album/view/{$rsAlbum->album_id}/" alt="[{$rsAlbum->album_title}]" title="{$rsAlbum->album_title}"><img src="/images/_covers/_exm_front_120_{$rsAlbum->album_image}" /></a>
+				<div>
+					<a href="/index.php/admin/album/edit/{$rsAlbum->album_id}/"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /></a>
+					<a href="/index.php/admin/album/delete/{$rsAlbum->album_id}/"><img src="{$config.to_vigilante}/images/icons/delete-page-blue.gif" alt="[Delete]" title="[Delete]" /></a>
+					<span class="album-order-display">{$rsAlbum->album_order}</span>. <a href="/index.php/admin/album/view/{$rsAlbum->album_id}/">{$rsAlbum->album_title}</a>
+					<input type="hidden" name="album_id" value="{$rsAlbum->album_id}" />
+					<input type="hidden" name="album_order" value="{$rsAlbum->album_order}" />
+				</div>
 			</li>
 		{/foreach}
-		</ul>
+		</ol>
 	{else}
 	<p>
 		This artist has no albums. Please add one.
@@ -72,6 +82,55 @@
 		<li><a href="/index.php/admin/recording/browse/{$artist_id}/">Recordings</a></li>
 	</ul>
 
+	<div id="save-order-dialog">
+		<p class="msg"></p>
+	</div>
+	{literal}
+	<script type="text/javascript">
+	$('.track-list').sortable({
+		update: function (event, ui) {
+			var new_album_order = 1;
+			$(this).children().each(function () {
+				$(this).find('.album-order-display').html(new_album_order);
+				new_album_order++;
+			});
+		}
+	});
+	$('#save-order-dialog').dialog({
+		autoOpen: false,
+		modal: true,
+		buttons: {
+			"OK": function () {
+				$(this).dialog('close');
+			}
+		}
+	});
+	$('#save-order').click(function () {
+		var albums = [], album_order, album_id, album_info;
+		$('.track-list').children().each(function () {
+			album_order = $(this).find('.album-order-display').html();
+			album_id = $(this).find('input[name=album_id]').val();
+			album_info = {
+				'album_id': album_id,
+				'album_order': album_order
+			}
+			albums.push(album_info);
+		});
+		var url = $('#save-order-form').attr('action');
+		var data = {
+			'albums': albums
+		};
+		$.post(url, data, function (result) {
+			$('#save-order-dialog').dialog('open');
+			$('#save-order-dialog').find('.msg').html(result);
+		}).error(function (result) {
+			var error_msg = 'Your request could not be completed. The following error was given: ' + result.statusText;
+			$('#save-order-dialog').dialog('open');
+			$('#save-order-dialog').find('.msg').html(error_msg);
+		});
+	});
+	</script>
+	{/literal}
 	{else}
 		<p>Artist information is not available.</p>
 	{/if}

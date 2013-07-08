@@ -17,10 +17,12 @@ function eponymous4_block_view($delta = '') {
 		case 'album_info':
 			$album_info = new OR_Albums();
 			$release_alias = $node->field_release_alias[$node->language][0]['value'];
+			$artist_alias = $node->field_artist_alias[$node->language][0]['value'];
 			$block['subject'] = NULL;
 			$block['content'] = array(
 				'#albums' => $album_info->get_album_block_content($node),
 				'#release_alias' => $release_alias,
+				'#artist_alias' => $artist_alias,
 				'#theme' => 'block_album_info',
 			);
 			break;
@@ -35,6 +37,7 @@ function eponymous4_theme() {
 			'variables' => array(
 				'albums' => NULL,
 				'release_alias' => NULL,
+				'artist_alias' => NULL,
 			),
 			'template' => 'templates/eponymous4.block.album_info',
 		),

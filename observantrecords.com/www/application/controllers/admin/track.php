@@ -45,9 +45,11 @@ class Track extends CI_Controller {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsTrack = $this->Obr_Track->with('song')->with('recording')->get($track_id);
 			$rsRelease = $this->Obr_Release->with('album')->get($rsTrack->track_release_id);
+			$rsArtist = $this->Obr_Artist->get($rsRelease->album->album_artist_id);
 			$this->vmview->format_section_head($rsRelease->album->album_title, $rsTrack->song->song_title);
 			$this->mysmarty->assign('rsRelease', $rsRelease);
 			$this->mysmarty->assign('rsTrack', $rsTrack);
+			$this->mysmarty->assign('rsArtist', $rsArtist);
 			$this->mysmarty->assign('track_id', $track_id);
 		}
 
@@ -62,6 +64,9 @@ class Track extends CI_Controller {
 			if (empty($this->vmview->section_head)) {
 				$this->vmview->format_section_head($rsRelease->album->album_title, 'Create a track');
 			}
+			
+			$rsArtist = $this->Obr_Artist->get($rsRelease->album->album_artist_id);
+			$this->mysmarty->assign('rsArtist', $rsArtist);
 
 			$this->Obr_Recording->order_by('recording_isrc_num');
 			$rsRecordings = $this->Obr_Recording->with('song')->get_many_by('recording_artist_id', $rsRelease->album->album_artist_id);
