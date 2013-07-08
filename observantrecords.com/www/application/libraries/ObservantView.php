@@ -31,6 +31,7 @@ class ObservantView {
 	public function _set_artist_header($artist_id, $section_label = null, $section_sublabel = null) {
 		$rsArtist = $this->CI->Obr_Artist->get($artist_id);
 		$this->CI->vmview->format_section_head($rsArtist->artist_display_name, $section_label, $section_sublabel);
+		return $rsArtist;
 	}
 	
 }

@@ -51,9 +51,11 @@ function observantrecords_block_view($delta = '') {
 				$album_info = new OR_Albums();
 				if (!empty($node->field_release_alias)) {
 					$release_alias = $node->field_release_alias[$node->language][0]['value'];
+					$artist_alias = $node->field_artist_alias[$node->language][0]['value'];
 					$block['content'] = array(
 						'#albums' => $album_info->get_album_block_content($node),
 						'#release_alias' => $release_alias,
+						'#artist_alias' => $artist_alias,
 						'#theme' => 'block_album_info',
 					);
 				}
@@ -129,6 +131,7 @@ function observantrecords_theme() {
 			'variables' => array(
 				'albums' => NULL,
 				'release_alias' => NULL,
+				'artist_alias' => NULL,
 			),
 			'template' => 'observantrecords.block.album_info',
 		),
