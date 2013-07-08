@@ -30,7 +30,7 @@
 
 			{if $album_id}<p>
 				<label for="album_primary_release_id">Primary release:</label>
-				<select name="album_primary_release_id">
+				<select name="album_primary_release_id" id="album_primary_release_id">
 					<option value="">&nbsp;</option>
 				{foreach item=rsRelease from=$rsAlbum->releases}
 					<option value="{$rsRelease->release_id}">{$rsRelease->release_catalog_num}</option>
@@ -40,7 +40,7 @@
 
 			<p>
 				<label for="album_alias">Title locale:</label>
-				<select name="album_ctype_locale">
+				<select name="album_ctype_locale" id="album_ctype_locale">
 					<option value="">&nbsp;</option>
 					<option value="en"{if $rsAlbum->album_ctype_locale=='en'} selected{/if}>en</option>
 					<option value="ja"{if $rsAlbum->album_ctype_locale=='ja'} selected{/if}>ja</option>
@@ -49,7 +49,7 @@
 
 			<p>
 				<label for="album_format_mask">Format:</label>
-				<select name="album_format_mask">
+				<select name="album_format_mask" id="album_format_mask">
 					<option value="">&nbsp;</option>
 				{foreach item=rsFormat from=$rsFormats}
 					<option value="{$rsFormat->format_mask}"{if $rsAlbum->album_format_mask==$rsFormat->format_mask} selected{/if}> {$rsFormat->format_alias}</option>
@@ -83,6 +83,8 @@
 {literal}
 <script type="text/javascript">
 	$(function () {
+		$('#album_primary_release_id').chosen();
+		
 		// Date pickers.
 		$('#album_release_date').datepicker({
 			dateFormat: 'yy-mm-dd'
