@@ -53,7 +53,7 @@
 
 			<p>
 				<label for="release_format_id">Format:</label>
-				<select name="release_format_id">
+				<select name="release_format_id" name="release_format_id">
 					<option value="0"> &nbsp;
 				{foreach item=rsFormat from=$rsFormats}
 					<option value="{$rsFormat->format_id}"{if $rsRelease->release_format_id==$rsFormat->format_id} selected{/if}> {$rsFormat->format_name}
@@ -101,6 +101,9 @@
 		{literal}
 		<script type="text/javascript">
 			$(function () {
+				$('#release_album_id').chosen();
+				$('#release_format_id').chosen();
+				
 				// Date pickers.
 				$('#release_release_date').datepicker({
 					dateFormat: 'yy-mm-dd'
