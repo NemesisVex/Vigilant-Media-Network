@@ -93,7 +93,7 @@
 			};
 			$('#audio_file_server').change(function () {
 				if ($('#audio_file_path').val() == '') {
-					if (this.value == 'cdn.observantrecords.com') {
+					if (this.value == 'cdn.observantrecords.com' || this.value == 'observant-records.s3.amazonaws.com') {
 						$('#audio_file_path').val('/artists/' + artist_alias + '/albums');
 					} else if (this.value == 'www.observantrecords.com') {
 						$('#audio_file_path').val('/music/audio/_mp3/_ex_machina');
