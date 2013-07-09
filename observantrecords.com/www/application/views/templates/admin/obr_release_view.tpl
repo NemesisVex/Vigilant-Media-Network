@@ -74,6 +74,7 @@
 		<form action="/index.php/admin/track/save_order/{$release_id}/" method="post" id="save-order-form">
 			<p>
 				<a href="/index.php/admin/track/add/{$release_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" alt="[Add]" title="[Add]" /> Add a track</a>
+				<a href="/index.php/admin/release/export_id3/{$release_id}/" class="button">Export ID3 data</a>
 				<input type="button" value="Save track order" id="save-order" class="button" />
 				<input type="hidden" name="track_id" value="{$rsTrack->track_id}" />
 			</p>

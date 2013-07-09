@@ -96,6 +96,43 @@ class Release extends CI_Controller {
 		$this->vmview->display('admin/obr_release_delete.tpl', true);
 	}
 	
+	public function export_id3($release_id) {
+		if (!empty($_SESSION[$this->vmsession->session_flag])) {
+			$rsRelease = $this->Obr_Release->with('album')->with('format')->get($release_id);
+			
+			$this->Obr_Track->order_by('track_disc_num, track_track_num');
+			$rsTracks = $this->Obr_Track->with('song')->with('recording')->get_many_by('track_release_id', $release_id);
+			
+			$rsArtist = $this->Obr_Artist->get($rsRelease->album->album_artist_id);
+			
+			$file_lines = array();
+			foreach ($rsTracks as $rsTrack) {
+				$tag = array(
+					$rsArtist->artist_display_name,
+					$rsArtist->artist_display_name,
+					$rsRelease->album->album_title,
+					date('Y', strtotime($rsRelease->release_release_date)),
+					'℗ ' . date('Y', strtotime($rsRelease->release_release_date)) . ' Observant Records',
+					$rsTrack->recording->recording_isrc_num,
+					sprintf('%02d', $rsTrack->track_track_num),
+					$rsTrack->song->song_title,
+				);
+				$tag_line = implode('|', $tag);
+				$file_lines[] = $tag_line;
+			}
+			$file = implode("\r\n", $file_lines);
+			
+			$file_with_bom = chr(239) . chr(187) . chr(191) . $file;
+			
+			$file_name = $rsArtist->artist_display_name . ' - ' . $rsRelease->album->album_title . '.m3u.txt';
+			header('Cache-Control: private');
+			header('Content-Disposition: attachment; filename="' . $file_name . '"');
+			header("Content-Type: text/plain; charset=utf-8");
+			echo $file_with_bom;
+			die();
+		}
+	}
+
 	public function create() {
 		$redirect = $_SERVER['HTTP_REFERER'];
 		$input = build_update_data($this->Obr_Release->_table);
