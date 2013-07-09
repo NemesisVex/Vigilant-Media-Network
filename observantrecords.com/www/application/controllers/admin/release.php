@@ -112,6 +112,7 @@ class Release extends CI_Controller {
 					$rsArtist->artist_display_name,
 					$rsRelease->album->album_title,
 					date('Y', strtotime($rsRelease->release_release_date)),
+					'Other',
 					'℗ ' . date('Y', strtotime($rsRelease->release_release_date)) . ' Observant Records',
 					$rsTrack->recording->recording_isrc_num,
 					sprintf('%02d', $rsTrack->track_track_num),
