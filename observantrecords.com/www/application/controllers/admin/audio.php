@@ -115,6 +115,8 @@ class Audio extends CI_Controller {
 				);
 			}
 			
+			$this->mysmarty->assign('recording_id', $recording_id);
+			
 			$this->mysmarty->assign('recordings', json_encode($recordings));
 		}
 		
