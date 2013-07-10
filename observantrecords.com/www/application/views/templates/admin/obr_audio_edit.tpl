@@ -46,6 +46,7 @@
 			
 			<p>
 				<input type="submit" value="Save" class="button" />
+				<input type="hidden" id="audio_id" name="audio_id" value="{$rsFile->audio_id}" />
 			</p>
 			
 		{if !empty($rsFile->audio_file_server) && !empty($rsFile->audio_file_name) && !empty($rsFile->audio_file_path)}
@@ -97,8 +98,8 @@
 			$('#audio_file_server').chosen();
 			$('#audio_recording_id').chosen();
 			
-			// Prepopulate some field based on how we initialize the recording ID.
-			if ($('#audio_recording_id').val() > 0) {
+			// Prepopulate some field based on how we initialize the recording ID for a new audio file.
+			if ($('#audio_recording_id').val() > 0 && $('#audio_id').val() == '' ) {
 				Audio_Edit.build_file_name($('#audio_recording_id').val());
 			}
 				
