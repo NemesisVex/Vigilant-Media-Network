@@ -131,14 +131,30 @@ class Audio extends CI_Controller {
 	 * 
 	 * @param type $audio_id
 	 */
-	public function edit($audio_id) {
+	public function edit($audio_id, $is_duplicate = false) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$rsFile = $this->Obr_Audio->get($audio_id);
 			$rsFile->recording = $this->Obr_Recording->with('song')->get($rsFile->audio_recording_id);
 			$this->observantview->_set_artist_header($rsFile->recording->recording_artist_id, $rsFile->recording->song->song_title);
 			$this->mysmarty->assign('rsFile', $rsFile);
-			$this->mysmarty->assign('audio_id', $audio_id);
+			if ($is_duplicate === false) {
+				$this->mysmarty->assign('audio_id', $audio_id);
+			}
 			$this->add($rsFile->audio_recording_id);
+		}
+	}
+	
+	/**
+	 * duplicate
+	 * 
+	 * duplicate() displays a form with which to create an audio file
+	 * with a previous audio file populating the fields of the form.
+	 * 
+	 * @param type $audio_id
+	 */
+	public function duplicate($audio_id) {
+		if (!empty($_SESSION[$this->vmsession->session_flag])) {
+			$this->edit($audio_id, true);
 		}
 	}
 	

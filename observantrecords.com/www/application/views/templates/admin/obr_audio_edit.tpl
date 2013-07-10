@@ -46,7 +46,7 @@
 			
 			<p>
 				<input type="submit" value="Save" class="button" />
-				<input type="hidden" id="audio_id" name="audio_id" value="{$rsFile->audio_id}" />
+				<input type="hidden" id="audio_id" name="audio_id" value="{$audio_id}" />
 			</p>
 			
 		{if !empty($rsFile->audio_file_server) && !empty($rsFile->audio_file_name) && !empty($rsFile->audio_file_path)}
