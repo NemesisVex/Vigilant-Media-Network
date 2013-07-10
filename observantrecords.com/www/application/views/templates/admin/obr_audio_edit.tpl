@@ -14,7 +14,7 @@
 				<select name="audio_recording_id" id="audio_recording_id">
 					<option value="0"> &nbsp;</option>
 				{foreach item=rsRecording from=$rsRecordings}
-					<option value="{$rsRecording->recording_id}"{if $rsFile->audio_recording_id==$rsRecording->recording_id} selected{/if}>{if empty($rsRecording->recording_isrc_num)}ISRC TBD{else}{$rsRecording->recording_isrc_num}{/if}: {$rsRecording->song->song_title}</option>
+					<option value="{$rsRecording->recording_id}"{if $recording_id==$rsRecording->recording_id} selected{/if}>{if empty($rsRecording->recording_isrc_num)}ISRC TBD{else}{$rsRecording->recording_isrc_num}{/if}: {$rsRecording->song->song_title}</option>
 				{/foreach}
 				</select>
 			</p>
@@ -72,6 +72,7 @@
 					$.each(recordings, function () {
 						if (recording_id == this.recording_id) {
 							recording = this;
+							return false;
 						}
 					});
 					if (typeof recording == 'object') {
@@ -95,6 +96,11 @@
 			$('#audio_file_type').chosen();
 			$('#audio_file_server').chosen();
 			$('#audio_recording_id').chosen();
+			
+			// Prepopulate some field based on how we initialize the recording ID.
+			if ($('#audio_recording_id').val() > 0) {
+				Audio_Edit.build_file_name($('#audio_recording_id').val());
+			}
 				
 			$('#audio_file_server').change(function () {
 				if ($('#audio_file_path').val() == '') {
