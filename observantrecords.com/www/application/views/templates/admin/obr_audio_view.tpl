@@ -4,6 +4,7 @@
 	{if !empty($rsFile)}
 	<p>
 		<a href="/index.php/admin/audio/edit/{$audio_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Edit]" title="[Edit]" /> Edit</a>
+		<a href="/index.php/admin/audio/duplicate/{$audio_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/add-page-blue.gif" alt="[Duplicate]" title="[Duplicate]" /> Duplicate</a>
 		<a href="/index.php/admin/audio/delete/{$audio_id}/" class="button"><img src="{$config.to_vigilante}/images/icons/edit-page-blue.gif" alt="[Delete]" title="[Delete]" /> Delete</a>
 	</p>
 
