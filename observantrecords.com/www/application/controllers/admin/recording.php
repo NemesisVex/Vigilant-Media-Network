@@ -92,7 +92,7 @@ class Recording extends CI_Controller {
 			$this->mysmarty->assign('recording_artist_id', $artist_id);
 			
 			$this->Obr_Song->order_by('song_title');
-			$rsSongs = $this->Obr_Song->get_many_by('song_primary_artist_id', $artist_id);
+			$rsSongs = $this->Obr_Song->get_all();
 			$this->mysmarty->assign('rsSongs', $rsSongs);
 		}
 
