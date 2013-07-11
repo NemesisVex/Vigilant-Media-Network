@@ -94,7 +94,7 @@ class OR_Albums extends OR_Model {
 		
 		$rsRelease = db_query($query, $args)->fetchAssoc();
 		
-		$rsAlbum['releases'] = array($rsRelease);
+		$rsAlbum['releases'] = array($release_alias => $rsRelease);
 		
 		$this->deactivate();
 		return $rsAlbum;
