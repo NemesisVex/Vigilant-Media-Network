@@ -3,7 +3,7 @@
 #
 
 # Protect files and directories from prying eyes.
-<FilesMatch "\.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)(|~|\.sw[op]|\.bak|\.orig|\.save)?$|^(\..*|Entries.*|Repository|Root|Tag|Template)$|^#.*#$|\.php(~|\.sw[op]|\.bak|\.orig\.save)$">
+<FilesMatch "\.(engine|inc|info|install|make|module|profile|test|po|sh|.*sql|theme|tpl(\.php)?|xtmpl)$|^(\..*|Entries.*|Repository|Root|Tag|Template)$">
   Order allow,deny
 </FilesMatch>
 
@@ -56,13 +56,6 @@ DirectoryIndex index.php index.html index.htm
 <IfModule mod_rewrite.c>
   RewriteEngine on
 
-  # Set "protossl" to "s" if we were accessed via https://.  This is used later
-  # if you enable "www." stripping or enforcement, in order to ensure that
-  # you don't bounce between http and https.
-  RewriteRule ^ - [E=protossl]
-  RewriteCond %{HTTPS} on
-  RewriteRule ^ - [E=protossl:s]
-
   # Block access to "hidden" directories whose names begin with a period. This
   # includes directories used by version control systems such as Subversion or
   # Git to store control files. Files whose names begin with a period, as well
@@ -85,15 +78,14 @@ DirectoryIndex index.php index.html index.htm
   # To redirect all users to access the site WITH the 'www.' prefix,
   # (http://example.com/... will be redirected to http://www.example.com/...)
   # uncomment the following:
-  # RewriteCond %{HTTP_HOST} .
   # RewriteCond %{HTTP_HOST} !^www\. [NC]
-  # RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
   #
   # To redirect all users to access the site WITHOUT the 'www.' prefix,
   # (http://www.example.com/... will be redirected to http://example.com/...)
   # uncomment the following:
   # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
-  # RewriteRule ^ http%{ENV:protossl}://%1%{REQUEST_URI} [L,R=301]
+  # RewriteRule ^ http://%1%{REQUEST_URI} [L,R=301]
 
   # Modify the RewriteBase if you are using Drupal in a subdirectory or in a
   # VirtualDocumentRoot and the rewrite rules are not working properly.
@@ -137,3 +129,32 @@ DirectoryIndex index.php index.html index.htm
     </FilesMatch>
   </IfModule>
 </IfModule>
+
+SetEnvIf HOST dev.drupal.vigilantmedia.com dev-vigilant
+SetEnvIf HOST dev.emptyensemble.com dev-empty
+SetEnvIf HOST dev.eponymous4.com dev-ep4
+SetEnvIf HOST dev.observantrecords.com dev-observant
+SetEnvIf HOST dev.shinkyokuadvocacy.com dev-shinkyoku
+SetEnvIf HOST test.drupal.vigilantmedia.com test-vigilant
+SetEnvIf HOST test.emptyensemble.com test-empty
+SetEnvIf HOST test.eponymous4.com test-ep4
+SetEnvIf HOST test.observantrecords.com test-observant
+SetEnvIf HOST test.shinkyokuadvocacy.com test-shinkyoku
+AuthType Basic
+AuthUserFile /home/nemesisv/.htpasswd
+AuthName "Vigilant Media Drupal development site"
+require valid-user
+
+Order allow,deny
+Allow from all
+Deny from env=dev-empty
+Deny from env=dev-ep4
+Deny from env=dev-observant
+Deny from env=dev-shinkyoku
+Deny from env=dev-vigilant
+Deny from env=test-empty
+Deny from env=test-ep4
+Deny from env=test-observant
+Deny from env=test-shinkyoku
+Deny from env=test-vigilant
+Satisfy any
