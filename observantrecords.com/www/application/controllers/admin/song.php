@@ -35,6 +35,7 @@ class Song extends CI_Controller {
 	public function browse($artist_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
 			$this->observantview->_set_artist_header($artist_id, 'Songs');
+			$this->Obr_Song->order_by('song_title');
 			$rsSongs = $this->Obr_Song->get_many_by('song_primary_artist_id', $artist_id);
 			$this->mysmarty->assign('rsSongs', $rsSongs);
 			$this->mysmarty->assign('artist_id', $artist_id);
