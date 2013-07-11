@@ -2,16 +2,11 @@
 
 /**
  * @file
- * Administration page callbacks for the Book module.
+ * Admin page callbacks for the book module.
  */
 
 /**
  * Returns an administrative overview of all books.
- *
- * @return string
- *   A HTML-formatted string with the administrative page content.
- *
- * @see book_menu()
  */
 function book_admin_overview() {
   $rows = array();
@@ -58,8 +53,6 @@ function book_admin_settings() {
 
 /**
  * Form validation handler for book_admin_settings().
- *
- * @see book_admin_settings_submit()
  */
 function book_admin_settings_validate($form, &$form_state) {
   $child_type = $form_state['values']['book_child_type'];
@@ -156,7 +149,7 @@ function book_admin_edit_submit($form, &$form_state) {
  * @param $node
  *   The node of the top-level page in the book.
  * @param $form
- *   The form that is being modified, passed by reference.
+ *   The form that is being modified.
  *
  * @see book_admin_edit()
  */
@@ -191,10 +184,10 @@ function _book_admin_table($node, &$form) {
  * @param $tree
  *   A subtree of the book menu hierarchy.
  * @param $form
- *   The form that is being modified, passed by reference.
+ *   The form that is being modified.
  *
  * @return
- *   The modified form array.
+ *   The form that is being modified.
  *
  * @see book_admin_edit()
  */

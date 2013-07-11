@@ -391,8 +391,7 @@ function image_update_7002(array &$sandbox) {
   }
 
   // Process the table at the top of the list.
-  $keys = array_keys($sandbox['tables']);
-  $table = reset($keys);
+  $table = reset(array_keys($sandbox['tables']));
   $sandbox['processed'] += _image_update_7002_populate_dimensions($table, $sandbox['tables'][$table], $sandbox['last_fid']);
 
   // Has the table been fully processed?
