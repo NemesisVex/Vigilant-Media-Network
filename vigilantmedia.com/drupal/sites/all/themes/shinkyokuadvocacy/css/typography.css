@@ -1,43 +1,4 @@
-/*
-    Document   : typography
-    Created on : Aug 29, 2012, 9:24:40 PM
-    Author     : Greg Bueno
-    Description:
-        Typography style rules for Shinkyoku Advocacy
-*/
-
-@font-face {
-	font-family: "CartoGothicStd";
-	src: url("fonts/CartoGothicStd-Book-webfont.eot");
-	src: url("fonts/CartoGothicStd-Book-webfont.eot?iefix") format("eot"),
-		url("fonts/CartoGothicStd-Book-webfont.woff") format("woff"),
-		url("fonts/CartoGothicStd-Book-webfont.ttf") format("truetype"),
-		url("fonts/CartoGothicStd-Book-webfont.svg#webfont") format("svg");
-}
-@font-face {
-	font-family: "CartoGothicStd";
-	src: url("fonts/CartoGothicStd-BoldItalic-webfont.eot");
-	src: url("fonts/CartoGothicStd-BoldItalic-webfont.eot?iefix") format("eot"),
-		url("fonts/CartoGothicStd-BoldItalic-webfont.woff") format("woff"),
-		url("fonts/CartoGothicStd-BoldItalic-webfont.ttf") format("truetype"),
-		url("fonts/CartoGothicStd-BoldItalic-webfont.svg#webfont") format("svg");
-	font-weight: bold;
-	font-style: italic, oblique;
-}
-@font-face {
-	font-family: "CartoGothicStd";
-	src: url("fonts/CartoGothicStd-Bold-webfont.eot");
-	src: url("fonts/CartoGothicStd-Bold-webfont.eot?iefix") format("eot"),
-		url("fonts/CartoGothicStd-Bold-webfont.woff") format("woff"),
-		url("fonts/CartoGothicStd-Bold-webfont.ttf") format("truetype"),
-		url("fonts/CartoGothicStd-Bold-webfont.svg#webfont") format("svg");
-	font-weight: bold;
-}
-
-body {
-	font-size: 100%;
-}
-
-#content {
-	font-family: 'CartoGothicStd', Helvetica, Arial, sans-serif;
-}
+/* CSS crunched with Crunch - http://crunchapp.net/ */
+.default-font{font-family:"CartoGothicStd";src:url("fonts/CartoGothicStd-Book-webfont.eot");src:url("fonts/CartoGothicStd-Book-webfont.eot?iefix") format("eot"),url("fonts/CartoGothicStd-Book-webfont.woff") format("woff"),url("fonts/CartoGothicStd-Book-webfont.ttf") format("truetype"),url("fonts/CartoGothicStd-Book-webfont.svg#webfont") format("svg");}
+@font-face{font-family:"CartoGothicStd";src:url("fonts/CartoGothicStd-Book-webfont.eot");src:url("fonts/CartoGothicStd-Book-webfont.eot?iefix") format("eot"),url("fonts/CartoGothicStd-Book-webfont.woff") format("woff"),url("fonts/CartoGothicStd-Book-webfont.ttf") format("truetype"),url("fonts/CartoGothicStd-Book-webfont.svg#webfont") format("svg");}@font-face{font-family:"CartoGothicStd";src:url("fonts/CartoGothicStd-Book-webfont.eot");src:url("fonts/CartoGothicStd-Book-webfont.eot?iefix") format("eot"),url("fonts/CartoGothicStd-Book-webfont.woff") format("woff"),url("fonts/CartoGothicStd-Book-webfont.ttf") format("truetype"),url("fonts/CartoGothicStd-Book-webfont.svg#webfont") format("svg");font-weight:bold;font-style:italic, oblique;}@font-face{font-family:"CartoGothicStd";src:url("fonts/CartoGothicStd-Book-webfont.eot");src:url("fonts/CartoGothicStd-Book-webfont.eot?iefix") format("eot"),url("fonts/CartoGothicStd-Book-webfont.woff") format("woff"),url("fonts/CartoGothicStd-Book-webfont.ttf") format("truetype"),url("fonts/CartoGothicStd-Book-webfont.svg#webfont") format("svg");font-weight:bold;}body{font-size:100%;}
+#content{font-family:'CartoGothicStd',Helvetica,Arial,sans-serif;}
