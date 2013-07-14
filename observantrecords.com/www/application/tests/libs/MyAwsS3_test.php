@@ -39,9 +39,27 @@ class MyAwsS3_test extends CIUnit_TestCase
 	{
 		$args = array(
 			'Bucket' => 'observant-records',
-			'Marker' => 'artists/eponymous-4/albums/enigmatics/obrc-000b/',
+			'Prefix' => 'artists/eponymous-4/albums/enigmatics/obrc-000b/audio/mp3',
 		);
-		$result = $this->s3->getIterator('ListObjects', $args);
+		$results = $this->s3->getIterator('ListObjects', $args);
+		$this->assertNotNull($results);
+		
+		foreach ($results as $result) {
+			echo $result['Key'] . PHP_EOL;
+		}
+	}
+	
+	public function test_upload_object() {
+		$file_name = 'aws_s3_upload_file_test.txt';
+		$file_path = 'D:\Websites\_data\eponymous4.com';
+		$body = $file_path . '\\' . $file_name;
+		$args = array(
+			'Bucket' => 'vigilant-media',
+			'Key' => $file_name,
+			'Body' => fopen($body, 'r+'),
+		);
+		
+		$result = $this->s3->putObject($args);
 		$this->assertNotNull($result);
 	}
 }
