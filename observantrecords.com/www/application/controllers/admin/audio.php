@@ -20,6 +20,7 @@ class Audio extends CI_Controller {
 		$this->load->library('VmSession');
 		// Load MP3 tag editing library.
 		$this->load->library('MyId3');
+		$this->load->library('ObservantS3');
 		// Load models.
 		$this->load->model('Obr_Artist');
 		$this->load->model('Obr_Audio');
@@ -115,9 +116,15 @@ class Audio extends CI_Controller {
 				);
 			}
 			
+			$s3_directories = $this->observants3->list_folders($rsRecording->artist->artist_alias);
+			foreach ($s3_directories as $i => $s3_directory) {
+				$s3_directories[$i] = '/' . $s3_directory;
+			}
+			
 			$this->mysmarty->assign('recording_id', $recording_id);
 			
 			$this->mysmarty->assign('recordings', json_encode($recordings));
+			$this->mysmarty->assign('s3_directories', json_encode($s3_directories));
 		}
 		
 		$this->mysmarty->assign('recording_id', $recording_id);
@@ -154,6 +161,7 @@ class Audio extends CI_Controller {
 	 */
 	public function duplicate($audio_id) {
 		if (!empty($_SESSION[$this->vmsession->session_flag])) {
+			$this->mysmarty->assign('original_audio_id', $audio_id);
 			$this->edit($audio_id, true);
 		}
 	}

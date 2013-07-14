@@ -1,6 +1,6 @@
 {include file=obr_global_header.tpl}
 
-		<form action="/index.php/admin/audio/{if $audio_id}update/{$audio_id}{else}create{/if}/" method="post">
+<form action="/index.php/admin/audio/{if $audio_id}update/{$audio_id}{else}create{/if}/" method="post" enctype="multipart/form-data">
 			<p>
 				<label for="audio_file_type">File Type:</label>
 				<select name="audio_file_type" id="audio_file_type">
@@ -47,6 +47,7 @@
 			<p>
 				<input type="submit" value="Save" class="button" />
 				<input type="hidden" id="audio_id" name="audio_id" value="{$audio_id}" />
+				<input type="hidden" id="original_audio_id" name="original_audio_id" value="{$original_audio_id}" />
 			</p>
 			
 		{if !empty($rsFile->audio_file_server) && !empty($rsFile->audio_file_name) && !empty($rsFile->audio_file_path)}
@@ -61,8 +62,9 @@
 		</form>
 
 		<script type="text/javascript">
-			var recordings = {$recordings};
 			var artist_alias = '{$artist_alias}';
+			var recordings = {$recordings};
+			var s3_directories = {$s3_directories};
 		</script>
 		{literal}
 		<script type="text/javascript">
@@ -94,30 +96,47 @@
 				}
 			};
 				
-			$('#audio_file_type').chosen();
-			$('#audio_file_server').chosen();
-			$('#audio_recording_id').chosen();
-			
-			// Prepopulate some field based on how we initialize the recording ID for a new audio file.
-			if ($('#audio_recording_id').val() > 0 && $('#audio_id').val() == '' ) {
-				Audio_Edit.build_file_name($('#audio_recording_id').val());
-			}
+			$(function () {
+				$('#audio_file_type').chosen({
+					width: '75px'
+				});
+				$('#audio_file_server').chosen();
+				$('#audio_recording_id').chosen();
 				
-			$('#audio_file_server').change(function () {
-				if ($('#audio_file_path').val() == '') {
-					if (this.value == 'cdn.observantrecords.com' || this.value == 'observant-records.s3.amazonaws.com') {
-						$('#audio_file_path').val('/artists/' + artist_alias + '/albums');
-					} else if (this.value == 'www.observantrecords.com') {
-						$('#audio_file_path').val('/music/audio/_mp3/_ex_machina');
-					}
+				var enable_path_autocomplete = ($('#audio_file_server').val() == 'cdn.observantrecords.com' || $('#audio_file_server').val() == 'observant-records.s3.amazonaws.com') ? false : true;
+				$('#audio_file_path').autocomplete({
+					source: s3_directories,
+					disabled: enable_path_autocomplete
+				});
+
+				// Prepopulate some field based on how we initialize the recording ID for a new audio file.
+				if ($('#audio_recording_id').val() > 0 && ($('#audio_id').val() == '' && $('#original_audio_id').val() == '')) {
+					Audio_Edit.build_file_name($('#audio_recording_id').val());
 				}
+					
+				$('#audio_file_server').change(function () {
+					if ($('#audio_file_path').val() == '') {
+						if (this.value == 'cdn.observantrecords.com' || this.value == 'observant-records.s3.amazonaws.com') {
+							$('#audio_file_path').autocomplete('enable');
+						} else if (this.value == 'www.observantrecords.com') {
+							$('#audio_file_path').autocomplete('disable');
+							$('#audio_file_path').val('/music/audio/_mp3/_ex_machina');
+						} else {
+							$('#audio_file_path').autocomplete('disable');
+						}
+					}
+				});
+				$('#audio_file_type').change(function () {
+					var matches = String($('#audio_file_name').val()).split(/\.(.+)$/);
+					var file_name_base = matches[0];
+					var file_name_extension = $('#audio_file_type :selected').html();
+					var file_name = file_name_base + '.' + file_name_extension;
+					$('#audio_file_name').val(file_name);
+				});
+				$('#audio_recording_id').change(function () {
+					Audio_Edit.build_file_name(this.value);
+				});
 			});
-			$('#audio_file_type').change(function () {
-				Audio_Edit.build_file_name($('#audio_recording_id').val());
-			});
-			$('#audio_recording_id').change(function ()
-			{
-				Audio_Edit.build_file_name(this.value);
-			});
+				
 		</script>
 		{/literal}
