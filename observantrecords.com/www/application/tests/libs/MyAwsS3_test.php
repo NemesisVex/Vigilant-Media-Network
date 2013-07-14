@@ -23,7 +23,7 @@ class MyAwsS3_test extends CIUnit_TestCase
 			'key' => ACCESS_KEY_ID,
 			'secret' => SECRET_ACCESS_KEY,
 		);
-		$this->CI->load->library('MyAws', '', 'aws');
+		$this->CI->load->library('ObservantS3', '', 'observants3');
 		
 		$this->s3 = Aws\S3\S3Client::factory($params);
 	}
@@ -43,24 +43,13 @@ class MyAwsS3_test extends CIUnit_TestCase
 		);
 		$results = $this->s3->getIterator('ListObjects', $args);
 		$this->assertNotNull($results);
-		
-		foreach ($results as $result) {
-			echo $result['Key'] . PHP_EOL;
-		}
 	}
 	
-	public function test_upload_object() {
-		$file_name = 'aws_s3_upload_file_test.txt';
-		$file_path = 'D:\Websites\_data\eponymous4.com';
-		$body = $file_path . '\\' . $file_name;
-		$args = array(
-			'Bucket' => 'vigilant-media',
-			'Key' => $file_name,
-			'Body' => fopen($body, 'r+'),
-		);
+	public function test_list_folders() {
+		$results = $this->CI->observants3->list_folders('eponymous-4');
+		$this->assertNotNull($results);
 		
-		$result = $this->s3->putObject($args);
-		$this->assertNotNull($result);
+		print_r($results);
 	}
 }
 
