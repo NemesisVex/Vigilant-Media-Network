@@ -23,7 +23,7 @@ class MyAwsS3_test extends CIUnit_TestCase
 			'key' => ACCESS_KEY_ID,
 			'secret' => SECRET_ACCESS_KEY,
 		);
-		$this->CI->load->library('MyAws', '', 'aws');
+		$this->CI->load->library('ObservantS3', '', 'observants3');
 		
 		$this->s3 = Aws\S3\S3Client::factory($params);
 	}
@@ -39,10 +39,17 @@ class MyAwsS3_test extends CIUnit_TestCase
 	{
 		$args = array(
 			'Bucket' => 'observant-records',
-			'Marker' => 'artists/eponymous-4/albums/enigmatics/obrc-000b/',
+			'Prefix' => 'artists/eponymous-4/albums/enigmatics/obrc-000b/audio/mp3',
 		);
-		$result = $this->s3->getIterator('ListObjects', $args);
-		$this->assertNotNull($result);
+		$results = $this->s3->getIterator('ListObjects', $args);
+		$this->assertNotNull($results);
+	}
+	
+	public function test_list_folders() {
+		$results = $this->CI->observants3->list_folders('eponymous-4');
+		$this->assertNotNull($results);
+		
+		print_r($results);
 	}
 }
 

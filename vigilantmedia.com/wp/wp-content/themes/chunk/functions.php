@@ -1,7 +1,6 @@
 <?php
 /**
- * @package WordPress
- * @subpackage Chunk
+ * @package Chunk
  */
 
 /**
@@ -11,42 +10,39 @@ if ( ! isset( $content_width ) )
 	$content_width = 580;
 
 /**
- * Make theme available for translation
- * Translations can be filed in the /languages/ directory
+ * Setup Chunk
  */
-load_theme_textdomain( 'chunk', get_template_directory_uri() . '/languages' );
+function chunk_setup() {
+	/**
+	 * Make theme available for translation
+	 * Translations can be filed in the /languages/ directory
+	 */
+	load_theme_textdomain( 'chunk', get_template_directory_uri() . '/languages' );
 
-$locale = get_locale();
-$locale_file = get_template_directory_uri() . "/languages/$locale.php";
-if ( is_readable( $locale_file ) )
-	require_once( $locale_file );
+	/**
+	 * Add feed links to head
+	 */
+	add_theme_support( 'automatic-feed-links' );
 
-/**
- * Add feed links to head
- */
-add_theme_support( 'automatic-feed-links' );
+	/**
+	 * Enable Post Formats
+	 */
+	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link', 'gallery', 'chat', 'audio' ) );
 
-/**
- * This theme uses wp_nav_menu() in one location.
- */
-register_nav_menus( array(
-	'primary' => __( 'Main Menu', 'chunk' ),
-) );
+	/**
+	 * Add custom background support.
+	 */
+	add_theme_support( 'custom-background' );
 
-/**
- * Enable Post Formats
- */
-add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'quote', 'link', 'audio', 'chat', 'video' ) );
+	/**
+	 * This theme uses wp_nav_menu() in one location.
+	 */
+	register_nav_menus( array(
+		'primary' => __( 'Main Menu', 'chunk' ),
+	) );
+}
+add_action( 'after_setup_theme', 'chunk_setup' );
 
-/**
- * Load up our functions for grabbing content from posts
- */
-require( get_template_directory() . '/content-grabbers.php' );
-
-/**
- * Add custom background support.
- */
-add_custom_background();
 
 /**
  * Get our wp_nav_menu() fallback, wp_page_menu(), to show a home link.
@@ -62,148 +58,56 @@ add_filter( 'wp_page_menu_args', 'chunk_page_menu_args' );
  */
 function chunk_widgets_init() {
 	register_sidebar( array(
-		'name' => __( 'Footer', 'chunk' ),
-		'id' => 'sidebar-1',
+		'name'          => __( 'Footer', 'chunk' ),
+		'id'            => 'sidebar-1',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget' => "</aside>",
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
 	) );
 }
 add_action( 'widgets_init', 'chunk_widgets_init' );
 
 /**
- * Custom Header.
+ * Enqueue scripts and styles
+ *
+ * @since Chunk 1.1
  */
-define( 'HEADER_TEXTCOLOR', '000' );
+function chunk_general_scripts() {
+	wp_enqueue_style( 'chunk-style', get_stylesheet_uri() );
 
-// By leaving empty, we default to random image rotation.
-define( 'HEADER_IMAGE', '' );
-
-define( 'HEADER_IMAGE_WIDTH', 800 );
-define( 'HEADER_IMAGE_HEIGHT', 140 );
-
-add_custom_image_header( 'chunk_header_style', 'chunk_admin_header_style' );
-
-/**
- * Styles the header image displayed on the Appearance > Header admin panel.
- */
-function chunk_admin_header_style() {
-?>
-	<style type="text/css">
-	#headimg {
-		width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
-		height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
 	}
-	#heading,
-	#headimg h1,
-	#headimg #desc {
-		display: none;
-	}
-	</style>
-<?php
 }
-
-/**
- * Styles the header image and text displayed on the blog.
- */
-function chunk_header_style() {
-
-	// If no custom options for text are set, let's bail
-	// get_header_textcolor() options: HEADER_TEXTCOLOR is default, hide text (returns 'blank') or any hex value
-	if ( HEADER_TEXTCOLOR == get_header_textcolor() )
-		return;
-	// If we get this far, we have custom styles. Let's do this.
-	?>
-	<style type="text/css">
-	<?php
-		// Has the text been hidden?
-		if ( 'blank' == get_header_textcolor() ) :
-	?>
-		#site-title,
-		#site-description {
-			position: absolute !important;
-			clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
-			clip: rect(1px, 1px, 1px, 1px);
-		}
-		#header {
-			min-height: 0;
-		}
-	<?php
-		// If the user has set a custom color for the text use that
-		else :
-	?>
-		#site-title a {
-			color: #<?php echo get_header_textcolor(); ?> !important;
-		}
-	<?php endif; ?>
-	</style>
-	<?php
-}
+add_action( 'wp_enqueue_scripts', 'chunk_general_scripts' );
 
 /**
  * Enqueue font styles.
  */
 function chunk_fonts() {
-	wp_enqueue_style( 'oswald', 'http://fonts.googleapis.com/css?family=Oswald' );
+	$protocol = is_ssl() ? 'https' : 'http';
+	wp_enqueue_style( 'oswald', "$protocol://fonts.googleapis.com/css?family=Oswald&subset=latin,latin-ext" );
 }
 add_action( 'wp_enqueue_scripts', 'chunk_fonts' );
 
 /**
- * Dequeue font styles.
- */
-function chunk_dequeue_fonts() {
-
-	/**
-	 * We don't want to enqueue the font scripts if the blog
-	 * has WP.com Custom Design and is using a 'Headings' font.
-	 */
-	if ( class_exists( 'TypekitData' ) ) {
-
-		if ( TypekitData::get( 'upgraded' ) ) {
-			$customfonts = TypekitData::get( 'families' );
-			if ( ! $customfonts )
-				return;
-			$headings = $customfonts['headings'];
-			$sitetitle = $customfonts['sitetitle'];
-
-			if ( $headings['id'] && $sitetitle['id'] ) {
-				wp_dequeue_style( 'oswald' );
-			}
-		}
-	}
-}
-add_action( 'wp_enqueue_scripts', 'chunk_dequeue_fonts' );
-
-/**
- * Audio player.
+ * Audio helper script.
+ *
+ * If an audio shortcode exists we will enqueue javascript
+ * that replaces all non-supported audio player instances
+ * with text links.
+ *
+ * @uses shortcode_exists();
  */
 function chunk_scripts() {
-	if ( ! is_singular() || ( is_singular() && 'audio' == get_post_format() ) )
-		wp_enqueue_script( 'audio-player', get_template_directory_uri() . '/js/audio-player.js', array( 'jquery' ), '20110823' );
+	if ( shortcode_exists( 'audio' ) )
+		return;
+
+	if ( ! is_singular() || has_post_format( 'audio' ) )
+		wp_enqueue_script( 'chunk-audio', get_template_directory_uri() . '/js/audio.js', array(), '20120314' );
 }
 add_action( 'wp_enqueue_scripts', 'chunk_scripts' );
-
-function chunk_add_audio_support() {
-	if ( ! is_singular() || ( is_singular() && 'audio' == get_post_format() ) ) {
-?>
-		<script type="text/javascript">
-			AudioPlayer.setup( "<?php echo get_template_directory_uri(); ?>/swf/player.swf", {
-				bg: "e4e4e4",
-				leftbg: "e4e4e4",
-				rightbg: "e4e4e4",
-				track: "222222",
-				text: "555555",
-				lefticon: "eeeeee",
-				righticon: "eeeeee",
-				border: "e4e4e4",
-				tracker: "eb374b",
-				loader: "666666"
-			});
-		</script>
-<?php }
-}
-add_action( 'wp_head', 'chunk_add_audio_support' );
 
 /**
  * Custom Classes
@@ -220,12 +124,154 @@ function chunk_body_classes( $classes ) {
 add_filter( 'body_class', 'chunk_body_classes' );
 
 /**
- * Theme colors array for WP.com.
+ * Date formats for Chunk.
  */
-$themecolors = array(
-	'bg' => 'ffffff',
-	'border' => 'eeeeee',
-	'text' => '555555',
-	'link' => '36bcab',
-	'url' => '36bcab',
-);
+function chunk_date() {
+	$date_format = get_option( 'date_format' );
+	if ( 'F j, Y' == $date_format ) :
+		the_time( 'M d Y' );
+	else:
+		the_time( $date_format );
+	endif;
+}
+
+/**
+ * Appends post title to Aside and Quote posts
+ *
+ * @param string $content
+ * @return string
+ */
+function chunk_conditional_title( $content ) {
+
+	if ( has_post_format( 'aside' ) || has_post_format( 'quote' ) ) {
+		if ( ! is_singular() )
+			$content .= the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>', false );
+		else
+			$content .= the_title( '<h2 class="entry-title">', '</h2>', false );
+	}
+
+	return $content;
+}
+add_filter( 'the_content', 'chunk_conditional_title', 0 );
+
+/**
+ * Filters wp_title to print a neat <title> tag based on what is being viewed.
+ *
+ * @since Chunk 1.1
+ */
+function chunk_wp_title( $title, $sep ) {
+	global $page, $paged;
+
+	if ( is_feed() )
+		return $title;
+
+	// Add the blog name
+	$title .= get_bloginfo( 'name' );
+
+	// Add the blog description for the home/front page.
+	$site_description = get_bloginfo( 'description', 'display' );
+	if ( $site_description && ( is_home() || is_front_page() ) )
+		$title .= " $sep $site_description";
+
+	// Add a page number if necessary:
+	if ( $paged >= 2 || $page >= 2 )
+		$title .= " $sep " . sprintf( __( 'Page %s', 'chunk' ), max( $paged, $page ) );
+
+	return $title;
+}
+add_filter( 'wp_title', 'chunk_wp_title', 10, 2 );
+
+/**
+ * Get a short-form mime type for an audio file to display as a class attribute.
+ *
+ * @param int ID of an attachment
+ * @return string A short representation of the file's mime type.
+ */
+function chunk_post_classes( $classes ) {
+	if ( has_post_format( 'audio' ) ) {
+		$audio = chunk_audio_grabber( get_the_ID() );
+
+		if ( $audio ) {
+			$mime = str_replace( 'audio/', '', get_post_mime_type( $audio->ID ) );
+			if ( in_array( $mime, array( 'mp3', 'ogg', 'wav', ) ) )
+				$classes[] = $mime;
+		}
+	}
+	return $classes;
+}
+add_filter( 'post_class', 'chunk_post_classes' );
+
+if ( ! function_exists( 'the_post_format_audio' ) ) :
+/**
+ * Shiv for the_post_format_audio().
+ *
+ * the_post_format_audio() was introduced to WordPress in version 3.6. To
+ * provide backward compatibility with previous versions, we will define our
+ * own version of this function.
+ *
+ * @todo Remove this function when WordPress 3.8 is released.
+ *
+ * @param string $name The name of the shortcode.
+ * @return bool True if shortcode exists; False otherwise.
+ */
+function the_post_format_audio() {
+	$audio = chunk_audio_grabber( get_the_ID() );
+	if ( ! empty( $audio ) ) :
+		$url = wp_get_attachment_url( $audio->ID );
+	?>
+		<div class="player">
+			<audio controls preload="auto" autobuffer id="audio-player-<?php the_ID(); ?>" src="<?php echo esc_url( $url ); ?>">
+				<source src="<?php echo esc_url( $url ); ?>" type="<?php echo esc_attr( get_post_mime_type( $audio->ID ) ); ?>" />
+			</audio>
+			<p class="audio-file-link"><?php printf( __( 'Download: %1$s', 'chunk' ), sprintf( '<a href="%1$s">%2$s</a>', esc_url( $url ), get_the_title( $audio->ID ) ) ); ?></p>
+		</div>
+	<?php
+	endif;
+}
+endif;
+
+if ( ! function_exists( 'shortcode_exists' ) ) :
+/**
+ * Shiv for shortcode_exists().
+ *
+ * shortcode_exists() was introduced to WordPress in version 3.6. To
+ * provide backward compatibility with previous versions, we will define our
+ * own version of this function.
+ *
+ * @todo Remove this function when WordPress 3.8 is released.
+ *
+ * @param string $name The name of the shortcode.
+ * @return bool True if shortcode exists; False otherwise.
+ */
+function shortcode_exists( $tag ) {
+	global $shortcode_tags;
+	return array_key_exists( $tag, $shortcode_tags );
+}
+endif;
+
+/**
+ * Deprecated.
+ *
+ * This function is kept just in case it has
+ * been used in a child theme. It does nothing.
+ *
+ * @deprecated 1.1
+ */
+function chunk_add_audio_support() {
+	_deprecated_function( __FUNCTION__, '1.2' );
+}
+
+/**
+ * Implement the Custom Header feature
+ */
+require( get_template_directory() . '/inc/custom-header.php' );
+
+/**
+ * Load up our functions for grabbing content from posts
+ */
+require( get_template_directory() . '/content-grabbers.php' );
+
+/**
+ * Load Jetpack compatibility file.
+ */
+require( get_template_directory() . '/inc/jetpack.php' );

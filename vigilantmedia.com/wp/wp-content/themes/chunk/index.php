@@ -1,30 +1,10 @@
 <?php
 /**
- * @package WordPress
- * @subpackage Chunk
+ * @package Chunk
  */
 
 get_header(); ?>
 
-	<?php if ( is_archive() ) : ?>
-	<div class="page-title">
-		<h2>
-		<?php if ( is_day() ) : ?>
-			<?php printf( __( 'Posted on %s &hellip;', 'chunk' ), '<span>' . get_the_date() . '</span>' ); ?>
-		<?php elseif ( is_month() ) : ?>
-			<?php printf( __( 'Posted in %s &hellip;', 'chunk' ), '<span>' . get_the_date( 'F Y' ) . '</span>' ); ?>
-		<?php elseif ( is_year() ) : ?>
-			<?php printf( __( 'Posted in %s &hellip;', 'chunk' ), '<span>' . get_the_date( 'Y' ) . '</span>' ); ?>
-		<?php elseif( is_author() ) : ?>
-			<?php printf( __( 'Posted by %s &hellip;', 'chunk' ), '<span>' . get_the_author() . '</span>' ); ?>
-		<?php elseif ( is_category() ) : ?>
-			<?php printf( __( 'Filed under %s &hellip;', 'chunk' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?>
-		<?php elseif ( is_tag() ) : ?>
-			<?php printf( __( 'Tagged with %s &hellip;', 'chunk' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?>
-		<?php endif; ?>
-		</h2>
-	</div>
-	<?php endif; ?>
 	<?php if ( is_search() ) : ?>
 	<div class="page-title">
 		<h2>
