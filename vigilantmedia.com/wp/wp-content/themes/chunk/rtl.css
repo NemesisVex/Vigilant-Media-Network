@@ -53,6 +53,9 @@ blockquote {
 	border-right: 10px solid #36bcab;
 	text-align: justify;
 }
+.format-quote .quote-caption {
+    margin-right: 28px;
+}
 .tag-links strong {
 	margin-left: 4px;
 	margin-right: none;

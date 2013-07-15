@@ -1,11 +1,17 @@
 var WPCOMSharing = {
+	done_urls : [],
 	get_counts : function( url ) {
+		if ( 'undefined' != typeof WPCOMSharing.done_urls[ WPCOM_sharing_counts[ url ] ] )
+			return;
+
 		if ( jQuery( '#sharing-facebook-' + WPCOM_sharing_counts[ url ] ).length )
 			jQuery.getScript( 'https://api.facebook.com/method/fql.query?query=' + encodeURIComponent( "SELECT total_count, url FROM link_stat WHERE url='" + url + "'" ) + '&format=json&callback=WPCOMSharing.update_facebook_count' );
 		if ( jQuery( '#sharing-twitter-' + WPCOM_sharing_counts[ url ] ).length )
 			jQuery.getScript( window.location.protocol + '//cdn.api.twitter.com/1/urls/count.json?callback=WPCOMSharing.update_twitter_count&url=' + encodeURIComponent( url ) );
 		if ( jQuery( '#sharing-linkedin-' + WPCOM_sharing_counts[ url ] ).length )
 			jQuery.getScript( window.location.protocol + '//www.linkedin.com/countserv/count/share?format=jsonp&callback=WPCOMSharing.update_linkedin_count&url=' + encodeURIComponent( url ) );
+
+		WPCOMSharing.done_urls[ WPCOM_sharing_counts[ url ] ] = true;
 	},
 	update_facebook_count : function( data ) {
 		if ( 'undefined' != typeof data[0].total_count && ( data[0].total_count * 1 ) > 0 ) {
@@ -65,7 +71,7 @@ var WPCOMSharing = {
 
 		// Touchscreen device: use click.
 		// Non-touchscreen device: use click if not already appearing due to a hover event
-		$more_sharing_buttons.click( function() {
+		$more_sharing_buttons.on( 'click', function() {
 			var $more_sharing_button = $( this ),
 			    $more_sharing_pane = $more_sharing_button.parents( 'div:first' ).find( '.inner' );
 
@@ -177,6 +183,11 @@ var WPCOMSharing = {
 
 		// Add click functionality
 		$( '.sharedaddy ul' ).each( function( item ) {
+
+			if ( 'yep' == $( this ).data( 'has-click-events' ) )
+				return;
+			$( this ).data( 'has-click-events', 'yep' );
+
 			printUrl = function ( uniqueId, urlToPrint ) {
 				$( 'body:first' ).append( '<iframe style="position:fixed;top:100;left:100;height:1px;width:1px;border:none;" id="printFrame-' + uniqueId + '" name="printFrame-' + uniqueId + '" src="' + urlToPrint + '" onload="frames[\'printFrame-' + uniqueId + '\'].focus();frames[\'printFrame-' + uniqueId + '\'].print();"></iframe>' )
 			};
@@ -227,7 +238,7 @@ var WPCOMSharing = {
 			} );
 
 			// Email button
-			$( this ).find( 'a.share-email' ).click( function() {
+			$( 'a.share-email', this ).on( 'click', function() {
 				var url = $( this ).attr( 'href' ), key;
 
 				if ( $( '#sharing_email' ).is( ':visible' ) )

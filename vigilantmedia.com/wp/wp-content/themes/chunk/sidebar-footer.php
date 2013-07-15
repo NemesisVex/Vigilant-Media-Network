@@ -2,8 +2,7 @@
 /**
  * The Footer widget areas.
  *
- * @package WordPress
- * @subpackage Chunk
+ * @package Chunk
  */
 ?>
 
