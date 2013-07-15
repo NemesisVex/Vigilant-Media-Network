@@ -1,21 +1,13 @@
 <?php
 /**
- * @package WordPress
- * @subpackage Chunk
+ * @package Chunk
  */
+
+if ( post_password_required() )
+	return;
 ?>
-	<div id="comments">
-	<?php if ( post_password_required() ) : ?>
-		<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'chunk' ); ?></p>
-	</div><!-- #comments -->
-	<?php
-			/* Stop the rest of comments.php from being processed,
-			 * but don't kill the script entirely -- we still have
-			 * to fully load the template.
-			 */
-			return;
-		endif;
-	?>
+
+<div id="comments">
 
 	<?php if ( have_comments() ) : ?>
 		<h2 id="comments-title">
@@ -36,15 +28,15 @@
 		</nav>
 		<?php endif; // check for comment navigation ?>
 
+	<?php endif; // have_comments() ?>
+
 	<?php
-		/* If there are no comments and comments are closed, let's leave a little note, shall we?
-		 * But we don't want the note on pages or post types that do not support comments.
-		 */
-		elseif ( ! comments_open() && ! is_page() && '0' != get_comments_number() ) :
+		// If comments are closed and there are comments, let's leave a little note, shall we?
+		if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) :
 	?>
 		<p class="nocomments"><?php _e( 'Comments are closed.', 'chunk' ); ?></p>
 	<?php endif; ?>
 
 	<?php comment_form(); ?>
 
-	</div><!-- #comments -->
+</div><!-- #comments -->

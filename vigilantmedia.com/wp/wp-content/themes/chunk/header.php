@@ -1,22 +1,15 @@
 <?php
 /**
- * @package WordPress
- * @subpackage Chunk
+ * @package Chunk
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
-	<title><?php wp_title(); ?> <?php bloginfo( 'name' ); ?></title>
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
-	<?php
-		if ( is_singular() && get_option( 'thread_comments' ) )
-			wp_enqueue_script( 'comment-reply' );
-
-		wp_head();
-	?>
+	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
 
@@ -34,7 +27,7 @@
 		?>
 		<div id="header-image">
 			<a href="<?php echo home_url( '/' ); ?>">
-				<img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="" />
+				<img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" />
 			</a>
 		</div>
 		<?php endif; ?>

@@ -3,19 +3,25 @@ Theme Name: Chunk
 Theme URI: http://theme.wordpress.com/themes/chunk/
 Author: Automattic
 Author URI: http://automattic.com/
-Description: A straightforward theme with bold typography designed by <a href="http://twitter.com/#!/thisistran/">Tran N</a>. Featuring multiple post formats, custom background, custom menu, and custom header. Also comes with an optional footer widget area.
-Version: 1.0-wpcom
-License: GNU General Public License
-License URI: license.txt
-Tags: light, white, fixed-width, one-column, custom-background, custom-header, custom-menu, post-formats, rtl-language-support, sticky-post, translation-ready, art, blog, cartoon, holiday, journal, lifestream, tumblelog, bright, clean, contemporary, flamboyant, modern
+Description: A straightforward theme with bold typography designed by <a href="http://twitter.com/thisistran/">Tran N</a>. Featuring multiple post formats, custom background, custom menu, and custom header. Also comes with an optional footer widget area.
+Version: 1.2
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: light, white, fixed-width, one-column, custom-background, custom-header, custom-menu, post-formats, rtl-language-support, sticky-post, translation-ready
+
+Chunk is based on the Chunk Tumblr theme, created by Tran Nguyen.
 */
 
 /* =Base
 ----------------------------------------------- */
+html {
+	height: 100%; /* Fix allowing body gradient to stay put on long pages */
+}
 body {
 	background-color: #fff;
-	background-image: -moz-linear-gradient( rgba(0,0,0,0.22), rgba(255,255,255,0) 80px );
 	background-image: -webkit-linear-gradient( rgba(0,0,0,0.22), rgba(255,255,255,0) 80px );
+	background-image:    -moz-linear-gradient( rgba(0,0,0,0.22), rgba(255,255,255,0) 80px );
+	background-repeat: repeat-x;
 	color: #555;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 13px;
@@ -62,7 +68,7 @@ body {
 #site-description {
 	background: #f1f1f1;
 	background-image: -webkit-linear-gradient( #f8f8f8, #eee);
-	background-image: -moz-linear-gradient( #f8f8f8, #eee);
+	background-image:    -moz-linear-gradient( #f8f8f8, #eee);
 	border-radius: 3px;
 	color: #666;
 	display: inline-block;
@@ -95,7 +101,6 @@ body {
 	font-family: 'Oswald', Helvetica, Arial, sans-serif;
 	font-size: 18px;
 	margin: 0 10px;
-	padding: 10px 0;
 	text-decoration: none;
 	text-transform: uppercase;
 }
@@ -116,7 +121,6 @@ body {
 	float: right;
 	position: absolute;
 	right: 0;
-	top: 2em;
 	z-index: 99999;
 }
 #menu ul ul ul {
@@ -225,6 +229,18 @@ body {
 .hentry .entry-meta .cat-links a:hover {
 	color: #36bcab;
 }
+.hentry .entry-meta .entry-format {
+	display: block;
+	font-size: 12px;
+	margin-top: 15px;
+}
+.entry-format a {
+	background: #eee;
+	border-radius: 3px;
+	color: #666;
+	line-height: 1;
+	padding: 4px 8px 3px;
+}
 .hentry .entry-meta .edit-link a {
 	font-size: 16px;
 }
@@ -246,16 +262,19 @@ body {
 	text-decoration: none;
 }
 .entry-meta .byline {
-    color: #aaa;
-    font-size: 16px;
-    line-height: 20px;
-    margin-top: 10px;
+	color: #aaa;
+	font-size: 16px;
+	line-height: 20px;
+	margin-top: 10px;
 }
 .entry-meta .byline a {
 	color: #777;
 }
 .single-author .entry-meta .byline {
 	display: none;
+}
+figure {
+	margin: 0;
 }
 blockquote {
 	background: #eee;
@@ -275,9 +294,13 @@ a:hover {
 }
 .entry-content a img {
 	border: 10px solid #ddd;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing:    border-box;
+	box-sizing:         border-box;
+	vertical-align: middle;
 }
 .entry-content a:hover img {
-	border: 10px solid #000;
+	border-color: #000;
 }
 b, strong {
 	color: #000;
@@ -294,22 +317,27 @@ b, strong {
 	margin-right: 4px;
 	padding: 3px 6px;
 }
-.entry-content table {
+.entry-content table,
+.comment-body table {
 	margin: 0 0 20px 0;
 	text-align: left;
 	width: 100%;
 }
 .entry-content tr th,
-.entry-content thead th {
+.comment-body tr th,
+.entry-content thead th,
+.comment-body thead th {
 	color: #888;
 	font-weight: normal;
 	line-height: 20px;
 	padding: 9px 24px;
 }
-.entry-content tr td {
+.entry-content tr td,
+.comment-body tr td {
 	padding: 6px 24px;
 }
-.entry-content tr.alternate td {
+.entry-content tr.alternate td,
+.comment-body tr.alternate td {
 	background: #f5f5f5;
 }
 .page-link a {
@@ -392,13 +420,42 @@ ul ul, ol ol, ul ol, ol ul {
 /* =Post Formats
 -------------------------------------------------------------- */
 
+/* Aside and Quote Posts */
+.format-aside .entry-title,
+.format-quote .entry-title {
+	font: 13px/1.75 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color: #999;
+	margin: 13px 0;
+	text-transform: none;
+}
+.format-aside .entry-title a,
+.format-quote .entry-title a {
+	color: #999;
+}
+
 /* Aside */
-.format-aside .entry-title {
+.format-aside .entry-content p:first-child {
+	margin-top: 8px;
+}
+
+/* Audio */
+.player audio {
 	display: none;
 }
-.format-aside .entry-content p:first-child {
-	margin-top: 0;
+.format-audio .wp-audio-shortcode {
+	margin-bottom: 15px;
 }
+.chunk-mp3 .hentry.mp3 audio,
+.chunk-ogg .hentry.ogg audio,
+.chunk-wav .hentry.wav audio {
+	display: block;
+}
+.chunk-mp3 .hentry.mp3 .audio-file-link,
+.chunk-ogg .hentry.ogg .audio-file-link,
+.chunk-wav .hentry.wav .audio-file-link {
+	display: none;
+}
+
 /* Link */
 .format-link .entry-title:after {
 	content: "\2192";
@@ -406,13 +463,21 @@ ul ul, ol ol, ul ol, ol ul {
 	padding-left: 10px;
 	text-decoration: none;
 }
+
 /* Quote */
 .format-quote blockquote {
 	font-size: 16px;
 }
-.format-quote blockquote p:last-child {
-	margin-bottom: 0;
+.format-quote .quote-caption {
+	color: #000;
+	font-family: Georgia,Arial,Helvetica,sans-serif;
+	font-size: 16px;
+	font-style: italic;
+	margin-left: 28px;
+	padding: 10px;
+	text-align: justify;
 }
+
 /* Chat */
 .format-chat .entry-title {
 	display: none;
@@ -438,12 +503,7 @@ Resize images to fit the main content area.
 - Applies only to images uploaded via WordPress by targeting size-* classes.
 - Other images will be left alone. Use "size-auto" class to apply to other images.
 */
-img.size-auto,
-img.size-full,
-img.size-large,
-img.size-medium,
-.attachment img,
-.widget-area img {
+img {
 	max-width: 100%; /* When images are too wide for containing element, force them to fit. */
 	height: auto; /* Override height to match resized width for correct aspect ratio. */
 }
@@ -532,6 +592,13 @@ article.comment {
 }
 .comment {
 	position: relative;
+}
+.comment .comment-author {
+	max-width: 45%;
+}
+.comment .comment-meta {
+	max-width: 47%;
+	text-align: right;
 }
 .comment .comment-author cite {
 	font-style: normal;

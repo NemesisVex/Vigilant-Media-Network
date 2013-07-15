@@ -1,7 +1,6 @@
 <?php
 /**
- * @package WordPress
- * @subpackage Chunk
+ * @package Chunk
  */
 
 get_header(); ?>
@@ -10,9 +9,9 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 
-				<div <?php post_class(); ?> id="post">
+				<div <?php post_class(); ?> id="post-<?php the_ID(); ?>">
 					<div class="entry-meta">
-						<div class="date"><a href="<?php the_permalink(); ?>"><?php the_time( 'M d Y' ); ?></a></div>
+						<div class="date"><a href="<?php the_permalink(); ?>"><?php chunk_date(); ?></a></div>
 						<?php if ( comments_open() || ( '0' != get_comments_number() && ! comments_open() ) ) : ?>
 						<div class="comments"><?php comments_popup_link( __( 'Leave a comment', 'chunk' ), __( '1 Comment', 'chunk' ), __( '% Comments', 'chunk' ) ); ?></div>
 						<?php endif; ?>
@@ -35,7 +34,7 @@ get_header(); ?>
 						</div>
 					</div>
 					<div class="main">
-						<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Permalink to %s', 'chunk' ), the_title_attribute( 'echo=0' ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+						<h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( sprintf( __( 'Permalink to %s', 'chunk' ), the_title_attribute( 'echo=0' ) ) ); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
 						<div class="entry-content">
 							<?php
 								/**
@@ -61,7 +60,7 @@ get_header(); ?>
 									$next_attachment_url = wp_get_attachment_url();
 								}
 							?>
-							<p>
+							<p class="attachment">
 								<a href="<?php echo $next_attachment_url; ?>" title="<?php echo esc_attr( get_the_title() ); ?>" rel="attachment"><?php	echo wp_get_attachment_image( $post->ID, array( 580, 580 ) ); ?></a>
 							</p>
 
