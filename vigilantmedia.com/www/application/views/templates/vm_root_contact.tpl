@@ -38,9 +38,9 @@
 				<script type="text/javascript" src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/js/jquery.validate.pack.js"></script>
 {literal}
 				<script type="text/javascript">
-				$(document).ready(function ()
+				$(function ()
 				{
-					$('#contact').validate(
+					$('#contact-form').validate(
 					{
 						rules:
 						{
