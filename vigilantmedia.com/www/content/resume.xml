@@ -10,8 +10,7 @@
 	<experience type="summary">
 		<entry num="1">
 			<items>
-				<item>PHP developer with experience in CodeIgniter, SugarCRM, jQuery and Blueprint CSS.</item>
-				<item>Works comfortably in both server- and client-side environments.</item>
+				<item>PHP developer with experience in CodeIgniter, jQuery and Blueprint CSS.</item>
 				<item>Background in journalism and writing easily applied to documentation.</item>
 			</items>
 		</entry>
@@ -29,8 +28,6 @@
 		<entry num="2" type="Additional languages">
 			<skills>
 				<skill>PERL</skill>
-				<skill>XML</skill>
-				<skill>XSLT</skill>
 				<skill>C#</skill>
 			</skills>
 		</entry>
@@ -42,15 +39,6 @@
 				<skill>Mercurial</skill>
 			</skills>
 		</entry>
-		<entry num="3" type="Additional tools">
-			<skills>
-				<skill>Photoshop</skill>
-				<skill>Talend</skill>
-				<skill>Perforce</skill>
-				<skill>CVS</skill>
-				<skill>Subversion</skill>
-			</skills>
-		</entry>
 	</experience>
 	<experience type="professional">
 		<entry num="1">
@@ -59,12 +47,12 @@
 			<location>Seattle, WA</location>
 			<dates>2012 - present</dates>
 			<duties>
+				<duty>Provide support and maintenance for Office of Research web sites.</duty>
 				<duty><![CDATA[Develop web applications for Office of Research web sites. Projects include:
 				<ul>
 					<li> Building an administrative interface for limited submission opportunities</li>
 				</ul>
 				]]></duty>
-				<duty>Provide support and maintenance for Office of Research web sites.</duty>
 			</duties>
 		</entry>
 		<entry num="2">
@@ -110,61 +98,47 @@
 				<duty>Developed and supported web-based interface for internal data entry.</duty>
 			</duties>
 		</entry>
-	<!--
-		<entry num="4">
-			<title>Producer</title>
-			<company>Austin360.com</company>
-			<location>Austin, TX</location>
-			<dates>1997 - 2000</dates>
-			<duties>
-				<duty>Maintained content on Austin-American Statesman web site.</duty>
-				<duty>Oversaw content flow for news, business and entertainment channels.</duty>
-				<duty>Maintained style guide and reference documents for staff.</duty>
-			</duties>
-		</entry>
-		<entry num="4">
-			<title>Managing Editor/Features Editor/Staff Writer</title>
-			<company>Ka Leo O Hawai'i</company>
-			<location>Honolulu, HI</location>
-			<dates>1993 - 1997</dates>
-			<duties>
-				<duty>Hired and trained writers and editors, adminstered payroll.</duty>
-				<duty>Assigned stories to writers, substituted for desk and copy editors.</duty>
-				<duty>Organized and led training workshops, staff meetings.</duty>
-			</duties>
-		</entry>
-	-->
 	</experience>
 	<experience type="miscellaneous">
 		<entry num="1">
+			<title>Member</title>
+			<company>Empty Ensemble</company>
+			<location>Seattle, WA</location>
+			<dates>2012 - present</dates>
+			<duties>
+				<duty>A spin-off project from Eponymous 4 focusing on orchestral and chamber composition.</duty>
+			</duties>
+		</entry>
+		<entry num="2">
 			<title>Member</title>
 			<company>Eponymous 4</company>
 			<location>Seattle, WA</location>
 			<dates>2008 - present</dates>
 			<duties>
-				<duty>A home studio music project releasing recordings through online channels..</duty>
+				<duty>A home studio music project releasing recordings through online channels.</duty>
 			</duties>
 		</entry>
-		<entry num="1">
+		<entry num="3">
 			<title>Owner</title>
 			<company>Observant Records</company>
 			<location>Seattle, WA</location>
 			<dates>2008 - present</dates>
 			<duties>
-				<duty>Runs record label exclusively handling Eponymous 4.</duty>
+				<duty>Runs record label exclusively handling Eponymous 4 and Empty Ensemble.</duty>
+				<duty>Develop proprietary content management system to maintain discography and audio.</duty>
 			</duties>
 		</entry>
-		<entry num="2">
+		<entry num="4">
 			<title>Publisher</title>
 			<company>Shinkyoku Advocacy</company>
 			<location>Seattle, WA</location>
 			<dates>2008 - present</dates>
 			<duties>
-				<duty>Handles publishing rights of songs by Eponymous 4.</duty>
-				<duty>Affiliated with ASCAP.</duty>
+				<duty>Handles publishing rights of songs by Eponymous 4 and Empty Ensemble.</duty>
+				<duty>Member of ASCAP.</duty>
 			</duties>
 		</entry>
-		<entry num="3">
+		<entry num="5">
 			<title>Customer service clerk</title>
 			<company>Waterloo Records</company>
 			<location>Austin, TX</location>
@@ -196,10 +170,11 @@
 			<location>Seattle, WA</location>
 			<dates>2000 - present</dates>
 			<duties>
-				<duty>Publish and maintained interactive music webzine integrating Movable Type, Musicbrainz and Amazon web services with a proprietary database of artists.</duty>
+				<duty>Publish and maintain interactive music webzine integrating Movable Type and Musicbrainz. Migrated to Wordpress in 2012.</duty>
 			</duties>
 			<url>http://www.musicwhore.org/</url>
 		</entry>
+		<!--
 		<entry num="2">
 			<title>Webmaster</title>
 			<company>Eponymous 4</company>
@@ -210,7 +185,6 @@
 			</duties>
 			<url>http://www.eponymous4.com/</url>
 		</entry>
-		<!--
 		<entry num="3">
 			<title>Webmaster</title>
 			<company>Austin Stories</company>
@@ -223,6 +197,7 @@
 		</entry>
 		-->
 	</experience>
+	<!--
 	<experience type="awards">
 		<entry num="1">
 			<honor>Finalist</honor>
@@ -234,4 +209,5 @@
 			<contest>Carol Burnett Journalism Ethics Writing Competition</contest>
 		</entry>
 	</experience>
+	-->
 </resume>
