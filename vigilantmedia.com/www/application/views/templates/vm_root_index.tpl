@@ -42,8 +42,8 @@
 					<p>Want to get in touch? <a href="/index.php/vm/contact/">Send an e-mail</a>. You can also find me on these and other fine web destinations:</p>
 
 					<ul class="nav-social">
-						<li><a href="http://bitbucket.org/NemesisVex"><img src="/images/bitbucket-16x16.png" alt="[Bitbucket]" title="[Bitbucket]" /></a></li>
-						<li><a href="http://www.linkedin.com/pub/greg-bueno/3/3a3/a98"><img src="{$config.to_vigilante}/images/icons/linkedin.png" alt="[LinkedIn]" title="[LinkedIn]" /></a></li>
-						<li><a href="http://www.twitter.com/NemesisVex"><img src="{$config.to_vigilante}/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
+						<li><a href="http://bitbucket.org/NemesisVex"><img src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/images/icons/bitbucket-16x16.png" alt="[Bitbucket]" title="[Bitbucket]" /></a></li>
+						<li><a href="http://www.linkedin.com/pub/greg-bueno/3/3a3/a98"><img src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/images/icons/linkedin.png" alt="[LinkedIn]" title="[LinkedIn]" /></a></li>
+						<li><a href="http://www.twitter.com/NemesisVex"><img src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
 					</ul>
 				</section>
