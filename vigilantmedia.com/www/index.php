@@ -76,7 +76,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = '../../vigilantmedia.com/vigilante/application/vigilantmedia';
+	$application_folder = 'application';
 
 /*
  * --------------------------------------------------------------------
