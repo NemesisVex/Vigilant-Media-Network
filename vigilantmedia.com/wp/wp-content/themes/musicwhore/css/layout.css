@@ -1,19 +1,21 @@
 body {
-	background-color: #781205;
+	background-color: #DCA36C;
+	/*
 	background-image: linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
 	background-image: -o-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
 	background-image: -moz-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
 	background-image: -webkit-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
 	background-image: -ms-linear-gradient(top, rgb(184,31,14), rgb(120,18,5) 60px);
-	color: #FFF;
+	*/
+	color: #000;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	color: #FFF;
+	color: #000;
 }
 
 a {
-	color: #DCA36C;
+	color: #043D4A;
 }
 
 a:active {
@@ -22,7 +24,7 @@ a:active {
 
 a:hover {
 	text-decoration: none;
-	color: #FFF;
+	color: #000;
 }
 
 a.comment-reply-link {
@@ -85,9 +87,7 @@ input[type=text] {
 	background-color: #FFF;
 	color: #000;
 	padding-top: 1.5em;
-	border-radius: 6px;
 	margin-bottom: 1.5em;
-	box-shadow: 4px 4px 0 #B8200E;
 }
 
 .entry-content h1,
@@ -103,13 +103,11 @@ input[type=text] {
 	float: left;
 	width: 150px;
 	margin-right: 10px;
-	background-color: #DC5543;
-	border-radius: 6px;
 	text-align: center;
 }
 
 .entry-meta a {
-	color: #FFF;
+	color: #000;
 }
 
 .entry-text a {
@@ -206,8 +204,12 @@ input[type=text] {
 	width: 950px;
 	margin-right: 0;
 	background-color: #B8220E;
+	color: #FFF;
 	margin-bottom: 3em;
-	border-radius: 6px;
+}
+
+#main-nav a {
+	color: #FFF;
 }
 
 #page-nav {
@@ -226,9 +228,11 @@ input[type=text] {
 #page-nav-content {
 	background-color: #B8220E;
 	margin-bottom: 1.5em;
-	border-radius: 6px;
 }
 
+#page-nav-content a {
+	color: #FFF;
+}
 
 #page-nav-spacer, #footer-spacer {
 	float: left;
@@ -260,6 +264,6 @@ input[type=text] {
 }
 
 #title a {
-	color: #FFF;
+	color: #000;
 	text-decoration: none;
 }
