@@ -12,11 +12,8 @@
 		<link rel="stylesheet" href="<?php echo VIGILANTMEDIA_CDN_BASE_URI; ?>/web/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if lt IE 8]><link rel="stylesheet" href="<?php echo VIGILANTMEDIA_CDN_BASE_URI; ?>/web/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/typography.css" type="text/css" media="screen, projection" />
-		<?php if (is_mobile()): ?>
-		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/mobile.css" type="text/css" media="screen, projection" />
-		<?php else: ?>
 		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/layout.css" type="text/css" media="screen, projection" />
-		<?php endif; ?>
+		<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/mobile.css" type="text/css" media="screen and (max-width: 600px)" />
 		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<script type="text/javascript" src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 		<script type="text/javascript" src="<?php echo VIGILANTMEDIA_CDN_BASE_URI; ?>/web/js/modernizr-1.6.min.js"></script>
