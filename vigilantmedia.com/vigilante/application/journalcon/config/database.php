@@ -41,10 +41,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = VIGILANTMEDIA_DB_HOST;
-$db['default']['username'] = VIGILANTMEDIA_DB_USER;
-$db['default']['password'] = VIGILANTMEDIA_DB_PASS;
-$db['default']['database'] = VIGILANTMEDIA_DB_DB;
+$db['default']['hostname'] = JOURNALCON_DB_HOST;
+$db['default']['username'] = JOURNALCON_DB_USER;
+$db['default']['password'] = JOURNALCON_DB_PASS;
+$db['default']['database'] = JOURNALCON_DB_DB;
 $db['default']['dbdriver'] = "mysql";
 $db['default']['dbprefix'] = "";
 $db['default']['pconnect'] = TRUE;
