@@ -41,11 +41,11 @@
 					</ul>
 
 					<ul id="nav-social">
-						<li><a href="http://twitter.com/NemesisVex/"><img src="{$config.to_vigilante}/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
-						<li><a href="http://facebook.com/greg.bueno/"><img src="{$config.to_vigilante}/images/icons/facebook.png" alt="[Facebook]" title="[Facebook]" /></a></li>
-						<li><a href="http://last.fm/user/NemesisVex/"><img src="{$config.to_vigilante}/images/icons/lastfm.png" alt="[Last.fm]" title="[Last.fm]" /></a></li>
-						<li><a href="http://www.linkedin.com/pub/3/3a3/a98"><img src="{$config.to_vigilante}/images/icons/linkedin.png" alt="[LinkedIn]" title="[LinkedIn]" /></a></li>
-						<li><a href="/index.php/gb/contact/"><img src="{$config.to_vigilante}/images/icons/email.png" alt="[E-mail]" title="[E-mail]" /></a></li>
+						<li><a href="http://twitter.com/NemesisVex/"><img src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/images/icons/twitter.png" alt="[Twitter]" title="[Twitter]" /></a></li>
+						<li><a href="http://facebook.com/greg.bueno/"><img src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/images/icons/facebook.png" alt="[Facebook]" title="[Facebook]" /></a></li>
+						<li><a href="http://last.fm/user/NemesisVex/"><img src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/images/icons/lastfm.png" alt="[Last.fm]" title="[Last.fm]" /></a></li>
+						<li><a href="http://www.linkedin.com/pub/3/3a3/a98"><img src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/images/icons/linkedin.png" alt="[LinkedIn]" title="[LinkedIn]" /></a></li>
+						<li><a href="/index.php/gb/contact/"><img src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/images/icons/email.png" alt="[E-mail]" title="[E-mail]" /></a></li>
 						<li><a href="/index.php/gb/distractions/">more ...</a></li>
 					</ul>
 
