@@ -54,7 +54,7 @@
 
 					<div class="three-columns">
 						<article class="three-column-single">
-							<p class="centered"><a href="/images/_full_vm_folio_uw_limited_submissions.jpg" rel="facebox"><img src="/images/vm_folio_uw_limited_submissions.jpg" alt="[University of Washington Research Limited Submissions]" title="[University of Washington Research Limited Submissions]"  /></a></p>
+							<p class="centered"><a href="/images/_full_vm_folio_uw_limited_submissions.jpg" rel="facebox"><img src="/images/vm_folio_uw_limited_submissions.jpg" alt="[University of Washington Research Limited Submissions]" title="[University of Washington Research Limited Submissions]" class="folio-image" /></a></p>
 
 							<h3>University of Washington Research Limited Submissions</h3>
 							
@@ -78,7 +78,7 @@
 						</article>
 
 						<article class="three-column-single-last">
-							<p class="centered"><a href="/images/_full_vm_folio_mt_force_preview_plugin.jpg" rel="facebox"><img src="/images/vm_folio_mt_force_preview_plugin.jpg" alt="[Movable Type Force Preview Plugin]" title="[Movable Type Force Preview Plugin]"  /></a></p>
+							<p class="centered"><a href="/images/_full_vm_folio_mt_force_preview_plugin.jpg" rel="facebox"><img src="/images/vm_folio_mt_force_preview_plugin.jpg" alt="[Movable Type Force Preview Plugin]" title="[Movable Type Force Preview Plugin]" class="folio-image" /></a></p>
 
 							<h3>Movable Type Force Preview plugin</h3>
 
