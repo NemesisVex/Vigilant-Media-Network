@@ -1,4 +1,4 @@
-/* Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
+/* Movable Type (r) Open Source (C) 2001-2013 Six Apart, Ltd.
  * This file is combined from multiple sources.  Consult the source files for their
  * respective licenses and copyrights.
  */;(function($){MT.EditorManager=function(){this.init.apply(this,arguments);};$.extend(MT.EditorManager,{editors:{},editorsForFormat:{},map:{},defaultWrapTag:'div',defaultWrapClass:'mt-editor-manager-wrap',register:function(id,editor){var thisConstructor=this;this.editors[id]=editor;$.each(editor.formatsForCurrentContext(),function(){if(!thisConstructor.editorsForFormat[this]){thisConstructor.editorsForFormat[this]=[];}
