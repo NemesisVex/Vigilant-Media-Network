@@ -1,4 +1,4 @@
-/* Movable Type (r) Open Source (C) 2001-2012 Six Apart, Ltd.
+/* Movable Type (r) Open Source (C) 2001-2013 Six Apart, Ltd.
  * This file is combined from multiple sources.  Consult the source files for their
  * respective licenses and copyrights.
  */defined=function(x){return x!==undefined;};exists=function(x){return(x===undefined||x===null)?false:true;};truth=function(x){return(x&&x!="0")?true:false;};finite=function(x){return isFinite(x)?x:0;};finiteInt=function(x,b){return finite(parseInt(x,b));};finiteFloat=function(x){return finite(parseFloat(x));};max=function(){var a=arguments;var n=a[0];for(var i=1;i<a.length;i++)
@@ -466,8 +466,9 @@ else{this.bootstrapApp();}};App.bootstrapIframe=function(){this.deferBootstrap=f
 return log.warn('bootstrap checking...');if(this.bootstrapTimer)
 this.bootstrapTimer.stop();this.bootstrapTimer=null;this.bootstrap();}
 App.bootstrapApp=function(){if(this.deferBootstrap)
-return;this.bootstrapTimer=new Timer(this.bootstrapCheck.bind(this),20);};if(defined(window.clipboardData)){try{document.execCommand("BackgroundImageCache",false,true);}catch(e){};var blankURI=window.__blankURI__||"about:blank";document.write("<iframe id='__location' src='"+blankURI+"' width='0' height='0' frameborder='0'"+
-"style='visibility:hidden;position:absolute;left:0;top:0;'></iframe>");}
+return;this.bootstrapTimer=new Timer(this.bootstrapCheck.bind(this),20);};if(defined(window.clipboardData)){try{document.execCommand("BackgroundImageCache",false,true);}catch(e){}
+var blankURI=window.__blankURI__||"about:blank";var iframe=document.createElement('div');iframe.innerHTML="<iframe id='__location' src='"+blankURI+
+"' width='0' height='0' frameborder='0' style='visibility:hidden;position:absolute;left:0;top:0;'></iframe>";iframe=iframe.firstChild;var insertIframe=function(){document.body.appendChild(iframe);};if(document.addEventListener){document.addEventListener("DOMContentLoaded",insertIframe,false);}else{document.attachEvent("onreadystatechange",insertIframe,false);}}
 Cache=new Class(Object,{maxLength:100,hits:0,misses:0,init:function(maxLength){if(maxLength>0)
 this.maxLength=maxLength;this.flush();},flush:function(){this.length=0;this.LRU=0;this.MRU=0;this.IDX={};this.KEY=[];this.VALUE=[];this.PREV=[];this.NEXT=[];this.DELETE=[];},getItemsOrdered:function(offset,count){offset=offset||0;count=count||this.length;var keys=[];var values=[];var idx=this.MRU;var c=0;for(var i=0;i<this.length;i++){if(i<offset){idx=this.NEXT[idx];continue;}
 keys.push(this.KEY[idx]);values.push(this.VALUE[idx]);c++;if(c>=count)
