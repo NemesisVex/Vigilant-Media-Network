@@ -14,8 +14,8 @@
 <p>
 VIEW:
 {if $romaji}<a id="romaji_toggle" style="cursor: pointer;">ROMAJI</a>{/if}
-{if $kanji}&#8226; <a id="kanji_toggle" style="cursor: pointer;">KANJI</a>{/if}
-{if $eigo}&#8226; <a id="eigo_toggle" style="cursor: pointer;">ENGLISH</a>{/if}
+{if $kanji} &#8226; <a id="kanji_toggle" style="cursor: pointer;">KANJI</a>{/if}
+{if $eigo} &#8226; <a id="eigo_toggle" style="cursor: pointer;">ENGLISH</a>{/if}
 </p>
 </div>
 
@@ -45,7 +45,7 @@ $('document').ready(function ()
 	$('#lyrics').html(init_lyrics());
 	$('#romaji_toggle').click(function () {load_lyrics('#romaji');});
 	$('#kanji_toggle').click(function () {load_lyrics('#kanji');});
-	$('#eigo_toggle').click(function () {load_lyrcs('#eigo');});
+	$('#eigo_toggle').click(function () {load_lyrics('#eigo');});
 });
 
 function init_lyrics()
