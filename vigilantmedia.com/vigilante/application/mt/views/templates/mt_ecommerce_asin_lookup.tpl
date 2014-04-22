@@ -52,13 +52,14 @@ Channel:
 
 {/if}
 {else}
-<p>Your search returned no results.</p>
 {if $errors}
-<p>
-	The following errors were returned: {$errors->Error->Message}
-</p>
+<p>Your search returned no results.</p>
+
+<p>The following errors were returned: {$errors->Error->Message}</p>
 {/if}
 {/if}
 
+{if $auth_request_uri}
 <p style="font-size: smaller;"><a href="{$auth_request_uri}">Amazon request URI</a></p>
+{/if}
 
