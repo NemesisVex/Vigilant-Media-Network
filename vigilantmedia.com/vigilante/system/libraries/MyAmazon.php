@@ -89,7 +89,7 @@ class MyAmazon
 		$more_params = !empty($args[2]) ? $args[2] : NULL;
 
 		$params['SearchIndex'] = $searchIndex;
-		$params['Keywords'] = urlencode($keywords);
+		$params['Keywords'] = $keywords;
 		if (!empty($more_params)) {$params = array_merge($params, $more_params);}
 
 		$this->build_request_uri('ItemSearch', $params);

@@ -23,8 +23,8 @@ Channel:
 
 </form>
 
-{if $items}
 {if $display}
+{if $items}
 <table class="Admin_Wide">
 <tr>
 	<th>TITLE</th>
@@ -44,16 +44,21 @@ Channel:
 {/foreach}
 </table>
 
-<p style="font-size: smaller;"><a href="{$auth_request_uri}">Amazon request URI</a></p>
-
 {if $page_links}
 <p>
 {$page_links}
 </p>
 {/if}
 
+{/if}
 {else}
 <p>Your search returned no results.</p>
+{if $errors}
+<p>
+	The following errors were returned: {$errors->Error->Message}
+</p>
 {/if}
 {/if}
+
+<p style="font-size: smaller;"><a href="{$auth_request_uri}">Amazon request URI</a></p>
 
