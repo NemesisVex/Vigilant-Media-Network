@@ -22,6 +22,7 @@ class Asin extends CI_Controller
 		if (empty($locale)) {$locale = $this->input->get_post('locale');}
 		if (empty($mode)) {$mode = $this->input->get_post('mode');}
 		
+		$this->mysmarty->assign('keywords', $keywords);
 		$this->mysmarty->assign('locale', $locale);
 		$this->mysmarty->assign('mode', $mode);
 		$this->mtlib->_smarty_display_mt_page('mt_ecommerce_asin_lookup.tpl');
@@ -42,7 +43,7 @@ class Asin extends CI_Controller
 		$this->myamazon->item_search($mode, $keywords, $params);
 		//$this->vigilantecorelib->debug_trace('<a href="' . $this->myamazon->auth_request_uri . '">XML URL</a>');
 		$display = isset($this->myamazon->results->Items->Request->Errors) ? false : true;
-		if ($display==true)
+		if ($display===true)
 		{
 			$items = $this->myamazon->results->Items->Item;
 			
@@ -59,15 +60,19 @@ class Asin extends CI_Controller
 			
 			$page_links = $this->pagination->create_links();
 			
-			$this->mysmarty->assign('auth_request_uri', $this->myamazon->auth_request_uri);
 			$this->mysmarty->assign('keywords', $keywords);
 			$this->mysmarty->assign('items', $items);
 			$this->mysmarty->assign('page_links', $page_links);
+		}
+		else
+		{
+			$this->mysmarty->assign('errors', $this->myamazon->results->Items->Request->Errors);
 		}
 		
 		$this->mysmarty->assign('locale', $locale);
 		$this->mysmarty->assign('mode', $mode);
 		$this->mysmarty->assign('display', $display);
+		$this->mysmarty->assign('auth_request_uri', $this->myamazon->auth_request_uri);
 		$this->index($keywords, $mode, $locale);
 	}
 }
