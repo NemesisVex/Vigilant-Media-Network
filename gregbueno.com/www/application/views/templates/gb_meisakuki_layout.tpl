@@ -9,8 +9,9 @@
 		<link rel="stylesheet" href="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/css/blueprint/screen.css" type="text/css" media="screen, projection" />
 		<link rel="stylesheet" href="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/css/blueprint/print.css" type="text/css" media="print" />
 		<!--[if lt IE 8]><link rel="stylesheet" href="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/css/blueprint/ie.css" type="text/css" media="screen, projection" /><![endif]-->
-		<link rel="stylesheet" href="/css/greg.css" type="text/css" media="screen, projection" />
-		<link rel="stylesheet" href="/css/meisakuki.css" type="text/css" />
+		<link rel="stylesheet" href="/css/meisakuki/typography.css" type="text/css" media="screen, projection, print" />
+		<link rel="stylesheet" href="/css/meisakuki/layout.css" type="text/css" media="screen, projection" />
+		<link rel="stylesheet" href="/css/meisakuki/mobile.css" type="text/css" media="screen and (max-width: 600px)" />
 		<script type="text/javascript" src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/js/modernizr-1.6.min.js"></script>
 		<!--[if lt IE 9]><script type="text/javascript" src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/web/js/html5.js"></script><![endif]-->
 	</head>
