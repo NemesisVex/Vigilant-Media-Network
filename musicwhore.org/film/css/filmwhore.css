@@ -10,6 +10,11 @@
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
+body {
+	font-size: 87.5%;
+	line-height: 1.5;
+}
+
 a:focus
 {
 	color: #3CF;

@@ -36,7 +36,7 @@
 					<p>I can also be found hanging around various social media sites.</p>
 
 					<ul>
-						<li><a href="{$config.to_vigilantmedia}/">Vigilant Media</a> (online portfolio)</li>
+						<li><a href="{$config.to_vigilantmedia}/">Vigilant Media</a> <small>(online portfolio)</small></li>
 						<li><a href="http://bitbucket.org/NemesisVex/">Bitbucket profile</a></li>
 					</ul>
 

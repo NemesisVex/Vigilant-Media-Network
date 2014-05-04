@@ -51,6 +51,11 @@
 		url("fonts/Novecentowide-BoldItalic-webfont.svg#webfont") format("svg");
 	font-weight: bold;
 	font-style: italic, oblique;
+}	
+
+body {
+	font-size: 87.5%;
+	line-height: 1.5;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -59,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #title {
 	font-family: "CartoGothicStd", Helvetica, Arial, sans-serif;
-	font-size: 7em;
+	font-size: 6em;
 	text-transform: uppercase;
 }
 

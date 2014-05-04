@@ -31,7 +31,7 @@
 	</p>
 </form>
 
-<script type="text/javascript" src="{$config.to_vigilante}/js/jquery.validate.pack.js"></script>
+<script type="text/javascript" src="{$smarty.const.VIGILANTMEDIA_CDN_BASE_URI}/js/jquery.validate.pack.js"></script>
 <script type="text/javascript">
 	{literal}
 $(document).ready(function ()

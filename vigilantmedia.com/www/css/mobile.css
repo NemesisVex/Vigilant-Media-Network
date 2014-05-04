@@ -179,8 +179,8 @@ ul.company-info li {
 	float: none;
 	width: auto;
 	margin-right: 10px;
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 0px;
+	padding-right: 0px;
 	border-right: none;
 }
 
@@ -188,8 +188,8 @@ ul.company-info li {
 	float: none;
 	width: auto;
 	margin-right: 0;
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 
 .three-columns {
@@ -203,8 +203,8 @@ ul.company-info li {
 	float: none;
 	width: auto;
 	margin-right: 10px;
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 0px;
+	padding-right: 0px;
 	border-right: none;
 }
 
@@ -212,7 +212,7 @@ ul.company-info li {
 	float: none;
 	width: auto;
 	margin-right: 0;
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 0px;
+	padding-right: 0px;
 }
 

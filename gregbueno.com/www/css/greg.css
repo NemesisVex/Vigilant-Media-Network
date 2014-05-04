@@ -1,6 +1,8 @@
 body
 {
 	font-family: 'georgia', 'book antiqua', 'palatino linotype', 'palatino', 'times new roman', 'times', serif;
+	font-size: 87.5%;
+	line-height: 1.5;
 	background-color: #0F1715;
 }
 

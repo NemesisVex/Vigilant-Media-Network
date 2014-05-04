@@ -5,9 +5,9 @@
 	<h3>Personal Blogs</h3>
 	
 	<ul>
-		<li><a href="/index.php/sakufu/">作譜</a></li>
-		<li><a href="/index.php/meisakuki/">名作記</a></li>
-		<li><a href="/index.php/vexvox/">VexVox</a></li>
+		<li><a href="/wp/sakufu/">作譜</a></li>
+		<li><a href="/wp/meisakuki/">名作記</a></li>
+		<li><a href="/wp/vexvox/">VexVox</a></li>
 	</ul>
 	
 	<h3>Musicwhore.org Blogs</h3>
