@@ -24,6 +24,11 @@
 		url("fonts/Novecentowide-Book-webfont.svg#webfont") format("svg");
 }
 
+body {
+	font-size: 87.5%;
+	line-height: 1.5;
+}
+
 a {
 	color: #904848;
 }
