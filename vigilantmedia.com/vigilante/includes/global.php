@@ -36,8 +36,8 @@ switch (ENVIRONMENT) {
         $config_url_base['to_archive'] = 'http://dev.archive.musicwhore.org';
         $config_url_base['to_musicwhore'] = 'http://wp-dev.musicwhore.org';
         $config_url_base['to_reviews'] = 'http://musicwhore.wp.vigilantmedia.com';
-        $config_url_base['to_filmwhore'] = 'http://dev.film.musicwhore.org';
-        $config_url_base['to_tvwhore'] = 'http://dev.tv.musicwhore.org';
+        $config_url_base['to_filmwhore'] = 'http://film.wp-dev.musicwhore.org';
+        $config_url_base['to_tvwhore'] = 'http://tv.wp-dev.musicwhore.org';
         $config_url_base['to_journalcon'] = 'http://dev.journalcon.austin-stories.com';
         $config_url_base['to_austinstories'] = 'http://dev.austin-stories.com';
         $config_url_base['to_ddn'] = 'http://dev.duran-duran.net';
@@ -59,8 +59,8 @@ switch (ENVIRONMENT) {
         $config_url_base['to_archive'] = 'http://test.archive.musicwhore.org';
         $config_url_base['to_musicwhore'] = 'http://wp-test.musicwhore.org';
         $config_url_base['to_reviews'] = 'http://musicwhore.wp-test.vigilantmedia.com';
-        $config_url_base['to_filmwhore'] = 'http://test.film.musicwhore.org';
-        $config_url_base['to_tvwhore'] = 'http://test.tv.musicwhore.org';
+        $config_url_base['to_filmwhore'] = 'http://film.wp-test.musicwhore.org';
+        $config_url_base['to_tvwhore'] = 'http://tv.wp-test.musicwhore.org';
         $config_url_base['to_journalcon'] = 'http://test.journalcon.austin-stories.com';
         $config_url_base['to_austinstories'] = 'http://test.austin-stories.com';
         $config_url_base['to_ddn'] = 'http://test.duran-duran.net';
