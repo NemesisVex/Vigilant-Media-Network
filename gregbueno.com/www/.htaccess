@@ -29,13 +29,13 @@ RedirectPermanent /remember http://www.lulu.com/product/paperback/starting-to-re
 RedirectPermanent /ghost http://www.eponymous4.com
 
 Redirect 410 /members/list.php
-RedirectMatch 301 ^/(sakufu|meisakuki)/category/([0-9]*)(/|$) /index.php/$1/archives/category/$2/
-RedirectMatch 301 ^/(sakufu|meisakuki)/entry/([0-9]*)(/|$) /index.php/$1/entry/$2/
-RedirectMatch 301 ^/(sakufu|meisakuki)/date/([0-9]*)(/|$) /index.php/$1/archives/date/$2/
-RedirectMatch 301 ^/(sakufu|meisakuki)/entry/random(/|$) /index.php/$1/entry/random/
-RedirectMatch 301 ^/meisakuki/entry/([0-9]*)/comments(/|$) /index.php/meisakuki/entry/$1/
-RedirectMatch 301 ^/sakufu/entry/([0-9]*)/\#comments$ /index.php/sakufu/entry/$1/#comments
-RedirectMatch 301 ^/(sakufu|meisakuki)/$ /index.php/$1/
+RedirectMatch 301 ^/(sakufu|meisakuki)/category/([0-9]*)(/|$) /wp/$1/category/$2/
+RedirectMatch 301 ^/(sakufu|meisakuki)/entry/([0-9]*)(/|$) /wp/$1/entry/$2/
+RedirectMatch 301 ^/(sakufu|meisakuki)/date/([0-9]*)(/|$) /wp/$1/$2/
+RedirectMatch 301 ^/meisakuki/entry/([0-9]*)/comments(/|$) /wp/meisakuki/entry/$1/
+RedirectMatch 301 ^/sakufu/entry/([0-9]*)/\#comments$ /wp/sakufu/entry/$1/#comments
+RedirectMatch 301 ^/(sakufu|meisakuki)/$ /wp/$1/
+RedirectMatch 301 ^/index.php/(sakufu|meisakuki|vexvox)/entry/([0-9]*)(/|$) /wp/$1/entry/$2/
 
 RewriteEngine On
 RewriteCond %{QUERY_STRING} ^entry_id=([0-9]+)$
