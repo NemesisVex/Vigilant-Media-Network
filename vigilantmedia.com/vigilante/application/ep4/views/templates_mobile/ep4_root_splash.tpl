@@ -1,1 +1,0 @@
-<p>Splash page goes here.</p>
