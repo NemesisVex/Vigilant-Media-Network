@@ -1,6 +1,6 @@
 /.htpasswd
-/austin-stories.com/www/application/views/templates_c/
-/austin-stories.com/www/application/views/templates_mobile_c/
+/austin-stories.com/*/application/views/templates_c/
+/austin-stories.com/*/application/views/templates_mobile_c/
 /gregbueno.com/www/files/
 /gregbueno.com/www/images/extras/
 /gregbueno.com/www/images/smut/
