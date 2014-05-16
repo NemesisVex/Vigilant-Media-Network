@@ -1,8 +1,0 @@
-User-agent: *
-Disallow: /
-
-User-agent: Googlebot
-Disallow: /index.php/aus/robots/
-
-User-agent: Googlebot
-Allow:
