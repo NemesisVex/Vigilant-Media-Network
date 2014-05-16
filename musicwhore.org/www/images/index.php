@@ -1,1 +1,0 @@
-<p>Directory access is not allowed.</p>
