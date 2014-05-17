@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "vm";
+$route['default_controller'] = "vg";
 $route['404_override'] = '';
 $route['vm/contact/sent'] = "vm/contact_sent";
 
