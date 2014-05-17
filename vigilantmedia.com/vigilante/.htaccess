@@ -6,8 +6,6 @@ ErrorDocument 500 /index.php/vg/error/500/
 AddType image/x-icon .ico
 AddType text/xml .rdf
 
-RedirectMatch ^/$ /index.php/vg/
-
 SetEnvIf HOST dev.vigilante.vigilantmedia.com dev
 SetEnvIf HOST test.vigilante.vigilantmedia.com test
 AuthType Basic

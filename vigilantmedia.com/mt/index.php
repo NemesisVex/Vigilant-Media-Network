@@ -60,7 +60,7 @@ if (defined('ENVIRONMENT'))
  * as this file.
  *
  */
-	$system_path = '../../vigilantmedia.com/vigilante/system';
+	$system_path = 'system';
 
 /*
  *---------------------------------------------------------------
@@ -76,7 +76,7 @@ if (defined('ENVIRONMENT'))
  * NO TRAILING SLASH!
  *
  */
-	$application_folder = '../../vigilantmedia.com/vigilante/application/mt';
+	$application_folder = 'application';
 
 /*
  * --------------------------------------------------------------------
