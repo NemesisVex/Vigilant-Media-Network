@@ -1,0 +1,27 @@
+[submodule "austin-stories.com/www"]
+	path = austin-stories.com/www
+	url = git@bitbucket.org:NemesisVex/austin-stories.git
+[submodule "austin-stories.com/journalcon"]
+	path = austin-stories.com/journalcon
+	url = git@bitbucket.org:NemesisVex/journalcon-2003.git
+[submodule "duran-duran.net/www"]
+	path = duran-duran.net/www
+	url = git@bitbucket.org:NemesisVex/duran-duran-networks.git
+[submodule "gregbueno.com/www"]
+	path = gregbueno.com/www
+	url = git@bitbucket.org:NemesisVex/gregbueno.com.git
+[submodule "musicwhore.org/wp"]
+	path = musicwhore.org/wp
+	url = git@bitbucket.org:NemesisVex/musicwhore.org-wordpress.git
+[submodule "vigilantmedia.com/mt"]
+	path = vigilantmedia.com/mt
+	url = git@bitbucket.org:NemesisVex/vigilant-media-central-administration.git
+[submodule "vigilantmedia.com/vigilante"]
+	path = vigilantmedia.com/vigilante
+	url = git@bitbucket.org:NemesisVex/vigilant-media-vigilante.git
+[submodule "vigilantmedia.com/www"]
+	path = vigilantmedia.com/www
+	url = git@bitbucket.org:NemesisVex/vigilant-media.git
+[submodule "vigilantmedia.com/wp"]
+	path = vigilantmedia.com/wp
+	url = git@bitbucket.org:NemesisVex/vigilant-media-network-wordpress.git
